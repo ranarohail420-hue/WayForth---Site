@@ -1,13 +1,12 @@
 {
-  "name": "wayforth-site",
-  "version": "0.1.0",
+  "name": "wayforth-orbital-foundry",
   "private": true,
+  "version": "1.0.0",
   "scripts": {
-    "serve": "http-server . -p 4173 -c-1",
-    "test:e2e": "playwright test"
+    "serve": "python3 -m http.server 4173",
+    "test": "playwright test"
   },
   "devDependencies": {
-    "@playwright/test": "^1.57.0",
-    "http-server": "^14.1.1"
+    "@playwright/test": "^1.57.0"
   }
 }
