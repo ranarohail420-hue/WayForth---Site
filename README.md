@@ -1,14 +1,15 @@
-# WAYFORTH — Orbital Foundry V1
+# WAYFORTH — Orbital Foundry V2
 
-Production-style staging build for the cinematic WAYFORTH experience.
+Production-preview build focused on cinematic motion and globe-based page travel.
 
-## Visual flow
-- Globe/WF opening
-- Camera pulls out
-- BUILD world arrives intact
-- Truck drives into position
-- Digital Dynasty studio arrives dark and powers on
-- Approved final homepage locks in
-- Division selection dives back through the globe and lands in the chosen operating page
+## What changed
+- Home intro no longer assembles full-page screenshots. BUILD, the truck, and Digital Dynasty are independent transparent visual layers.
+- BUILD constructs upward from a gold wireframe/scan with crane-load motion.
+- The truck drives in from depth along an animated route and settles into position with headlights.
+- Digital Dynasty appears dark first, then powers on in a staged motel/studio-light sequence.
+- BUILD / TRUCKING / MEDIA navigation now travels through the WAYFORTH globe rather than a white/blue dot portal.
+- Returning Home uses the reverse globe travel.
+- Mobile gets a portrait art-directed composition rather than a tiny desktop banner in a large black viewport.
+- BUILD and TRUCKING have a visible fixed HOME button.
 
-The approved BUILD and TRUCKING artwork/flows are retained, with externalized assets for faster loading and upgraded modal/form motion. Media remains a gateway for the next integration phase.
+Upload all files in this folder to the root of the existing GitHub repository and commit them. Vercel will redeploy automatically.

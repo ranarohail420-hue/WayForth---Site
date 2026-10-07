@@ -638,8 +638,12 @@ body.wf-arrive .stage{animation:wfLand .78s cubic-bezier(.18,.82,.18,1) both;tra
 @keyframes wfFieldRise{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
 
 </style>
+
+<style>
+.wf-visible-home{position:fixed;z-index:9998;left:max(12px,env(safe-area-inset-left));top:max(12px,env(safe-area-inset-top));min-height:44px;padding:0 15px;display:inline-flex;align-items:center;gap:8px;border-radius:999px;border:1px solid rgba(255,255,255,.16);background:rgba(2,8,16,.72);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);color:#fff;text-decoration:none;font:800 11px/1 system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;letter-spacing:.08em;box-shadow:0 10px 30px rgba(0,0,0,.28);transition:transform .2s ease,border-color .2s ease,background .2s ease}.wf-visible-home:active{transform:scale(.96)}@media(max-width:600px){.wf-visible-home{padding:0 12px;font-size:10px;background:rgba(2,8,16,.78)}}
+</style>
 </head>
-<body>
+<body><a class="wf-visible-home" href="index.html#home" aria-label="Back to WAYFORTH home">← HOME</a>
 <div class="stage" id="stage">
   <a class="site-home-hot" href="index.html" aria-label="WAYFORTH Home"></a>
   <a class="site-start-hot" href="quote.html" aria-label="Get Started"></a>
