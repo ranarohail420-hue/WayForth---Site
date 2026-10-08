@@ -7,131 +7,288 @@
 <title>WAYFORTH — Move. Build. Create.</title>
 <style>
 :root{
-  --gold:#efbd61;
-  --blue:#4cb8ff;
-  --ink:#02060d;
+  --gold:#efbd61; --blue:#58bfff; --ink:#02060d;
   --ease:cubic-bezier(.16,.84,.18,1);
-  --gx:50%;
-  --gy:28%;
 }
 *{box-sizing:border-box}
-html,body{margin:0;width:100%;height:100%;overflow:hidden;background:var(--ink);color:#fff;font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif}
-button,a{font:inherit}
+html,body{margin:0;width:100%;height:100%;overflow:hidden;background:var(--ink);color:#fff;
+  font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif}
+button,a{font:inherit;color:inherit}
 body{overscroll-behavior:none}
 .app{position:fixed;inset:0;overflow:hidden;background:#02060d}
-.view{position:absolute;inset:0;opacity:0;visibility:hidden;pointer-events:none;background:#02060d;transform:translateZ(0)}
+.view{position:absolute;inset:0;opacity:0;visibility:hidden;pointer-events:none;background:#02060d}
 .view.active{opacity:1;visibility:visible;pointer-events:auto}
-.frame{width:100%;height:100%;border:0;display:block;background:#02060d;transform:translateZ(0)}
+.frame{width:100%;height:100%;border:0;display:block;background:#02060d}
 
-/* HOME — approved artwork preserved, but staged like a cinematic viewport */
-.home{display:grid;place-items:center;isolation:isolate;background:#02060d;overflow:hidden}
-.ambient{position:absolute;inset:-15%;background:url('home-ambient.webp') center/cover no-repeat;filter:blur(28px) saturate(1.28) brightness(.58);transform:scale(1.18);opacity:.94}
-.ambient:after{content:"";position:absolute;inset:0;background:
- radial-gradient(circle at 50% 31%,rgba(43,121,239,.10),transparent 28%),
- linear-gradient(180deg,rgba(1,4,10,.38),rgba(1,4,10,.10) 38%,rgba(1,4,10,.68));}
-.world-wrap{position:relative;width:min(100vw,calc(100vh * 1.77931));aspect-ratio:1290/725;display:grid;place-items:center;z-index:2}
-.world{position:absolute;inset:0;overflow:hidden;isolation:isolate;transform-origin:50.2% 28%;will-change:transform,filter,opacity,clip-path;box-shadow:0 30px 110px rgba(0,0,0,.44)}
-.base{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;display:block;pointer-events:none}
-.hot{position:absolute;z-index:12;display:block;background:rgba(255,255,255,.001);border-radius:18px;touch-action:manipulation;-webkit-tap-highlight-color:rgba(255,255,255,.08)}
-.hot:focus-visible{outline:2px solid #fff;outline-offset:3px}
-.hot-build{left:2.7%;top:49.5%;width:25%;height:12.5%}
-.hot-truck{left:35.1%;top:69.7%;width:29.9%;height:12.6%}
-.hot-media{left:72.8%;top:49.5%;width:24.8%;height:12.5%}
-.hot-quote{left:78.3%;top:1.1%;width:13.7%;height:6.7%}
-.status-pill{position:absolute;z-index:20;left:max(14px,env(safe-area-inset-left));bottom:max(14px,env(safe-area-inset-bottom));padding:8px 11px;border:1px solid rgba(255,255,255,.10);border-radius:999px;background:rgba(1,7,15,.52);backdrop-filter:blur(14px);font-size:9px;font-weight:750;letter-spacing:.13em;color:rgba(255,255,255,.60);opacity:0;transition:opacity .4s ease}
-.home.ready .status-pill{opacity:1}
+/* A predictable loading frame prevents the irregular first paint seen on iPhone. */
+.loader{position:fixed;inset:0;z-index:10000;display:grid;place-items:center;background:#02060d;
+  transition:opacity .28s ease,visibility .28s ease}
+.loader::before{content:"WAYFORTH";font-size:11px;font-weight:800;letter-spacing:.36em;color:rgba(255,255,255,.52);
+  animation:loaderPulse 1.05s ease-in-out infinite alternate}
+@keyframes loaderPulse{to{color:rgba(239,189,97,.92);text-shadow:0 0 24px rgba(239,189,97,.25)}}
+body.assets-ready .loader{opacity:0;visibility:hidden}
 
-/* INTRO — only globe first, then the existing approved world is revealed from it */
-.intro-layer{position:absolute;inset:0;z-index:30;overflow:hidden;pointer-events:none;background:#02060d;opacity:1;visibility:visible;transition:opacity .34s ease,visibility .34s ease}
-.intro-layer.done{opacity:0;visibility:hidden}
-.intro-stars{position:absolute;inset:0;background:
- radial-gradient(circle at 12% 21%,rgba(255,255,255,.8) 0 1px,transparent 1.5px),
- radial-gradient(circle at 81% 17%,rgba(115,194,255,.9) 0 1px,transparent 1.5px),
- radial-gradient(circle at 67% 78%,rgba(255,213,126,.7) 0 1px,transparent 1.4px),
- radial-gradient(circle at 33% 72%,rgba(255,255,255,.55) 0 1px,transparent 1.3px);
- background-size:180px 160px,250px 210px,290px 250px,330px 300px;opacity:.43;animation:starDrift 8s linear infinite}
-@keyframes starDrift{to{transform:translate3d(-14px,9px,0)}}
-.intro-globe{position:absolute;left:50%;top:50%;width:min(112vmin,980px);aspect-ratio:1;transform:translate(-50%,-50%) scale(1.25);filter:drop-shadow(0 0 42px rgba(62,161,255,.52)) drop-shadow(0 0 90px rgba(239,189,97,.18));will-change:transform,left,top,width,filter,opacity}
-.intro-ring{position:absolute;left:50%;top:50%;width:min(84vmin,760px);aspect-ratio:1;border-radius:50%;border:1px solid rgba(119,201,255,.42);box-shadow:0 0 44px rgba(63,161,255,.18);transform:translate(-50%,-50%) rotate(-12deg)}
-.intro-ring.r2{width:min(96vmin,850px);border-color:rgba(239,189,97,.27);transform:translate(-50%,-50%) rotate(19deg)}
-.intro-impact{position:absolute;left:50%;top:50%;width:12vmin;aspect-ratio:1;border-radius:50%;border:2px solid rgba(255,216,127,.85);box-shadow:0 0 18px rgba(255,207,105,.78),0 0 62px rgba(58,161,255,.42);opacity:0;transform:translate(-50%,-50%) scale(.2)}
-.home.intro .intro-globe{animation:introGlobe 1.72s var(--ease) both}
-.home.intro .intro-ring{animation:introRing 1.58s .05s var(--ease) both}
-.home.intro .intro-ring.r2{animation:introRing2 1.58s .09s var(--ease) both}
-.home.intro .intro-impact{animation:introImpact .78s .20s ease-out both}
-.home.intro .world{animation:worldReveal 1.56s .20s var(--ease) both}
-@keyframes introGlobe{
-  0%{left:50%;top:50%;width:min(124vmin,1080px);transform:translate(-50%,-50%) scale(1.34);filter:drop-shadow(0 0 54px rgba(69,164,255,.62)) brightness(1.06)}
-  15%{transform:translate(-50%,-50%) scale(1.23)}
-  36%{transform:translate(-50%,-50%) scale(1.28)}
-  76%{left:50.2%;top:28%;width:min(29vw,300px);transform:translate(-50%,-50%) scale(1);filter:drop-shadow(0 0 24px rgba(63,157,255,.30)) brightness(1)}
-  100%{left:50.2%;top:28%;width:min(27vw,280px);transform:translate(-50%,-50%) scale(.98);opacity:.05;filter:blur(1px) brightness(1)}
+/* HOME: genuine layered composition, not the flattened homepage picture. */
+.home{isolation:isolate;background:#02060d}
+.sky{position:absolute;inset:0;background:
+  radial-gradient(circle at 50% 24%,rgba(31,87,177,.30),transparent 30%),
+  radial-gradient(circle at 50% 66%,rgba(15,68,129,.13),transparent 34%),
+  linear-gradient(180deg,#020713 0%,#061326 48%,#02060d 100%);
+  overflow:hidden}
+.sky::before{content:"";position:absolute;inset:-15%;background:url("home-ambient.webp") center/cover no-repeat;
+  filter:blur(42px) saturate(1.4) brightness(.44);opacity:.56;transform:scale(1.18)}
+.sky::after{content:"";position:absolute;inset:0;opacity:.42;background-image:
+  radial-gradient(circle at 11% 13%,#fff 0 1px,transparent 1.4px),
+  radial-gradient(circle at 77% 18%,#71c7ff 0 1px,transparent 1.5px),
+  radial-gradient(circle at 32% 74%,#f2c56d 0 1px,transparent 1.4px),
+  radial-gradient(circle at 86% 70%,#fff 0 1px,transparent 1.3px);
+  background-size:170px 150px,240px 210px,285px 250px,325px 290px;
+  animation:stars 13s linear infinite}
+@keyframes stars{to{transform:translate3d(-18px,11px,0)}}
+
+.scene{position:absolute;inset:0;overflow:hidden;opacity:0;transition:opacity .22s ease}
+body.assets-ready .scene{opacity:1}
+.scene::after{content:"";position:absolute;z-index:8;left:3%;right:3%;bottom:7%;height:12%;
+  background:linear-gradient(90deg,transparent,rgba(239,189,97,.26),rgba(77,176,255,.34),rgba(239,189,97,.22),transparent);
+  filter:blur(18px);opacity:0}
+.scene.play::after{animation:roadWake 2.1s 2.45s ease both}
+@keyframes roadWake{0%{opacity:0;transform:scaleX(.20)}50%{opacity:.86;transform:scaleX(1)}100%{opacity:.32;transform:scaleX(1)}}
+
+.orbit-stage{position:absolute;z-index:4;left:50%;top:39%;width:clamp(300px,38vw,590px);aspect-ratio:1;transform:translate(-50%,-50%)}
+.globe{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;filter:
+  drop-shadow(0 0 32px rgba(63,161,255,.34)) drop-shadow(0 0 72px rgba(239,189,97,.13));
+  transform:scale(1)}
+.orbit,.orbit2{position:absolute;left:50%;top:50%;width:108%;aspect-ratio:1;border-radius:50%;
+  border:1px solid rgba(94,185,255,.42);transform:translate(-50%,-50%) rotate(-13deg);
+  box-shadow:0 0 32px rgba(69,164,255,.14)}
+.orbit2{width:122%;border-color:rgba(239,189,97,.27);transform:translate(-50%,-50%) rotate(19deg)}
+.scene.play .orbit{animation:orbitSpin 8s linear infinite}
+.scene.play .orbit2{animation:orbitSpin2 10s linear infinite}
+@keyframes orbitSpin{to{transform:translate(-50%,-50%) rotate(347deg)}}
+@keyframes orbitSpin2{to{transform:translate(-50%,-50%) rotate(-341deg)}}
+
+/* BUILD uses the transparent cutout in floor-like clips. No sky/background travels with it. */
+.build-cluster{position:absolute;z-index:3;left:-2%;bottom:6%;width:min(45vw,690px);aspect-ratio:1}
+.build-piece,.build-final{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;filter:drop-shadow(0 20px 28px rgba(0,0,0,.38))}
+.build-piece{opacity:0}
+.build-floor1{clip-path:inset(67% 0 0 0)}
+.build-floor2{clip-path:inset(49% 0 25% 0)}
+.build-floor3{clip-path:inset(31% 0 44% 0)}
+.build-floor4{clip-path:inset(13% 0 61% 0)}
+.build-crane{clip-path:inset(0 0 72% 0)}
+.build-final{opacity:0}
+.scene.play .build-floor1{animation:buildIn .46s 1.02s var(--ease) both}
+.scene.play .build-floor2{animation:buildIn .46s 1.27s var(--ease) both}
+.scene.play .build-floor3{animation:buildIn .46s 1.52s var(--ease) both}
+.scene.play .build-floor4{animation:buildIn .46s 1.77s var(--ease) both}
+.scene.play .build-crane{animation:craneIn .58s 1.98s var(--ease) both}
+.scene.play .build-final{animation:buildResolve .32s 2.42s ease-out both}
+@keyframes buildIn{
+  0%{opacity:0;transform:translate3d(-6%,12%,0) scale(.95);filter:brightness(1.36) blur(4px)}
+  62%{opacity:1;transform:translate3d(0,-1%,0) scale(1.012);filter:brightness(1.08) blur(0)}
+  100%{opacity:1;transform:none;filter:drop-shadow(0 20px 28px rgba(0,0,0,.38))}
 }
-@keyframes introRing{0%{opacity:.20;transform:translate(-50%,-50%) rotate(-12deg) scale(.78)}35%{opacity:1}100%{opacity:0;transform:translate(-50%,-50%) rotate(108deg) scale(1.72)}}
-@keyframes introRing2{0%{opacity:.12;transform:translate(-50%,-50%) rotate(19deg) scale(.76)}42%{opacity:.85}100%{opacity:0;transform:translate(-50%,-50%) rotate(-112deg) scale(1.58)}}
-@keyframes introImpact{0%{opacity:0;transform:translate(-50%,-50%) scale(.18)}28%{opacity:1;transform:translate(-50%,-50%) scale(.48)}100%{opacity:0;transform:translate(-50%,-50%) scale(5.5)}}
-@keyframes worldReveal{
-  0%{opacity:.04;clip-path:circle(4% at 50.2% 28%);transform:scale(1.09);filter:blur(10px) brightness(.55)}
-  48%{opacity:.72;clip-path:circle(34% at 50.2% 28%);filter:blur(3px) brightness(.84)}
-  100%{opacity:1;clip-path:circle(105% at 50.2% 28%);transform:scale(1);filter:blur(0) brightness(1)}
+@keyframes craneIn{
+  0%{opacity:0;transform:translate3d(0,-18%,0) scale(.97);filter:brightness(1.42) blur(3px)}
+  70%{opacity:1;transform:translate3d(0,1%,0);filter:brightness(1.08)}
+  100%{opacity:1;transform:none;filter:none}
 }
-.home.ready .world{opacity:1;clip-path:none;transform:none;filter:none}
+@keyframes buildResolve{from{opacity:0}to{opacity:1}}
 
-/* ORBITAL TRAVEL — the globe is the transition object, not a blue dot */
-.jump{position:fixed;inset:0;z-index:9999;pointer-events:none;opacity:0;visibility:hidden;overflow:hidden;background:#02060d;--accent:#55baff;--accent2:#f0bd61}
+/* A small suspended load gives the construction scene actual activity. */
+.crane-load{position:absolute;z-index:5;left:43%;top:5%;width:18%;height:13%;opacity:0}
+.crane-load::before{content:"";position:absolute;left:50%;top:-55%;width:1px;height:60%;background:rgba(239,189,97,.86)}
+.crane-load::after{content:"";position:absolute;inset:45% 8% 0;border:1px solid rgba(239,189,97,.65);
+  background:linear-gradient(180deg,rgba(244,205,124,.78),rgba(125,88,31,.92));box-shadow:0 0 16px rgba(239,189,97,.34)}
+.scene.play .crane-load{animation:loadDrop 1.35s 2.10s var(--ease) both}
+@keyframes loadDrop{0%{opacity:0;transform:translateY(-45%)}24%{opacity:1}70%{transform:translateY(35%)}100%{opacity:.72;transform:translateY(29%)}}
+
+/* TRUCK is a real transparent cutout travelling into its final position. */
+.truck{position:absolute;z-index:6;left:50%;bottom:3%;width:min(40vw,620px);transform:translateX(-50%);
+  opacity:0;object-fit:contain;filter:drop-shadow(0 24px 30px rgba(0,0,0,.54))}
+.scene.play .truck{animation:truckArrive 1.20s 2.13s cubic-bezier(.12,.90,.22,1) both}
+@keyframes truckArrive{
+  0%{opacity:0;transform:translate3d(-128%,-18%,0) scale(.27) rotate(-2.5deg);filter:blur(7px) brightness(1.25)}
+  18%{opacity:.92}
+  74%{transform:translate3d(-47%,1%,0) scale(1.035);filter:blur(0) brightness(1.08)}
+  88%{transform:translate3d(-51%,0,0) scale(.995)}
+  100%{opacity:1;transform:translate3d(-50%,0,0) scale(1);filter:drop-shadow(0 24px 30px rgba(0,0,0,.54))}
+}
+.headlight{position:absolute;z-index:7;left:50%;bottom:6%;width:18%;height:10%;transform:translateX(-50%);
+  opacity:0;background:radial-gradient(ellipse at 50% 60%,rgba(106,207,255,.62),rgba(82,160,255,.14) 45%,transparent 72%);filter:blur(10px)}
+.scene.play .headlight{animation:headlightOn .55s 3.06s ease both}
+@keyframes headlightOn{0%{opacity:0}35%{opacity:.95}55%{opacity:.25}100%{opacity:.68}}
+
+/* DD exists dark first, then powers on like a studio/storefront at night. */
+.dd-wrap{position:absolute;z-index:3;right:-1%;bottom:6%;width:min(42vw,650px);aspect-ratio:1}
+.dd-dark,.dd-lit{position:absolute;inset:0;width:100%;height:100%;object-fit:contain}
+.dd-dark{opacity:0;filter:brightness(.055) saturate(.22) contrast(1.15)}
+.dd-lit{opacity:0;filter:brightness(1.02) saturate(1.03);filter:drop-shadow(0 18px 30px rgba(0,0,0,.42))}
+.scene.play .dd-dark{animation:ddExist .35s 2.72s ease both}
+.scene.play .dd-lit{animation:ddPower 1.12s 3.02s steps(1,end) both}
+@keyframes ddExist{from{opacity:0}to{opacity:.82}}
+@keyframes ddPower{
+  0%{opacity:0;filter:brightness(.08)}
+  12%{opacity:.72;filter:brightness(.62)}
+  20%{opacity:.08}
+  29%{opacity:.88;filter:brightness(.88)}
+  38%{opacity:.19}
+  48%{opacity:1;filter:brightness(1.05)}
+  58%{opacity:.42}
+  69%{opacity:1;filter:brightness(1.10)}
+  100%{opacity:1;filter:drop-shadow(0 18px 30px rgba(0,0,0,.42))}
+}
+.dd-flash{position:absolute;z-index:7;right:10%;bottom:24%;width:18%;aspect-ratio:1;border-radius:50%;
+  background:radial-gradient(circle,rgba(255,255,255,.82),rgba(77,170,255,.24) 35%,transparent 70%);opacity:0;filter:blur(6px)}
+.scene.play .dd-flash{animation:studioFlash .68s 3.58s ease both}
+@keyframes studioFlash{0%,22%{opacity:0}30%{opacity:1}42%{opacity:.05}56%{opacity:.78}100%{opacity:0}}
+
+/* Globe starts close and lands into the final position. */
+.scene.play .orbit-stage{animation:globePullout 1.18s .16s var(--ease) both}
+@keyframes globePullout{
+  0%{left:50%;top:50%;width:min(126vmin,1080px);transform:translate(-50%,-50%) scale(1.34);filter:brightness(1.13)}
+  20%{transform:translate(-50%,-50%) scale(1.19)}
+  46%{transform:translate(-50%,-50%) scale(1.23)}
+  100%{left:50%;top:39%;width:clamp(300px,38vw,590px);transform:translate(-50%,-50%) scale(1);filter:none}
+}
+
+/* UI appears after the physical world has arrived. */
+.topbar{position:absolute;z-index:30;left:max(20px,env(safe-area-inset-left));right:max(20px,env(safe-area-inset-right));
+  top:max(15px,env(safe-area-inset-top));display:flex;align-items:center;justify-content:space-between;gap:18px;opacity:0}
+.brand{display:flex;align-items:center;gap:10px;font-size:13px;font-weight:800;letter-spacing:.22em;text-transform:uppercase}
+.brand-mark{font-size:18px;color:var(--gold)}
+.quote-top{min-height:44px;display:grid;place-items:center;padding:0 18px;border:1px solid rgba(239,189,97,.55);border-radius:999px;
+  background:rgba(4,10,20,.44);backdrop-filter:blur(12px);font-size:10px;font-weight:800;letter-spacing:.13em;text-decoration:none}
+.hero-copy{position:absolute;z-index:20;left:50%;bottom:15%;transform:translateX(-50%);text-align:center;width:min(760px,86vw);opacity:0}
+.hero-copy h1{margin:0;font-size:clamp(26px,4vw,60px);letter-spacing:.19em;font-weight:500}
+.hero-copy h1 span:nth-child(2){color:var(--gold)}
+.hero-copy h1 span:nth-child(3){color:#78caff}
+.hero-copy p{margin:9px 0 0;font-size:clamp(8px,1vw,12px);letter-spacing:.28em;color:rgba(255,255,255,.62)}
+.choices{position:absolute;z-index:40;left:50%;bottom:max(20px,env(safe-area-inset-bottom));transform:translateX(-50%);
+  display:flex;gap:10px;width:min(760px,92vw);opacity:0}
+.choice{flex:1;min-width:0;min-height:58px;padding:11px 13px;border:1px solid rgba(255,255,255,.16);border-radius:18px;
+  background:linear-gradient(180deg,rgba(9,20,37,.64),rgba(3,9,17,.70));backdrop-filter:blur(14px);text-decoration:none;
+  display:flex;align-items:center;gap:10px;transition:transform .22s ease,border-color .22s ease,background .22s ease}
+.choice b{font-size:12px;letter-spacing:.07em}.choice small{display:block;margin-top:2px;color:rgba(255,255,255,.47);font-size:8px;letter-spacing:.13em}
+.choice .dot{width:30px;height:30px;flex:0 0 30px;border-radius:10px;border:1px solid rgba(255,255,255,.15);display:grid;place-items:center}
+.choice-build .dot{color:var(--gold)} .choice-truck .dot{color:var(--blue)} .choice-media .dot{color:#8b94ff}
+@media(hover:hover){.choice:hover{transform:translateY(-3px);border-color:rgba(255,255,255,.34);background:rgba(13,26,45,.82)}}
+.scene.play .topbar{animation:uiIn .60s 3.92s var(--ease) both}
+.scene.play .hero-copy{animation:uiIn .62s 4.03s var(--ease) both}
+.scene.play .choices{animation:uiIn .62s 4.13s var(--ease) both}
+@keyframes uiIn{0%{opacity:0;transform:translateY(12px)}100%{opacity:1;transform:translateY(0)}}
+.hero-copy{transform:translateX(-50%) translateY(12px)}
+.scene.play .hero-copy{animation:copyIn .62s 4.03s var(--ease) both}
+@keyframes copyIn{to{opacity:1;transform:translateX(-50%) translateY(0)}}
+.choices{transform:translateX(-50%) translateY(12px)}
+.scene.play .choices{animation:choicesIn .62s 4.13s var(--ease) both}
+@keyframes choicesIn{to{opacity:1;transform:translateX(-50%) translateY(0)}}
+
+/* Final-state class is used after returning HOME so the intro doesn't replay. */
+.scene.settled .orbit-stage,.scene.settled .build-cluster,.scene.settled .truck,.scene.settled .dd-wrap,
+.scene.settled .topbar,.scene.settled .hero-copy,.scene.settled .choices{opacity:1}
+.scene.settled .build-piece{opacity:1}
+.scene.settled .build-final,.scene.settled .dd-lit{opacity:1}
+.scene.settled .dd-dark{opacity:0}
+.scene.settled .truck{transform:translateX(-50%)}
+.scene.settled .topbar{transform:none}
+.scene.settled .hero-copy{transform:translateX(-50%)}
+.scene.settled .choices{transform:translateX(-50%)}
+
+/* Travel overlay: same real globe expands from its actual screen position. */
+.jump{position:fixed;inset:0;z-index:9999;pointer-events:none;opacity:0;visibility:hidden;overflow:hidden;background:#02060d;
+  --accent:#58bfff}
 .jump.active{opacity:1;visibility:visible}
 .jump canvas{position:absolute;inset:0;width:100%;height:100%}
+.jump-globe{position:absolute;object-fit:contain;filter:drop-shadow(0 0 36px color-mix(in srgb,var(--accent) 56%,transparent))}
 .jump-wash{position:absolute;inset:0;opacity:0;background:
- radial-gradient(circle at 50% 50%,rgba(255,255,255,.90) 0 2%,color-mix(in srgb,var(--accent) 58%,transparent) 14%,rgba(6,15,38,.20) 33%,rgba(2,6,13,0) 58%),
- linear-gradient(180deg,rgba(1,5,12,.12),rgba(1,5,12,.78));}
-.jump-globe{position:absolute;left:var(--gx);top:var(--gy);width:var(--gsize,220px);aspect-ratio:1;transform:translate(-50%,-50%) scale(1);filter:drop-shadow(0 0 35px color-mix(in srgb,var(--accent) 52%,transparent)) drop-shadow(0 0 90px rgba(239,189,97,.16));will-change:left,top,width,transform,opacity,filter}
-.jump-orbit,.jump-orbit2{position:absolute;left:var(--gx);top:var(--gy);width:calc(var(--gsize,220px)*1.18);aspect-ratio:1;border-radius:50%;border:1px solid color-mix(in srgb,var(--accent) 66%,transparent);transform:translate(-50%,-50%) rotate(-13deg);box-shadow:0 0 34px color-mix(in srgb,var(--accent) 22%,transparent);opacity:.74;will-change:left,top,width,transform,opacity}
-.jump-orbit2{width:calc(var(--gsize,220px)*1.36);border-color:rgba(239,189,97,.40);transform:translate(-50%,-50%) rotate(19deg);opacity:.55}
-.jump-label{position:absolute;left:50%;bottom:max(22px,env(safe-area-inset-bottom));transform:translateX(-50%) translateY(10px);font-size:10px;font-weight:800;letter-spacing:.22em;color:rgba(255,255,255,.67);opacity:0;white-space:nowrap;text-shadow:0 2px 14px rgba(0,0,0,.65)}
-.view.arriving .frame{animation:pageArrive .76s var(--ease) both}
-@keyframes pageArrive{0%{transform:scale(1.055);filter:blur(8px) brightness(.72);opacity:.22}55%{opacity:1;filter:blur(1.5px) brightness(1.05)}100%{transform:scale(1);filter:none;opacity:1}}
+  radial-gradient(circle at 50% 50%,rgba(255,255,255,.88),color-mix(in srgb,var(--accent) 50%,transparent) 15%,rgba(4,10,23,.15) 36%,rgba(2,6,13,0) 60%)}
+.jump-ring,.jump-ring2{position:absolute;border-radius:50%;border:1px solid color-mix(in srgb,var(--accent) 65%,transparent)}
+.jump-ring2{border-color:rgba(239,189,97,.42)}
+.view.arriving .frame{animation:pageArrive .64s var(--ease) both}
+@keyframes pageArrive{0%{transform:scale(1.045);filter:blur(6px) brightness(.78);opacity:.28}100%{transform:scale(1);filter:none;opacity:1}}
 
+/* Mobile composition fills the whole screen instead of showing a small landscape strip. */
 @media(max-width:700px){
-  .ambient{filter:blur(23px) saturate(1.22) brightness(.66)}
-  .world-wrap{width:124vw;max-width:none;aspect-ratio:1290/725}
-  .world{box-shadow:0 26px 82px rgba(0,0,0,.44)}
-  .home.intro .intro-globe{animation-name:introGlobeMobile}
-  @keyframes introGlobeMobile{
-    0%{left:50%;top:50%;width:142vw;transform:translate(-50%,-50%) scale(1.28);filter:drop-shadow(0 0 44px rgba(69,164,255,.58)) brightness(1.05)}
-    18%{transform:translate(-50%,-50%) scale(1.17)}
-    39%{transform:translate(-50%,-50%) scale(1.21)}
-    78%{left:50.2%;top:28%;width:37vw;transform:translate(-50%,-50%) scale(1);opacity:.92}
-    100%{left:50.2%;top:28%;width:33vw;transform:translate(-50%,-50%) scale(.98);opacity:.04;filter:blur(1px)}
+  .orbit-stage{top:31%;width:74vw}
+  .build-cluster{left:-24%;bottom:22%;width:74vw}
+  .dd-wrap{right:-22%;bottom:22%;width:70vw}
+  .truck{left:50%;bottom:15%;width:72vw}
+  .headlight{bottom:18%;width:33%}
+  .hero-copy{bottom:14%;width:92vw}
+  .hero-copy h1{font-size:30px;letter-spacing:.14em}
+  .hero-copy p{font-size:7px;letter-spacing:.22em}
+  .choices{bottom:max(12px,env(safe-area-inset-bottom));gap:7px;width:94vw}
+  .choice{min-height:68px;padding:9px 8px;border-radius:15px;gap:7px}
+  .choice .dot{width:27px;height:27px;flex-basis:27px}
+  .choice b{font-size:10px}.choice small{font-size:6.5px;letter-spacing:.10em}
+  .brand{font-size:11px}.quote-top{padding:0 13px;font-size:8px}
+  @keyframes globePullout{
+    0%{left:50%;top:50%;width:142vw;transform:translate(-50%,-50%) scale(1.25);filter:brightness(1.12)}
+    20%{transform:translate(-50%,-50%) scale(1.14)}
+    46%{transform:translate(-50%,-50%) scale(1.18)}
+    100%{left:50%;top:31%;width:74vw;transform:translate(-50%,-50%) scale(1);filter:none}
   }
-  .status-pill{display:none}
+}
+@media(max-width:380px){
+  .choice small{display:none}.choice{justify-content:center}.choice .dot{display:none}
+  .hero-copy{bottom:16%}
 }
 @media(prefers-reduced-motion:reduce){
-  .home.intro .intro-globe,.home.intro .intro-ring,.home.intro .intro-ring.r2,.home.intro .intro-impact,.home.intro .world{animation:none!important}
-  .intro-layer{display:none}.world{opacity:1!important;clip-path:none!important;filter:none!important;transform:none!important}
+  .scene.play *{animation:none!important}
+  .scene.play .orbit-stage,.scene.play .build-final,.scene.play .truck,.scene.play .dd-lit,
+  .scene.play .topbar,.scene.play .hero-copy,.scene.play .choices{opacity:1!important}
+  .scene.play .build-piece,.scene.play .dd-dark{display:none!important}
+  .scene.play .truck{transform:translateX(-50%)!important}
 }
 </style>
 </head>
 <body>
-<main class="app" id="app">
-  <section class="view home active intro" id="homeView" aria-label="WAYFORTH home">
-    <div class="ambient"></div>
-    <div class="world-wrap">
-      <div class="world" id="world">
-        <img class="base" src="home-final.webp" alt="WAYFORTH — Build, Trucking and Media">
-        <a class="hot hot-build" href="#build" data-page="build" aria-label="Open WAYFORTH Build"></a>
-        <a class="hot hot-truck" href="#trucking" data-page="trucking" aria-label="Open WAYFORTH Trucking"></a>
-        <a class="hot hot-media" href="#media" data-page="media" aria-label="Open WAYFORTH Media"></a>
-        <a class="hot hot-quote" href="#quote" data-page="quote" aria-label="Get a quote"></a>
+<div class="loader" aria-hidden="true"></div>
+<main class="app">
+  <section class="view home active" id="homeView" aria-label="WAYFORTH home">
+    <div class="sky"></div>
+    <div class="scene" id="scene">
+      <div class="orbit-stage" id="orbitStage">
+        <div class="orbit"></div><div class="orbit2"></div>
+        <img class="globe" id="homeGlobe" src="globe-opening.webp" alt="WAYFORTH globe">
       </div>
+
+      <div class="build-cluster">
+        <img class="build-piece build-floor1" src="world-build.webp" alt="">
+        <img class="build-piece build-floor2" src="world-build.webp" alt="">
+        <img class="build-piece build-floor3" src="world-build.webp" alt="">
+        <img class="build-piece build-floor4" src="world-build.webp" alt="">
+        <img class="build-piece build-crane" src="world-build.webp" alt="">
+        <img class="build-final" src="world-build.webp" alt="WAYFORTH Build">
+        <div class="crane-load"></div>
+      </div>
+
+      <img class="truck" src="world-truck.webp" alt="WAYFORTH Trucking">
+      <div class="headlight"></div>
+
+      <div class="dd-wrap">
+        <img class="dd-dark" src="world-dd.webp" alt="">
+        <img class="dd-lit" src="world-dd.webp" alt="Digital Dynasty">
+      </div>
+      <div class="dd-flash"></div>
+
+      <nav class="topbar" aria-label="Primary">
+        <div class="brand"><span class="brand-mark">WF</span> WAYFORTH</div>
+        <a class="quote-top" href="#quote" data-page="quote">GET A QUOTE →</a>
+      </nav>
+
+      <div class="hero-copy">
+        <h1><span>MOVE.</span> <span>BUILD.</span> <span>CREATE.</span></h1>
+        <p>DIFFERENT INDUSTRIES. A BRIGHTER TOMORROW.</p>
+      </div>
+
+      <nav class="choices" aria-label="Choose a WAYFORTH division">
+        <a class="choice choice-build" href="#build" data-page="build"><span class="dot">▥</span><span><b>BUILD</b><small>REAL PROJECTS. LASTING VALUE.</small></span></a>
+        <a class="choice choice-truck" href="#trucking" data-page="trucking"><span class="dot">➜</span><span><b>TRUCKING</b><small>FREIGHT FORWARD.</small></span></a>
+        <a class="choice choice-media" href="#media" data-page="media"><span class="dot">●</span><span><b>MEDIA</b><small>POWERED BY DIGITAL DYNASTY.</small></span></a>
+      </nav>
     </div>
-    <div class="intro-layer" id="introLayer" aria-hidden="true">
-      <div class="intro-stars"></div>
-      <div class="intro-ring"></div>
-      <div class="intro-ring r2"></div>
-      <div class="intro-impact"></div>
-      <img class="intro-globe" src="globe-opening.webp" alt="">
-    </div>
-    <div class="status-pill">ORBITAL CONTINUITY • LIVE</div>
   </section>
 
   <section class="view" id="buildView"><iframe class="frame" id="buildFrame" title="WAYFORTH Build"></iframe></section>
@@ -140,278 +297,159 @@ body{overscroll-behavior:none}
   <section class="view" id="quoteView"><iframe class="frame" id="quoteFrame" title="WAYFORTH Quote"></iframe></section>
 
   <div class="jump" id="jump" aria-hidden="true">
-    <canvas id="warpCanvas"></canvas>
+    <canvas id="warp"></canvas>
     <div class="jump-wash" id="jumpWash"></div>
-    <div class="jump-orbit" id="jumpOrbit"></div>
-    <div class="jump-orbit2" id="jumpOrbit2"></div>
+    <div class="jump-ring" id="jumpRing"></div>
+    <div class="jump-ring2" id="jumpRing2"></div>
     <img class="jump-globe" id="jumpGlobe" src="globe-opening.webp" alt="">
-    <div class="jump-label" id="jumpLabel"></div>
   </div>
 </main>
 <script>
-(() => {
-  const home = document.getElementById('homeView');
-  const world = document.getElementById('world');
-  const intro = document.getElementById('introLayer');
-  const jump = document.getElementById('jump');
-  const globe = document.getElementById('jumpGlobe');
-  const orbit = document.getElementById('jumpOrbit');
-  const orbit2 = document.getElementById('jumpOrbit2');
-  const wash = document.getElementById('jumpWash');
-  const label = document.getElementById('jumpLabel');
-  const canvas = document.getElementById('warpCanvas');
-  const ctx = canvas.getContext('2d');
+(()=>{
+  const scene=document.getElementById('scene');
+  const home=document.getElementById('homeView');
+  const homeGlobe=document.getElementById('homeGlobe');
+  const orbitStage=document.getElementById('orbitStage');
+  const jump=document.getElementById('jump');
+  const jumpGlobe=document.getElementById('jumpGlobe');
+  const jumpRing=document.getElementById('jumpRing');
+  const jumpRing2=document.getElementById('jumpRing2');
+  const jumpWash=document.getElementById('jumpWash');
+  const canvas=document.getElementById('warp');
+  const ctx=canvas.getContext('2d');
 
-  const views = {
-    home,
-    build: document.getElementById('buildView'),
-    trucking: document.getElementById('truckingView'),
-    media: document.getElementById('mediaView'),
-    quote: document.getElementById('quoteView')
-  };
-  const frames = {
-    build: document.getElementById('buildFrame'),
-    trucking: document.getElementById('truckingFrame'),
-    media: document.getElementById('mediaFrame'),
-    quote: document.getElementById('quoteFrame')
-  };
-  const urls = { build:'build.html', trucking:'trucking.html', media:'media.html', quote:'quote.html' };
-  const theme = {
-    build:{accent:'#efbd61', accent2:'#67bfff', label:'ENTERING • WAYFORTH BUILD'},
-    trucking:{accent:'#59bdff', accent2:'#efbd61', label:'ENTERING • WAYFORTH TRUCKING'},
-    media:{accent:'#6d8dff', accent2:'#52d6ff', label:'ENTERING • WAYFORTH MEDIA'},
-    quote:{accent:'#efbd61', accent2:'#ffffff', label:'OPENING • WAYFORTH QUOTE'}
-  };
-  let current='home';
-  let busy=false;
-  let raf=0;
+  const views={home,build:document.getElementById('buildView'),trucking:document.getElementById('truckingView'),
+    media:document.getElementById('mediaView'),quote:document.getElementById('quoteView')};
+  const frames={build:document.getElementById('buildFrame'),trucking:document.getElementById('truckingFrame'),
+    media:document.getElementById('mediaFrame'),quote:document.getElementById('quoteFrame')};
+  const urls={build:'build.html',trucking:'trucking.html',media:'media.html',quote:'quote.html'};
+  const themes={build:'#efbd61',trucking:'#58bfff',media:'#798dff',quote:'#efbd61'};
+  let current='home',busy=false,raf=0;
 
-  const particles = Array.from({length:72},(_,i)=>({
-    a:(i/72)*Math.PI*2 + Math.sin(i*1.73)*.11,
-    k:.38 + ((i*37)%100)/100*.82,
-    o:.22 + ((i*19)%100)/100*.70,
-    w:((i*13)%3)+.55
-  }));
-
-  function resizeCanvas(){
-    const dpr=Math.min(devicePixelRatio||1,2);
-    canvas.width=Math.round(innerWidth*dpr);
-    canvas.height=Math.round(innerHeight*dpr);
-    canvas.style.width=innerWidth+'px';
-    canvas.style.height=innerHeight+'px';
-    ctx.setTransform(dpr,0,0,dpr,0,0);
+  function resize(){
+    const d=Math.min(devicePixelRatio||1,2);
+    canvas.width=Math.round(innerWidth*d);canvas.height=Math.round(innerHeight*d);
+    canvas.style.width=innerWidth+'px';canvas.style.height=innerHeight+'px';
+    ctx.setTransform(d,0,0,d,0,0);
   }
-  addEventListener('resize',resizeCanvas,{passive:true});
-  resizeCanvas();
+  addEventListener('resize',resize,{passive:true});resize();
 
   function ensure(page,hash=''){
-    const f=frames[page];
-    if(!f)return;
-    const wanted=urls[page]+hash;
-    if(!f.getAttribute('src')) f.setAttribute('src',wanted);
-    else if(hash){
-      try{ f.contentWindow.location.hash=hash; }
-      catch(_){ f.setAttribute('src',wanted); }
-    }
+    const f=frames[page];if(!f)return;
+    if(!f.getAttribute('src'))f.setAttribute('src',urls[page]+hash);
+    else if(hash){try{f.contentWindow.location.hash=hash}catch(_){f.setAttribute('src',urls[page]+hash)}}
   }
-
   function show(page){
-    Object.values(views).forEach(v=>{v.classList.remove('active','arriving')});
+    Object.values(views).forEach(v=>v.classList.remove('active','arriving'));
     views[page].classList.add('active','arriving');
-    setTimeout(()=>views[page].classList.remove('arriving'),820);
+    setTimeout(()=>views[page].classList.remove('arriving'),700);
     current=page;
   }
-
-  function globeMetrics(){
-    const r=world.getBoundingClientRect();
-    return {
-      x:r.left+r.width*.502,
-      y:r.top+r.height*.28,
-      size:Math.max(64,r.width*.27)
-    };
+  function globeBox(){
+    const r=homeGlobe.getBoundingClientRect();
+    return{x:r.left+r.width/2,y:r.top+r.height/2,w:r.width};
   }
-
-  function setJumpTheme(page){
-    const t=theme[page]||theme.build;
-    jump.style.setProperty('--accent',t.accent);
-    jump.style.setProperty('--accent2',t.accent2);
-    label.textContent=t.label;
-  }
-
-  function drawWarp(progress, reverse, page, m){
-    cancelAnimationFrame(raf);
-    const t=theme[page]||theme.build;
-    const start=performance.now();
-    const dur=1060;
-    function hexToRgb(h){
-      const x=parseInt(h.slice(1),16);return[(x>>16)&255,(x>>8)&255,x&255];
-    }
-    const c1=hexToRgb(t.accent), c2=hexToRgb(t.accent2);
-    function frame(now){
-      const raw=Math.min(1,(now-start)/dur);
-      const p=reverse?1-raw:raw;
-      ctx.clearRect(0,0,innerWidth,innerHeight);
-      const cx=m.x+(innerWidth*.5-m.x)*(reverse?1-p:p);
-      const cy=m.y+(innerHeight*.5-m.y)*(reverse?1-p:p);
-      const boost=Math.pow(reverse?1-p:p,1.55);
-      ctx.lineCap='round';
-      particles.forEach((pt,i)=>{
-        const r0=10+pt.k*44+boost*56;
-        const len=22+boost*(190+pt.k*360);
-        const flatten=.72;
-        const x1=cx+Math.cos(pt.a)*r0;
-        const y1=cy+Math.sin(pt.a)*r0*flatten;
-        const x2=cx+Math.cos(pt.a)*(r0+len);
-        const y2=cy+Math.sin(pt.a)*(r0+len)*flatten;
-        const mix=(i%4===0)?c2:c1;
-        ctx.strokeStyle=`rgba(${mix[0]},${mix[1]},${mix[2]},${Math.min(.85,pt.o*(.12+boost))})`;
-        ctx.lineWidth=pt.w;
-        ctx.beginPath();ctx.moveTo(x1,y1);ctx.lineTo(x2,y2);ctx.stroke();
-      });
-      if(raw<1) raf=requestAnimationFrame(frame);
-    }
-    raf=requestAnimationFrame(frame);
-  }
-
-  function animateOut(page,hash=''){
-    if(busy||page===current)return;
-    busy=true;
-    ensure(page,hash);
-    setJumpTheme(page);
-    const m=globeMetrics();
-    const diag=Math.hypot(innerWidth,innerHeight);
-    const finalSize=diag*1.65;
-    jump.style.setProperty('--gx',m.x+'px');
-    jump.style.setProperty('--gy',m.y+'px');
-    jump.style.setProperty('--gsize',m.size+'px');
-    jump.classList.add('active');
-    label.animate([
-      {opacity:0,transform:'translateX(-50%) translateY(10px)'},
-      {opacity:.72,transform:'translateX(-50%) translateY(0)',offset:.45},
-      {opacity:0,transform:'translateX(-50%) translateY(-4px)'}
-    ],{duration:1080,easing:'ease-out',fill:'forwards'});
-    drawWarp(0,false,page,m);
-
-    world.animate([
-      {transform:'scale(1)',filter:'blur(0) brightness(1)',opacity:1},
-      {transform:'scale(1.22)',filter:'blur(.3px) brightness(1.04)',opacity:1,offset:.36},
-      {transform:'scale(4.15)',filter:'blur(3px) brightness(1.22)',opacity:.05}
-    ],{duration:980,easing:'cubic-bezier(.52,.02,.14,1)',fill:'forwards'});
-
-    globe.animate([
-      {left:m.x+'px',top:m.y+'px',width:m.size+'px',opacity:.05,transform:'translate(-50%,-50%) scale(.98)'},
-      {opacity:1,offset:.14},
-      {left:'50%',top:'50%',width:finalSize+'px',opacity:1,transform:'translate(-50%,-50%) scale(1.06)'}
-    ],{duration:1040,easing:'cubic-bezier(.46,.03,.11,1)',fill:'forwards'});
-
-    orbit.animate([
-      {left:m.x+'px',top:m.y+'px',width:(m.size*1.18)+'px',opacity:.35,transform:'translate(-50%,-50%) rotate(-13deg) scale(.84)'},
-      {opacity:.95,offset:.23},
-      {left:'50%',top:'50%',width:(finalSize*.84)+'px',opacity:0,transform:'translate(-50%,-50%) rotate(290deg) scale(1.2)'}
-    ],{duration:990,easing:'cubic-bezier(.30,.04,.13,1)',fill:'forwards'});
-    orbit2.animate([
-      {left:m.x+'px',top:m.y+'px',width:(m.size*1.36)+'px',opacity:.24,transform:'translate(-50%,-50%) rotate(19deg) scale(.88)'},
-      {opacity:.70,offset:.30},
-      {left:'50%',top:'50%',width:(finalSize*.96)+'px',opacity:0,transform:'translate(-50%,-50%) rotate(-250deg) scale(1.18)'}
-    ],{duration:1050,easing:'cubic-bezier(.30,.04,.13,1)',fill:'forwards'});
-    wash.animate([
-      {opacity:0},{opacity:.12,offset:.38},{opacity:.88,offset:.72},{opacity:1}
-    ],{duration:980,easing:'ease-in-out',fill:'forwards'});
-
-    setTimeout(()=>show(page),720);
-    setTimeout(()=>{
-      jump.animate([{opacity:1},{opacity:0}],{duration:260,easing:'ease-out',fill:'forwards'}).finished.then(()=>{
-        jump.classList.remove('active');
-        jump.style.opacity='';
-        world.getAnimations().forEach(a=>a.cancel());
-        [globe,orbit,orbit2,wash,label].forEach(el=>el.getAnimations().forEach(a=>a.cancel()));
-        history.replaceState(null,'','#'+page);
-        busy=false;
-      });
-    },1030);
-  }
-
-  function animateHome(){
-    if(busy||current==='home')return;
-    busy=true;
-    const from=current;
-    const m=globeMetrics();
-    const diag=Math.hypot(innerWidth,innerHeight);
-    const startSize=diag*1.65;
-    setJumpTheme(from);
-    jump.style.setProperty('--gx',m.x+'px');
-    jump.style.setProperty('--gy',m.y+'px');
-    jump.style.setProperty('--gsize',m.size+'px');
-    jump.classList.add('active');
-    jump.style.opacity='1';
-    drawWarp(0,true,from,m);
-
-    // Start as a full-screen globe/atmosphere over the current page.
-    Object.assign(globe.style,{left:'50%',top:'50%',width:startSize+'px',opacity:'1',transform:'translate(-50%,-50%) scale(1.06)'});
-    wash.style.opacity='1';
-    show('home');
-    home.classList.remove('intro');
-    home.classList.add('ready');
-    world.style.opacity='1';
-    world.style.transform='scale(1.10)';
-    world.style.filter='blur(5px) brightness(.78)';
-
-    globe.animate([
-      {left:'50%',top:'50%',width:startSize+'px',opacity:1,transform:'translate(-50%,-50%) scale(1.06)'},
-      {left:m.x+'px',top:m.y+'px',width:m.size+'px',opacity:.96,transform:'translate(-50%,-50%) scale(1)',offset:.80},
-      {left:m.x+'px',top:m.y+'px',width:m.size+'px',opacity:0,transform:'translate(-50%,-50%) scale(.98)'}
-    ],{duration:1080,easing:'cubic-bezier(.18,.80,.16,1)',fill:'forwards'});
-    orbit.animate([
-      {left:'50%',top:'50%',width:(startSize*.84)+'px',opacity:0,transform:'translate(-50%,-50%) rotate(280deg) scale(1.2)'},
-      {opacity:.78,offset:.28},
-      {left:m.x+'px',top:m.y+'px',width:(m.size*1.18)+'px',opacity:0,transform:'translate(-50%,-50%) rotate(-13deg) scale(.86)'}
-    ],{duration:1000,easing:'cubic-bezier(.18,.80,.16,1)',fill:'forwards'});
-    orbit2.animate([
-      {left:'50%',top:'50%',width:(startSize*.96)+'px',opacity:0,transform:'translate(-50%,-50%) rotate(-230deg) scale(1.2)'},
-      {opacity:.55,offset:.34},
-      {left:m.x+'px',top:m.y+'px',width:(m.size*1.36)+'px',opacity:0,transform:'translate(-50%,-50%) rotate(19deg) scale(.9)'}
-    ],{duration:1060,easing:'cubic-bezier(.18,.80,.16,1)',fill:'forwards'});
-    wash.animate([{opacity:1},{opacity:.70,offset:.34},{opacity:0}],{duration:1050,easing:'ease-out',fill:'forwards'});
-    world.animate([
-      {transform:'scale(1.10)',filter:'blur(5px) brightness(.78)',opacity:.30},
-      {opacity:1,offset:.42},
-      {transform:'scale(1)',filter:'blur(0) brightness(1)',opacity:1}
-    ],{duration:980,easing:'cubic-bezier(.18,.80,.16,1)',fill:'forwards'});
-
-    setTimeout(()=>{
-      jump.animate([{opacity:1},{opacity:0}],{duration:230,fill:'forwards'}).finished.then(()=>{
-        jump.classList.remove('active');
-        jump.style.opacity='';
-        world.style.opacity='';world.style.transform='';world.style.filter='';
-        [globe,orbit,orbit2,wash,label,world].forEach(el=>el.getAnimations().forEach(a=>a.cancel()));
-        history.replaceState(null,'','#home');
-        busy=false;
-      });
-    },1050);
-  }
-
-  document.querySelectorAll('[data-page]').forEach(a=>a.addEventListener('click',e=>{
-    e.preventDefault(); animateOut(a.dataset.page);
+  const particles=Array.from({length:78},(_,i)=>({
+    a:i/78*Math.PI*2+Math.sin(i*1.7)*.1,k:.30+((i*37)%100)/100*.84,
+    o:.20+((i*19)%100)/100*.72,w:.6+((i*13)%3)
   }));
+  function hex(h){const n=parseInt(h.slice(1),16);return[(n>>16)&255,(n>>8)&255,n&255]}
+  function warp(origin,accent,reverse=false,duration=930){
+    cancelAnimationFrame(raf);const start=performance.now(),c=hex(accent);
+    function tick(now){
+      let q=Math.min(1,(now-start)/duration),p=reverse?1-q:q,boost=Math.pow(p,1.55);
+      ctx.clearRect(0,0,innerWidth,innerHeight);ctx.lineCap='round';
+      const cx=origin.x+(innerWidth/2-origin.x)*p,cy=origin.y+(innerHeight/2-origin.y)*p;
+      particles.forEach(pt=>{
+        const r=10+pt.k*40+boost*48,len=20+boost*(160+pt.k*340);
+        const x1=cx+Math.cos(pt.a)*r,y1=cy+Math.sin(pt.a)*r*.72;
+        const x2=cx+Math.cos(pt.a)*(r+len),y2=cy+Math.sin(pt.a)*(r+len)*.72;
+        ctx.strokeStyle=`rgba(${c[0]},${c[1]},${c[2]},${Math.min(.82,pt.o*(.10+boost))})`;
+        ctx.lineWidth=pt.w;ctx.beginPath();ctx.moveTo(x1,y1);ctx.lineTo(x2,y2);ctx.stroke();
+      });
+      if(q<1)raf=requestAnimationFrame(tick);
+    }raf=requestAnimationFrame(tick);
+  }
+  function prepJump(box,accent){
+    jump.style.setProperty('--accent',accent);
+    [jumpGlobe,jumpRing,jumpRing2].forEach(el=>{
+      el.style.left=box.x+'px';el.style.top=box.y+'px';
+      el.style.transform='translate(-50%,-50%)';
+    });
+    jumpGlobe.style.width=box.w+'px';
+    jumpRing.style.width=box.w*1.08+'px';jumpRing.style.height=box.w*1.08+'px';
+    jumpRing2.style.width=box.w*1.22+'px';jumpRing2.style.height=box.w*1.22+'px';
+  }
+  function go(page,hash=''){
+    if(busy||page===current)return;busy=true;ensure(page,hash);
+    const box=globeBox(),accent=themes[page]||themes.build,diag=Math.hypot(innerWidth,innerHeight)*1.75;
+    prepJump(box,accent);jump.classList.add('active');warp(box,accent,false);
+    scene.animate([{transform:'scale(1)',filter:'blur(0)',opacity:1},
+      {transform:'scale(1.08)',opacity:.96,offset:.38},{transform:'scale(1.55)',filter:'blur(3px)',opacity:.12}],
+      {duration:850,easing:'cubic-bezier(.48,.02,.12,1)',fill:'forwards'});
+    jumpGlobe.animate([{left:box.x+'px',top:box.y+'px',width:box.w+'px',opacity:1},
+      {left:'50%',top:'50%',width:diag+'px',opacity:1,transform:'translate(-50%,-50%) scale(1.05)'}],
+      {duration:900,easing:'cubic-bezier(.45,.02,.11,1)',fill:'forwards'});
+    jumpRing.animate([{left:box.x+'px',top:box.y+'px',width:box.w*1.08+'px',height:box.w*1.08+'px',opacity:.45,transform:'translate(-50%,-50%) rotate(-13deg)'},
+      {left:'50%',top:'50%',width:diag*.84+'px',height:diag*.84+'px',opacity:0,transform:'translate(-50%,-50%) rotate(290deg)'}],
+      {duration:860,easing:'cubic-bezier(.30,.04,.13,1)',fill:'forwards'});
+    jumpRing2.animate([{left:box.x+'px',top:box.y+'px',width:box.w*1.22+'px',height:box.w*1.22+'px',opacity:.34,transform:'translate(-50%,-50%) rotate(19deg)'},
+      {left:'50%',top:'50%',width:diag*.94+'px',height:diag*.94+'px',opacity:0,transform:'translate(-50%,-50%) rotate(-250deg)'}],
+      {duration:920,easing:'cubic-bezier(.30,.04,.13,1)',fill:'forwards'});
+    jumpWash.animate([{opacity:0},{opacity:.10,offset:.36},{opacity:.82,offset:.72},{opacity:1}],
+      {duration:850,easing:'ease-in-out',fill:'forwards'});
+    setTimeout(()=>show(page),640);
+    setTimeout(()=>{
+      jump.animate([{opacity:1},{opacity:0}],{duration:250,fill:'forwards'}).finished.then(()=>{
+        jump.classList.remove('active');jump.style.opacity='';
+        [scene,jumpGlobe,jumpRing,jumpRing2,jumpWash].forEach(el=>el.getAnimations().forEach(a=>a.cancel()));
+        history.replaceState(null,'','#'+page);busy=false;
+      });
+    },900);
+  }
+  function homeBack(){
+    if(busy||current==='home')return;busy=true;
+    const from=current,box=globeBox(),accent=themes[from]||'#58bfff',diag=Math.hypot(innerWidth,innerHeight)*1.75;
+    prepJump(box,accent);jump.classList.add('active');jump.style.opacity='1';
+    Object.assign(jumpGlobe.style,{left:'50%',top:'50%',width:diag+'px',opacity:'1'});
+    warp(box,accent,true,940);
+    show('home');scene.classList.remove('play');scene.classList.add('settled');
+    jumpGlobe.animate([{left:'50%',top:'50%',width:diag+'px',opacity:1},
+      {left:box.x+'px',top:box.y+'px',width:box.w+'px',opacity:.94,offset:.82},
+      {left:box.x+'px',top:box.y+'px',width:box.w+'px',opacity:0}],
+      {duration:980,easing:'cubic-bezier(.18,.80,.16,1)',fill:'forwards'});
+    jumpWash.animate([{opacity:1},{opacity:.55,offset:.35},{opacity:0}],
+      {duration:920,easing:'ease-out',fill:'forwards'});
+    setTimeout(()=>{
+      jump.animate([{opacity:1},{opacity:0}],{duration:220,fill:'forwards'}).finished.then(()=>{
+        jump.classList.remove('active');jump.style.opacity='';
+        [jumpGlobe,jumpRing,jumpRing2,jumpWash].forEach(el=>el.getAnimations().forEach(a=>a.cancel()));
+        history.replaceState(null,'','#home');busy=false;
+      })
+    },960);
+  }
 
+  document.querySelectorAll('[data-page]').forEach(a=>a.addEventListener('click',e=>{e.preventDefault();go(a.dataset.page)}));
   addEventListener('message',e=>{
     if(e.origin!==location.origin||!e.data||e.data.type!=='wf-nav')return;
-    if(e.data.page==='home') animateHome();
-    else animateOut(e.data.page,e.data.hash||'');
+    if(e.data.page==='home')homeBack();else go(e.data.page,e.data.hash||'');
   });
 
-  // Intro completes quickly — based on the earlier orbital version you preferred.
-  setTimeout(()=>{
-    home.classList.remove('intro');home.classList.add('ready');intro.classList.add('done');
-  },1780);
-  // Preload pages after the opening so navigation feels instant.
-  setTimeout(()=>{ensure('build');ensure('trucking')},1950);
-  setTimeout(()=>{ensure('media');ensure('quote')},2500);
+  /* Wait for all motion-critical assets before the first frame. This fixes the irregular start. */
+  const critical=[...document.images].filter(i=>['globe-opening.webp','world-build.webp','world-truck.webp','world-dd.webp'].some(n=>i.src.endsWith(n)));
+  Promise.all(critical.map(i=>i.decode().catch(()=>{}))).then(()=>{
+    document.body.classList.add('assets-ready');
+    requestAnimationFrame(()=>requestAnimationFrame(()=>scene.classList.add('play')));
+    setTimeout(()=>{ensure('build');ensure('trucking')},3000);
+    setTimeout(()=>{ensure('media');ensure('quote')},4100);
+  });
 
   const initial=location.hash.replace('#','');
   if(['build','trucking','media','quote'].includes(initial)){
-    home.classList.remove('intro');home.classList.add('ready');intro.classList.add('done');
-    ensure(initial);setTimeout(()=>show(initial),60);
+    Promise.all(critical.map(i=>i.decode().catch(()=>{}))).then(()=>{
+      document.body.classList.add('assets-ready');scene.classList.add('settled');
+      ensure(initial);setTimeout(()=>show(initial),80);
+    });
   }
 })();
 </script>

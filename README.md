@@ -1,17 +1,13 @@
-# WAYFORTH — Orbital Continuity V3
+# WAYFORTH Orbital Continuity V3.2
 
-This build intentionally restores the approved WAYFORTH home artwork and replaces the earlier dot/portal navigation with a globe-led orbital travel transition.
+Fixes based on the iPhone screen recording:
+- Motion-critical assets preload before intro begins (removes irregular/stuttering start).
+- Homepage is a true full-screen responsive composition, including portrait iPhone.
+- `world-build.webp`, `world-truck.webp`, and `world-dd.webp` are now ACTUALLY used.
+- BUILD assembles from transparent floor/crane layers.
+- Truck travels independently into its final position.
+- Digital Dynasty exists dark first, then powers on with flicker/flash.
+- Globe is the navigation transition object.
+- Existing approved BUILD/TRUCKING pages are preserved.
 
-## What changed
-- Opening: globe-first cinematic pullback into the approved homepage.
-- Navigation: the actual WAYFORTH globe grows to fill the viewport, orbital rings accelerate, radial light streaks travel through the frame, and the destination is revealed behind the globe.
-- Return Home: the globe transition runs in reverse and resolves back into the homepage globe.
-- BUILD / TRUCKING / MEDIA / QUOTE use different accent treatments without changing the core visual language.
-- BUILD and TRUCKING now include a visible HOME button in the upper-left corner.
-- Existing BUILD and TRUCKING content/forms remain preserved from the previously working package.
-
-## Deploy
-Upload all files in this folder to the root of the existing GitHub repository. Vercel will redeploy automatically.
-
-Suggested commit message:
-`WAYFORTH Orbital Continuity V3`
+Upload every file in this ZIP to the root of the existing GitHub repository.
