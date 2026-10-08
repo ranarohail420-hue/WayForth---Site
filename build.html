@@ -568,11 +568,15 @@ body.wf-arrive .stage{animation:wfLand .78s cubic-bezier(.18,.82,.18,1) both;tra
 
 </style>
 
-<style>
-.wf-visible-home{position:fixed;z-index:9998;left:max(12px,env(safe-area-inset-left));top:max(12px,env(safe-area-inset-top));min-height:44px;padding:0 15px;display:inline-flex;align-items:center;gap:8px;border-radius:999px;border:1px solid rgba(255,255,255,.16);background:rgba(2,8,16,.72);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);color:#fff;text-decoration:none;font:800 11px/1 system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;letter-spacing:.08em;box-shadow:0 10px 30px rgba(0,0,0,.28);transition:transform .2s ease,border-color .2s ease,background .2s ease}.wf-visible-home:active{transform:scale(.96)}@media(max-width:600px){.wf-visible-home{padding:0 12px;font-size:10px;background:rgba(2,8,16,.78)}}
+<style id="wf-visible-home-style">
+.wf-visible-home{position:fixed;z-index:9998;left:max(14px,env(safe-area-inset-left));top:max(14px,env(safe-area-inset-top));display:inline-flex;align-items:center;gap:8px;min-height:42px;padding:0 14px;border:1px solid rgba(255,255,255,.14);border-radius:999px;background:rgba(2,8,17,.58);backdrop-filter:blur(15px);-webkit-backdrop-filter:blur(15px);box-shadow:0 12px 34px rgba(0,0,0,.28);color:#fff;text-decoration:none;font:800 10px/1 system-ui,-apple-system,Segoe UI,Arial,sans-serif;letter-spacing:.13em;-webkit-tap-highlight-color:transparent;transition:transform .18s ease,background .18s ease,border-color .18s ease}
+.wf-visible-home:active{transform:scale(.96);background:rgba(8,18,33,.76);border-color:rgba(239,189,97,.42)}
+.wf-visible-home .arr{color:#efbd61;font-size:15px;line-height:0}
+@media(max-width:520px){.wf-visible-home{min-height:40px;padding:0 12px;font-size:9px;top:max(10px,env(safe-area-inset-top));left:max(10px,env(safe-area-inset-left))}}
 </style>
 </head>
-<body><a class="wf-visible-home" href="index.html#home" aria-label="Back to WAYFORTH home">← HOME</a>
+<body><a class="wf-visible-home" href="index.html#home" aria-label="Back to WAYFORTH Home"><span class="arr">←</span><span>HOME</span></a>
+
 <div class="stage" id="stage">
   <img class="base" src="build-0-45b56b5fd9.webp" alt="WAYFORTH Build materials page">
 
@@ -1380,5 +1384,7 @@ function renderCart(){
 })();
 
 </script>
-</body>
+<script id="wf-visible-home-script">
+(()=>{const b=document.querySelector('.wf-visible-home');if(!b)return;b.addEventListener('click',e=>{if(parent!==window){e.preventDefault();parent.postMessage({type:'wf-nav',page:'home'},location.origin)}})})();
+</script></body>
 </html>

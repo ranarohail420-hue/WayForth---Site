@@ -1,15 +1,17 @@
-# WAYFORTH — Orbital Foundry V2
+# WAYFORTH — Orbital Continuity V3
 
-Production-preview build focused on cinematic motion and globe-based page travel.
+This build intentionally restores the approved WAYFORTH home artwork and replaces the earlier dot/portal navigation with a globe-led orbital travel transition.
 
 ## What changed
-- Home intro no longer assembles full-page screenshots. BUILD, the truck, and Digital Dynasty are independent transparent visual layers.
-- BUILD constructs upward from a gold wireframe/scan with crane-load motion.
-- The truck drives in from depth along an animated route and settles into position with headlights.
-- Digital Dynasty appears dark first, then powers on in a staged motel/studio-light sequence.
-- BUILD / TRUCKING / MEDIA navigation now travels through the WAYFORTH globe rather than a white/blue dot portal.
-- Returning Home uses the reverse globe travel.
-- Mobile gets a portrait art-directed composition rather than a tiny desktop banner in a large black viewport.
-- BUILD and TRUCKING have a visible fixed HOME button.
+- Opening: globe-first cinematic pullback into the approved homepage.
+- Navigation: the actual WAYFORTH globe grows to fill the viewport, orbital rings accelerate, radial light streaks travel through the frame, and the destination is revealed behind the globe.
+- Return Home: the globe transition runs in reverse and resolves back into the homepage globe.
+- BUILD / TRUCKING / MEDIA / QUOTE use different accent treatments without changing the core visual language.
+- BUILD and TRUCKING now include a visible HOME button in the upper-left corner.
+- Existing BUILD and TRUCKING content/forms remain preserved from the previously working package.
 
-Upload all files in this folder to the root of the existing GitHub repository and commit them. Vercel will redeploy automatically.
+## Deploy
+Upload all files in this folder to the root of the existing GitHub repository. Vercel will redeploy automatically.
+
+Suggested commit message:
+`WAYFORTH Orbital Continuity V3`

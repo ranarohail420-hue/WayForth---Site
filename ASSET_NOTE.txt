@@ -1,0 +1,9 @@
+WAYFORTH V3.1 corrected asset package
+
+Use this package INSTEAD of the previous V3 ZIP and the separate transparent-assets ZIP.
+The three world assets have been replaced with true RGBA transparent cutouts:
+- world-build.webp = BUILD only
+- world-truck.webp = truck only
+- world-dd.webp = Digital Dynasty only
+
+No blue rectangular scene backgrounds are contained in these three files.
