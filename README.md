@@ -1,13 +1,17 @@
-# WAYFORTH Orbital Continuity V3.2
+# WAYFORTH V3.3 Polished Homepage
 
-Fixes based on the iPhone screen recording:
-- Motion-critical assets preload before intro begins (removes irregular/stuttering start).
-- Homepage is a true full-screen responsive composition, including portrait iPhone.
-- `world-build.webp`, `world-truck.webp`, and `world-dd.webp` are now ACTUALLY used.
-- BUILD assembles from transparent floor/crane layers.
-- Truck travels independently into its final position.
-- Digital Dynasty exists dark first, then powers on with flicker/flash.
-- Globe is the navigation transition object.
-- Existing approved BUILD/TRUCKING pages are preserved.
+Main fixes from the 21:52 iPhone recording:
+- Removed the separate bottom navigation cards.
+- BUILD / TRUCKING / MEDIA buttons now sit directly on their artwork.
+- BUILD and Digital Dynasty are pushed farther apart and visually behind the truck.
+- Truck is foregrounded on an animated perspective road.
+- BUILD gets floor-by-floor construction, crane-load motion, and repeating welding sparks.
+- Truck gets arrival motion, temporary rotating wheel overlays, road streaks, and headlight breathing.
+- Digital Dynasty appears dark first and powers on with repeating studio-light flicker.
+- Globe is smaller and higher on portrait screens.
+- The top-left temporary WF text was replaced with the approved WAYFORTH brand strip.
+- Existing globe page transitions are preserved.
+- Existing BUILD/TRUCKING/MEDIA/QUOTE pages are preserved.
 
-Upload every file in this ZIP to the root of the existing GitHub repository.
+Optional:
+Open /home-alt-test.html to see the simpler alternate "Cinematic Boulevard" layout test.

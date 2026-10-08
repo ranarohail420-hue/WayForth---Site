@@ -1,0 +1,31 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>WAYFORTH — Alternate Cinematic Boulevard Test</title>
+<style>
+*{box-sizing:border-box}html,body{margin:0;width:100%;height:100%;overflow:hidden;background:#02060d;color:#fff;font-family:Inter,system-ui,Arial}
+main{position:fixed;inset:0;background:
+radial-gradient(circle at 50% 20%,rgba(34,95,180,.35),transparent 31%),
+linear-gradient(#020713,#061326 55%,#02060d)}
+.brand{position:absolute;left:18px;top:max(16px,env(safe-area-inset-top));width:190px;border-radius:5px}
+.globe{position:absolute;left:50%;top:28%;width:58vw;max-width:470px;transform:translate(-50%,-50%);filter:drop-shadow(0 0 32px rgba(75,167,255,.38));animation:pulse 5s ease-in-out infinite}
+@keyframes pulse{50%{transform:translate(-50%,-50%) scale(1.025)}}
+.world{position:absolute;bottom:10%;width:34vw;max-width:450px;filter:drop-shadow(0 20px 32px rgba(0,0,0,.4))}
+.build{left:-2%}.dd{right:-2%}.truck{left:50%;width:37vw;max-width:500px;transform:translateX(-50%);bottom:7%}
+.tag{position:absolute;bottom:3%;left:50%;transform:translateX(-50%);letter-spacing:.22em;font-size:clamp(20px,3vw,40px);white-space:nowrap}
+.tag b{color:#efbd61}.tag i{font-style:normal;color:#6ac8ff}
+.label{position:absolute;padding:10px 13px;border-radius:15px;border:1px solid rgba(255,255,255,.19);background:rgba(3,9,18,.85);backdrop-filter:blur(12px);font-size:11px;font-weight:800;letter-spacing:.08em}
+.lb{left:5%;bottom:13%}.lt{left:50%;bottom:11%;transform:translateX(-50%)}.lm{right:5%;bottom:13%}
+@media(max-width:700px){
+.globe{top:26%;width:60vw}.build{left:-8%;bottom:26%;width:48vw}.dd{right:-7%;bottom:26%;width:46vw}.truck{bottom:13%;width:55vw}
+.lb{left:3%;bottom:31%}.lm{right:3%;bottom:31%}.lt{bottom:18%}.tag{bottom:4%;font-size:23px}
+.brand{width:160px}
+}
+</style></head><body><main>
+<img class="brand" src="brand-strip.webp" alt="WAYFORTH">
+<img class="globe" src="globe-opening.webp" alt="">
+<img class="world build" src="world-build.webp" alt="">
+<img class="world truck" src="world-truck.webp" alt="">
+<img class="world dd" src="world-dd.webp" alt="">
+<div class="label lb">BUILD →</div><div class="label lt">TRUCKING →</div><div class="label lm">MEDIA →</div>
+<div class="tag">MOVE. <b>BUILD.</b> <i>CREATE.</i></div>
+</main></body></html>
