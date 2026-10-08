@@ -11,7 +11,33 @@
 .wf-visible-home .arr{color:#efbd61;font-size:15px;line-height:0}
 @media(max-width:520px){.wf-visible-home{min-height:40px;padding:0 12px;font-size:9px;top:max(10px,env(safe-area-inset-top));left:max(10px,env(safe-area-inset-left))}}
 </style>
-</head><body><a class="wf-visible-home" href="index.html#home" aria-label="Back to WAYFORTH Home"><span class="arr">←</span><span>HOME</span></a>
+
+<style id="wf-orbital-page-css">
+html,body{background:#02060d!important}
+#wf-page-transition{position:fixed;inset:0;z-index:2147483000;pointer-events:none;opacity:0;visibility:hidden;overflow:hidden;background:#02060d;transition:opacity .18s ease,visibility .18s ease}
+.wf-from-home #wf-page-transition,#wf-page-transition.wf-exit{opacity:1;visibility:visible}
+#wf-page-core{position:absolute;left:50%;top:50%;width:min(66vw,66vh);aspect-ratio:1;transform:translate(-50%,-50%);will-change:transform,opacity}
+#wf-page-core img{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;filter:drop-shadow(0 0 34px rgba(76,177,255,.44))}
+#wf-page-core i{position:absolute;left:50%;top:50%;border-radius:50%;transform:translate(-50%,-50%);border:1px solid rgba(83,184,255,.50)}
+#wf-page-core .o1{width:112%;height:112%;animation:wfPS 1.1s linear infinite}#wf-page-core .o2{width:128%;height:128%;border-color:rgba(239,189,97,.40);animation:wfPS2 1.35s linear infinite}
+#wf-page-flare{position:absolute;inset:0;background:radial-gradient(circle at 50% 50%,rgba(255,255,255,.75),rgba(72,168,255,.30) 15%,rgba(239,189,97,.10) 28%,transparent 57%);opacity:.64}
+.wf-arriving #wf-page-core{animation:wfPageArrive .72s cubic-bezier(.18,.80,.16,1) both}.wf-arriving #wf-page-flare{animation:wfFlareOut .64s ease-out both}.wf-arriving #wf-page-transition{animation:wfOverlayOut .76s .06s ease-out both}
+#wf-page-transition.wf-exit #wf-page-core{animation:wfPageExit .64s cubic-bezier(.44,.02,.12,1) both}#wf-page-transition.wf-exit #wf-page-flare{animation:wfFlareIn .64s ease-in both}
+@keyframes wfPS{to{transform:translate(-50%,-50%) rotate(360deg)}}@keyframes wfPS2{to{transform:translate(-50%,-50%) rotate(-360deg)}}
+@keyframes wfPageArrive{0%{transform:translate(-50%,-50%) scale(7.8);opacity:1}78%{transform:translate(-50%,-50%) scale(.88);opacity:.96}100%{transform:translate(-50%,-50%) scale(.62);opacity:0}}
+@keyframes wfFlareOut{from{opacity:.72}to{opacity:0}}@keyframes wfOverlayOut{0%,72%{opacity:1;visibility:visible}100%{opacity:0;visibility:hidden}}
+@keyframes wfPageExit{0%{transform:translate(-50%,-50%) scale(.46);opacity:.10}22%{opacity:.88}100%{transform:translate(-50%,-50%) scale(7.9);opacity:1}}
+@keyframes wfFlareIn{from{opacity:0}to{opacity:.82}}
+</style>
+<script>if(new URLSearchParams(location.search).has('from'))document.documentElement.classList.add('wf-from-home');</script>
+
+</head><body><div id="wf-page-transition" aria-hidden="true"><div id="wf-page-flare"></div><div id="wf-page-core"><i class="o1"></i><i class="o2"></i><img src="globe-opening.webp" alt=""></div></div><a class="wf-visible-home" href="index.html#home" aria-label="Back to WAYFORTH Home"><span class="arr">←</span><span>HOME</span></a>
 <main class="media-stage"><div class="beam b1"></div><div class="beam b2"></div><section class="shell"><a class="back" href="index.html">← WAYFORTH HOME</a><div class="k">WAYFORTH / MEDIA UNIVERSE</div><h1>Digital Dynasty,<br><span>inside WAYFORTH.</span></h1><p class="lead">The existing external handoff is being replaced by a full Digital Dynasty experience built directly into the WAYFORTH design system. This gateway keeps the experience cohesive while we build the complete Media section next.</p><div class="status"><span class="dot"></span> MEDIA INTEGRATION — NEXT PHASE</div><div class="actions"><a class="primary" href="https://digitaldynasty.media" target="_blank" rel="noopener">VIEW CURRENT DIGITAL DYNASTY ↗</a><a class="secondary" href="quote.html">START A MEDIA INQUIRY</a></div></section></main><script>(function(){document.querySelector('a[href="index.html"]').addEventListener('click',function(e){if(parent!==window){e.preventDefault();parent.postMessage({type:'wf-nav',page:'home'},location.origin)}});document.querySelector('a[href="quote.html"]').addEventListener('click',function(e){if(parent!==window){e.preventDefault();parent.postMessage({type:'wf-nav',page:'quote'},location.origin)}})})();</script><script id="wf-visible-home-script">
 (()=>{const b=document.querySelector('.wf-visible-home');if(!b)return;b.addEventListener('click',e=>{if(parent!==window){e.preventDefault();parent.postMessage({type:'wf-nav',page:'home'},location.origin)}})})();
-</script></body></html>
+</script>
+<script id="wf-orbital-page-js">
+(()=>{const PAGE='media',ov=document.getElementById('wf-page-transition');if(!ov)return;const q=new URLSearchParams(location.search);if(q.has('from')){requestAnimationFrame(()=>{document.body.classList.add('wf-arriving');setTimeout(()=>{document.documentElement.classList.remove('wf-from-home');document.body.classList.remove('wf-arriving');ov.style.opacity='0';ov.style.visibility='hidden';history.replaceState(null,'',location.pathname+location.hash)},820)})}
+const homeLinks=[...document.querySelectorAll('a[href="index.html"],a[href="index.html#home"]')];homeLinks.forEach(a=>{a.href='index.html?return='+PAGE+'#home';a.addEventListener('click',e=>{e.preventDefault();if(ov.classList.contains('wf-exit'))return;ov.style.opacity='';ov.style.visibility='';ov.classList.add('wf-exit');setTimeout(()=>location.href='index.html?return='+PAGE+'#home',620)})})})();
+</script>
+
+</body></html>
