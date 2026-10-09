@@ -1,17 +1,14 @@
-# WAYFORTH V3.4 — Transition & Motion Refinement
+# WAYFORTH V3.5 — Smooth Transition + Full-Screen Fit
 
-This version is based directly on the 10/09 iPhone screen recording.
+Changes from the user's iPhone recordings:
+- Disabled accidental pinch/double zoom on the homepage and destination pages.
+- Home uses the iPhone visual viewport dimensions so fixed layers do not stay cropped after browser chrome changes.
+- Mobile composition is slightly smaller/inset so BUILD, DD, truck, globe, labels and edges fit within the visible screen.
+- Background atmosphere is richer: stronger blue cloud/haze texture, horizon light and road reflections.
+- Transition handoff is now fully opaque before navigation, hiding the browser page swap.
+- Removed expensive blur/filter animation during the handoff; globe motion uses transform + opacity only.
+- Destination pages begin with the globe already huge on the first rendered frame, preventing the "small globe / stuck / sudden page" flash.
+- BUILD/TRUCKING/MEDIA/QUOTE and index are prefetched/warmed to reduce navigation stalls.
+- Existing V3.4 page content, truck, DD, BUILD, flashes and wheel/headlight effects are preserved.
 
-Key fixes:
-- Removed iframe-based page switching that was causing iPhone Safari stalls/reloads during transitions.
-- Navigation now uses a transform-only globe transition, then normal page navigation for reliability.
-- Destination pages continue the same globe transition on arrival; returning Home reverses the globe movement.
-- Reduced Digital Dynasty power flicker to a controlled staged power-on.
-- Added separate recurring camera-flash points in the DD scene.
-- Corrected truck wheel overlay positions and made wheel rotation more visible during arrival.
-- Added two actual headlight glow points with arrival flashes and subtle idle breathing.
-- Removed the fake crane-load overlay that was floating outside the BUILD artwork. The real hanging slab in the transparent BUILD asset remains.
-- Added stronger atmospheric sky/horizon and perspective road/reflection styling.
-- Replaced the boxed top-left logo strip with a transparent WAYFORTH logo asset.
-
-Upload every file in this ZIP to the root of the existing WayForth---Site GitHub repository.
+Upload every file from this package to the root of the existing WayForth---Site GitHub repository.
