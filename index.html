@@ -6,10 +6,10 @@
   <meta name="theme-color" content="#02060d">
   <meta name="description" content="WAYFORTH — Build, Trucking and Media in one connected experience.">
   <title>WAYFORTH — Move. Build. Create.</title>
-  <link rel="preload" as="image" href="assets/globe-opening.webp">
-  <link rel="preload" as="image" href="assets/world-build.webp">
-  <link rel="preload" as="image" href="assets/world-truck.webp">
-  <link rel="preload" as="image" href="assets/world-dd.webp">
+  <link rel="preload" as="image" href="globe-opening.webp">
+  <link rel="preload" as="image" href="world-build.webp">
+  <link rel="preload" as="image" href="world-truck.webp">
+  <link rel="preload" as="image" href="world-dd.webp">
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
@@ -26,7 +26,7 @@
       <div class="road-streak rs-b"></div>
 
       <header class="home-header">
-        <img src="assets/brand-logo.webp" alt="WAYFORTH" class="home-logo">
+        <img src="brand-logo.webp" alt="WAYFORTH" class="home-logo">
         <nav class="desktop-nav" aria-label="Primary">
           <button data-open="home" class="nav-link">HOME</button>
           <button data-open="build" class="nav-link">BUILD</button>
@@ -38,17 +38,17 @@
 
       <div id="home-globe" class="globe-stage">
         <i class="orbit orbit-a"></i><i class="orbit orbit-b"></i><i class="orbit orbit-c"></i>
-        <img src="assets/globe-opening.webp" alt="WAYFORTH globe" class="globe-img">
+        <img src="globe-opening.webp" alt="WAYFORTH globe" class="globe-img">
       </div>
 
       <button class="division build-world" data-open="build" aria-label="Open WAYFORTH Build">
         <span class="build-stack" aria-hidden="true">
-          <img class="build-piece floor-1" src="assets/world-build.webp" alt="">
-          <img class="build-piece floor-2" src="assets/world-build.webp" alt="">
-          <img class="build-piece floor-3" src="assets/world-build.webp" alt="">
-          <img class="build-piece floor-4" src="assets/world-build.webp" alt="">
-          <img class="build-piece crane-piece" src="assets/world-build.webp" alt="">
-          <img class="build-final" src="assets/world-build.webp" alt="WAYFORTH Build construction site">
+          <img class="build-piece floor-1" src="world-build.webp" alt="">
+          <img class="build-piece floor-2" src="world-build.webp" alt="">
+          <img class="build-piece floor-3" src="world-build.webp" alt="">
+          <img class="build-piece floor-4" src="world-build.webp" alt="">
+          <img class="build-piece crane-piece" src="world-build.webp" alt="">
+          <img class="build-final" src="world-build.webp" alt="WAYFORTH Build construction site">
         </span>
         <i class="spark spark-1"></i><i class="spark spark-2"></i><i class="spark spark-3"></i><i class="spark spark-4"></i>
         <i class="worklight wl-1"></i><i class="worklight wl-2"></i><i class="worklight wl-3"></i><i class="worklight wl-4"></i>
@@ -56,15 +56,15 @@
       </button>
 
       <button class="division dd-world" data-open="media" aria-label="Open WAYFORTH Media">
-        <img class="dd-dark" src="assets/world-dd.webp" alt="">
-        <img class="dd-lit" src="assets/world-dd.webp" alt="Digital Dynasty studio">
+        <img class="dd-dark" src="world-dd.webp" alt="">
+        <img class="dd-lit" src="world-dd.webp" alt="Digital Dynasty studio">
         <i class="camera-flash cam-1"></i><i class="camera-flash cam-2"></i><i class="camera-flash cam-3"></i>
         <i class="softbox sb-1"></i><i class="softbox sb-2"></i><i class="softbox sb-3"></i>
         <span class="division-card media-card"><strong>MEDIA</strong><small>POWERED BY<br>DIGITAL DYNASTY.</small><b>›</b></span>
       </button>
 
       <button class="division truck-world" data-open="trucking" aria-label="Open WAYFORTH Trucking">
-        <img class="truck-img" src="assets/world-truck.webp" alt="WAYFORTH truck">
+        <img class="truck-img" src="world-truck.webp" alt="WAYFORTH truck">
         <i class="wheel wheel-front"></i><i class="wheel wheel-rear-a"></i><i class="wheel wheel-rear-b"></i>
         <i class="headlamp lamp-a"></i><i class="headlamp lamp-b"></i><i class="headlamp lamp-c"></i>
         <span class="division-card truck-card"><strong>TRUCKING</strong><small>FREIGHT FORWARD.<br>OPPORTUNITY FURTHER.</small><b>›</b></span>
@@ -78,7 +78,7 @@
 
     <!-- BUILD scene already exists in DOM and is ready before the user taps it. -->
     <section id="scene-build" class="scene scene-content scene-build" data-scene="build" aria-label="WAYFORTH Build">
-      <img src="assets/build-0-45b56b5fd9.webp" class="content-bg build-bg" alt="WAYFORTH Build materials">
+      <img src="build-0-45b56b5fd9.webp" class="content-bg build-bg" alt="WAYFORTH Build materials">
       <button class="scene-home-btn" data-open="home">← HOME</button>
       <button class="scene-quote-btn" data-open="quote" data-quote="build">QUOTE LIST <span id="cart-count">0</span></button>
       <button class="material-hotspot steel" data-material="Steel / Sariya" aria-label="Steel / Sariya"></button>
@@ -91,7 +91,7 @@
 
     <!-- TRUCKING scene: same app, already mounted. -->
     <section id="scene-trucking" class="scene scene-content scene-trucking" data-scene="trucking" aria-label="WAYFORTH Trucking">
-      <img src="assets/trucking-0-1ed29ee9d5.webp" class="content-bg trucking-bg" alt="WAYFORTH Trucking">
+      <img src="trucking-0-1ed29ee9d5.webp" class="content-bg trucking-bg" alt="WAYFORTH Trucking">
       <button class="scene-home-btn" data-open="home">← HOME</button>
       <button class="truck-card-hit trucker-hit" data-form="trucker" aria-label="I'm a trucker"></button>
       <button class="truck-card-hit broker-hit" data-form="broker" aria-label="I'm a broker"></button>
@@ -111,7 +111,7 @@
         </div>
       </div>
       <div class="media-visual">
-        <img src="assets/world-dd.webp" alt="Digital Dynasty">
+        <img src="world-dd.webp" alt="Digital Dynasty">
         <i class="media-flash mf-1"></i><i class="media-flash mf-2"></i>
       </div>
     </section>
@@ -135,7 +135,7 @@
     <div id="portal" class="portal" aria-hidden="true">
       <div id="portal-globe" class="portal-globe">
         <i class="portal-orbit po-a"></i><i class="portal-orbit po-b"></i>
-        <img src="assets/globe-opening.webp" alt="">
+        <img src="globe-opening.webp" alt="">
       </div>
       <div class="portal-energy"></div>
     </div>
