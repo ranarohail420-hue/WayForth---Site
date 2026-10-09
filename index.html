@@ -1,224 +1,205 @@
 <!doctype html>
 <html lang="en">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
-<meta name="theme-color" content="#02060d">
-<link rel="preload" as="image" href="globe-opening.webp">
-<link rel="preload" as="image" href="world-build.webp">
-<link rel="preload" as="image" href="world-truck.webp">
-<link rel="preload" as="image" href="world-dd.webp">
-<link rel="prefetch" href="build.html">
-<link rel="prefetch" href="trucking.html">
-<link rel="prefetch" href="media.html">
-<title>WAYFORTH — Move. Build. Create.</title>
-<style>
-:root{--gold:#efbd61;--blue:#59bfff;--violet:#8c82ff;--ink:#02060d;--ease:cubic-bezier(.16,.84,.18,1)}
-*{box-sizing:border-box}html,body{margin:0;width:100%;height:100%;overflow:hidden;background:var(--ink);color:#fff;font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;-webkit-text-size-adjust:100%}a{color:inherit;font:inherit}body{overscroll-behavior:none;touch-action:manipulation;-webkit-user-select:none;user-select:none}.app,.home{position:fixed;left:0;top:0;width:var(--app-w,100vw);height:var(--app-h,100dvh);overflow:hidden;background:#02060d}.home{isolation:isolate;touch-action:manipulation}
-.loader{position:fixed;inset:0;z-index:12000;display:grid;place-items:center;background:#02060d;transition:opacity .22s ease,visibility .22s ease}.loader:before{content:"WAYFORTH";font-size:10px;font-weight:800;letter-spacing:.38em;color:rgba(255,255,255,.4);animation:loadPulse .9s ease-in-out infinite alternate}@keyframes loadPulse{to{color:rgba(239,189,97,.92);text-shadow:0 0 24px rgba(239,189,97,.25)}}body.ready .loader{opacity:0;visibility:hidden}
-.sky{position:absolute;inset:0;background:radial-gradient(ellipse at 50% 17%,rgba(28,101,207,.46),transparent 33%),radial-gradient(ellipse at 50% 61%,rgba(13,68,133,.30),transparent 46%),linear-gradient(180deg,#020713 0%,#081b34 48%,#02060d 100%);overflow:hidden}.sky:before{content:"";position:absolute;inset:-10%;background:url("home-ambient.webp") center/cover no-repeat;filter:blur(15px) saturate(1.72) brightness(.80);opacity:.84;transform:scale(1.12)}.sky:after{content:"";position:absolute;inset:0;background:radial-gradient(ellipse at 13% 30%,rgba(69,139,229,.22),transparent 27%),radial-gradient(ellipse at 87% 33%,rgba(77,147,237,.24),transparent 28%),radial-gradient(ellipse at 50% 49%,rgba(239,189,97,.11),transparent 31%),linear-gradient(116deg,transparent 0 17%,rgba(63,135,229,.07) 24%,transparent 31% 68%,rgba(76,154,255,.08) 75%,transparent 82%);mix-blend-mode:screen}
-.stars{position:absolute;inset:0;opacity:.35;background-image:radial-gradient(circle at 11% 13%,#fff 0 1px,transparent 1.4px),radial-gradient(circle at 76% 18%,#74c9ff 0 1px,transparent 1.5px),radial-gradient(circle at 28% 71%,#f2c56d 0 1px,transparent 1.4px),radial-gradient(circle at 87% 67%,#fff 0 1px,transparent 1.3px);background-size:170px 150px,240px 210px,285px 250px,325px 290px;animation:stars 18s linear infinite}@keyframes stars{to{transform:translate3d(-18px,11px,0)}}
-.atmo{position:absolute;z-index:0;inset:0;pointer-events:none;overflow:hidden}
-.atmo::before{content:"";position:absolute;left:-18%;top:18%;width:70%;height:52%;border-radius:50%;
- background:radial-gradient(ellipse at 50% 50%,rgba(47,115,212,.22),rgba(24,65,127,.10) 42%,transparent 72%);
- filter:blur(22px);animation:hazeLeft 13s ease-in-out infinite alternate}
-.atmo::after{content:"";position:absolute;right:-16%;top:20%;width:68%;height:50%;border-radius:50%;
- background:radial-gradient(ellipse at 50% 50%,rgba(58,125,224,.23),rgba(18,59,124,.11) 44%,transparent 74%);
- filter:blur(24px);animation:hazeRight 15s ease-in-out infinite alternate}
-@keyframes hazeLeft{to{transform:translate3d(5%,2%,0) scale(1.06);opacity:.74}}
-@keyframes hazeRight{to{transform:translate3d(-5%,1%,0) scale(1.07);opacity:.78}}
-
-.scene{position:absolute;inset:0;opacity:0;transition:opacity .18s ease}.ready .scene{opacity:1}
-.horizon{position:absolute;z-index:1;left:-8%;right:-8%;bottom:25%;height:19%;background:radial-gradient(ellipse at 50% 78%,rgba(255,181,83,.24),transparent 43%),radial-gradient(ellipse at 28% 76%,rgba(73,166,255,.16),transparent 34%),radial-gradient(ellipse at 72% 76%,rgba(73,166,255,.17),transparent 34%),linear-gradient(180deg,transparent,rgba(65,152,255,.08));filter:blur(7px)}
-.road{position:absolute;z-index:1;left:-18%;right:-18%;bottom:-15%;height:55%;clip-path:polygon(37% 0,63% 0,100% 100%,0 100%);transform:perspective(700px) rotateX(61deg);transform-origin:bottom center;background:linear-gradient(90deg,transparent 49.55%,rgba(239,189,97,.33) 49.85%,rgba(239,189,97,.33) 50.15%,transparent 50.45%),repeating-linear-gradient(180deg,rgba(76,175,255,.09) 0 1px,transparent 1px 29px),linear-gradient(180deg,rgba(30,77,125,.05),rgba(5,13,22,.92));box-shadow:inset 0 60px 90px rgba(0,0,0,.52);opacity:.75}.road:before,.road:after{content:"";position:absolute;bottom:12%;width:44%;height:3px;filter:blur(2px);background:linear-gradient(90deg,transparent,rgba(79,187,255,.88),rgba(239,189,97,.8),transparent);opacity:.44}.road:before{left:1%;transform:rotate(-4deg)}.road:after{right:1%;transform:rotate(4deg)}
-.orbit-stage{position:absolute;z-index:5;left:50%;top:33%;width:clamp(290px,35vw,545px);aspect-ratio:1;transform:translate(-50%,-50%)}.globe{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;filter:drop-shadow(0 0 32px rgba(63,161,255,.35)) drop-shadow(0 0 70px rgba(239,189,97,.12))}.orbit,.orbit2,.orbit3{position:absolute;left:50%;top:50%;border-radius:50%;pointer-events:none}.orbit{width:108%;height:108%;border:1px solid rgba(94,185,255,.36);transform:translate(-50%,-50%) rotate(-13deg)}.orbit2{width:121%;height:121%;border:1px solid rgba(239,189,97,.23);transform:translate(-50%,-50%) rotate(19deg)}.orbit3{width:95%;height:122%;border:1px solid rgba(95,164,255,.15);transform:translate(-50%,-50%) rotate(62deg)}.play .orbit,.settled .orbit{animation:orbitSpin 9s linear infinite}.play .orbit2,.settled .orbit2{animation:orbitSpin2 11s linear infinite}.play .orbit3,.settled .orbit3{animation:orbitSpin3 13s linear infinite}@keyframes orbitSpin{to{transform:translate(-50%,-50%) rotate(347deg)}}@keyframes orbitSpin2{to{transform:translate(-50%,-50%) rotate(-341deg)}}@keyframes orbitSpin3{to{transform:translate(-50%,-50%) rotate(422deg)}}.play .orbit-stage{animation:globePullout 1s .08s var(--ease) both}@keyframes globePullout{0%{left:50%;top:50%;width:min(124vmin,1040px);transform:translate(-50%,-50%) scale(1.26);filter:brightness(1.13)}42%{transform:translate(-50%,-50%) scale(1.12)}100%{left:50%;top:33%;width:clamp(290px,35vw,545px);transform:translate(-50%,-50%) scale(1);filter:none}}
-.build-link{position:absolute;z-index:4;left:-2%;bottom:13%;width:min(37vw,575px);aspect-ratio:1;text-decoration:none;transform-origin:bottom left}.build-piece,.build-final{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;filter:drop-shadow(0 20px 26px rgba(0,0,0,.35))}.build-piece{opacity:0}.build-floor1{clip-path:inset(68% 0 0 0)}.build-floor2{clip-path:inset(50% 0 25% 0)}.build-floor3{clip-path:inset(32% 0 44% 0)}.build-floor4{clip-path:inset(14% 0 61% 0)}.build-crane{clip-path:inset(0 0 72% 0)}.build-final{opacity:0}.play .build-floor1{animation:buildIn .40s .64s var(--ease) both}.play .build-floor2{animation:buildIn .40s .84s var(--ease) both}.play .build-floor3{animation:buildIn .40s 1.04s var(--ease) both}.play .build-floor4{animation:buildIn .40s 1.24s var(--ease) both}.play .build-crane{animation:craneIn .48s 1.42s var(--ease) both}.play .build-final{animation:buildResolve .28s 1.73s ease-out both}.settled .build-piece,.settled .build-final{opacity:1}@keyframes buildIn{0%{opacity:0;transform:translate3d(-8%,13%,0) scale(.95);filter:brightness(1.3) blur(3px)}70%{opacity:1;transform:translate3d(0,-1%,0) scale(1.008);filter:brightness(1.08) blur(0)}100%{opacity:1;transform:none}}@keyframes craneIn{0%{opacity:0;transform:translateY(-14%);filter:brightness(1.28) blur(2px)}75%{opacity:1;transform:translateY(1%)}100%{opacity:1;transform:none;filter:none}}@keyframes buildResolve{to{opacity:1}}
-.spark{position:absolute;z-index:9;width:4px;height:4px;border-radius:50%;opacity:0;pointer-events:none;background:#fff8dc;box-shadow:0 0 5px #fff,0 0 12px #ffc552,0 0 22px #ff9c27}.sp1{left:43%;top:58%;animation-delay:.25s}.sp2{left:69%;top:46%;animation-delay:1.7s}.sp3{left:82%;top:72%;animation-delay:3.1s}.play .spark,.settled .spark{animation-name:sparkBurst;animation-duration:5.6s;animation-timing-function:steps(1,end);animation-iteration-count:infinite}@keyframes sparkBurst{0%,88%,100%{opacity:0;transform:scale(.3)}90%{opacity:1;transform:scale(1)}92%{opacity:.25;transform:translate(6px,-5px) scale(.6)}94%{opacity:.9;transform:translate(-3px,3px) scale(.85)}96%{opacity:0}}
-.dd-link{position:absolute;z-index:4;right:-2%;bottom:13%;width:min(35vw,545px);aspect-ratio:1;text-decoration:none}.dd-dark,.dd-lit{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;filter:drop-shadow(0 18px 28px rgba(0,0,0,.38))}.dd-dark{opacity:0;filter:brightness(.05) saturate(.18) contrast(1.12)}.dd-lit{opacity:0}.play .dd-dark{animation:ddDarkIn .30s 1.62s ease both}.play .dd-lit{animation:ddPower .94s 1.90s var(--ease) both}.settled .dd-lit{opacity:1}.settled .dd-dark{opacity:0}@keyframes ddDarkIn{to{opacity:.92}}@keyframes ddPower{0%{opacity:0;filter:brightness(.08)}28%{opacity:.28;filter:brightness(.24)}52%{opacity:.62;filter:brightness(.58)}68%{opacity:.50;filter:brightness(.46)}82%,100%{opacity:1;filter:brightness(1)}}
-.soft-glow{position:absolute;z-index:8;border-radius:50%;opacity:0;pointer-events:none;background:radial-gradient(circle,rgba(255,255,255,.92),rgba(93,185,255,.32) 27%,transparent 69%);filter:blur(5px)}.sg1{left:20%;top:49%;width:18%;aspect-ratio:1}.sg2{right:11%;top:47%;width:19%;aspect-ratio:1}.play .soft-glow{animation:softOn .72s 2.36s ease both}.play .sg2{animation-delay:2.54s}.settled .soft-glow{opacity:.18}@keyframes softOn{0%{opacity:0}44%{opacity:.78}62%{opacity:.22}100%{opacity:.20}}
-.camera-flash{position:absolute;z-index:10;width:8px;height:8px;border-radius:50%;opacity:0;pointer-events:none;background:#fff;box-shadow:0 0 7px #fff,0 0 20px #a9dcff,0 0 48px #5ba9ff}.cf1{left:31%;top:67%;animation-delay:3.2s}.cf2{left:64%;top:69%;animation-delay:6.6s}.play .camera-flash,.settled .camera-flash{animation-name:cameraFlash;animation-duration:8s;animation-timing-function:steps(1,end);animation-iteration-count:infinite}@keyframes cameraFlash{0%,91%,100%{opacity:0;transform:scale(.4)}92%{opacity:1;transform:scale(1)}93%{opacity:.12;transform:scale(2.8)}94%{opacity:.78;transform:scale(.9)}96%{opacity:0;transform:scale(4)}}
-.truck-link{position:absolute;z-index:8;left:50%;bottom:8%;width:min(33vw,525px);aspect-ratio:705/739;transform:translateX(-50%);text-decoration:none;opacity:0}.truck{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;filter:drop-shadow(0 25px 30px rgba(0,0,0,.55))}.play .truck-link{animation:truckArrive 1.28s 1.48s cubic-bezier(.12,.90,.22,1) both}.settled .truck-link{opacity:1;transform:translateX(-50%)}@keyframes truckArrive{0%{opacity:0;transform:translate3d(-115%,-19%,0) scale(.22) rotate(-2deg);filter:blur(6px) brightness(1.18)}20%{opacity:.94}73%{transform:translate3d(-47%,1%,0) scale(1.035);filter:blur(0) brightness(1.06)}88%{transform:translate3d(-51%,0,0) scale(.995)}100%{opacity:1;transform:translate3d(-50%,0,0) scale(1);filter:none}}
-.wheel{position:absolute;z-index:11;border-radius:50%;opacity:0;pointer-events:none;border:2px solid rgba(159,223,255,.72);background:repeating-conic-gradient(from 0deg,rgba(255,255,255,.8) 0 4deg,transparent 4deg 28deg);box-shadow:0 0 7px rgba(87,189,255,.45);mix-blend-mode:screen}.wf{left:48.4%;top:71.1%;width:12.5%;aspect-ratio:1}.wr1{left:21.9%;top:73.5%;width:9.3%;aspect-ratio:1}.wr2{left:28.2%;top:73.6%;width:9.1%;aspect-ratio:1}.play .wheel{animation:wheelSpin 1.25s 1.54s cubic-bezier(.14,.86,.22,1) both}@keyframes wheelSpin{0%{opacity:.18;transform:rotate(0) scale(.94)}20%{opacity:.82}82%{opacity:.64}100%{opacity:0;transform:rotate(1280deg) scale(1)}}
-.headlamp{position:absolute;z-index:12;border-radius:50%;opacity:0;pointer-events:none;background:radial-gradient(circle,#fff 0 10%,#a8e6ff 18%,rgba(68,173,255,.46) 37%,transparent 72%);filter:blur(2px)}.hl1{left:64.2%;top:65.2%;width:9%;aspect-ratio:1}.hl2{left:87.8%;top:73.8%;width:8%;aspect-ratio:1}.play .headlamp{animation:lampArrival 1.02s 2.31s ease both}.play .hl2{animation-delay:2.39s}.settled .headlamp{animation:lampIdle 4.8s ease-in-out infinite;opacity:.34}.settled .hl2{animation-delay:.45s}@keyframes lampArrival{0%{opacity:0;transform:scale(.6)}25%{opacity:.95;transform:scale(1.15)}43%{opacity:.20}58%{opacity:.92;transform:scale(1.05)}100%{opacity:.36;transform:scale(1)}}@keyframes lampIdle{0%,70%,100%{opacity:.30}76%{opacity:.63}82%{opacity:.33}}
-.division-label{position:absolute;z-index:20;display:flex;align-items:center;gap:10px;min-width:178px;max-width:250px;padding:10px 12px;border-radius:15px;border:1px solid rgba(255,255,255,.18);background:linear-gradient(180deg,rgba(8,16,29,.88),rgba(2,7,14,.88));backdrop-filter:blur(13px);box-shadow:0 12px 28px rgba(0,0,0,.28);opacity:0;transform:translateY(10px)}.division-label .ico{width:34px;height:34px;flex:0 0 34px;border-radius:10px;border:1px solid rgba(255,255,255,.16);display:grid;place-items:center}.division-label b{font-size:12px;letter-spacing:.07em}.division-label small{display:block;margin-top:2px;color:rgba(255,255,255,.55);font-size:8px;letter-spacing:.12em;line-height:1.25}.division-label .arr{margin-left:auto;font-size:18px;color:rgba(255,255,255,.72)}.build-label{left:8%;bottom:3%}.build-label .ico{color:var(--gold)}.media-label{right:4%;bottom:4%}.media-label .ico{color:var(--violet)}.truck-label{left:50%;bottom:2%;transform:translate(-50%,10px);min-width:210px}.truck-label .ico{color:var(--blue)}.play .division-label{animation:labelIn .5s 3.0s var(--ease) both}.play .truck-label{animation:truckLabelIn .5s 3.08s var(--ease) both}.settled .division-label{opacity:1;transform:translateY(0)}.settled .truck-label{opacity:1;transform:translate(-50%,0)}@keyframes labelIn{to{opacity:1;transform:translateY(0)}}@keyframes truckLabelIn{to{opacity:1;transform:translate(-50%,0)}}
-.topbar{position:absolute;z-index:40;left:max(17px,env(safe-area-inset-left));right:max(17px,env(safe-area-inset-right));top:max(13px,env(safe-area-inset-top));display:flex;align-items:center;justify-content:space-between;gap:16px;opacity:0}.brand-img{display:block;width:clamp(150px,18vw,230px);height:auto;filter:drop-shadow(0 5px 14px rgba(0,0,0,.28))}.quote-top{min-height:43px;display:grid;place-items:center;padding:0 17px;border:1px solid rgba(239,189,97,.55);border-radius:999px;background:rgba(4,10,20,.42);backdrop-filter:blur(11px);font-size:9px;font-weight:800;letter-spacing:.13em;text-decoration:none}.play .topbar{animation:uiIn .5s 3.14s var(--ease) both}.settled .topbar{opacity:1}@keyframes uiIn{to{opacity:1}}
-.hero-copy{position:absolute;z-index:25;left:50%;bottom:2.8%;transform:translateX(-50%) translateY(10px);text-align:center;width:min(760px,88vw);opacity:0}.hero-copy h1{margin:0;font-size:clamp(25px,3.7vw,55px);letter-spacing:.18em;font-weight:500}.hero-copy h1 span:nth-child(2){color:var(--gold)}.hero-copy h1 span:nth-child(3){color:#78caff}.hero-copy p{margin:7px 0 0;font-size:clamp(7px,.9vw,11px);letter-spacing:.27em;color:rgba(255,255,255,.58)}.play .hero-copy{animation:copyIn .52s 3.22s var(--ease) both}.settled .hero-copy{opacity:1;transform:translateX(-50%)}@keyframes copyIn{to{opacity:1;transform:translateX(-50%) translateY(0)}}
-.travel{position:fixed;left:0;top:0;width:var(--app-w,100vw);height:var(--app-h,100dvh);z-index:15000;pointer-events:none;opacity:0;visibility:hidden;overflow:hidden;background:#02060d;will-change:opacity}.travel.active{opacity:1;visibility:visible}.travel-core{position:absolute;left:0;top:0;will-change:transform,opacity;transform:translateZ(0);backface-visibility:hidden}.travel-core img{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;filter:drop-shadow(0 0 30px rgba(78,177,255,.38));backface-visibility:hidden}.t-orbit,.t-orbit2{position:absolute;left:50%;top:50%;border-radius:50%;transform:translate(-50%,-50%) translateZ(0);border:1px solid rgba(89,191,255,.52);backface-visibility:hidden}.t-orbit{width:110%;height:110%;animation:tspin .92s linear infinite}.t-orbit2{width:125%;height:125%;border-color:rgba(239,189,97,.40);animation:tspin2 1.08s linear infinite}@keyframes tspin{to{transform:translate(-50%,-50%) rotate(360deg) translateZ(0)}}@keyframes tspin2{to{transform:translate(-50%,-50%) rotate(-360deg) translateZ(0)}}.travel-flare{position:absolute;inset:0;opacity:0;background:radial-gradient(circle at 50% 50%,rgba(255,255,255,.88),rgba(70,167,255,.38) 14%,rgba(239,189,97,.13) 27%,rgba(2,6,13,.92) 66%,#02060d 100%);will-change:opacity}.leaving .orbit,.leaving .orbit2,.leaving .orbit3,.leaving .stars,.leaving .spark,.leaving .camera-flash,.leaving .soft-glow,.leaving .headlamp{animation-play-state:paused!important}
-@media(max-width:700px){
-.orbit-stage{top:26.2%;width:56vw}
-.build-link{left:-2.5%;bottom:28.5%;width:48.5vw}
-.dd-link{right:-1.8%;bottom:28.7%;width:47.5vw}
-.truck-link{left:50%;bottom:14.5%;width:53.5vw}
-.horizon{bottom:32%;height:18%}
-.road{left:-25%;right:-25%;bottom:-10%;height:48%;opacity:.83}
-.build-label{left:8%;bottom:2%;min-width:138px;max-width:158px}
-.media-label{right:3%;bottom:3%;min-width:138px;max-width:158px}
-.truck-label{bottom:0;min-width:174px;max-width:190px}
-.division-label{padding:8px 9px;gap:7px;border-radius:13px}
-.division-label .ico{width:29px;height:29px;flex-basis:29px}
-.division-label b{font-size:10px}.division-label small{font-size:6.2px}.division-label .arr{font-size:15px}
-.hero-copy{bottom:2.6%;width:92vw}.hero-copy h1{font-size:26px;letter-spacing:.13em}.hero-copy p{font-size:6.2px;letter-spacing:.20em}
-.brand-img{width:154px}.quote-top{padding:0 12px;font-size:7.7px}
-.sky:before{filter:blur(13px) saturate(1.78) brightness(.86);opacity:.88}
-@keyframes globePullout{0%{left:50%;top:50%;width:128vw;transform:translate(-50%,-50%) scale(1.18);filter:brightness(1.10)}42%{transform:translate(-50%,-50%) scale(1.07)}100%{left:50%;top:26.2%;width:56vw;transform:translate(-50%,-50%) scale(1);filter:none}}
-}
-@media(max-width:390px){.brand-img{width:146px}.quote-top{min-height:40px;padding:0 10px;font-size:7px}.build-link{left:-12%;width:55vw}.dd-link{right:-11%;width:53vw}.truck-link{width:61vw}.hero-copy h1{font-size:24px}}
-@media(prefers-reduced-motion:reduce){.play *{animation:none!important}.play .orbit-stage,.play .build-final,.play .truck-link,.play .dd-lit,.play .topbar,.play .hero-copy,.play .division-label{opacity:1!important}.play .build-piece,.play .dd-dark,.wheel{display:none!important}.play .truck-link{transform:translateX(-50%)!important}}
-
-/* V3.5R — Globe Dive 2.0: the globe stays visible, while atmosphere/ribbons do the full-screen coverage. */
-@view-transition { navigation: auto; }
-::view-transition-old(root),::view-transition-new(root){animation-duration:.18s;animation-timing-function:ease-out}
-.travel{background:radial-gradient(ellipse at 50% 25%,rgba(24,72,145,.38),transparent 38%),linear-gradient(180deg,#061225,#081a31 56%,#030914 100%)!important}
-.travel-atmo{position:absolute;left:50%;top:50%;width:150vmax;height:150vmax;border-radius:50%;opacity:0;transform:translate(-50%,-50%) scale(.08);background:radial-gradient(circle,rgba(255,255,255,.94) 0 2%,rgba(103,202,255,.74) 5%,rgba(45,127,229,.48) 11%,rgba(23,70,145,.84) 27%,rgba(5,21,47,.98) 52%,#061225 72%);will-change:transform,opacity;pointer-events:none}
-.travel-grid{position:absolute;left:50%;top:50%;width:126vmax;height:126vmax;border-radius:50%;opacity:0;transform:translate(-50%,-50%) scale(.22);background:repeating-conic-gradient(from 0deg,rgba(92,194,255,.0) 0 5deg,rgba(92,194,255,.13) 5.2deg 5.8deg,rgba(92,194,255,0) 6deg 13deg);mask-image:radial-gradient(circle,transparent 0 18%,#000 23% 62%,transparent 74%);-webkit-mask-image:radial-gradient(circle,transparent 0 18%,#000 23% 62%,transparent 74%);will-change:transform,opacity}
-.travel-ribbon{position:absolute;left:50%;top:50%;border-radius:50%;border:1px solid rgba(87,188,255,.58);box-shadow:0 0 28px rgba(72,168,255,.16),inset 0 0 28px rgba(72,168,255,.08);opacity:0;pointer-events:none;will-change:transform,opacity}
-.travel-ribbon.r1{width:62vmax;height:34vmax;border-color:rgba(239,189,97,.54)}
-.travel-ribbon.r2{width:76vmax;height:42vmax;transform:translate(-50%,-50%) rotate(58deg)}
-.travel-ribbon.r3{width:88vmax;height:48vmax;transform:translate(-50%,-50%) rotate(-39deg);border-color:rgba(113,205,255,.40)}
-.travel.go .travel-atmo{animation:wfAtmoDive .74s cubic-bezier(.44,.02,.10,1) both}
-.travel.go .travel-grid{animation:wfGridDive .76s cubic-bezier(.42,.02,.10,1) both}
-.travel.go .r1{animation:wfRibbon1 .78s cubic-bezier(.35,.02,.10,1) both}.travel.go .r2{animation:wfRibbon2 .78s cubic-bezier(.35,.02,.10,1) both}.travel.go .r3{animation:wfRibbon3 .78s cubic-bezier(.35,.02,.10,1) both}
-@keyframes wfAtmoDive{0%{opacity:0;transform:translate(-50%,-50%) scale(.08)}38%{opacity:.35}74%{opacity:.94;transform:translate(-50%,-50%) scale(.72)}100%{opacity:1;transform:translate(-50%,-50%) scale(1)}}
-@keyframes wfGridDive{0%{opacity:0;transform:translate(-50%,-50%) scale(.22) rotate(0)}30%{opacity:.35}100%{opacity:.68;transform:translate(-50%,-50%) scale(1.15) rotate(95deg)}}
-@keyframes wfRibbon1{0%{opacity:0;transform:translate(-50%,-50%) scale(.20) rotate(-18deg)}24%{opacity:.74}100%{opacity:.10;transform:translate(-50%,-50%) scale(1.42) rotate(148deg)}}
-@keyframes wfRibbon2{0%{opacity:0;transform:translate(-50%,-50%) scale(.20) rotate(58deg)}24%{opacity:.64}100%{opacity:.08;transform:translate(-50%,-50%) scale(1.48) rotate(-130deg)}}
-@keyframes wfRibbon3{0%{opacity:0;transform:translate(-50%,-50%) scale(.18) rotate(-39deg)}24%{opacity:.56}100%{opacity:.06;transform:translate(-50%,-50%) scale(1.54) rotate(126deg)}}
-.travel.reverse .travel-atmo{opacity:1;transform:translate(-50%,-50%) scale(1);animation:wfAtmoReturn .92s cubic-bezier(.16,.82,.15,1) both}.travel.reverse .travel-grid{opacity:.56;transform:translate(-50%,-50%) scale(1.08) rotate(85deg);animation:wfGridReturn .92s ease-out both}.travel.reverse .travel-ribbon{opacity:.18}.travel.reverse .r1{animation:wfRibbonReturn1 .92s ease-out both}.travel.reverse .r2{animation:wfRibbonReturn2 .92s ease-out both}.travel.reverse .r3{animation:wfRibbonReturn3 .92s ease-out both}@keyframes wfAtmoReturn{0%{opacity:1;transform:translate(-50%,-50%) scale(1)}72%{opacity:.55;transform:translate(-50%,-50%) scale(.34)}100%{opacity:0;transform:translate(-50%,-50%) scale(.10)}}@keyframes wfGridReturn{to{opacity:0;transform:translate(-50%,-50%) scale(.28) rotate(0)}}@keyframes wfRibbonReturn1{to{opacity:0;transform:translate(-50%,-50%) scale(.22) rotate(-18deg)}}@keyframes wfRibbonReturn2{to{opacity:0;transform:translate(-50%,-50%) scale(.22) rotate(58deg)}}@keyframes wfRibbonReturn3{to{opacity:0;transform:translate(-50%,-50%) scale(.20) rotate(-39deg)}}
-</style>
-<script>if(new URLSearchParams(location.search).has("return"))document.documentElement.classList.add("wf-returning-home");</script>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
+  <meta name="theme-color" content="#02060d">
+  <meta name="description" content="WAYFORTH — Build, Trucking and Media in one connected experience.">
+  <title>WAYFORTH — Move. Build. Create.</title>
+  <link rel="preload" as="image" href="assets/globe-opening.webp">
+  <link rel="preload" as="image" href="assets/world-build.webp">
+  <link rel="preload" as="image" href="assets/world-truck.webp">
+  <link rel="preload" as="image" href="assets/world-dd.webp">
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-<div class="loader" aria-hidden="true"></div>
-<main class="app">
-<section class="home" id="home">
-  <div class="sky"></div><div class="atmo"></div><div class="stars"></div><div class="horizon"></div><div class="road"></div>
-  <div class="scene" id="scene">
-    <div class="orbit-stage" id="orbitStage"><div class="orbit"></div><div class="orbit2"></div><div class="orbit3"></div><img class="globe" id="homeGlobe" src="globe-opening.webp" alt="WAYFORTH globe"></div>
-    <a class="build-link" href="build.html?from=home" data-page="build" aria-label="Open WAYFORTH Build">
-      <img class="build-piece build-floor1" src="world-build.webp" alt=""><img class="build-piece build-floor2" src="world-build.webp" alt=""><img class="build-piece build-floor3" src="world-build.webp" alt=""><img class="build-piece build-floor4" src="world-build.webp" alt=""><img class="build-piece build-crane" src="world-build.webp" alt=""><img class="build-final" src="world-build.webp" alt="WAYFORTH Build">
-      <i class="spark sp1"></i><i class="spark sp2"></i><i class="spark sp3"></i>
-      <div class="division-label build-label"><span class="ico">▥</span><span><b>BUILD</b><small>REAL PROJECTS.<br>LASTING VALUE.</small></span><span class="arr">›</span></div>
-    </a>
-    <a class="dd-link" href="media.html?from=home" data-page="media" aria-label="Open WAYFORTH Media">
-      <img class="dd-dark" src="world-dd.webp" alt=""><img class="dd-lit" src="world-dd.webp" alt="Digital Dynasty"><i class="soft-glow sg1"></i><i class="soft-glow sg2"></i><i class="camera-flash cf1"></i><i class="camera-flash cf2"></i>
-      <div class="division-label media-label"><span class="ico">●</span><span><b>MEDIA</b><small>POWERED BY<br>DIGITAL DYNASTY.</small></span><span class="arr">›</span></div>
-    </a>
-    <a class="truck-link" href="trucking.html?from=home" data-page="trucking" aria-label="Open WAYFORTH Trucking">
-      <img class="truck" src="world-truck.webp" alt="WAYFORTH Trucking"><i class="wheel wf"></i><i class="wheel wr1"></i><i class="wheel wr2"></i><i class="headlamp hl1"></i><i class="headlamp hl2"></i>
-      <div class="division-label truck-label"><span class="ico">➜</span><span><b>TRUCKING</b><small>FREIGHT FORWARD.<br>OPPORTUNITY FURTHER.</small></span><span class="arr">›</span></div>
-    </a>
-    <nav class="topbar"><img class="brand-img" src="brand-logo.webp" alt="WAYFORTH"><a class="quote-top" href="quote.html?from=home" data-page="quote">GET A QUOTE →</a></nav>
-    <div class="hero-copy"><h1><span>MOVE.</span> <span>BUILD.</span> <span>CREATE.</span></h1><p>DIFFERENT INDUSTRIES. A BRIGHTER TOMORROW.</p></div>
+  <div id="boot" class="boot" aria-hidden="true"><span>WAYFORTH</span></div>
+
+  <main id="app" class="app" aria-live="polite">
+    <!-- HOME: persistent scene. No HTML navigation happens when division buttons are tapped. -->
+    <section id="scene-home" class="scene scene-home is-active" data-scene="home" aria-label="WAYFORTH Home">
+      <div class="home-bg"></div>
+      <div class="sky-depth"></div>
+      <div class="horizon"></div>
+      <div class="road-grid"></div>
+      <div class="road-streak rs-a"></div>
+      <div class="road-streak rs-b"></div>
+
+      <header class="home-header">
+        <img src="assets/brand-logo.webp" alt="WAYFORTH" class="home-logo">
+        <nav class="desktop-nav" aria-label="Primary">
+          <button data-open="home" class="nav-link">HOME</button>
+          <button data-open="build" class="nav-link">BUILD</button>
+          <button data-open="trucking" class="nav-link">TRUCKING</button>
+          <button data-open="media" class="nav-link">MEDIA</button>
+          <button data-open="quote" class="quote-nav">GET A QUOTE →</button>
+        </nav>
+      </header>
+
+      <div id="home-globe" class="globe-stage">
+        <i class="orbit orbit-a"></i><i class="orbit orbit-b"></i><i class="orbit orbit-c"></i>
+        <img src="assets/globe-opening.webp" alt="WAYFORTH globe" class="globe-img">
+      </div>
+
+      <button class="division build-world" data-open="build" aria-label="Open WAYFORTH Build">
+        <span class="build-stack" aria-hidden="true">
+          <img class="build-piece floor-1" src="assets/world-build.webp" alt="">
+          <img class="build-piece floor-2" src="assets/world-build.webp" alt="">
+          <img class="build-piece floor-3" src="assets/world-build.webp" alt="">
+          <img class="build-piece floor-4" src="assets/world-build.webp" alt="">
+          <img class="build-piece crane-piece" src="assets/world-build.webp" alt="">
+          <img class="build-final" src="assets/world-build.webp" alt="WAYFORTH Build construction site">
+        </span>
+        <i class="spark spark-1"></i><i class="spark spark-2"></i><i class="spark spark-3"></i><i class="spark spark-4"></i>
+        <i class="worklight wl-1"></i><i class="worklight wl-2"></i><i class="worklight wl-3"></i><i class="worklight wl-4"></i>
+        <span class="division-card build-card"><strong>BUILD</strong><small>REAL PROJECTS.<br>LASTING VALUE.</small><b>›</b></span>
+      </button>
+
+      <button class="division dd-world" data-open="media" aria-label="Open WAYFORTH Media">
+        <img class="dd-dark" src="assets/world-dd.webp" alt="">
+        <img class="dd-lit" src="assets/world-dd.webp" alt="Digital Dynasty studio">
+        <i class="camera-flash cam-1"></i><i class="camera-flash cam-2"></i><i class="camera-flash cam-3"></i>
+        <i class="softbox sb-1"></i><i class="softbox sb-2"></i><i class="softbox sb-3"></i>
+        <span class="division-card media-card"><strong>MEDIA</strong><small>POWERED BY<br>DIGITAL DYNASTY.</small><b>›</b></span>
+      </button>
+
+      <button class="division truck-world" data-open="trucking" aria-label="Open WAYFORTH Trucking">
+        <img class="truck-img" src="assets/world-truck.webp" alt="WAYFORTH truck">
+        <i class="wheel wheel-front"></i><i class="wheel wheel-rear-a"></i><i class="wheel wheel-rear-b"></i>
+        <i class="headlamp lamp-a"></i><i class="headlamp lamp-b"></i><i class="headlamp lamp-c"></i>
+        <span class="division-card truck-card"><strong>TRUCKING</strong><small>FREIGHT FORWARD.<br>OPPORTUNITY FURTHER.</small><b>›</b></span>
+      </button>
+
+      <div class="home-tagline">
+        <h1><span>MOVE.</span> <span>BUILD.</span> <span>CREATE.</span></h1>
+        <p>DIFFERENT INDUSTRIES. A BRIGHTER TOMORROW.</p>
+      </div>
+    </section>
+
+    <!-- BUILD scene already exists in DOM and is ready before the user taps it. -->
+    <section id="scene-build" class="scene scene-content scene-build" data-scene="build" aria-label="WAYFORTH Build">
+      <img src="assets/build-0-45b56b5fd9.webp" class="content-bg build-bg" alt="WAYFORTH Build materials">
+      <button class="scene-home-btn" data-open="home">← HOME</button>
+      <button class="scene-quote-btn" data-open="quote" data-quote="build">QUOTE LIST <span id="cart-count">0</span></button>
+      <button class="material-hotspot steel" data-material="Steel / Sariya" aria-label="Steel / Sariya"></button>
+      <button class="material-hotspot cement" data-material="Cement" aria-label="Cement"></button>
+      <button class="material-hotspot bricks" data-material="Bricks" aria-label="Bricks"></button>
+      <button class="material-hotspot paints" data-material="Paints" aria-label="Paints"></button>
+      <button class="material-hotspot pipes" data-material="Pipes" aria-label="Pipes"></button>
+      <button class="material-hotspot electrical" data-material="Electrical" aria-label="Electrical"></button>
+    </section>
+
+    <!-- TRUCKING scene: same app, already mounted. -->
+    <section id="scene-trucking" class="scene scene-content scene-trucking" data-scene="trucking" aria-label="WAYFORTH Trucking">
+      <img src="assets/trucking-0-1ed29ee9d5.webp" class="content-bg trucking-bg" alt="WAYFORTH Trucking">
+      <button class="scene-home-btn" data-open="home">← HOME</button>
+      <button class="truck-card-hit trucker-hit" data-form="trucker" aria-label="I'm a trucker"></button>
+      <button class="truck-card-hit broker-hit" data-form="broker" aria-label="I'm a broker"></button>
+    </section>
+
+    <!-- MEDIA is intentionally a high-quality gateway for now. Full DD build is the next phase. -->
+    <section id="scene-media" class="scene scene-content scene-media" data-scene="media" aria-label="WAYFORTH Media">
+      <div class="media-atmosphere"></div>
+      <button class="scene-home-btn" data-open="home">← HOME</button>
+      <div class="media-copy">
+        <div class="eyebrow">WAYFORTH MEDIA × DIGITAL DYNASTY</div>
+        <h2>CREATE<br><span>AT SCALE.</span></h2>
+        <p>Content, distribution, brand growth and creator infrastructure — powered by Digital Dynasty.</p>
+        <div class="media-actions">
+          <a href="https://digitaldynasty.media" target="_blank" rel="noopener">OPEN DIGITAL DYNASTY ↗</a>
+          <button data-open="quote" data-quote="media">START A MEDIA BRIEF</button>
+        </div>
+      </div>
+      <div class="media-visual">
+        <img src="assets/world-dd.webp" alt="Digital Dynasty">
+        <i class="media-flash mf-1"></i><i class="media-flash mf-2"></i>
+      </div>
+    </section>
+
+    <!-- Quote router. This is deliberately easy to revise in the next quote-list pass. -->
+    <section id="scene-quote" class="scene scene-content scene-quote" data-scene="quote" aria-label="WAYFORTH Quote">
+      <button class="scene-home-btn" data-open="home">← HOME</button>
+      <div class="quote-shell">
+        <div class="eyebrow">WAYFORTH / START HERE</div>
+        <h2>WHAT CAN WE<br><span>MOVE FORWARD?</span></h2>
+        <div class="quote-options">
+          <button data-open="build" class="quote-choice"><b>BUILD</b><span>Materials & project quote</span><em>→</em></button>
+          <button data-open="trucking" data-form="trucker" class="quote-choice"><b>TRUCKER</b><span>Plan my work week</span><em>→</em></button>
+          <button data-open="trucking" data-form="broker" class="quote-choice"><b>BROKER</b><span>Move my freight</span><em>→</em></button>
+          <button data-open="media" class="quote-choice"><b>MEDIA</b><span>Content & brand growth</span><em>→</em></button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Persistent transition object. It never requires a page load. -->
+    <div id="portal" class="portal" aria-hidden="true">
+      <div id="portal-globe" class="portal-globe">
+        <i class="portal-orbit po-a"></i><i class="portal-orbit po-b"></i>
+        <img src="assets/globe-opening.webp" alt="">
+      </div>
+      <div class="portal-energy"></div>
+    </div>
+  </main>
+
+  <!-- BUILD modal -->
+  <div id="material-modal" class="modal" aria-hidden="true">
+    <div class="modal-card">
+      <button class="modal-close" data-close="material">×</button>
+      <div class="eyebrow">WAYFORTH BUILD</div>
+      <h3 id="material-title">Material</h3>
+      <p id="material-supplier" class="modal-sub"></p>
+      <div class="form-grid">
+        <label>Specification<select id="material-spec"></select></label>
+        <label>Quantity<input id="material-qty" type="number" min="1" value="1" inputmode="decimal"></label>
+        <label>Unit<select id="material-unit"></select></label>
+        <label>Target price<input id="material-price" type="number" min="0" placeholder="Optional" inputmode="decimal"></label>
+      </div>
+      <label class="full-label">Project note<textarea id="material-note" rows="3" placeholder="Delivery location, preferred brand/specification, timing…"></textarea></label>
+      <button id="add-material" class="primary-cta">ADD TO QUOTE →</button>
+    </div>
   </div>
-</section>
-<div class="travel" id="travel" aria-hidden="true"><div class="travel-atmo"></div><div class="travel-grid"></div><i class="travel-ribbon r1"></i><i class="travel-ribbon r2"></i><i class="travel-ribbon r3"></i><div class="travel-core" id="travelCore"><div class="t-orbit"></div><div class="t-orbit2"></div><img src="globe-opening.webp" alt=""></div><div class="travel-flare" id="travelFlare"></div></div>
-</main>
-<script>
-(()=>{
- const scene=document.getElementById('scene'),globe=document.getElementById('homeGlobe'),travel=document.getElementById('travel'),core=document.getElementById('travelCore'),flare=document.getElementById('travelFlare');
- let busy=false;
 
- function syncViewport(){
-   const vv=window.visualViewport;
-   const w=Math.round(vv ? vv.width : innerWidth), h=Math.round(vv ? vv.height : innerHeight);
-   document.documentElement.style.setProperty('--app-w',w+'px');
-   document.documentElement.style.setProperty('--app-h',h+'px');
- }
- syncViewport();
- (visualViewport||window).addEventListener('resize',syncViewport,{passive:true});
- window.addEventListener('orientationchange',()=>setTimeout(syncViewport,120),{passive:true});
+  <!-- Trucking forms -->
+  <div id="trucking-modal" class="modal" aria-hidden="true">
+    <div class="modal-card trucking-form-shell">
+      <button class="modal-close" data-close="trucking">×</button>
+      <div class="eyebrow" id="truck-form-kicker">WAYFORTH TRUCKING</div>
+      <h3 id="truck-form-title">Plan my week.</h3>
+      <form id="trucker-form" class="dynamic-form">
+        <label>Current state<input name="current_state" placeholder="e.g. Illinois" required></label>
+        <label>MC number<input name="mc_number" placeholder="MC number, if available"></label>
+        <label>Days you want to work<input name="work_days" placeholder="e.g. Mon–Fri" required></label>
+        <label>Weekend / home days<input name="home_days" placeholder="Choose up to 2 days"></label>
+        <label>Start from<input name="start" placeholder="City / State / ZIP" required></label>
+        <label>Get me back to<input name="return" placeholder="Home City / State / ZIP" required></label>
+        <label>WhatsApp / contact<input name="contact" placeholder="+1 …" required></label>
+        <label class="full-label">Anything else?<textarea name="notes" rows="3" placeholder="Preferred lanes, places to avoid, home-time notes…"></textarea></label>
+        <button class="primary-cta" type="submit">PLAN MY ROUTE →</button>
+      </form>
+      <form id="broker-form" class="dynamic-form is-hidden">
+        <label>Pickup location<input name="pickup" placeholder="City / State / ZIP" required></label>
+        <label>Destination<input name="destination" placeholder="City / State / ZIP" required></label>
+        <label>Frequency<select name="frequency"><option>One-time</option><option>Recurring</option></select></label>
+        <label>Equipment<select name="equipment"><option>Dry Van</option><option>Reefer</option><option>Flatbed</option><option>Power Only</option><option>Box Truck</option><option>Hotshot</option><option>Other</option></select></label>
+        <label>Rate<input name="rate" placeholder="$ / all-in rate"></label>
+        <label class="full-label">Comments<textarea name="comments" rows="3" placeholder="Commodity, weight, appointment requirements…"></textarea></label>
+        <button class="primary-cta" type="submit">FIND A TRUCK →</button>
+      </form>
+    </div>
+  </div>
 
- /* Prevent accidental iOS pinch/double-zoom from breaking fixed layers. */
- ['gesturestart','gesturechange','gestureend'].forEach(type=>{
-   document.addEventListener(type,e=>e.preventDefault(),{passive:false});
- });
- document.addEventListener('touchmove',e=>{if(e.touches&&e.touches.length>1)e.preventDefault()},{passive:false});
+  <!-- Quote cart -->
+  <div id="cart-drawer" class="drawer" aria-hidden="true">
+    <div class="drawer-card">
+      <button class="modal-close" data-close="cart">×</button>
+      <div class="eyebrow">BUILD QUOTE LIST</div>
+      <h3>Your project materials.</h3>
+      <div id="cart-items" class="cart-items"></div>
+      <button id="send-cart" class="primary-cta">REQUEST FINAL QUOTE →</button>
+    </div>
+  </div>
 
- const critical=[...document.images].filter(i=>[
-   'globe-opening.webp','world-build.webp','world-truck.webp','world-dd.webp','brand-logo.webp'
- ].some(n=>i.src.endsWith(n)));
-
- function box(){
-   const r=globe.getBoundingClientRect();
-   return{x:r.left+r.width/2,y:r.top+r.height/2,w:r.width};
- }
- function prep(b){
-   core.style.left=b.x+'px';core.style.top=b.y+'px';
-   core.style.width=b.w+'px';core.style.height=b.w+'px';
-   core.style.transform='translate3d(-50%,-50%,0) scale(1)';
- }
- function warm(url){try{fetch(url,{cache:'force-cache',credentials:'same-origin'}).catch(()=>{})}catch(_){}}
-
- function leave(url){
-   if(busy)return;
-   busy=true;
-   document.documentElement.classList.add('leaving');
-   const b=box(),vw=parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--app-w'))||innerWidth,
-         vh=parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--app-h'))||innerHeight,
-         dx=vw/2-b.x,dy=vh/2-b.y,scale=Math.min(3.25,Math.max(2.35,(Math.min(vw,vh)*1.45)/b.w));
-
-   prep(b);
-   travel.classList.add('active','go');
-
-   /* Only transform/opacity during the handoff — no filters, less Safari GPU pressure. */
-   scene.animate([
-     {transform:'translate3d(0,0,0) scale(1)',opacity:1},
-     {transform:'translate3d(0,0,0) scale(1.012)',opacity:.98,offset:.58},
-     {transform:'translate3d(0,0,0) scale(1.025)',opacity:.72}
-   ],{duration:760,easing:'cubic-bezier(.36,.02,.12,1)',fill:'forwards'});
-
-   core.animate([
-     {transform:'translate3d(-50%,-50%,0) translate3d(0,0,0) scale(1)',opacity:1},
-     {transform:`translate3d(-50%,-50%,0) translate3d(${dx}px,${dy}px,0) scale(${scale*.78})`,opacity:1,offset:.72},
-     {transform:`translate3d(-50%,-50%,0) translate3d(${dx}px,${dy}px,0) scale(${scale})`,opacity:1}
-   ],{duration:760,easing:'cubic-bezier(.42,.02,.10,1)',fill:'forwards'});
-
-   flare.animate([
-     {opacity:0},{opacity:.10,offset:.38},{opacity:.62,offset:.72},{opacity:1}
-   ],{duration:760,easing:'ease-in',fill:'forwards'});
-
-   /* Navigate only after the screen is fully covered. */
-   setTimeout(()=>{location.assign(url)},720);
- }
-
- document.querySelectorAll('[data-page]').forEach(a=>a.addEventListener('click',e=>{
-   e.preventDefault(); leave(a.href);
- }));
-
- Promise.all(critical.map(i=>i.decode().catch(()=>{}))).then(()=>{
-   document.body.classList.add('ready');
-   const q=new URLSearchParams(location.search);
-   if(q.has('return')){
-     scene.classList.add('settled');
-     requestAnimationFrame(()=>{
-       const b=box(),vw=parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--app-w'))||innerWidth,
-             vh=parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--app-h'))||innerHeight,
-             dx=vw/2-b.x,dy=vh/2-b.y,scale=Math.min(3.25,Math.max(2.35,(Math.min(vw,vh)*1.45)/b.w));
-       prep(b);
-       travel.classList.add('active','reverse');
-       core.style.transform=`translate3d(-50%,-50%,0) translate3d(${dx}px,${dy}px,0) scale(${scale})`;
-       flare.style.opacity='1';
-
-       core.animate([
-         {transform:`translate3d(-50%,-50%,0) translate3d(${dx}px,${dy}px,0) scale(${scale})`,opacity:1},
-         {transform:`translate3d(-50%,-50%,0) translate3d(${dx*.12}px,${dy*.12}px,0) scale(1.15)`,opacity:1,offset:.78},
-         {transform:'translate3d(-50%,-50%,0) translate3d(0,0,0) scale(1)',opacity:0}
-       ],{duration:940,easing:'cubic-bezier(.16,.82,.15,1)',fill:'forwards'});
-       flare.animate([{opacity:1},{opacity:.35,offset:.62},{opacity:0}],
-         {duration:880,easing:'ease-out',fill:'forwards'});
-       setTimeout(()=>{
-         travel.classList.remove('active','reverse');
-         history.replaceState(null,'',location.pathname+'#home');
-         document.documentElement.classList.remove('wf-returning-home');
-       },960);
-     });
-   }else{
-     requestAnimationFrame(()=>requestAnimationFrame(()=>scene.classList.add('play')));
-   }
-
-   setTimeout(()=>{warm('build.html');warm('trucking.html')},2500);
-   setTimeout(()=>{warm('media.html');warm('quote.html')},3400);
- });
-})();
-</script>
-</body></html>
+  <div id="toast" class="toast" role="status"></div>
+  <script src="app.js"></script>
+</body>
+</html>
