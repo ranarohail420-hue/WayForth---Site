@@ -9,15 +9,15 @@
 </style>
 
 <style id="wf-orbital-page-css">
-html,body{background:#02060d!important;-webkit-text-size-adjust:100%}
-#wf-page-transition{position:fixed;inset:0;z-index:2147483000;pointer-events:none;opacity:0;visibility:hidden;overflow:hidden;background:#02060d;transition:none;will-change:opacity}
+html,body{background:linear-gradient(180deg,#071223 0%,#081a31 52%,#02060d 100%)!important;-webkit-text-size-adjust:100%}
+#wf-page-transition{position:fixed;inset:0;z-index:2147483000;pointer-events:none;opacity:0;visibility:hidden;overflow:hidden;background:radial-gradient(ellipse at 50% 18%,rgba(52,118,215,.42),transparent 30%),linear-gradient(180deg,#071223 0%,#081a31 52%,#02060d 100%);transition:none;will-change:opacity}
 .wf-from-home #wf-page-transition,#wf-page-transition.wf-exit{opacity:1;visibility:visible}
 #wf-page-core{position:absolute;left:50%;top:50%;width:min(66vw,66vh);aspect-ratio:1;transform:translate(-50%,-50%) translateZ(0);will-change:transform,opacity;backface-visibility:hidden}
 #wf-page-core img{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;filter:drop-shadow(0 0 30px rgba(76,177,255,.40));backface-visibility:hidden}
 #wf-page-core i{position:absolute;left:50%;top:50%;border-radius:50%;transform:translate(-50%,-50%) translateZ(0);border:1px solid rgba(83,184,255,.48)}
 #wf-page-core .o1{width:112%;height:112%;animation:wfPS 1.18s linear infinite}
 #wf-page-core .o2{width:128%;height:128%;border-color:rgba(239,189,97,.38);animation:wfPS2 1.42s linear infinite}
-#wf-page-flare{position:absolute;inset:0;background:radial-gradient(circle at 50% 50%,rgba(255,255,255,.84),rgba(72,168,255,.34) 15%,rgba(239,189,97,.12) 28%,rgba(2,6,13,.94) 66%,#02060d 100%);opacity:0}
+#wf-page-flare{position:absolute;inset:0;background:radial-gradient(circle at 50% 50%,rgba(255,255,255,.86),rgba(72,168,255,.42) 14%,rgba(239,189,97,.16) 28%,rgba(8,25,48,.90) 63%,#071223 100%);opacity:0}
 .wf-from-home #wf-page-core{transform:translate(-50%,-50%) translateZ(0) scale(8.15);opacity:1}
 .wf-from-home #wf-page-flare{opacity:1}
 .wf-arriving #wf-page-core{animation:wfPageArrive .92s cubic-bezier(.16,.82,.15,1) both}
