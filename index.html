@@ -76,43 +76,44 @@
       </div>
     </section>
 
-    <!-- BUILD scene already exists in DOM and is ready before the user taps it. -->
-    <section id="scene-build" class="scene scene-content scene-build" data-scene="build" aria-label="WAYFORTH Build">
-      <img src="build-0-45b56b5fd9.webp" class="content-bg build-bg" alt="WAYFORTH Build materials">
-      <button class="scene-home-btn" data-open="home">← HOME</button>
-      <button class="scene-quote-btn" data-open="quote" data-quote="build">QUOTE LIST <span id="cart-count">0</span></button>
-      <button class="material-hotspot steel" data-material="Steel / Sariya" aria-label="Steel / Sariya"></button>
-      <button class="material-hotspot cement" data-material="Cement" aria-label="Cement"></button>
-      <button class="material-hotspot bricks" data-material="Bricks" aria-label="Bricks"></button>
-      <button class="material-hotspot paints" data-material="Paints" aria-label="Paints"></button>
-      <button class="material-hotspot pipes" data-material="Pipes" aria-label="Pipes"></button>
-      <button class="material-hotspot electrical" data-material="Electrical" aria-label="Electrical"></button>
+    <!-- BUILD and TRUCKING are preloaded inside this persistent app. They do not navigate to another document. -->
+    <section id="scene-build" class="scene scene-content scene-embedded" data-scene="build" aria-label="WAYFORTH Build">
+      <iframe id="build-frame" class="embedded-scene-frame" title="WAYFORTH Build complete materials and quote workspace"></iframe>
     </section>
 
-    <!-- TRUCKING scene: same app, already mounted. -->
-    <section id="scene-trucking" class="scene scene-content scene-trucking" data-scene="trucking" aria-label="WAYFORTH Trucking">
-      <img src="trucking-0-1ed29ee9d5.webp" class="content-bg trucking-bg" alt="WAYFORTH Trucking">
-      <button class="scene-home-btn" data-open="home">← HOME</button>
-      <button class="truck-card-hit trucker-hit" data-form="trucker" aria-label="I'm a trucker"></button>
-      <button class="truck-card-hit broker-hit" data-form="broker" aria-label="I'm a broker"></button>
+    <section id="scene-trucking" class="scene scene-content scene-embedded" data-scene="trucking" aria-label="WAYFORTH Trucking">
+      <iframe id="trucking-frame" class="embedded-scene-frame" title="WAYFORTH Trucking complete operations workspace"></iframe>
     </section>
 
-    <!-- MEDIA is intentionally a high-quality gateway for now. Full DD build is the next phase. -->
     <section id="scene-media" class="scene scene-content scene-media" data-scene="media" aria-label="WAYFORTH Media">
       <div class="media-atmosphere"></div>
+      <div class="media-gridlines"></div>
       <button class="scene-home-btn" data-open="home">← HOME</button>
       <div class="media-copy">
         <div class="eyebrow">WAYFORTH MEDIA × DIGITAL DYNASTY</div>
         <h2>CREATE<br><span>AT SCALE.</span></h2>
-        <p>Content, distribution, brand growth and creator infrastructure — powered by Digital Dynasty.</p>
+        <p>Choose the part of Digital Dynasty you need. The studio stays in the scene while the service layer changes around it.</p>
+        <div class="media-service-grid" aria-label="Digital Dynasty services">
+          <button class="media-service is-selected" data-media-service="Content Production" data-media-copy="Production, creative development and content systems for brands and creators."><b>01</b><span>CONTENT<br>PRODUCTION</span></button>
+          <button class="media-service" data-media-service="Social Distribution" data-media-copy="Multi-platform publishing, distribution strategy and audience growth."><b>02</b><span>SOCIAL<br>DISTRIBUTION</span></button>
+          <button class="media-service" data-media-service="Brand Growth" data-media-copy="Campaigns, creative strategy and growth systems designed to scale brands."><b>03</b><span>BRAND<br>GROWTH</span></button>
+          <button class="media-service" data-media-service="Creator Partnerships" data-media-copy="Creator collaborations, partnerships and campaign infrastructure."><b>04</b><span>CREATOR<br>PARTNERSHIPS</span></button>
+          <button class="media-service" data-media-service="YouTube / MCN" data-media-copy="YouTube channel growth, network support and creator infrastructure."><b>05</b><span>YOUTUBE<br>/ MCN</span></button>
+          <button class="media-service" data-media-service="Licensing & Rights" data-media-copy="Content licensing, rights opportunities and commercial distribution support."><b>06</b><span>LICENSING<br>& RIGHTS</span></button>
+        </div>
+        <div class="media-selected">
+          <small id="media-selected-label">SELECTED / CONTENT PRODUCTION</small>
+          <p id="media-selected-copy">Production, creative development and content systems for brands and creators.</p>
+        </div>
         <div class="media-actions">
-          <a href="https://digitaldynasty.media" target="_blank" rel="noopener">OPEN DIGITAL DYNASTY ↗</a>
-          <button data-open="quote" data-quote="media">START A MEDIA BRIEF</button>
+          <button data-open="quote" data-quote="media">START A MEDIA BRIEF →</button>
+          <a href="https://digitaldynasty.media" target="_blank" rel="noopener">DIGITAL DYNASTY ↗</a>
         </div>
       </div>
       <div class="media-visual">
-        <img src="world-dd.webp" alt="Digital Dynasty">
-        <i class="media-flash mf-1"></i><i class="media-flash mf-2"></i>
+        <img src="world-dd.webp" alt="Digital Dynasty studio">
+        <i class="media-flash mf-1"></i><i class="media-flash mf-2"></i><i class="media-flash mf-3"></i>
+        <i class="media-softlight msl-1"></i><i class="media-softlight msl-2"></i><i class="media-softlight msl-3"></i>
       </div>
     </section>
 
@@ -200,6 +201,7 @@
   </div>
 
   <div id="toast" class="toast" role="status"></div>
+  <script src="scenes-data.js"></script>
   <script src="app.js"></script>
 </body>
 </html>

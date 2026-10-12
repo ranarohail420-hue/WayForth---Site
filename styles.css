@@ -75,3 +75,98 @@ button{color:inherit}
 @media(max-width:390px){.home-logo{width:145px}.quote-nav{padding:0 10px}.globe-stage{width:66vw}.build-world{left:-12%;width:59vw}.dd-world{right:-11%;width:57vw}.truck-world{width:64vw}.home-tagline h1{font-size:23px}.division-card small{display:none}.division-card{min-width:126px}.truck-card{min-width:166px}}
 
 @media(prefers-reduced-motion:reduce){*{animation-duration:.01ms!important;animation-iteration-count:1!important;scroll-behavior:auto!important}.build-piece,.dd-dark,.wheel{display:none!important}.build-final,.dd-lit,.truck-img{opacity:1!important}.truck-img{transform:none!important}}
+
+/* ==========================================================
+   V4.2 — SINGLE APP COMPLETION / USER-REVIEW POLISH
+   ========================================================== */
+.home-bg{
+  inset:0;
+  background:url('home-reference.jpg') center 52%/cover no-repeat;
+  filter:saturate(1.18) brightness(.72) contrast(1.03);
+  transform:none;
+  opacity:.88;
+  -webkit-mask-image:linear-gradient(to bottom,#000 0%,#000 32%,rgba(0,0,0,.30) 47%,rgba(0,0,0,.22) 61%,#000 78%,#000 100%);
+  mask-image:linear-gradient(to bottom,#000 0%,#000 32%,rgba(0,0,0,.30) 47%,rgba(0,0,0,.22) 61%,#000 78%,#000 100%);
+}
+.home-bg:after{background:linear-gradient(180deg,rgba(0,6,16,.02),rgba(2,10,22,.08) 45%,rgba(0,5,12,.10))}
+.sky-depth{background:
+  radial-gradient(ellipse at 50% 10%,rgba(53,130,240,.23),transparent 32%),
+  radial-gradient(ellipse at 10% 41%,rgba(255,177,77,.08),transparent 26%),
+  radial-gradient(ellipse at 90% 40%,rgba(74,155,255,.10),transparent 28%),
+  linear-gradient(180deg,rgba(2,7,17,.03),rgba(4,18,37,.02) 54%,rgba(1,6,14,.17));
+}
+.horizon{filter:blur(8px);opacity:.88}
+.road-grid{opacity:.88;background:
+  linear-gradient(90deg,transparent 49.55%,rgba(240,190,98,.38) 49.84%,rgba(240,190,98,.38) 50.16%,transparent 50.45%),
+  repeating-linear-gradient(180deg,rgba(74,180,255,.09) 0 1px,transparent 1px 28px),
+  linear-gradient(180deg,rgba(26,73,122,.05),rgba(4,10,18,.76));
+}
+.road-streak{opacity:.38;box-shadow:0 0 22px rgba(76,180,255,.16)}
+
+/* Stronger visible life on the front scene. */
+.camera-flash{width:12px;height:12px;box-shadow:0 0 12px #fff,0 0 34px #c6efff,0 0 82px #5aabff;animation-duration:4.4s}
+.softbox{width:3.6%;opacity:.23;animation-duration:3.4s}
+.headlamp{filter:blur(1.5px);box-shadow:0 0 18px rgba(116,217,255,.32)}
+.worklight{width:2.6%}
+.spark{width:6px;height:6px}
+
+/* BUILD / TRUCKING are preloaded as complete self-contained workspaces. */
+.scene-embedded{background:#02060d;overflow:hidden}
+.embedded-scene-frame{position:absolute;inset:0;width:100%;height:100%;display:block;border:0;background:#02060d;opacity:1}
+
+/* MEDIA — service controls occupy the user's marked upper/left area; DD remains the visual world. */
+.scene-media{background:
+  radial-gradient(ellipse at 84% 68%,rgba(27,100,195,.18),transparent 35%),
+  radial-gradient(ellipse at 18% 28%,rgba(240,190,98,.10),transparent 30%),
+  linear-gradient(180deg,#030713 0%,#061326 55%,#02060d 100%);
+}
+.media-atmosphere{inset:0;background:
+  linear-gradient(90deg,rgba(2,7,15,.96) 0%,rgba(2,7,15,.83) 44%,rgba(2,7,15,.28) 68%,rgba(2,7,15,.06) 100%),
+  url('home-reference.jpg') center/cover no-repeat;
+  filter:none;transform:none;opacity:.74;
+}
+.media-gridlines{position:absolute;inset:0;pointer-events:none;opacity:.16;background-image:
+  linear-gradient(rgba(89,191,255,.15) 1px,transparent 1px),
+  linear-gradient(90deg,rgba(89,191,255,.10) 1px,transparent 1px);background-size:84px 84px;
+  -webkit-mask-image:linear-gradient(90deg,#000,rgba(0,0,0,.42) 52%,transparent 82%);mask-image:linear-gradient(90deg,#000,rgba(0,0,0,.42) 52%,transparent 82%)}
+.media-copy{left:6.5%;top:49%;transform:translateY(-50%);width:min(610px,49vw);z-index:24}
+.media-copy h2{font-size:clamp(58px,7vw,112px);line-height:.86}
+.media-copy>p{max-width:570px;font-size:14px;line-height:1.55;margin:13px 0 18px}
+.media-service-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;max-width:600px}
+.media-service{position:relative;min-height:82px;padding:12px 11px;border-radius:17px;border:1px solid rgba(255,255,255,.12);background:linear-gradient(180deg,rgba(9,21,40,.72),rgba(3,9,18,.76));color:#fff;text-align:left;cursor:pointer;overflow:hidden;transition:.24s ease}
+.media-service:before{content:"";position:absolute;inset:0;background:linear-gradient(135deg,rgba(89,191,255,.11),transparent 46%);opacity:0;transition:.24s ease}
+.media-service b{position:relative;z-index:1;display:block;color:var(--gold);font-size:9px;letter-spacing:.12em;margin-bottom:8px}
+.media-service span{position:relative;z-index:1;font-size:10px;font-weight:850;letter-spacing:.07em;line-height:1.15}
+.media-service.is-selected,.media-service:hover{border-color:rgba(89,191,255,.42);transform:translateY(-2px);box-shadow:0 12px 28px rgba(0,0,0,.24),0 0 26px rgba(62,162,255,.08)}
+.media-service.is-selected:before,.media-service:hover:before{opacity:1}
+.media-selected{margin-top:12px;max-width:600px;padding:12px 14px;border-left:2px solid rgba(240,190,98,.65);background:linear-gradient(90deg,rgba(240,190,98,.07),transparent)}
+.media-selected small{font-size:8px;font-weight:800;letter-spacing:.14em;color:rgba(240,190,98,.92)}
+.media-selected p{margin:5px 0 0;font-size:12px;line-height:1.45;color:rgba(255,255,255,.62)}
+.media-actions{margin-top:14px}
+.media-visual{right:-2%;bottom:-1%;width:min(54vw,790px);z-index:10;opacity:1}
+.media-visual img{filter:drop-shadow(0 30px 55px rgba(0,0,0,.62)) brightness(.95)}
+.media-flash{width:12px;height:12px;box-shadow:0 0 12px #fff,0 0 36px #dff5ff,0 0 90px #5aa8ff;animation-duration:4.2s}
+.mf-1{left:23%;top:63%;animation-delay:.25s}.mf-2{left:51%;top:67%;animation-delay:1.75s}.mf-3{left:76%;top:60%;animation-delay:3.05s}
+.media-softlight{position:absolute;width:4.2%;aspect-ratio:1;border-radius:50%;background:radial-gradient(circle,#fff 0 14%,#d9f3ff 28%,rgba(78,169,255,.36) 52%,transparent 72%);filter:blur(2px);opacity:.16;animation:mediaLamp 3.6s ease-in-out infinite}
+.msl-1{left:18%;top:56%}.msl-2{left:47%;top:59%;animation-delay:1.2s}.msl-3{left:77%;top:55%;animation-delay:2.25s}
+@keyframes mediaLamp{0%,100%{opacity:.16;transform:scale(.82)}9%{opacity:.95;transform:scale(1.65)}17%{opacity:.20}29%{opacity:.72;transform:scale(1.20)}62%{opacity:.16}76%{opacity:.86;transform:scale(1.48)}}
+
+@media(max-width:760px){
+  .home-bg{background-position:center 52%;filter:saturate(1.16) brightness(.72) contrast(1.02);opacity:.92;-webkit-mask-image:linear-gradient(to bottom,#000 0%,#000 34%,rgba(0,0,0,.28) 50%,rgba(0,0,0,.20) 61%,#000 78%,#000 100%);mask-image:linear-gradient(to bottom,#000 0%,#000 34%,rgba(0,0,0,.28) 50%,rgba(0,0,0,.20) 61%,#000 78%,#000 100%)}
+  .media-atmosphere{background:linear-gradient(180deg,rgba(2,7,15,.90) 0%,rgba(2,7,15,.86) 48%,rgba(2,7,15,.22) 74%,rgba(2,7,15,.06) 100%),url('home-reference.jpg') center/cover no-repeat;opacity:.78}
+  .media-gridlines{background-size:58px 58px;-webkit-mask-image:linear-gradient(180deg,#000,rgba(0,0,0,.55) 63%,transparent 88%);mask-image:linear-gradient(180deg,#000,rgba(0,0,0,.55) 63%,transparent 88%)}
+  .media-copy{left:6%;top:10%;transform:none;width:88vw;z-index:24}
+  .media-copy h2{font-size:54px;line-height:.88}
+  .media-copy>p{font-size:12.5px;line-height:1.5;margin:10px 0 14px;max-width:85vw}
+  .media-service-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:7px;max-width:88vw}
+  .media-service{min-height:66px;padding:9px 10px;border-radius:14px}
+  .media-service b{font-size:7px;margin-bottom:6px}.media-service span{font-size:8.5px}
+  .media-selected{margin-top:9px;padding:9px 11px;max-width:86vw}.media-selected p{font-size:10px}.media-selected small{font-size:6.8px}
+  .media-actions{margin-top:10px}.media-actions a,.media-actions button{min-height:42px;padding:0 13px;font-size:8px}
+  .media-visual{right:-17%;bottom:-1%;width:100vw;opacity:.95}
+  .scene-home-btn{z-index:80}
+}
+
+@media(max-width:390px){
+  .media-copy{top:9%;left:5.5%;width:89vw}.media-copy h2{font-size:48px}.media-service{min-height:61px}.media-service span{font-size:7.8px}.media-visual{right:-20%;width:105vw}
+}

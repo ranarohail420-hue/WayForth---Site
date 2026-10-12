@@ -26,6 +26,35 @@
   const clamp=(v,a,b)=>Math.max(a,Math.min(b,v));
   const showToast=(msg)=>{toast.textContent=msg;toast.classList.add('is-on');clearTimeout(showToast._t);showToast._t=setTimeout(()=>toast.classList.remove('is-on'),2200)};
 
+  function decodeScene64(s){
+    const bytes=Uint8Array.from(atob(s),c=>c.charCodeAt(0));
+    return new TextDecoder('utf-8').decode(bytes);
+  }
+  function mountEmbeddedScene(id,key){
+    const frame=document.getElementById(id);
+    if(!frame||!window.WF_SCENES||!window.WF_SCENES[key]) return Promise.resolve();
+    return new Promise(resolve=>{
+      let done=false;
+      const finish=()=>{if(done)return;done=true;resolve();};
+      frame.addEventListener('load',finish,{once:true});
+      try{frame.srcdoc=decodeScene64(window.WF_SCENES[key]);}catch(_){finish();}
+      setTimeout(finish,5000);
+    });
+  }
+  const embeddedReady=Promise.all([
+    mountEmbeddedScene('build-frame','build'),
+    mountEmbeddedScene('trucking-frame','trucking')
+  ]);
+
+  addEventListener('message',e=>{
+    const d=e.data||{};
+    if(d.type==='wf-single-nav'&&d.page&&scenes[d.page]){go(d.page);return;}
+    if(d.type==='wf-build-quote'){
+      if(Array.isArray(d.items)){cart=d.items.map((x,i)=>({id:x.id||Date.now()+i,material:x.material||'Build item',spec:x.productOption||x.spec||'',qty:x.qty||1,unit:x.unit||'',target:x.target||'',note:x.note||''}));saveCart();}
+      go('quote');
+    }
+  });
+
   function viewport(){
     const vv=window.visualViewport;
     return {w:vv?.width||innerWidth,h:vv?.height||innerHeight};
@@ -151,7 +180,8 @@
     qs('#material-qty').value='1';qs('#material-price').value='';qs('#material-note').value='';
     materialModal.classList.add('is-open');materialModal.setAttribute('aria-hidden','false');
   }
-  qs('#add-material').addEventListener('click',()=>{
+  const addMaterialButton=qs('#add-material');
+  if(addMaterialButton) addMaterialButton.addEventListener('click',()=>{
     const qty=Number(qs('#material-qty').value||0);if(qty<=0){showToast('Enter a quantity.');return}
     cart.push({id:Date.now(),material:selectedMaterial,spec:qs('#material-spec').value,qty,unit:qs('#material-unit').value,target:qs('#material-price').value,note:qs('#material-note').value});
     saveCart();closeOverlay(materialModal);showToast(`${selectedMaterial} added to quote.`);
@@ -164,8 +194,10 @@
     host.querySelectorAll('[data-remove]').forEach(b=>b.onclick=()=>{cart=cart.filter(i=>String(i.id)!==b.dataset.remove);saveCart()});
   }
   function escapeHTML(s){return String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[c]))}
-  qs('.scene-quote-btn').addEventListener('click',e=>{e.stopPropagation();qs('#cart-drawer').classList.add('is-open');qs('#cart-drawer').setAttribute('aria-hidden','false')});
-  qs('#send-cart').addEventListener('click',()=>{if(!cart.length){showToast('Add at least one material first.');return}showToast('Quote request captured for backend connection.');});
+  const legacyQuoteBtn=qs('.scene-quote-btn');
+  if(legacyQuoteBtn) legacyQuoteBtn.addEventListener('click',e=>{e.stopPropagation();qs('#cart-drawer').classList.add('is-open');qs('#cart-drawer').setAttribute('aria-hidden','false')});
+  const sendCart=qs('#send-cart');
+  if(sendCart) sendCart.addEventListener('click',()=>{if(!cart.length){showToast('Add at least one material first.');return}showToast('Quote request captured for backend connection.');});
 
   // Trucking forms.
   qsa('[data-form].truck-card-hit').forEach(b=>b.addEventListener('click',()=>openTruckForm(b.dataset.form)));
@@ -186,9 +218,17 @@
   qsa('.modal,.drawer').forEach(o=>o.addEventListener('click',e=>{if(e.target===o)closeOverlay(o)}));
   function closeOverlay(o){o.classList.remove('is-open');o.setAttribute('aria-hidden','true')}
 
+  // Media service selector — updates in place; DD building remains the background world.
+  qsa('[data-media-service]').forEach(btn=>btn.addEventListener('click',()=>{
+    qsa('[data-media-service]').forEach(x=>x.classList.toggle('is-selected',x===btn));
+    const label=qs('#media-selected-label'),copy=qs('#media-selected-copy');
+    if(label) label.textContent='SELECTED / '+String(btn.dataset.mediaService||'').toUpperCase();
+    if(copy) copy.textContent=btn.dataset.mediaCopy||'';
+  }));
+
   // Make the current single-app architecture feel instant: decode every core scene before releasing boot.
-  const critical=qsa('img').filter(i=>/globe-opening|world-build|world-truck|world-dd|build-0|trucking-0/.test(i.src));
-  Promise.all(critical.map(i=>i.decode().catch(()=>{}))).then(()=>{
+  const critical=qsa('img').filter(i=>/globe-opening|world-build|world-truck|world-dd|home-reference/.test(i.src));
+  Promise.all([embeddedReady,...critical.map(i=>i.decode().catch(()=>{}))]).then(()=>{
     document.body.classList.add('ready');
   });
 
