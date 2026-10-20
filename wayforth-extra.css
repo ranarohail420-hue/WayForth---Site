@@ -1,0 +1,11 @@
+/* WAYFORTH V4.3: exactly requested primary labels, responsive spacing. */
+.desktop-nav{gap:clamp(3px,.72vw,12px)!important}
+.desktop-nav .nav-link{font-size:clamp(9px,.75vw,12px)!important;letter-spacing:.04em!important;padding:10px clamp(4px,.5vw,10px)!important;white-space:nowrap}
+.wf-aux-overlay{position:fixed;inset:0;z-index:40000;background:rgba(2,6,13,.78);display:none;place-items:center;padding:22px;backdrop-filter:blur(10px)}
+.wf-aux-overlay.open{display:grid}
+.wf-aux-content{width:min(510px,100%);border:1px solid rgba(240,199,122,.60);border-radius:19px;padding:clamp(20px,4vw,33px);background:linear-gradient(140deg,#0b294b,#020813);color:white;box-shadow:0 20px 95px #0009}
+.wf-aux-content h2{font-size:clamp(25px,3vw,39px);margin:4px 0 13px}
+.wf-aux-content p{line-height:1.6;color:#b9c8da}
+.wf-aux-content button{border:1px solid #d5ae71;border-radius:10px;background:#f2ca82;color:#14100b;padding:12px 18px;font-weight:800;cursor:pointer;margin:10px 10px 0 0}
+.wf-aux-content button:last-child{background:transparent;color:#f0c77a}
+@media(max-width:700px){.desktop-nav button.nav-link{display:none!important}}
