@@ -44,6 +44,20 @@ index=index.replace(nav[0],newNav);
 index=index.replace('</head>','<link rel="stylesheet" href="wayforth-extra.css">\n</head>');
 index=index.replace('</body>',`<div class="wf-aux-overlay" role="dialog" aria-modal="true" aria-label="WAYFORTH information"><div class="wf-aux-content"><h2 data-aux-title></h2><p data-aux-description></p><button type="button" data-aux-quote>Get a Quote</button><button type="button" data-aux-close>Close</button></div></div>\n<script src="wayforth-extra.js"></script>\n</body>`);
 fs.writeFileSync(indexPath,index);
+// Conservative iPhone/desktop transition reliability fixes: eliminate expensive animated filters,
+// don't allow the portal to block pointer events, and finalize scenes on animation failure.
+const appPath=path.join(dist,'app.js');
+let app=fs.readFileSync(appPath,'utf8');
+app=app.replace("{transform:'scale(1)',opacity:1,filter:'brightness(1)'},", "{transform:'scale(1)',opacity:1},");
+app=app.replace("{transform:'scale(1.022)',opacity:.92,filter:'brightness(.92)'},", "{transform:'scale(1.012)',opacity:.94},");
+app=app.replace("{transform:'scale(1.035)',opacity:.28,filter:'brightness(.72)'}", "{transform:'scale(1.018)',opacity:.40}");
+app=app.replace("],{duration:860,easing:'cubic-bezier(.36,.02,.12,1)',fill:'forwards'});", "],{duration:620,easing:'cubic-bezier(.36,.02,.12,1)',fill:'forwards'});");
+app=app.replace("],{duration:900,easing:'cubic-bezier(.22,.74,.16,1)',fill:'forwards'});", "],{duration:650,easing:'cubic-bezier(.22,.74,.16,1)',fill:'forwards'});");
+app=app.replace("],{duration:850,easing:'ease-in-out',fill:'forwards'});", "],{duration:620,easing:'ease-in-out',fill:'forwards'});");
+// Avoid an indefinite wait if Safari loses the animation's finished event.
+app=app.replace("await reveal.finished.catch(()=>{});", "await Promise.race([reveal.finished.catch(()=>{}),new Promise(resolve=>setTimeout(resolve,900))]);");
+fs.writeFileSync(appPath,app);
+
 if(!index.includes('Digital Media')||!data.includes(replacement.slice(0,100)))throw new Error('Patch validation failed');
 console.log('WAYFORTH V4.3 ready: preserved prior site, updated nav and embedded interactive BUILD project chooser with 8 pulsing options.');
 console.log('Published static assets:',fs.readdirSync(dist).length);
