@@ -1,15 +1,15 @@
 /* V4.8: Approved artwork is the ONLY image of the globe. Coordinate FX in art-local plane. */
 .wf-final-home{isolation:isolate;overflow:hidden}
 .wf-final-home .wf-final-art{transform:none;transform-origin:50% 31%;will-change:auto;backface-visibility:hidden}
-.wf-final-home.wf-v48-start .wf-final-art{transform:scale(2.36);will-change:transform}
-.wf-final-home.wf-v48-reveal .wf-final-art{animation:wf-v48-camera 2.65s cubic-bezier(.15,.62,.18,1) both;will-change:transform}
+.wf-final-home.wf-v48-start .wf-final-art{transform:none}
+.wf-final-home.wf-v48-reveal .wf-final-art{transform:none}
 @keyframes wf-v48-camera{0%{transform:scale(2.36)}20%{transform:scale(2.16)}100%{transform:scale(1)}}
 /* Orbit's center is the real globe, NEVER a separate globe image. */
 .wf-v48-effects{position:absolute;inset:0;z-index:7;overflow:hidden;pointer-events:none;contain:layout style;isolation:isolate}
 .wf-v48-plane{position:absolute;top:50%;left:50%;width:min(100%,177.683dvh);aspect-ratio:1672/941;transform:translate(-50%,-50%);pointer-events:none}
-.wf-v48-ring{position:absolute;left:50%;top:30.5%;width:36%;aspect-ratio:1;border:1px solid rgba(92,181,255,.32);border-radius:50%;box-shadow:0 0 13px rgba(65,161,255,.24);transform:translate(-50%,-50%) scale(.985);opacity:.36;animation:wf-v48-pulse 5.8s ease-in-out infinite;will-change:opacity,transform}
-.wf-v48-ring.r2{border-color:rgba(255,191,92,.24);width:42%;animation-delay:-2.9s;opacity:.22}
-@keyframes wf-v48-pulse{0%,100%{opacity:.24;transform:translate(-50%,-50%) scale(.98)}48%{opacity:.68;transform:translate(-50%,-50%) scale(1.065)}}
+.wf-v48-ring{position:absolute;left:50%;top:30.5%;width:38%;aspect-ratio:1;border:1px solid rgba(92,181,255,.32);border-radius:50%;box-shadow:0 0 13px rgba(65,161,255,.24);transform:translate(-50%,-50%) scale(.985);opacity:.36;animation:wf-v48-pulse 5.8s ease-in-out infinite;will-change:opacity,transform}
+.wf-v48-ring.r2{border-color:rgba(255,191,92,.24);width:46%;animation-delay:-2.9s;opacity:.22}
+@keyframes wf-v48-pulse{0%,100%{opacity:.24;transform:translate(-50%,-50%) scale(.98)}48%{opacity:.82;transform:translate(-50%,-50%) scale(1.19)}}
 /* Tiny sparks concentrate on the real building welds: no broad filter redraws. */
 .wf-v48-spark{position:absolute;width:7%;aspect-ratio:1;border-radius:50%;background:radial-gradient(circle,rgba(255,255,255,.98) 0 3%,rgba(255,185,69,.86) 5%,rgba(255,123,31,.27) 15%,transparent 55%);mix-blend-mode:screen;opacity:0;transform:translate(-50%,-50%) scale(.5);animation:wf-v48-spark 3.25s steps(1,end) infinite;will-change:opacity,transform}
 .wf-v48-spark.s1{left:29%;top:66%;animation-delay:-1.0s}.wf-v48-spark.s2{left:15%;top:57%;animation-delay:-2.15s}.wf-v48-spark.s3{left:34%;top:51%;animation-delay:-.3s}
@@ -27,9 +27,21 @@
 .wf-v48-camera.c1{left:70.7%;top:62%;animation-delay:-1.1s}.wf-v48-camera.c2{left:92%;top:63%;animation-delay:-2.7s}.wf-v48-camera.c3{left:79%;top:57%;animation-delay:-.15s}
 @keyframes wf-v48-flash{0%,14%,17%,22%,100%{opacity:0;transform:translate(-50%,-50%) scale(.4)}15%{opacity:.95;transform:translate(-50%,-50%) scale(1)}16%{opacity:.09}19%{opacity:.78;transform:translate(-50%,-50%) scale(.8)}20%{opacity:.04}}
 /* Entire effect system follows the original frame during the intro, matching the zoom perfectly. */
-.wf-v48-start .wf-v48-effects{transform:scale(2.36);transform-origin:50% 31%}
-.wf-v48-reveal .wf-v48-effects{animation:wf-v48-camera 2.65s cubic-bezier(.15,.62,.18,1) both;transform-origin:50% 31%}
+.wf-v48-start .wf-v48-effects{transform:none}
+.wf-v48-reveal .wf-v48-effects{transform:none}
 /* No old cropped globe duplicate, no old competing intro or animations. */
 .wf-opening,.wf-cinema-layer,.wf-travel-enhancement,.wf-final-globe{display:none!important}
 @media(max-width:780px){.wf-v48-ring{width:43%}.wf-v48-ring.r2{width:49%}}
 @media(prefers-reduced-motion:reduce){.wf-v48-start .wf-final-art,.wf-v48-reveal .wf-final-art,.wf-v48-start .wf-v48-effects,.wf-v48-reveal .wf-v48-effects{animation:none!important;transform:none!important}.wf-v48-effects *{animation:none!important}}
+
+/* V4.9: cinematic reveal from the same center used by Home navigation; no large image zoom. */
+.wf-v49-intro-cover{position:absolute;inset:0;background:#020712;z-index:8;pointer-events:none;opacity:0}
+.wf-v49-intro-cover.is-playing{animation:wf-v49-cover 1900ms cubic-bezier(.23,.7,.16,1) both}
+@keyframes wf-v49-cover{0%{opacity:1;clip-path:circle(0% at 50% 31%)}15%{opacity:1;clip-path:circle(28% at 50% 31%)}34%{opacity:.94;clip-path:circle(44% at 50% 31%)}66%{opacity:.45;clip-path:circle(95% at 50% 31%)}100%{opacity:0;clip-path:circle(130% at 50% 31%)}}
+/* A gold/blue orbital sweep extends out from the globe, then clears to show the home scene */
+.wf-v49-intro-orbit{position:absolute;z-index:9;left:50%;top:31%;width:38%;aspect-ratio:1;border-radius:50%;pointer-events:none;border:2px solid rgba(116,198,255,.7);box-shadow:0 0 18px #2e99ff88,0 0 48px #3a9bff55,inset 0 0 20px #f8bd5555;opacity:0;transform:translate(-50%,-50%) scale(.65)}
+.wf-v49-intro-orbit.is-playing{animation:wf-v49-orbit 1900ms cubic-bezier(.15,.65,.15,1) both}
+@keyframes wf-v49-orbit{0%{opacity:.25;transform:translate(-50%,-50%) scale(.58)}20%{opacity:1;transform:translate(-50%,-50%) scale(1.08)}50%{opacity:.86;transform:translate(-50%,-50%) scale(1.45)}80%{opacity:.1;transform:translate(-50%,-50%) scale(2.7)}100%{opacity:0;transform:translate(-50%,-50%) scale(3.2)}}
+/* Do not draw fake swinging crane/cable: real crane is baked into the approved artwork. */
+.wf-v48-crane{display:none!important}
+@media(prefers-reduced-motion:reduce){.wf-v49-intro-cover,.wf-v49-intro-orbit{display:none!important}}
