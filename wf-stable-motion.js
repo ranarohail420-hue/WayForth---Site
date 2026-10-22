@@ -1,4 +1,4 @@
-/* WAYFORTH V5.5 — corrected controlled homepage motion layer. */
+/* WAYFORTH V5.6 — final aligned homepage motion layer. */
 (()=>{'use strict';
 const home=document.querySelector('.wf-final-home');
 if(!home)return;
@@ -13,6 +13,13 @@ stage.setAttribute('aria-hidden','true');
 stage.innerHTML=`
   <i class="wf-v55-globe"></i>
   <i class="wf-v55-crane"></i>
+  <i class="wf-v55-crane-flash wf-v55-crane-flash-1"></i>
+  <i class="wf-v55-crane-flash wf-v55-crane-flash-2"></i>
+  <i class="wf-v55-crane-flash wf-v55-crane-flash-3"></i>
+  <i class="wf-v55-crane-flash wf-v55-crane-flash-4"></i>
+  <i class="wf-v55-crane-flash wf-v55-crane-flash-5"></i>
+  <i class="wf-v55-crane-flash wf-v55-crane-flash-6"></i>
+  <i class="wf-v55-crane-flash wf-v55-crane-flash-7"></i>
   <i class="wf-v55-weld wf-v55-weld-a"></i>
   <i class="wf-v55-weld wf-v55-weld-b"></i>
   <i class="wf-v55-media-flash wf-v55-media-a"></i>
@@ -20,6 +27,8 @@ stage.innerHTML=`
   <i class="wf-v55-media-flash wf-v55-media-c"></i>
   <i class="wf-v55-headlight wf-v55-headlight-left"></i>
   <i class="wf-v55-headlight wf-v55-headlight-right"></i>
+  <i class="wf-v55-headlight wf-v55-headlight-low-left"></i>
+  <i class="wf-v55-headlight wf-v55-headlight-low-right"></i>
   <i class="wf-v55-headlight wf-v55-cement-headlight"></i>
   <i class="wf-v55-roof-lights"></i>
   <img class="wf-v55-cement-logo" src="wf-actual-logo-decal.png" alt="" draggable="false">
