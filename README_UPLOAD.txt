@@ -1,27 +1,27 @@
-WAYFORTH V5.4 — FINAL HOMEPAGE MOTION REFINEMENT
+WAYFORTH V5.5 — LANDING / GLOBE / CRANE / CEMENT LOGO CORRECTION
 
-Upload every file in this folder to the ROOT of the existing GitHub repository and REPLACE files with the same names.
-KEEP the existing root index.html, styles.css, app.js, scenes-data.js, brand-logo.webp, globe-opening.webp and other existing assets.
-Vercel should use repository root; vercel.json runs patch-wayforth.js and publishes dist.
+Upload every file in this ZIP to the ROOT of the existing GitHub repository and REPLACE matching files.
+KEEP your existing root index.html, styles.css, app.js, scenes-data.js, brand-logo.webp, globe-opening.webp and other original site assets.
+Vercel should continue using the repository root; vercel.json runs patch-wayforth.js and publishes dist.
 
-V5.4 homepage fixes only:
-1. Restores the landing-page reveal using the approved homepage artwork.
-2. Restores the WF decal on the BUILD-side cement mixer cab.
-3. Restores a visible globe pulse and moves the pulse slightly upward/reduces its expansion so it does not grow across the main truck.
-4. Restores restrained crane cable/hook movement.
-5. BUILD welding starts immediately and repeats more frequently.
-6. MEDIA camera/studio flashes start immediately and repeat more frequently.
-7. Main truck headlights use a low-beam/high-beam dipper cycle rather than disappearing/blinking.
-8. Home re-entry motion is a short settle to reduce the stuck/snap feeling.
+CORRECTIONS IN V5.5:
+1. Landing animation now runs ONCE as the homepage is first revealed. The V5.4 overlay that caused the visible second load/glitch is removed.
+2. Cement mixer WF decal is transparent gold/yellow only — no dark blue box — and is repositioned/enlarged on the mixer drum.
+3. Globe pulse is re-centered on the actual baked globe with only a slight upward offset. Hard pulse circles/rings are removed; the globe now breathes with a blended glow and fades before the truck area.
+4. Fake moving crane sign/load is removed. Only a restrained thin cable sway/extension remains.
+5. BUILD welding starts immediately and repeats with a natural double-flash rhythm.
+6. MEDIA flashes start immediately at multiple studio positions.
+7. Main truck lights retain a low beam and briefly rise to high beam, rather than switching fully off.
+8. Home return uses only a short settle; the full first-load animation never replays.
+9. Motion effects stay locked to the exact object-fit:contain artwork rectangle on different desktop aspect ratios.
 
-No new homepage artwork and no second animation framework were added. wf-stable-motion.js + wf-stable-motion.css remain the one controlled motion layer.
+DEPLOYMENT CHECK:
+- Hard refresh once after Vercel deploy.
+- The first load should show ONE continuous center/globe reveal — no second dark reload.
+- Globe pulse should be centered higher on the globe and should not appear as a separate outlined circle.
+- Cement mixer should show a gold/yellow WF with no rectangular background.
+- Crane should have no moving rectangular sign/load.
+- Watch BUILD welding, MEDIA flashes, and truck dipper/high-low cycle for 8–10 seconds.
 
-Recommended verification after Vercel deploy:
-- Hard refresh once.
-- Check initial landing animation.
-- Watch the globe for 5 seconds.
-- Watch BUILD side for welding and crane cable movement.
-- Check the cement mixer cab for the WF decal.
-- Watch the main truck headlights for low/high beam cycling.
-- Watch MEDIA for multiple camera flashes.
-- Test Home -> BUILD -> Home -> Trucking -> Home -> Media -> Home.
+Suggested commit message:
+WAYFORTH V5.5 — Landing Globe Crane and Cement Logo Fix

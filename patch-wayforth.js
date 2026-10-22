@@ -1,4 +1,4 @@
-/* WAYFORTH V5.4 — final homepage motion refinement. Single controlled motion layer. */
+/* WAYFORTH V5.5 — landing/globe/crane/decal corrective build. Single controlled motion layer. */
 'use strict';
 const fs=require('fs'),path=require('path');const root=process.cwd(),dist=path.join(root,'dist');
 const file=(n)=>path.join(dist,n);const exists=(n)=>fs.existsSync(file(n));
@@ -16,16 +16,21 @@ html=html.replace(original,`<section id="scene-home" class="scene scene-home is-
 html=html.replace(/WAYFORTH MEDIA × DIGITAL DYNASTY/gi,'WAYFORTH MEDIA').replace(/Choose the part of Digital Dynasty you need\. The studio stays in the scene while the service layer changes around it\./g,'Explore WAYFORTH Media services.').replace(/DIGITAL DYNASTY/gi,'WAYFORTH MEDIA').replace(/<a\s+href=["']https:\/\/digitaldynasty\.media["'][^>]*>[\s\S]*?<\/a>/gi,'').replace(/<img\s+src=["']world-dd\.webp["']\s+alt=["']Digital Dynasty studio["']\s*\/?>/gi,'<img src="wf-media-approved.webp" alt="WAYFORTH Media">');
 const nav=/<nav\b[^>]*class=["']desktop-nav["'][^>]*>[\s\S]*?<\/nav>/i;
 if(nav.test(html))html=html.replace(nav,`<nav class="desktop-nav" aria-label="Primary"><button data-open="home" class="nav-link">Home</button><button data-open="build" class="nav-link">Build</button><button data-open="trucking" class="nav-link">Trucking</button><button data-open="media" class="nav-link">Digital Media</button><button data-aux="contacts" class="nav-link">Contacts</button><button data-aux="about" class="nav-link">About Us</button></nav>`);
-// Delete historical motion imports (and unrelated old patch versions) from page, then add ONE current layer.
-html=html.replace(/<link\b[^>]*href=["'][^"']*(?:wf-v48-motion|wf-v50-motion|wf-v51-fix|wf-cinematic|wf-globe-zoomout)[^"']*["'][^>]*>/gi,'').replace(/<script\b[^>]*src=["'][^"']*(?:wf-v48-motion|wf-v50-motion|wf-v51-fix|wf-cinematic|wf-globe-zoomout)[^"']*["'][^>]*><\/script>/gi,'');
-html=html.replace(/<\/head>/i,'<link rel="stylesheet" href="wf-approved-home.css"><link rel="stylesheet" href="wf-stable-motion.css"><link rel="preload" href="wf-home-approved.webp" as="image"></head>');
+
+/* Remove every historical/current motion import before adding exactly one stable pair. */
+html=html.replace(/<link\b[^>]*href=["'][^"']*(?:wf-v48-motion|wf-v50-motion|wf-v51-fix|wf-cinematic|wf-globe-zoomout|wf-stable-motion)[^"']*["'][^>]*>/gi,'')
+         .replace(/<script\b[^>]*src=["'][^"']*(?:wf-v48-motion|wf-v50-motion|wf-v51-fix|wf-cinematic|wf-globe-zoomout|wf-stable-motion)[^"']*["'][^>]*><\/script>/gi,'')
+         .replace(/<script[^>]*>\s*document\.documentElement\.classList\.add\(['"]wf-v55-boot['"]\);?\s*<\/script>/gi,'');
+
+/* Mark the page before first paint. CSS then starts the landing reveal exactly when body.ready appears. */
+html=html.replace(/<\/head>/i,`<script>document.documentElement.classList.add('wf-v55-boot');</script><link rel="stylesheet" href="wf-approved-home.css"><link rel="stylesheet" href="wf-stable-motion.css"><link rel="preload" href="wf-home-approved.webp" as="image"></head>`);
 html=html.replace(/<\/body>/i,'<script defer src="wf-stable-motion.js"></script></body>');
 if(exists('wayforth-extra.css'))html=html.replace(/<\/head>/i,'<link rel="stylesheet" href="wayforth-extra.css"></head>');
 if(exists('wayforth-extra.js'))html=html.replace(/<\/body>/i,'<div class="wf-aux-overlay" role="dialog" aria-modal="true"><div class="wf-aux-content"><h2 data-aux-title></h2><p data-aux-description></p><button data-aux-quote>Get a Quote</button><button data-aux-close>Close</button></div></div><script defer src="wayforth-extra.js"></script></body>');
 write('index.html',html);
-// BUILD: re-use original materials/cart payload unchanged inside project selector.
+
+/* BUILD: re-use original materials/cart payload unchanged inside project selector. */
 let data=read('scenes-data.js');let page=fs.existsSync(path.join(root,'wayforth-build-v5.html'))?fs.readFileSync(path.join(root,'wayforth-build-v5.html'),'utf8'):'';
 if(page.includes('__LEGACY_BUILD_BASE64__')){let m=data.match(/(\bbuild\s*:\s*['"])([A-Za-z0-9+/=]+)(['"])/);if(m){let next=Buffer.from(page.replace('__LEGACY_BUILD_BASE64__',m[2]),'utf8').toString('base64');data=data.replace(m[0],m[1]+next+m[3]);write('scenes-data.js',data)}}
-// Navigation remains the last approved app.js — no scene orientation/page flip injected.
-console.log('WAYFORTH V5.4 build OK —',fs.readdirSync(dist).length,'files. One motion layer.');
-}catch(e){console.error('WAYFORTH V5.3:',e.stack||e);process.exitCode=1}
+console.log('WAYFORTH V5.5 build OK —',fs.readdirSync(dist).length,'files. One motion layer, one first-load reveal.');
+}catch(e){console.error('WAYFORTH V5.5:',e.stack||e);process.exitCode=1}
