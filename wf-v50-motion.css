@@ -1,0 +1,39 @@
+/* V5.0 — separate globe pulse, strong but restrained. Design/layout unchanged. */
+.wf-v48-effects{z-index:7}
+.wf-v50-live-orb{position:absolute;left:50%;top:28.27%;width:33.5%;aspect-ratio:1;transform:translate(-50%,-50%) scale(1);transform-origin:center;pointer-events:none;will-change:transform;animation:wf-v50-globe-breathe 5.1s cubic-bezier(.46,.05,.48,.96) infinite;filter:drop-shadow(0 0 14px rgba(62,146,255,.24))}
+.wf-v50-live-orb img{width:100%;height:100%;display:block}
+@keyframes wf-v50-globe-breathe{0%,100%{transform:translate(-50%,-50%) scale(1)}48%{transform:translate(-50%,-50%) scale(1.067)}}
+/* The real lighting expands as the globe moves, so the pulse is easy to notice */
+.wf-v48-ring{z-index:1;width:36%;border-width:2px;animation-duration:5.1s;box-shadow:0 0 18px rgba(60,155,255,.36),inset 0 0 12px rgba(50,135,250,.12)}
+.wf-v48-ring.r2{width:40%;animation-delay:-2.55s;animation-duration:5.1s}
+@keyframes wf-v48-pulse{0%,100%{opacity:.32;transform:translate(-50%,-50%) scale(.95)}50%{opacity:.8;transform:translate(-50%,-50%) scale(1.23)}}
+/* Original crane jib runs across left/upper third of the art. Light moves ALONG it — no detached prop. */
+.wf-v50-crane-beam{position:absolute;left:1.8%;top:8.1%;width:30%;height:15%;pointer-events:none;z-index:3;transform:rotate(12deg);transform-origin:15% 30%}
+.wf-v50-crane-runner{position:absolute;top:47%;left:0%;width:13%;height:5px;background:linear-gradient(90deg,transparent,rgba(255,206,111,.25),rgba(255,252,204,.87),rgba(255,183,65,.22),transparent);box-shadow:0 0 8px rgba(255,168,55,.70);opacity:0;animation:wf-v50-jib 4.8s ease-in-out infinite}
+.wf-v50-crane-lamp{position:absolute;top:50%;left:20%;width:14%;aspect-ratio:1;border-radius:50%;background:radial-gradient(circle,rgba(255,241,184,.7),rgba(255,158,63,.23) 20%,transparent 66%);opacity:0;animation:wf-v50-jib 4.8s ease-in-out infinite}
+@keyframes wf-v50-jib{0%,12%,78%,100%{opacity:0;transform:translateX(0)}20%{opacity:.85}48%{opacity:.65;transform:translateX(160%)}65%{opacity:.25;transform:translateX(300%)}}
+/* Motion-focused introduction: atmospheric staging, not entire poster zoom. */
+.wf-v50-entrance{position:absolute;inset:0;z-index:8;pointer-events:none;overflow:hidden;isolation:isolate}
+.wf-v50-vignette{position:absolute;inset:0;background:radial-gradient(ellipse 34% 40% at 50% 29%,rgba(0,0,0,.04) 0%,rgba(1,5,15,.52) 68%,rgba(1,5,14,.98) 110%);opacity:1}
+.wf-v50-entrance.play .wf-v50-vignette{animation:wf-v50-sky 2.1s cubic-bezier(.2,.7,.2,1) both}
+@keyframes wf-v50-sky{0%{opacity:1}35%{opacity:.92}80%{opacity:.12}100%{opacity:0}}
+.wf-v50-orbit{position:absolute;left:50%;top:29%;border-radius:50%;aspect-ratio:1;pointer-events:none;opacity:0;transform:translate(-50%,-50%) scale(.7)}
+.wf-v50-orbit.o1{width:33%;border:2px solid rgba(95,203,255,.8);box-shadow:0 0 13px rgba(88,179,255,.6),0 0 25px rgba(88,179,255,.3)}
+.wf-v50-orbit.o2{width:44%;border:1px solid rgba(255,194,91,.6);transform:translate(-50%,-50%) scale(.7) rotate(-14deg)}
+.wf-v50-entrance.play .o1{animation:wf-v50-orbital-release 1.85s cubic-bezier(.1,.65,.18,1) both}
+.wf-v50-entrance.play .o2{animation:wf-v50-orbital-release 2s cubic-bezier(.1,.65,.18,1) .08s both}
+@keyframes wf-v50-orbital-release{0%{opacity:.7;transform:translate(-50%,-50%) scale(.6)}30%{opacity:.94;transform:translate(-50%,-50%) scale(1.03)}70%{opacity:.22;transform:translate(-50%,-50%) scale(1.8)}100%{opacity:0;transform:translate(-50%,-50%) scale(2.7)}}
+.wf-v50-arrival{position:absolute;top:0;bottom:0;opacity:0;pointer-events:none;mix-blend-mode:screen}
+.wf-v50-arrival.a1{left:0;width:35%;background:radial-gradient(ellipse 60% 35% at 50% 53%,rgba(255,186,65,.25),transparent 72%)}
+.wf-v50-arrival.a2{left:31%;width:38%;background:radial-gradient(ellipse 60% 30% at 50% 65%,rgba(70,170,255,.30),transparent 75%)}
+.wf-v50-arrival.a3{right:0;width:35%;background:radial-gradient(ellipse 70% 35% at 60% 53%,rgba(112,100,240,.28),transparent 76%)}
+.wf-v50-entrance.play .a1{animation:wf-v50-rise .78s ease .55s both}
+.wf-v50-entrance.play .a2{animation:wf-v50-rise .78s ease .80s both}
+.wf-v50-entrance.play .a3{animation:wf-v50-rise .78s ease 1.04s both}
+@keyframes wf-v50-rise{0%{opacity:0;transform:translateY(24px)}44%{opacity:1;transform:translateY(0)}100%{opacity:0;transform:translateY(0)}}
+.wf-v50-energy{position:absolute;left:49%;top:30%;width:22%;aspect-ratio:1;border-radius:50%;background:radial-gradient(circle,rgba(126,210,255,.23),transparent 65%);transform:translate(-50%,-50%);opacity:0}
+.wf-v50-entrance.play .wf-v50-energy{animation:wf-v50-burst 1.45s ease-out both}
+@keyframes wf-v50-burst{0%{opacity:.1;transform:translate(-50%,-50%) scale(.25)}45%{opacity:.75;transform:translate(-50%,-50%) scale(1.5)}100%{opacity:0;transform:translate(-50%,-50%) scale(4)}}
+/* V4.9 entrance objects now replaced by a more paced scene reveal */
+.wf-v49-intro-cover,.wf-v49-intro-orbit{display:none!important}
+@media(prefers-reduced-motion:reduce){.wf-v50-live-orb,.wf-v50-crane-runner,.wf-v50-crane-lamp{animation:none!important}.wf-v50-entrance{display:none!important}}
