@@ -1,21 +1,35 @@
-/* WAYFORTH V5.7 — mixer-logo nudge + stronger globe pulse + globe-first landing revolve. */
+/* WAYFORTH V5.8 — exact mixer-logo alignment + existing globe-portal style on first load. */
 .wf-final-home{isolation:isolate;overflow:hidden;}
-.wf-final-art{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;object-position:center;filter:none;transform-origin:50% 34%;backface-visibility:hidden;}
+.wf-final-art{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;object-position:center;filter:none;transform-origin:center;backface-visibility:hidden;}
 
 /* FIRST LANDING ONLY.
-   The animation is tied directly to the existing body.ready state, so the page cannot
-   appear fully, darken, and "load again" as V5.4 did. */
+   Match the already-approved BUILD / TRUCKING / MEDIA / HOME transition language:
+   the existing globe-opening asset grows through the center, then hands off to HOME.
+   No rotation, no new artwork, no changes to the working scene-transition system. */
 html.wf-v55-boot body.ready #scene-home .wf-final-art{
-  animation:wf57-landing-art 2.65s cubic-bezier(.16,.72,.19,1) both;
+  animation:wf58-home-under-portal .78s cubic-bezier(.18,.72,.2,1) both;
 }
-@keyframes wf57-landing-art{
-  /* Keep the first beat on the globe and give it a short cinematic turn before the page opens. */
-  0%{opacity:0;transform:scale(1.300) rotate(-8deg);filter:brightness(.30) saturate(.78) blur(2px);clip-path:circle(9% at 50% 34%)}
-  14%{opacity:.96;transform:scale(1.255) rotate(-4deg);filter:brightness(.62) saturate(.90) blur(1px);clip-path:circle(23% at 50% 34%)}
-  31%{opacity:1;transform:scale(1.185) rotate(2.5deg);filter:brightness(.92) saturate(1.02) blur(.25px);clip-path:circle(29% at 50% 34%)}
-  45%{opacity:1;transform:scale(1.105) rotate(0deg);filter:brightness(1.07) saturate(1.04) blur(0);clip-path:circle(33% at 50% 34%)}
-  72%{opacity:1;transform:scale(1.028) rotate(0deg);filter:brightness(1.03) saturate(1.02) blur(0);clip-path:circle(82% at 50% 34%)}
-  100%{opacity:1;transform:scale(1) rotate(0deg);filter:brightness(1) saturate(1) blur(0);clip-path:circle(150% at 50% 34%)}
+@keyframes wf58-home-under-portal{
+  0%,18%{opacity:0;filter:brightness(.72)}
+  48%{opacity:.22;filter:brightness(.84)}
+  72%{opacity:.82;filter:brightness(.97)}
+  100%{opacity:1;filter:brightness(1)}
+}
+.wf-v58-entry{
+  position:absolute;left:50%;top:48%;width:min(31vw,520px);height:auto;z-index:18;
+  transform:translate(-50%,-50%) scale(.20);transform-origin:center;
+  opacity:0;pointer-events:none;object-fit:contain;will-change:transform,opacity,filter;
+  filter:drop-shadow(0 0 24px rgba(74,159,255,.24));
+}
+html.wf-v55-boot body.ready #scene-home .wf-v58-entry{
+  animation:wf58-entry-portal .78s cubic-bezier(.18,.72,.2,1) both;
+}
+@keyframes wf58-entry-portal{
+  0%{opacity:0;transform:translate(-50%,-50%) scale(.18);filter:brightness(.78) drop-shadow(0 0 12px rgba(74,159,255,.12))}
+  12%{opacity:1;transform:translate(-50%,-50%) scale(.32);filter:brightness(.94) drop-shadow(0 0 18px rgba(74,159,255,.20))}
+  48%{opacity:1;transform:translate(-50%,-50%) scale(1.02);filter:brightness(1.08) drop-shadow(0 0 26px rgba(74,159,255,.28))}
+  76%{opacity:.96;transform:translate(-50%,-50%) scale(2.35);filter:brightness(1.05) drop-shadow(0 0 34px rgba(74,159,255,.20))}
+  100%{opacity:0;transform:translate(-50%,-50%) scale(4.65);filter:brightness(1)}
 }
 
 .wf-v55-stage{position:absolute;left:0;top:0;right:auto;bottom:auto;pointer-events:none;overflow:hidden;z-index:4;contain:layout paint;backface-visibility:hidden;transform:translateZ(0);}
@@ -122,7 +136,7 @@ html.wf-v55-boot body.ready #scene-home .wf-v55-stage{animation:wf55-stage-in 1.
 
 /* Correct cement mixer decal: transparent YELLOW/GOLD WF only — no blue square/background. */
 .wf-v55-cement-logo{
-  left:6.15%;top:58.40%;width:4.15%;height:auto;object-fit:contain;opacity:.98;
+  left:4.70%;top:60.72%;width:4.15%;height:auto;object-fit:contain;opacity:.98;
   transform:rotate(1deg) skewX(-2deg);transform-origin:center;
   filter:drop-shadow(0 1px 1px rgba(46,25,2,.58)) drop-shadow(0 0 2px rgba(255,188,48,.22));
 }
@@ -133,7 +147,7 @@ html.wf-v55-boot body.ready #scene-home .wf-v55-stage{animation:wf55-stage-in 1.
 
 @media(max-aspect-ratio:13/10){
   .wf-v55-stage{display:none!important}
-  html.wf-v55-boot body.ready #scene-home .wf-final-art{animation:wf55-mobile-reveal 1.45s ease-out both;clip-path:none;}
+  html.wf-v55-boot body.ready #scene-home .wf-final-art{animation:wf55-mobile-reveal 1.45s ease-out both;}
   @keyframes wf55-mobile-reveal{0%{opacity:0;transform:scale(1.05);filter:brightness(.55)}100%{opacity:1;transform:scale(1);filter:brightness(1)}}
 }
-@media(prefers-reduced-motion:reduce){.wf-v55-stage{display:none!important}html.wf-v55-boot body.ready #scene-home .wf-final-art{animation:none!important;opacity:1!important;transform:none!important;clip-path:none!important}}
+@media(prefers-reduced-motion:reduce){.wf-v55-stage{display:none!important}html.wf-v55-boot body.ready #scene-home .wf-final-art{animation:none!important;opacity:1!important;transform:none!important}.wf-v58-entry{display:none!important}}

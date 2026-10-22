@@ -1,12 +1,28 @@
-/* WAYFORTH V5.7 — V5.6 motion preserved; CSS only adjusts mixer decal, globe pulse and first-load globe turn. */
+/* WAYFORTH V5.8 — V5.7 preserved; only mixer decal alignment + first-load portal transition adjusted. */
 (()=>{'use strict';
 const home=document.querySelector('.wf-final-home');
 if(!home)return;
 
 /* Remove every older injected motion layer. */
-home.querySelectorAll('.wf-v48-effects,.wf-v48-plane,.wf-v50-live-orb,.wf-v50-entrance,.wf51-header,.wf51-mixer-mark,.wf52-mixer-logo,.wf-v53-stage,.wf-v53-intro,.wf-v54-stage,.wf-v54-intro,.wf-v55-stage,.wf-v55-intro').forEach(n=>n.remove());
+home.querySelectorAll('.wf-v48-effects,.wf-v48-plane,.wf-v50-live-orb,.wf-v50-entrance,.wf51-header,.wf51-mixer-mark,.wf52-mixer-logo,.wf-v53-stage,.wf-v53-intro,.wf-v54-stage,.wf-v54-intro,.wf-v55-stage,.wf-v55-intro,.wf-v58-entry').forEach(n=>n.remove());
 
 const reduced=window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+/* FIRST LOAD ONLY: use the same globe/WF portal visual language as the existing scene transitions.
+   This does not alter navigation or the working section-transition code. */
+let entry=null;
+if(!reduced){
+  entry=document.createElement('img');
+  entry.className='wf-v58-entry';
+  entry.src='globe-opening.webp';
+  entry.alt='';
+  entry.setAttribute('aria-hidden','true');
+  entry.draggable=false;
+  home.append(entry);
+  entry.addEventListener('animationend',()=>entry&&entry.remove(),{once:true});
+  window.setTimeout(()=>{if(entry&&entry.isConnected)entry.remove();},5500);
+}
+
 const stage=document.createElement('div');
 stage.className='wf-v55-stage';
 stage.setAttribute('aria-hidden','true');
@@ -48,8 +64,8 @@ fitStage();
 window.addEventListener('resize',fitStage,{passive:true});
 if(window.ResizeObserver)new ResizeObserver(fitStage).observe(home);
 
-/* Returning from another scene gets only a quick settle. The initial landing animation
-   is CSS-driven by body.ready and therefore cannot replay over an already visible page. */
+/* Returning from another scene gets only a quick settle. First-load portal is independent
+   and is removed after it finishes, so it cannot replay over an already visible page. */
 if(!reduced){
   const scene=document.getElementById('scene-home');
   if(scene){
