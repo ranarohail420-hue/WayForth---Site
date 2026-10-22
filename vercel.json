@@ -5,9 +5,9 @@
   "cleanUrls": true,
   "trailingSlash": false,
   "rewrites": [
-    { "source": "/build", "destination": "/index.html" },
-    { "source": "/trucking", "destination": "/index.html" },
-    { "source": "/media", "destination": "/index.html" },
-    { "source": "/quote", "destination": "/index.html" }
+    {"source":"/build","destination":"/index.html"},
+    {"source":"/trucking","destination":"/index.html"},
+    {"source":"/media","destination":"/index.html"},
+    {"source":"/quote","destination":"/index.html"}
   ]
 }
