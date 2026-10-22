@@ -1,0 +1,1 @@
+WAYFORTH V5.2: Original approved WF logo restored. Text-based logo overlays removed. Cement mixer now uses extracted original WF symbol. Globe pulse isolated from lower truck/road region. Navigation and approved page transitions preserved. Upload all files to repo root, replacing matches.
