@@ -1,4 +1,4 @@
-/* WAYFORTH V5.6 — final aligned homepage motion layer. */
+/* WAYFORTH V5.7 — V5.6 motion preserved; CSS only adjusts mixer decal, globe pulse and first-load globe turn. */
 (()=>{'use strict';
 const home=document.querySelector('.wf-final-home');
 if(!home)return;

@@ -1,4 +1,4 @@
-/* WAYFORTH V5.6 — final light and mixer-logo alignment. One layer, no replaying intro overlay. */
+/* WAYFORTH V5.7 — mixer-logo nudge + stronger globe pulse + globe-first landing revolve. */
 .wf-final-home{isolation:isolate;overflow:hidden;}
 .wf-final-art{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;object-position:center;filter:none;transform-origin:50% 34%;backface-visibility:hidden;}
 
@@ -6,13 +6,16 @@
    The animation is tied directly to the existing body.ready state, so the page cannot
    appear fully, darken, and "load again" as V5.4 did. */
 html.wf-v55-boot body.ready #scene-home .wf-final-art{
-  animation:wf55-landing-art 2.25s cubic-bezier(.16,.72,.19,1) both;
+  animation:wf57-landing-art 2.65s cubic-bezier(.16,.72,.19,1) both;
 }
-@keyframes wf55-landing-art{
-  0%{opacity:0;transform:scale(1.135);filter:brightness(.34) saturate(.76) blur(2px);clip-path:circle(8% at 50% 34%)}
-  17%{opacity:.96;filter:brightness(.65) saturate(.88) blur(1px);clip-path:circle(25% at 50% 34%)}
-  58%{opacity:1;transform:scale(1.035);filter:brightness(1.04) saturate(1.02) blur(0);clip-path:circle(72% at 50% 34%)}
-  100%{opacity:1;transform:scale(1);filter:brightness(1) saturate(1) blur(0);clip-path:circle(150% at 50% 34%)}
+@keyframes wf57-landing-art{
+  /* Keep the first beat on the globe and give it a short cinematic turn before the page opens. */
+  0%{opacity:0;transform:scale(1.300) rotate(-8deg);filter:brightness(.30) saturate(.78) blur(2px);clip-path:circle(9% at 50% 34%)}
+  14%{opacity:.96;transform:scale(1.255) rotate(-4deg);filter:brightness(.62) saturate(.90) blur(1px);clip-path:circle(23% at 50% 34%)}
+  31%{opacity:1;transform:scale(1.185) rotate(2.5deg);filter:brightness(.92) saturate(1.02) blur(.25px);clip-path:circle(29% at 50% 34%)}
+  45%{opacity:1;transform:scale(1.105) rotate(0deg);filter:brightness(1.07) saturate(1.04) blur(0);clip-path:circle(33% at 50% 34%)}
+  72%{opacity:1;transform:scale(1.028) rotate(0deg);filter:brightness(1.03) saturate(1.02) blur(0);clip-path:circle(82% at 50% 34%)}
+  100%{opacity:1;transform:scale(1) rotate(0deg);filter:brightness(1) saturate(1) blur(0);clip-path:circle(150% at 50% 34%)}
 }
 
 .wf-v55-stage{position:absolute;left:0;top:0;right:auto;bottom:auto;pointer-events:none;overflow:hidden;z-index:4;contain:layout paint;backface-visibility:hidden;transform:translateZ(0);}
@@ -24,23 +27,23 @@ html.wf-v55-boot body.ready #scene-home .wf-v55-stage{animation:wf55-stage-in 1.
    so it reads as the globe breathing rather than a separate circle floating above it. */
 .wf-v55-globe{
   left:50%;top:34%;width:31.2%;aspect-ratio:1;border-radius:50%;
-  transform:translate(-50%,-50%) scale(.995);opacity:.44;
+  transform:translate(-50%,-50%) scale(1);opacity:.50;
   background:radial-gradient(circle,
-    rgba(83,170,255,.075) 0 43%,
-    rgba(72,164,255,.10) 52%,
-    rgba(74,169,255,.20) 62%,
-    rgba(68,147,255,.12) 69%,
-    transparent 78%);
-  box-shadow:0 0 34px rgba(54,147,255,.20),inset 0 0 42px rgba(92,187,255,.12);
-  filter:blur(.15px);
-  animation:wf55-globe-breathe 3.15s ease-in-out infinite;
+    rgba(109,198,255,.12) 0 43%,
+    rgba(82,180,255,.14) 52%,
+    rgba(70,166,255,.25) 63%,
+    rgba(62,145,255,.14) 71%,
+    transparent 82%);
+  box-shadow:0 0 44px rgba(58,157,255,.25),inset 0 0 48px rgba(112,203,255,.15);
+  filter:blur(.10px);
+  animation:wf57-globe-breathe 3.05s ease-in-out infinite;
   will-change:transform,opacity,filter;
   -webkit-mask-image:linear-gradient(to bottom,#000 0%,#000 60%,rgba(0,0,0,.62) 72%,transparent 84%);
   mask-image:linear-gradient(to bottom,#000 0%,#000 60%,rgba(0,0,0,.62) 72%,transparent 84%);
 }
-@keyframes wf55-globe-breathe{
-  0%,100%{transform:translate(-50%,-50%) scale(.992);opacity:.34;filter:brightness(.94) blur(.15px)}
-  50%{transform:translate(-50%,-50%) scale(1.025);opacity:.72;filter:brightness(1.18) blur(0)}
+@keyframes wf57-globe-breathe{
+  0%,100%{transform:translate(-50%,-50%) scale(1);opacity:.36;filter:brightness(.94) blur(.10px);box-shadow:0 0 36px rgba(58,157,255,.18),inset 0 0 42px rgba(112,203,255,.10)}
+  50%{transform:translate(-50%,-50%) scale(1.052);opacity:.86;filter:brightness(1.24) blur(0);box-shadow:0 0 68px rgba(72,177,255,.42),inset 0 0 58px rgba(133,215,255,.22)}
 }
 
 /* Crane activity: only a fine cable motion. The fake hanging sign/load from V5.4 is gone. */
@@ -119,7 +122,7 @@ html.wf-v55-boot body.ready #scene-home .wf-v55-stage{animation:wf55-stage-in 1.
 
 /* Correct cement mixer decal: transparent YELLOW/GOLD WF only — no blue square/background. */
 .wf-v55-cement-logo{
-  left:4.60%;top:58.40%;width:4.15%;height:auto;object-fit:contain;opacity:.98;
+  left:6.15%;top:58.40%;width:4.15%;height:auto;object-fit:contain;opacity:.98;
   transform:rotate(1deg) skewX(-2deg);transform-origin:center;
   filter:drop-shadow(0 1px 1px rgba(46,25,2,.58)) drop-shadow(0 0 2px rgba(255,188,48,.22));
 }

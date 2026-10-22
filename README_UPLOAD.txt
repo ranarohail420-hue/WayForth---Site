@@ -1,21 +1,27 @@
-WAYFORTH V5.6 — FINAL LIGHT & CEMENT LOGO ALIGNMENT
+WAYFORTH V5.7 — FINAL GLOBE PULSE + MIXER LOGO NUDGE
 
-Upload every file in this ZIP to the ROOT of the existing GitHub repository and REPLACE matching files.
-KEEP your existing root index.html, styles.css, app.js, scenes-data.js, brand-logo.webp, globe-opening.webp and other original site assets.
-Vercel should continue using the repository root; vercel.json runs patch-wayforth.js and publishes dist.
+UPLOAD THESE FILES to the ROOT of the existing GitHub repository, replacing matching V5.6 files.
+KEEP your existing root index.html, styles.css, app.js, scenes-data.js, brand-logo.webp, globe-opening.webp and all other original site assets.
 
-ONLY CHANGES FROM V5.5:
-1. Main truck high/low-beam flashes are aligned to the four real front light positions (two upper headlights + two lower/fog lights).
-2. Small warm flashes are aligned along the existing crane boom lamps marked in the approved screenshot. Existing crane cable motion is otherwise unchanged.
-3. The transparent yellow/gold WF decal is moved to the visual center of the cement mixer drum. Its color and artwork are unchanged.
-4. NO changes to the landing animation, globe pulse, BUILD welding, MEDIA flashes, navigation, transitions, artwork, or other V5.5 behavior.
+ONLY THESE VISUAL CHANGES WERE MADE FROM V5.6:
+1. Cement mixer gold/yellow WF decal moved slightly to the RIGHT, keeping the same size, color and vertical placement.
+2. Globe breathing/pulse strengthened and remains centered on the existing globe. It has no separate hard ring and keeps the lower fade so it does not wash over the truck.
+3. FIRST LOAD ONLY: the existing circle reveal now begins with a short cinematic turn of the globe area, then expands into the same approved homepage. It does not replay when returning HOME from another section.
 
-DEPLOYMENT CHECK:
-- Hard refresh once after Vercel deploy.
-- Confirm the landing animation and globe behave exactly like V5.5.
-- Watch the front truck: flashes should sit directly on all four real front lamps.
-- Watch the crane boom: the existing warm lamp points should twinkle in place; no moving sign/load is added.
-- Cement mixer: gold/yellow WF should be centered on the drum.
+UNCHANGED FROM V5.6:
+- Truck high/low-beam positions and timing
+- Crane boom flashes and cable motion
+- BUILD welding
+- MEDIA flashes
+- Homepage artwork
+- Navigation, hotspots, cart, BUILD/TRUCKING/MEDIA pages and transitions
+- Vercel deployment structure
 
-Suggested commit message:
-WAYFORTH V5.6 — Final Home Light and Mixer Logo Alignment
+CHECK AFTER VERCEL DEPLOYMENT:
+- First load: globe should make a brief turn, then the homepage should reveal.
+- Home idle: globe should visibly breathe/pulse without a detached circle.
+- Cement mixer: gold/yellow WF should now sit slightly farther right on the drum.
+- Everything else should match V5.6 exactly.
+
+Suggested GitHub commit:
+WAYFORTH V5.7 — Final Globe Pulse and Mixer Logo Nudge
