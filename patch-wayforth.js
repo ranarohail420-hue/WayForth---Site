@@ -1,4 +1,4 @@
-/* WAYFORTH V5.3 — streamlined deployment. Single controlled motion layer. */
+/* WAYFORTH V5.4 — final homepage motion refinement. Single controlled motion layer. */
 'use strict';
 const fs=require('fs'),path=require('path');const root=process.cwd(),dist=path.join(root,'dist');
 const file=(n)=>path.join(dist,n);const exists=(n)=>fs.existsSync(file(n));
@@ -27,5 +27,5 @@ write('index.html',html);
 let data=read('scenes-data.js');let page=fs.existsSync(path.join(root,'wayforth-build-v5.html'))?fs.readFileSync(path.join(root,'wayforth-build-v5.html'),'utf8'):'';
 if(page.includes('__LEGACY_BUILD_BASE64__')){let m=data.match(/(\bbuild\s*:\s*['"])([A-Za-z0-9+/=]+)(['"])/);if(m){let next=Buffer.from(page.replace('__LEGACY_BUILD_BASE64__',m[2]),'utf8').toString('base64');data=data.replace(m[0],m[1]+next+m[3]);write('scenes-data.js',data)}}
 // Navigation remains the last approved app.js — no scene orientation/page flip injected.
-console.log('WAYFORTH V5.3 build OK —',fs.readdirSync(dist).length,'files. One motion layer.');
+console.log('WAYFORTH V5.4 build OK —',fs.readdirSync(dist).length,'files. One motion layer.');
 }catch(e){console.error('WAYFORTH V5.3:',e.stack||e);process.exitCode=1}
