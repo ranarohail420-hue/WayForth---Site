@@ -75,6 +75,10 @@ try {
    html=html.replace(/<\/head>/i,'<link rel="stylesheet" href="wf-cinematic.css"></head>');
  if(isFile(path.join(output,'wf-cinematic.js')) && !html.includes('wf-cinematic.js'))
    html=html.replace(/<\/body>/i,'<script defer src="wf-cinematic.js"></script></body>');
+ if(isFile(path.join(output,'wf-globe-zoomout.css')) && !html.includes('wf-globe-zoomout.css'))
+   html=html.replace(/<\/head>/i,'<link rel="stylesheet" href="wf-globe-zoomout.css"></head>');
+ if(isFile(path.join(output,'wf-globe-zoomout.js')) && !html.includes('wf-globe-zoomout.js'))
+   html=html.replace(/<\/body>/i,'<script defer src="wf-globe-zoomout.js"></script></body>');
  fs.writeFileSync(htmlPath,html);
  // Legacy BUILD remains intact underneath the redesigned project selector.
  const dataPath=path.join(output,'scenes-data.js'),base=text(dataPath),build=text(path.join(root,'wayforth-build-v5.html'));

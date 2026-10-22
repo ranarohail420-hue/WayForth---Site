@@ -1,0 +1,24 @@
+/* WAYFORTH V4.7 — first-camera reveal, one shot, no new page load */
+.wf-opening{position:fixed;inset:0;z-index:2147480000;overflow:hidden;pointer-events:none;background:radial-gradient(ellipse at 50% 42%,#0c2e57 0%,#071529 38%,#020713 80%);opacity:1;visibility:visible;transform:translateZ(0);will-change:opacity;}
+.wf-opening.wf-opening-exit{opacity:0;transition:opacity .52s ease-out}
+.wf-opening.wf-opening-off{display:none}
+.wf-open-stars{position:absolute;inset:0;background:radial-gradient(circle at 20% 25%,rgba(99,177,255,.7) 0 1px,transparent 2px),radial-gradient(circle at 72% 60%,rgba(248,195,96,.65) 0 1px,transparent 2px),radial-gradient(circle at 84% 19%,rgba(255,255,255,.5) 0 1px,transparent 2px);background-size:155px 132px,221px 191px,253px 229px;opacity:.7}
+.wf-open-globe{position:absolute;left:50%;top:42%;width:min(115vmin,850px);aspect-ratio:1;object-fit:contain;transform:translate(-50%,-50%) scale(1.75) translateZ(0);filter:drop-shadow(0 0 33px rgba(57,159,255,.52));will-change:transform,opacity;animation:wf-arrival-orb 3.0s cubic-bezier(.22,.7,.15,1) forwards}
+.wf-open-halo{position:absolute;left:50%;top:42%;width:min(104vmin,800px);aspect-ratio:1;border:2px solid rgba(97,181,255,.58);border-radius:50%;box-shadow:0 0 26px rgba(40,146,255,.4),inset 0 0 28px rgba(46,147,255,.24);transform:translate(-50%,-50%) scale(1.78);will-change:transform,opacity;animation:wf-arrival-halo 3s cubic-bezier(.22,.7,.15,1) forwards}
+.wf-open-halo.gold{border-color:rgba(255,198,116,.42);animation-delay:.07s;animation-duration:2.95s;transform:translate(-50%,-50%) rotate(45deg) scale(1.7)}
+.wf-open-status{position:absolute;left:50%;bottom:8%;transform:translateX(-50%);font:700 11px/1.5 system-ui,sans-serif;letter-spacing:.42em;color:#e8c987;white-space:nowrap;text-shadow:0 0 18px rgba(243,193,117,.4);animation:wf-open-label 2.8s ease-out both}
+@keyframes wf-arrival-orb{0%{transform:translate(-50%,-50%) scale(1.75);opacity:1}32%{transform:translate(-50%,-50%) scale(1.52);opacity:1}73%{transform:translate(-50%,-50%) scale(.68);opacity:.98}100%{transform:translate(-50%,-50%) scale(.5);opacity:0}}
+@keyframes wf-arrival-halo{0%{transform:translate(-50%,-50%) rotate(-26deg) scale(1.9);opacity:.45}48%{opacity:.9}100%{transform:translate(-50%,-50%) rotate(58deg) scale(.56);opacity:0}}
+@keyframes wf-open-label{0%,65%{opacity:0}78%{opacity:.8}100%{opacity:0}}
+/* The actual approved image settles underneath the floating globe as one connected frame */
+.wf-opening-underlay .wf-final-art{transform:scale(1.09);transition:transform 2.6s cubic-bezier(.2,.72,.18,1)}
+.wf-opening-underlay.wf-opening-underlay-finish .wf-final-art{transform:scale(1)}
+/* disable V4.6's simultaneous zoom, avoid two fighting camera animations */
+.wf-final-home.wf-intro-playing .wf-final-art{animation:none!important}
+/* persistent low-cost breathing effect visible after the opening */
+@keyframes wf-orb-breathe{0%,100%{opacity:.16;transform:translate(-50%,-50%) scale(.98)}50%{opacity:.40;transform:translate(-50%,-50%) scale(1.055)}}
+.wf-final-home .wf-final-globe{animation:wf-orb-breathe 6.2s ease-in-out infinite;pointer-events:none}
+/* keep effects subtle and not synchronized */
+.wf-studio-flash{animation-duration:5.4s}.wf-build-weld{animation-duration:4.4s}
+@media(max-width:760px){.wf-open-globe{width:105vmin}.wf-open-halo{width:98vmin}.wf-open-status{letter-spacing:.24em;font-size:9px}.wf-opening-underlay .wf-final-art{transform:scale(1.04)}}
+@media(prefers-reduced-motion:reduce){.wf-opening{display:none!important}.wf-opening-underlay .wf-final-art{transform:none!important;transition:none!important}.wf-final-home .wf-final-globe{animation:none!important}}
