@@ -1,0 +1,51 @@
+/* WAYFORTH V4.6: motion-only enhancement; approved art/layout stay unchanged. */
+.wf-final-home{--wf-bloom:#83d4ff}
+.wf-final-home .wf-final-art{transform-origin:50% 44%;backface-visibility:hidden;will-change:transform}
+.wf-final-home.wf-intro-playing .wf-final-art{animation:wf-world-awaken 2.65s cubic-bezier(.19,.87,.24,1) both}
+@keyframes wf-world-awaken{0%{transform:translate3d(0,0,0) scale(1.145)}22%{transform:translate3d(0,0,0) scale(1.125)}100%{transform:translate3d(0,0,0) scale(1)}}
+.wf-cinema-layer{position:absolute;inset:0;z-index:6;pointer-events:none;overflow:hidden;isolation:isolate}
+.wf-cinema-plane{position:absolute;top:50%;left:50%;width:min(100%, 177.683vh);width:min(100%, 177.683dvh);aspect-ratio:1672 / 941;transform:translate(-50%,-50%);pointer-events:none}
+.wf-intro-night{position:absolute;inset:-2%;background:radial-gradient(ellipse at 51% 36%,rgba(3,8,23,.15) 0 17%,rgba(3,8,23,.55) 41%,rgba(1,5,16,.88) 90%),linear-gradient(180deg,rgba(1,5,16,.44),rgba(1,5,16,.52));opacity:0}
+.wf-intro-playing .wf-intro-night{animation:wf-night 2.50s ease-out forwards}
+@keyframes wf-night{0%,9%{opacity:1}29%{opacity:.86}47%{opacity:.68}69%{opacity:.33}95%,100%{opacity:0}}
+.wf-intro-aurora{position:absolute;inset:-18%;background:conic-gradient(from 240deg at 53% 40%,transparent 0deg,rgba(66,150,255,.0) 42deg,rgba(86,178,255,.21) 55deg,rgba(247,195,107,.13) 70deg,transparent 91deg,transparent 360deg);mix-blend-mode:screen;opacity:0;transform-origin:53% 40%;}
+.wf-intro-playing .wf-intro-aurora{animation:wf-aurora 2.45s cubic-bezier(.22,.8,.29,1) both}
+@keyframes wf-aurora{0%{opacity:0;transform:rotate(-30deg) scale(.7)}18%{opacity:.8}68%{opacity:1;transform:rotate(68deg) scale(1.24)}100%{opacity:0;transform:rotate(96deg) scale(1.5)}}
+.wf-cinema-orbit{position:absolute;left:50.5%;top:38.5%;border:1px solid rgba(124,207,255,.45);border-radius:50%;box-shadow:0 0 14px rgba(74,161,255,.18), inset 0 0 10px rgba(75,168,255,.13);opacity:0;transform:translate(-50%,-50%) rotate(-29deg) scale(.55);}
+.wf-cinema-orbit.o1{width:49%;height:59%}.wf-cinema-orbit.o2{width:55%;height:47%;border-color:rgba(248,195,95,.4)}
+.wf-intro-playing .wf-cinema-orbit.o1{animation:wf-orbit-wake 2.4s .18s ease-out both}.wf-intro-playing .wf-cinema-orbit.o2{animation:wf-orbit-wake 2.3s .37s ease-out both reverse}
+@keyframes wf-orbit-wake{0%{opacity:0;transform:translate(-50%,-50%) rotate(-48deg) scale(.58)}24%{opacity:.85}68%{opacity:.32}100%{opacity:0;transform:translate(-50%,-50%) rotate(82deg) scale(1.2)}}
+.wf-studio-flash,.wf-build-weld,.wf-truck-glint{position:absolute;border-radius:50%;pointer-events:none;mix-blend-mode:screen;opacity:0;transform:translate(-50%,-50%) scale(.35);will-change:transform,opacity}
+.wf-studio-flash{width:14%;aspect-ratio:1;background:radial-gradient(circle,rgba(255,255,255,.92) 0,rgba(185,224,255,.85) 5%,rgba(82,161,255,.36) 22%,transparent 73%);animation:wf-camera-strobe 7.2s steps(1,end) infinite}
+.wf-studio-flash.f1{left:78%;top:63%;animation-delay:1.8s}.wf-studio-flash.f2{left:91%;top:58%;animation-delay:4.4s}.wf-studio-flash.f3{left:73%;top:70%;animation-delay:6.6s}
+@keyframes wf-camera-strobe{0%,40%,43%,48%,49%,100%{opacity:0;transform:translate(-50%,-50%) scale(.4)}41%{opacity:.93;transform:translate(-50%,-50%) scale(1.22)}42%{opacity:.1;transform:translate(-50%,-50%) scale(1.7)}45%{opacity:.72;transform:translate(-50%,-50%) scale(.85)}46%{opacity:0}}
+.wf-build-weld{width:13%;aspect-ratio:1;background:radial-gradient(circle,#fff 0,rgba(255,201,94,.82) 5%,rgba(255,127,30,.27) 20%,transparent 67%);animation:wf-weld-burst 5.1s steps(1,end) infinite}
+.wf-build-weld.w1{left:30%;top:66%;animation-delay:1s}.wf-build-weld.w2{left:13%;top:57%;animation-delay:3.6s}
+@keyframes wf-weld-burst{0%,50%,52%,55%,58%,100%{opacity:0;transform:translate(-50%,-50%) scale(.4)}51%{opacity:.75;transform:translate(-50%,-50%) scale(1.16)}54%{opacity:.92;transform:translate(-50%,-50%) scale(.7)}56%{opacity:.36}}
+.wf-truck-glint{width:17%;aspect-ratio:1;background:radial-gradient(circle,#fff 0,rgba(146,222,255,.98) 4%,rgba(54,161,255,.38) 20%,transparent 69%);animation:wf-headlamp-breathe 4.6s ease-in-out infinite}
+.wf-truck-glint.h1{left:54.5%;top:59.5%}.wf-truck-glint.h2{left:61.5%;top:61%;animation-delay:.4s}
+@keyframes wf-headlamp-breathe{0%,55%,100%{opacity:.09;transform:translate(-50%,-50%) scale(.60)}62%{opacity:.30;transform:translate(-50%,-50%) scale(.95)}76%{opacity:.13;transform:translate(-50%,-50%) scale(.7)}86%{opacity:.35;transform:translate(-50%,-50%) scale(1.1)}}
+.wf-intro-playing .wf-studio-flash,.wf-intro-playing .wf-build-weld,.wf-intro-playing .wf-truck-glint{animation-play-state:paused}
+.wf-intro-playing .wf-cinema-light{animation:wf-arrival-light 2.3s ease-out both}
+.wf-cinema-light{position:absolute;border-radius:50%;mix-blend-mode:screen;opacity:0;pointer-events:none;background:radial-gradient(circle,rgba(255,245,207,.6) 0%,rgba(237,173,72,.16) 30%,transparent 73%)}
+.wf-cinema-light.l1{width:42%;aspect-ratio:1;left:-2%;top:23%;animation-delay:.5s!important}
+.wf-cinema-light.l2{width:45%;aspect-ratio:1;left:31%;top:32%;background:radial-gradient(circle,rgba(123,194,255,.31),rgba(23,94,255,.15) 31%,transparent 70%);animation-delay:1.0s!important}
+.wf-cinema-light.l3{width:33%;aspect-ratio:1;left:69%;top:29%;background:radial-gradient(circle,rgba(161,183,255,.37),rgba(90,65,226,.16) 31%,transparent 70%);animation-delay:1.55s!important}
+@keyframes wf-arrival-light{0%,100%{opacity:0;transform:scale(.78)}35%{opacity:.75;transform:scale(1.05)}65%{opacity:.33;transform:scale(1.23)}}
+.wf-cinema-layer.wf-home-return .wf-cinema-orbit{animation:wf-orbit-return .9s cubic-bezier(.15,.81,.24,1) both}
+@keyframes wf-orbit-return{0%{opacity:.75;transform:translate(-50%,-50%) rotate(-38deg) scale(1.3)}100%{opacity:0;transform:translate(-50%,-50%) rotate(24deg) scale(.94)}}
+/* A portal-powered real-time light tunnel, drawn behind the site's existing globe. */
+.wf-travel-enhancement{position:fixed;inset:0;z-index:9998;pointer-events:none;opacity:0;visibility:hidden;overflow:hidden;isolation:isolate;--wf-x:50%;--wf-y:42%}
+.wf-travel-enhancement.active{opacity:1;visibility:visible}
+.wf-travel-enhancement:before{content:"";position:absolute;inset:0;background:radial-gradient(circle at var(--wf-x) var(--wf-y),rgba(229,244,255,.44),rgba(78,166,255,.24) 13%,rgba(248,191,93,.08) 28%,transparent 55%);opacity:0;animation:wf-lens-bloom .82s ease-out both;animation-play-state:paused}
+.wf-travel-enhancement.active:before{animation-play-state:running}
+@keyframes wf-lens-bloom{0%{opacity:0;transform:scale(.5)}24%{opacity:.75}55%{opacity:.46;transform:scale(1.26)}100%{opacity:0;transform:scale(1.8)}}
+.wf-tunnel-ring{position:absolute;top:var(--wf-y);left:var(--wf-x);width:16vmin;height:16vmin;max-width:none;aspect-ratio:1;border:2px solid rgba(121,216,255,.7);border-radius:50%;box-shadow:0 0 13px rgba(105,192,255,.4),inset 0 0 12px rgba(58,170,255,.3);opacity:0;transform:translate(-50%,-50%) scale(.3);animation:wf-tunnel-expand .84s cubic-bezier(.11,.63,.28,.97) forwards;animation-play-state:paused}
+.wf-tunnel-ring.tr2{border-color:rgba(255,196,104,.62);animation-delay:.11s}.wf-tunnel-ring.tr3{animation-delay:.20s;border-width:1px}
+.wf-travel-enhancement.active .wf-tunnel-ring{animation-play-state:running}
+@keyframes wf-tunnel-expand{0%{opacity:0;transform:translate(-50%,-50%) scale(.25)}28%{opacity:.85}80%{opacity:.48}100%{opacity:0;transform:translate(-50%,-50%) scale(18)}}
+.wf-travel-beam{position:absolute;left:var(--wf-x);top:var(--wf-y);height:1px;width:55vmax;transform-origin:left center;opacity:0;background:linear-gradient(90deg,rgba(217,239,255,.9),rgba(75,186,255,.36) 22%,transparent 78%);box-shadow:0 0 8px rgba(92,174,255,.47);animation:wf-radial-beam .75s ease-out forwards;animation-play-state:paused}
+.wf-travel-enhancement.active .wf-travel-beam{animation-play-state:running}
+@keyframes wf-radial-beam{0%{opacity:0;transform:rotate(var(--rotation)) scaleX(.04)}26%{opacity:.76}100%{opacity:0;transform:rotate(var(--rotation)) scaleX(1.6)}}
+@media(max-width:780px){.wf-travel-beam{opacity:.4}.wf-cinema-orbit{display:none}.wf-final-home.wf-intro-playing .wf-final-art{animation-duration:2.05s}.wf-intro-playing .wf-intro-night{animation-duration:2.0s}}
+@media(prefers-reduced-motion:reduce){.wf-final-home.wf-intro-playing .wf-final-art,.wf-cinema-layer *, .wf-travel-enhancement *{animation:none!important;transition:none!important}.wf-intro-night,.wf-intro-aurora,.wf-cinema-orbit,.wf-cinema-light,.wf-travel-enhancement{display:none!important}}

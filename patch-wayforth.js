@@ -1,5 +1,5 @@
 'use strict';
-/* WAYFORTH V4.5.2 — reliable non-destructive Vercel deployment adapter.
+/* WAYFORTH V4.6 — reliable non-destructive Vercel deployment adapter.
  * Reads ORIGINAL GitHub website files, builds dist/, and modifies ONLY the copy.
  * A missing optional update never fails deployment; core files are validated.
  */
@@ -69,6 +69,12 @@ try {
  </nav>`);
  if(isFile(path.join(output,'wayforth-extra.css'))&&!html.includes('wayforth-extra.css')) html=html.replace(/<\/head>/i,'<link rel="stylesheet" href="wayforth-extra.css"></head>');
  if(isFile(path.join(output,'wayforth-extra.js'))&&!html.includes('wayforth-extra.js'))html=html.replace(/<\/body>/i,'<div class="wf-aux-overlay" role="dialog" aria-modal="true" aria-label="WAYFORTH information"><div class="wf-aux-content"><h2 data-aux-title></h2><p data-aux-description></p><button type="button" data-aux-quote>Get a Quote</button><button type="button" data-aux-close>Close</button></div></div><script src="wayforth-extra.js"></script></body>');
+ // V4.6 cinema polish: add the CSS/JS after the approved scene is installed.
+ // Both files are optional; a missing extra can never break the live site.
+ if(isFile(path.join(output,'wf-cinematic.css')) && !html.includes('wf-cinematic.css'))
+   html=html.replace(/<\/head>/i,'<link rel="stylesheet" href="wf-cinematic.css"></head>');
+ if(isFile(path.join(output,'wf-cinematic.js')) && !html.includes('wf-cinematic.js'))
+   html=html.replace(/<\/body>/i,'<script defer src="wf-cinematic.js"></script></body>');
  fs.writeFileSync(htmlPath,html);
  // Legacy BUILD remains intact underneath the redesigned project selector.
  const dataPath=path.join(output,'scenes-data.js'),base=text(dataPath),build=text(path.join(root,'wayforth-build-v5.html'));
