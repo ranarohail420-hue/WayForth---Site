@@ -37,3 +37,6 @@
 /* V4.9 entrance objects now replaced by a more paced scene reveal */
 .wf-v49-intro-cover,.wf-v49-intro-orbit{display:none!important}
 @media(prefers-reduced-motion:reduce){.wf-v50-live-orb,.wf-v50-crane-runner,.wf-v50-crane-lamp{animation:none!important}.wf-v50-entrance{display:none!important}}
+
+/* Removed misaligned faux crane light */
+.wf-v50-crane-beam{display:none!important}

@@ -1,0 +1,16 @@
+/* WAYFORTH V5.1: targeted corrective layer; HOME layout is LOCKED. */
+.wf-v50-live-orb{top:30.5%!important;left:50%!important;width:35%!important;filter:drop-shadow(0 0 10px rgba(74,168,255,.24));animation:wf51-globe 5.8s cubic-bezier(.44,.05,.55,.95) infinite!important}
+.wf-v50-live-orb img{object-fit:contain}
+@keyframes wf51-globe{0%,100%{transform:translate(-50%,-50%) scale(.985)}50%{transform:translate(-50%,-50%) scale(1.058)}}
+.wf-v50-crane-beam,.wf-v50-crane-runner,.wf-v50-crane-lamp{display:none!important}
+/* No duplicate hook. Tiny trolley light constrained along the baked crane's horizontal beam. */
+.wf51-trolley{position:absolute;left:12.0%;top:18.0%;width:5.4%;height:1.6%;border-radius:60%;pointer-events:none;z-index:5;background:radial-gradient(ellipse,rgba(255,242,190,.70),rgba(255,177,75,.30) 28%,transparent 75%);transform:translate3d(0,0,0) rotate(14deg);opacity:.45;animation:wf51-trolley 7.3s ease-in-out infinite;will-change:transform,opacity}
+@keyframes wf51-trolley{0%,100%{transform:translate3d(0,0,0) rotate(14deg);opacity:.12}22%{opacity:.65}50%{transform:translate3d(265%,63%,0) rotate(14deg);opacity:.75}77%{opacity:.48}}
+/* Branded mixer decal: stays stationary as part of the existing scene, no duplicate mixer. */
+.wf51-mixer-mark{position:absolute;left:6.3%;top:61.0%;width:5.4%;height:3.1%;z-index:6;pointer-events:none;transform:rotate(-6deg);display:grid;place-items:center;letter-spacing:.03em;font-size:clamp(9px,.9vw,17px);font-weight:900;color:#eac37d;text-shadow:0 1px 2px #051123,0 0 5px #061329;background:radial-gradient(ellipse,rgba(2,18,39,.8),rgba(3,16,30,.15) 70%,transparent);border-radius:45%}
+/* Header badge uses the approved gold/white look and masks baked header only locally. */
+.wf51-header{position:absolute;z-index:11;top:1.5%;left:3.9%;width:22%;height:7%;display:flex;align-items:center;gap:4%;padding:0 .7%;background:linear-gradient(90deg,#071936 75%,rgba(7,21,43,0));pointer-events:none}
+.wf51-header-logo{font-weight:1000;font-size:clamp(18px,3.5vw,62px);line-height:1;font-style:italic;letter-spacing:-.20em;padding-right:.20em;background:linear-gradient(135deg,#fff5c8,#e2a84b 52%,#fff5c8 67%,#9d6328);-webkit-background-clip:text;background-clip:text;color:transparent;filter:drop-shadow(0 1px 3px #12213c)}
+.wf51-header-name{font-size:clamp(9px,1.65vw,27px);font-weight:650;letter-spacing:.17em;color:#f2e6d5;text-shadow:0 1px 4px #021224;white-space:nowrap}
+@media(max-aspect-ratio:13/10){.wf51-header{display:none}.wf51-mixer-mark{display:none}.wf51-trolley{display:none}}
+@media(prefers-reduced-motion:reduce){.wf51-trolley,.wf-v50-live-orb{animation:none!important}}

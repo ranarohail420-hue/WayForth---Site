@@ -7,7 +7,7 @@ const reduced=matchMedia('(prefers-reduced-motion: reduce)').matches;
 const plane=home.querySelector('.wf-v48-plane');
 if(plane){
  const orb=document.createElement('div');orb.className='wf-v50-live-orb';orb.setAttribute('aria-hidden','true');
- orb.innerHTML='<img src="wf-globe-live.webp" alt="">';
+ orb.innerHTML='<img src="wf-globe-isolated.webp" alt="">';
  // Put orb below the light rings and flash effects, but above the fixed approved artwork.
  plane.prepend(orb);
  const crane=document.createElement('div');crane.className='wf-v50-crane-beam';crane.setAttribute('aria-hidden','true');

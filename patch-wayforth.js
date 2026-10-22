@@ -76,6 +76,9 @@ try {
  if(isFile(path.join(output,'wf-v48-motion.js')))html=html.replace(/<\/body>/i,'<script defer src="wf-v48-motion.js"></script></body>');
  if(isFile(path.join(output,'wf-v50-motion.css'))) html=html.replace(/<\/head>/i,'<link rel="stylesheet" href="wf-v50-motion.css"></head>');
  if(isFile(path.join(output,'wf-v50-motion.js'))) html=html.replace(/<\/body>/i,'<script defer src="wf-v50-motion.js"></script></body>');
+ // V5.1: fix cropped globe overlay, logo, and actual aligned crane trolley.
+ if(isFile(path.join(output,'wf-v51-fix.css')))html=html.replace(/<\/head>/i,'<link rel="stylesheet" href="wf-v51-fix.css"></head>');
+ if(isFile(path.join(output,'wf-v51-fix.js')))html=html.replace(/<\/body>/i,'<script defer src="wf-v51-fix.js"></script></body>');
  fs.writeFileSync(htmlPath,html);
  // Legacy BUILD remains intact underneath the redesigned project selector.
  const dataPath=path.join(output,'scenes-data.js'),base=text(dataPath),build=text(path.join(root,'wayforth-build-v5.html'));
@@ -86,7 +89,12 @@ try {
  }else warn('No legacy BUILD marker: existing BUILD retained');
  // Avoid an indefinite hung transition on Safari without changing its look.
  const appPath=path.join(output,'app.js'),app=text(appPath);
- if(app){fs.writeFileSync(appPath,app.replace("await reveal.finished.catch(()=>{});","await Promise.race([reveal.finished.catch(()=>{}),new Promise(done=>setTimeout(done,1200))]);"));}
+ if(app){
+  // Symmetrical globe-origin wipe when entering AND returning from a division.
+  let adjusted=app.replace('const o=sceneOrigin();','const o={x:w/2,y:h*.44,w:Math.min(w,h)*.40};');
+  adjusted=adjusted.replace("await reveal.finished.catch(()=>{});","await Promise.race([reveal.finished.catch(()=>{}),new Promise(done=>setTimeout(done,1200))]);");
+  fs.writeFileSync(appPath,adjusted);
+ }
  log('Deployment output ready: '+fs.readdirSync(output).length+' root files');
  }
 } catch(e){console.error('WAYFORTH BUILD ERROR:',e.stack||e.message);process.exitCode=1;}
