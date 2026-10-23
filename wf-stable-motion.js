@@ -1,4 +1,4 @@
-/* WAYFORTH V5.8 — V5.7 preserved; only mixer decal alignment + first-load portal transition adjusted. */
+/* WAYFORTH V5.9 — approved V5.8 visuals preserved; cement decal removed and secondary Home settle removed for smooth native transitions. */
 (()=>{'use strict';
 const home=document.querySelector('.wf-final-home');
 if(!home)return;
@@ -47,7 +47,6 @@ stage.innerHTML=`
   <i class="wf-v55-headlight wf-v55-headlight-low-right"></i>
   <i class="wf-v55-headlight wf-v55-cement-headlight"></i>
   <i class="wf-v55-roof-lights"></i>
-  <img class="wf-v55-cement-logo" src="wf-actual-logo-decal.png" alt="" draggable="false">
 `;
 home.append(stage);
 
@@ -64,25 +63,8 @@ fitStage();
 window.addEventListener('resize',fitStage,{passive:true});
 if(window.ResizeObserver)new ResizeObserver(fitStage).observe(home);
 
-/* Returning from another scene gets only a quick settle. First-load portal is independent
-   and is removed after it finishes, so it cannot replay over an already visible page. */
-if(!reduced){
-  const scene=document.getElementById('scene-home');
-  if(scene){
-    let wasActive=scene.classList.contains('is-active');
-    const sceneObserver=new MutationObserver(()=>{
-      const active=scene.classList.contains('is-active');
-      if(active&&!wasActive){
-        home.classList.remove('wf-v55-home-return');
-        void home.offsetWidth;
-        home.classList.add('wf-v55-home-return');
-        window.setTimeout(()=>home.classList.remove('wf-v55-home-return'),560);
-      }
-      wasActive=active;
-    });
-    sceneObserver.observe(scene,{attributes:true,attributeFilter:['class']});
-  }
-}
+/* Scene-to-scene transitions are intentionally left to the original site transition system.
+   No secondary Home-settle animation is stacked on top. */
 
 /* Boot safety only. It never re-runs the landing animation and never changes a ready page. */
 window.setTimeout(()=>{

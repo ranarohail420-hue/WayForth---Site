@@ -1,4 +1,4 @@
-/* WAYFORTH V5.8 — exact mixer-logo alignment + existing globe-portal style on first load. */
+/* WAYFORTH V5.9 — V5.8 motion preserved; cement decal removed and native scene transitions left unstacked. */
 .wf-final-home{isolation:isolate;overflow:hidden;}
 .wf-final-art{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;object-position:center;filter:none;transform-origin:center;backface-visibility:hidden;}
 
@@ -134,16 +134,7 @@ html.wf-v55-boot body.ready #scene-home .wf-v55-stage{animation:wf55-stage-in 1.
   animation:wf55-roof-lights 3.15s ease-in-out infinite;}
 @keyframes wf55-roof-lights{0%,100%{opacity:.27;filter:brightness(.9)}45%,58%{opacity:.71;filter:brightness(1.28)}}
 
-/* Correct cement mixer decal: transparent YELLOW/GOLD WF only — no blue square/background. */
-.wf-v55-cement-logo{
-  left:4.70%;top:60.72%;width:4.15%;height:auto;object-fit:contain;opacity:.98;
-  transform:rotate(1deg) skewX(-2deg);transform-origin:center;
-  filter:drop-shadow(0 1px 1px rgba(46,25,2,.58)) drop-shadow(0 0 2px rgba(255,188,48,.22));
-}
-
-/* Short settle on return to Home; no full landing replay. */
-.wf-v55-home-return .wf-v55-stage{animation:wf55-home-return .52s ease-out both;}
-@keyframes wf55-home-return{0%{opacity:.22;filter:brightness(.82)}100%{opacity:1;filter:brightness(1)}}
+/* No secondary Home-return animation: original site transition remains the only transition layer. */
 
 @media(max-aspect-ratio:13/10){
   .wf-v55-stage{display:none!important}

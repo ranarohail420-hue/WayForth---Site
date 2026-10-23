@@ -3,12 +3,15 @@
   const heading=overlay.querySelector('[data-aux-title]');
   const description=overlay.querySelector('[data-aux-description]');
   function close(){overlay.classList.remove('open')}
+  const auxCopy={
+    contact:{title:'Contact Us',description:'Need construction, trucking or media support? Start an inquiry and the WAYFORTH team can follow up.'},
+    about:{title:'About WAYFORTH',description:'WAYFORTH brings together construction, freight and trucking, and digital media under one brand focused on dependable execution and lasting partnerships.'},
+    support:{title:'Support',description:'Need help with an inquiry, ongoing project, trucking request or media service? Contact WAYFORTH and our team can guide you to the right next step.'}
+  };
   document.querySelectorAll('[data-aux]').forEach(button=>button.addEventListener('click',()=>{
-    const about=button.dataset.aux==='about';
-    heading.textContent=about?'About WAYFORTH':'Contact WAYFORTH';
-    description.textContent=about
-      ? 'WAYFORTH brings together construction materials in Lahore, freight and trucking operations, and Digital Media. We focus on dependable service, clear communication and lasting partnerships.'
-      : 'Need construction materials, trucking support or digital media services? Start an inquiry and our team can follow up. Contact numbers will be verified before public launch.';
+    const copy=auxCopy[button.dataset.aux]||auxCopy.contact;
+    heading.textContent=copy.title;
+    description.textContent=copy.description;
     overlay.classList.add('open');
   }));
   overlay.querySelector('[data-aux-close]').addEventListener('click',close);

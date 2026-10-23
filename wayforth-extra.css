@@ -1,6 +1,6 @@
-/* WAYFORTH V4.3: exactly requested primary labels, responsive spacing. */
-.desktop-nav{gap:clamp(3px,.72vw,12px)!important}
-.desktop-nav .nav-link{font-size:clamp(9px,.75vw,12px)!important;letter-spacing:.04em!important;padding:10px clamp(4px,.5vw,10px)!important;white-space:nowrap}
+/* WAYFORTH V5.9: seven requested primary labels, responsive spacing. */
+.desktop-nav{gap:clamp(2px,.48vw,8px)!important;flex-wrap:nowrap!important}
+.desktop-nav .nav-link{font-size:clamp(8px,.66vw,11px)!important;letter-spacing:.035em!important;padding:9px clamp(3px,.34vw,7px)!important;white-space:nowrap}
 .wf-aux-overlay{position:fixed;inset:0;z-index:40000;background:rgba(2,6,13,.78);display:none;place-items:center;padding:22px;backdrop-filter:blur(10px)}
 .wf-aux-overlay.open{display:grid}
 .wf-aux-content{width:min(510px,100%);border:1px solid rgba(240,199,122,.60);border-radius:19px;padding:clamp(20px,4vw,33px);background:linear-gradient(140deg,#0b294b,#020813);color:white;box-shadow:0 20px 95px #0009}

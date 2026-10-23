@@ -1,28 +1,31 @@
-WAYFORTH V5.8 — FINAL LANDING PORTAL + MIXER LOGO ALIGNMENT
+WAYFORTH V5.9 — FINAL NAVIGATION + SLOGAN + SMOOTH TRANSITION CLEANUP
 
-UPLOAD THESE FILES to the ROOT of the existing GitHub repository, replacing matching V5.7 files.
+UPLOAD THESE FILES to the ROOT of the existing GitHub repository, replacing matching V5.8 files.
 KEEP your existing root index.html, styles.css, app.js, scenes-data.js, brand-logo.webp, globe-opening.webp and all other original site assets.
 
-ONLY TWO VISUAL CHANGES WERE MADE FROM V5.7:
-1. Cement mixer gold/yellow WF decal moved to the exact center marked by the green circle in the supplied screenshot. Size, color and artwork are unchanged.
-2. FIRST LOAD ONLY: removed the V5.7 rotating/clip landing treatment and now uses the existing globe-opening.webp portal visual so startup matches the approved BUILD / TRUCKING / MEDIA / HOME transition style. The working section-transition code itself is untouched.
+REQUESTED CHANGES ONLY:
+1. Removed the added WF decal from the cement mixer completely. The original cement truck artwork is untouched underneath.
+2. Removed the extra V5.x Home-return settle animation that was stacking after the site's own transition. BUILD / TRUCKING / MEDIA / HOME now rely only on the original site transition system again.
+3. Top menu now reads: HOME | BUILD | TRUCKING | MEDIA | CONTACT US | ABOUT US | SUPPORT. GET A QUOTE remains unchanged.
+4. Homepage slogan changed from MOVE. BUILD. CREATE. to BUILD. MOVE. CREATE. using the original glowing word artwork so font/colors remain consistent.
 
-UNCHANGED FROM V5.7:
-- Globe idle breathing/pulse
+UNCHANGED:
+- First-load V5.8 globe portal reveal
+- Globe idle pulse
 - Truck high/low-beam lights
 - Crane boom flashes and cable motion
 - BUILD welding
 - MEDIA flashes
-- Homepage artwork
-- Navigation and top menu
-- Hotspots, cart, BUILD/TRUCKING/MEDIA pages
-- Existing page-to-page transition code
-- Vercel deployment structure
+- Bottom BUILD/TRUCKING/MEDIA cards
+- Quote button and quote flow
+- BUILD/TRUCKING/MEDIA scene content and cart
+- Original scene-transition code
 
 CHECK AFTER VERCEL DEPLOYMENT:
-- First load: globe/WF portal should grow through the center and hand off cleanly to HOME, matching the existing scene-transition feel.
-- Cement mixer: yellow/gold WF should sit inside the exact marked drum circle.
-- Everything else should match V5.7 exactly.
+- Cement mixer has NO added WF decal.
+- BUILD. MOVE. CREATE. appears in that order.
+- Top menu shows Contact Us, About Us and Support after Media.
+- Scene transitions do not have an extra settle/fade after arriving Home.
 
 Suggested GitHub commit:
-WAYFORTH V5.8 — Final Landing Portal and Mixer Logo Alignment
+WAYFORTH V5.9 — Final Navigation Slogan and Transition Cleanup
