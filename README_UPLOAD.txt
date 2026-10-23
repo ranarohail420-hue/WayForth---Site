@@ -20,3 +20,12 @@ HOW TO APPLY
 5. Commit using the message in START_HERE_FIRST.txt and wait for Vercel to deploy.
 
 The package does not include a full replacement for the repository's core application files. It is intended to be applied to the same working repository/version used for V5.11.
+
+
+V5.14 BUILD MODERNIZATION
+-------------------------
+- Replaced the top hero with the cleaner uncropped construction image treatment (removed side poster/blurry band effect).
+- Repositioned and reduced welding flashes so they stay inside the structure and feel more like welding sparks.
+- Refined Residential and Commercial image cropping for a cleaner card presentation.
+- Strengthened alternating Residential / Commercial pulse motion.
+- Reset the Residential materials cart each time it opens so previous selections do not remain loaded.
