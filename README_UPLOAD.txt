@@ -1,31 +1,26 @@
-WAYFORTH V5.12 — BUILD HERO FRAMING & ALTERNATING CATEGORY MOTION
+WAYFORTH V5.15 — BUILD IMAGE FRAMING + NATIVE MATERIALS QUOTE CART
 
-This is a minimal update to the approved WAYFORTH V5.11 package. It changes only the BUILD hero image framing and the Residential/Commercial card motion.
+This update replaces the legacy embedded Residential materials screen with a native, responsive materials selector and quote cart. It also corrects the image framing on the Build hero, Residential/Commercial cards, and plot-size options.
 
-CHANGES
-1. The top-right BUILD hero now uses build-commercial-hero-wide.webp, a wide version of the same approved construction image that keeps the complete building visible instead of cropping/zooming into the center. The original build-commercial-scene.webp remains unchanged for the Commercial card.
-2. The Residential and Commercial cards now have a clearer glow pulse and gentle vertical lift. Their timing is offset by half a cycle so the two cards draw attention alternately. The motion remains disabled for visitors who request reduced motion.
+WHAT CHANGED
+1. Build hero: the approved construction scene now uses a softer, seamless panoramic treatment so the building is visible without the hard “photo pasted on blurred sides” effect.
+2. Residential and Commercial cards: corrected the image assets and aspect ratios to avoid excessive zoom and the blurred filler strip under the residential photo.
+3. Plot-size selector: replaced the six cramped, wide-cropped cards with a clean three-column layout using landscape cards and balanced home thumbnails. On smaller screens the layout adapts to two columns and then one column.
+4. Materials selection: removed the old circular legacy menu and its nested iframe. The new interface uses clear material cards, search and category filters, quantity/unit controls, a live quote cart, and contact/delivery details.
+5. Navigation: the materials screen always provides “Change Plot Size”, “Change Project Type”, and “Commercial Project” actions. Users can return to 5 Marla / 10 Marla / other sizes or switch to Commercial without refreshing.
+6. Quote request: the cart sends a structured `wf-build-quote` message with project, contact, location, materials, quantities, units, and notes, matching the existing WAYFORTH quote flow.
 
 PRESERVED
 - Approved Home artwork and landing animation assets
-- Navigation and transitions
+- Existing main navigation, transitions, and auxiliary dialogs
 - Trucking and Media assets
-- BUILD text, benefit badges, welding flashes, residential plot sizes, commercial quote form, and materials/cart flow
+- Build hero copy, benefits, welding-flash animation, and commercial quote form
 
 HOW TO APPLY
 1. Extract the ZIP.
-2. Upload its website/update files to the root of the existing GitHub repository.
-3. Replace matching files only; do not delete any existing repository files.
-4. Keep index.html, app.js, styles.css, and scenes-data.js in place. The patch script uses the existing files to rebuild dist.
-5. Commit using the message in START_HERE_FIRST.txt and wait for Vercel to deploy.
+2. Upload the included update files to the root of the existing GitHub repository, replacing matching files only.
+3. Keep the repository's existing `index.html`, `app.js`, `styles.css`, and `scenes-data.js` files in place. Do not delete core application files.
+4. Ensure the existing Vercel build command still runs `node patch-wayforth.js`; this rebuilds `dist` and writes the new Build page into the `build` scene entry.
+5. Commit using the message in `START_HERE_FIRST.txt`, then wait for Vercel to finish deploying.
 
-The package does not include a full replacement for the repository's core application files. It is intended to be applied to the same working repository/version used for V5.11.
-
-
-V5.14 BUILD MODERNIZATION
--------------------------
-- Replaced the top hero with the cleaner uncropped construction image treatment (removed side poster/blurry band effect).
-- Repositioned and reduced welding flashes so they stay inside the structure and feel more like welding sparks.
-- Refined Residential and Commercial image cropping for a cleaner card presentation.
-- Strengthened alternating Residential / Commercial pulse motion.
-- Reset the Residential materials cart each time it opens so previous selections do not remain loaded.
+This is an update bundle for the existing WAYFORTH repository, not a standalone replacement for the entire website.

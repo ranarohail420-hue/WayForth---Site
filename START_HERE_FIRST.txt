@@ -1,39 +1,27 @@
-WAYFORTH V5.12 — START HERE
-==========================
+WAYFORTH V5.15 — BUILD IMAGE + QUOTE CART FIX
+=============================================
 
-This update contains only the two requested BUILD-page refinements:
-- Show the complete building in the top-right hero image (same approved construction scene, reframed wide).
-- Give Residential and Commercial cards a stronger glow pulse and gentle alternating lift.
+This update fixes the Build-page issues shown in the review recording:
+- All three main Build images have corrected framing; plot-size thumbnails are no longer stretched into wide, over-zoomed tiles.
+- The old embedded circular material menu has been replaced with a modern materials browser and quote cart.
+- The quote cart has visible navigation back to plot size, project type, or Commercial.
+- The Build page can be reopened from the top navigation without getting stuck in the material list.
 
-HOW TO APPLY TO YOUR EXISTING GITHUB REPOSITORY
-1. Download and extract the ZIP.
-2. Open your existing WAYFORTH repository on GitHub.
-3. Click Add file -> Upload files.
-4. Drag the extracted website/update files into the repository root (same folder as index.html).
-5. Replace matching files only. Do not delete other files.
-6. Keep index.html, app.js, styles.css, and scenes-data.js in place.
-7. Commit using the message below.
-8. Wait for Vercel to show Ready, then test Home -> Build and check Trucking/Media too.
+APPLY TO THE EXISTING REPOSITORY
+1. Extract the ZIP.
+2. Upload the included update files to the root of the existing GitHub repository and replace matching files only.
+3. Keep `index.html`, `app.js`, `styles.css`, and `scenes-data.js` in place.
+4. Confirm Vercel still runs `node patch-wayforth.js` as its build command.
+5. Commit using the message below and wait for Vercel to deploy.
 
 COMMIT MESSAGE
 --------------
-WAYFORTH V5.12 — Full BUILD Hero and Alternating Category Motion
+WAYFORTH V5.15 — Native Build Quote Cart and Image Framing Fix
 
-IMPORTANT
----------
-This is an update bundle for the existing repository, not a standalone site archive. Use it with the same working repository as V5.11.
-
-
-V5.13 BUILD FIXES
------------------
-- Hero construction image adjusted to show the full building with less crop/zoom.
-- Residential and Commercial cards updated with stronger alternating pulse/float motion.
-
-
-V5.14 BUILD MODERNIZATION
--------------------------
-- Replaced the top hero with the cleaner uncropped construction image treatment (removed side poster/blurry band effect).
-- Repositioned and reduced welding flashes so they stay inside the structure and feel more like welding sparks.
-- Refined Residential and Commercial image cropping for a cleaner card presentation.
-- Strengthened alternating Residential / Commercial pulse motion.
-- Reset the Residential materials cart each time it opens so previous selections do not remain loaded.
+TEST AFTER DEPLOYMENT
+- Home → Build → Residential → 10 Marla → Explore Materials & Cart.
+- Add Cement, Steel, or another item; adjust quantity and unit.
+- Use “Change Plot Size” to return to the plot cards.
+- Use “Change Project Type” or “Commercial Project” to leave the cart.
+- Return to Build from the main navigation; no refresh should be needed.
+- Test the Commercial Materials Quote form as well.
