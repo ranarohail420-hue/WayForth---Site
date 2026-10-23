@@ -1,0 +1,60 @@
+WAYFORTH V5.11 — COMPLETE APPROVED ASSETS + BUILD UPDATE
+==========================================================
+
+This is the unified update package containing the previously approved WAYFORTH
+Home/navigation/transition assets together with the new V5.11 BUILD experience.
+
+IMPORTANT: This is an update bundle for your EXISTING GitHub repository, not a
+standalone replacement for the entire repository. The core files index.html,
+app.js, styles.css, and scenes-data.js are intentionally not included because
+the build patch must use your current working versions of those files. Do not
+replace them with placeholders or delete them.
+
+HOW TO APPLY IT
+---------------
+1. Download this ZIP and extract it on your computer.
+2. Open the extracted folder. The website assets and patch script are at its root.
+3. Open your existing WayForth---Site repository on GitHub.
+4. Choose Add file -> Upload files.
+5. Drag the extracted files into the repository ROOT (not into a new subfolder).
+6. Allow GitHub to replace files with matching names.
+7. Do NOT delete existing repository files. In particular, keep:
+   - index.html
+   - app.js
+   - styles.css
+   - scenes-data.js
+8. Commit the changes using the commit message below.
+9. Wait for Vercel to finish deploying, then test the live site.
+
+COMMIT MESSAGE
+--------------
+WAYFORTH V5.11 — BUILD Interaction Welding Effects and Quote Form
+
+WHAT IS INCLUDED
+----------------
+- Approved Home artwork and stable motion/transition assets
+- Approved navigation/auxiliary assets
+- V5.11 BUILD page refinement
+- Construction-site hero artwork for BUILD
+- Residential and Commercial card imagery
+- Residential plot-size selection flow
+- Commercial materials quote form
+- Updated Vercel patch/build script
+- Vercel configuration and supporting assets
+
+BUILD TEST CHECKLIST
+--------------------
+1. Home -> BUILD: verify the approved Home and transition still behave as before.
+2. Confirm the BUILD hero says BUILD YOUR DREAM.
+3. Confirm welding flashes appear over the construction image.
+4. Confirm the four circular benefit badges are readable.
+5. Select Residential and check the six plot-size options.
+6. Select Commercial and try a sample materials quote request.
+7. Check Home, Trucking, and Media again after deployment.
+
+QUOTE DELIVERY NOTE
+-------------------
+The Commercial form packages the request and passes it to the site's existing
+WAYFORTH quote handler. This update does not add a separate email/database
+service, so confirm live delivery to your team before relying on it for customer
+requests.
