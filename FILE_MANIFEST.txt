@@ -1,37 +1,18 @@
-WAYFORTH V5.11 — FILE MANIFEST
-==============================
+WAYFORTH V5.12 — FILE MANIFEST
+=============================
 
-This bundle contains the 22 website/update files from the V5.11 package plus
-this installation guide and a manifest.
+This ZIP contains the 22 V5.11 website/update files, the new wide hero image, and two guides.
 
-Core files intentionally kept in your existing repository (not included here):
-index.html, app.js, styles.css, scenes-data.js
+New asset:
+build-commercial-hero-wide.webp — panoramic framing made from the approved construction scene so the full building is visible in the BUILD hero.
 
-Files included in this ZIP:
+Updated files:
+- wayforth-build-v5.html (hero image source and hero/card CSS only)
+- patch-wayforth.js (version label and build log only)
 - README_UPLOAD.txt
-- patch-wayforth.js
-- wayforth-build-v5.html
-- vercel.json
-- wayforth-extra.css
-- wayforth-extra.js
-- wf-approved-home.css
-- wf-stable-motion.css
-- wf-stable-motion.js
-- wf-home-approved.webp
-- wf-media-approved.webp
-- wf-actual-logo-decal.png
-- build-residential-scene.webp
-- build-commercial-scene.webp
-- wf-5-marla.webp
-- wf-10-marla.webp
-- wf-10-marla-excess.webp
-- wf-1-kanal.webp
-- wf-2-kanal.webp
-- wf-townhouses.webp
-- wf-plaza.webp
-- wf-apartments.webp
+- START_HERE_FIRST.txt
+- FILE_MANIFEST.txt
 
-The Home, navigation, and transition assets are retained from the previously
-approved site package. The V5.11 BUILD patch/page and construction scene assets
-carry the new BUILD changes. Do not upload these files into a separate folder
-inside the repository; upload their contents to the repository root.
+All other approved images and supporting assets are retained from V5.11.
+
+Core files intentionally kept in the existing repository: index.html, app.js, styles.css, scenes-data.js. Do not remove them.

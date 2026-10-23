@@ -1,4 +1,4 @@
-/* WAYFORTH V5.11 — BUILD interaction, welding effects, and quote form layered on approved V5.9; native transitions preserved. */
+/* WAYFORTH V5.12 — BUILD hero framing and alternating category-card motion; all other approved assets and transitions preserved. */
 'use strict';
 const fs=require('fs'),path=require('path');const root=process.cwd(),dist=path.join(root,'dist');
 const file=(n)=>path.join(dist,n);const exists=(n)=>fs.existsSync(file(n));
@@ -32,5 +32,5 @@ write('index.html',html);
 /* BUILD: re-use original materials/cart payload unchanged inside project selector. */
 let data=read('scenes-data.js');let page=fs.existsSync(path.join(root,'wayforth-build-v5.html'))?fs.readFileSync(path.join(root,'wayforth-build-v5.html'),'utf8'):'';
 if(page.includes('__LEGACY_BUILD_BASE64__')){let m=data.match(/(\bbuild\s*:\s*['"])([A-Za-z0-9+/=]+)(['"])/);if(m){let next=Buffer.from(page.replace('__LEGACY_BUILD_BASE64__',m[2]),'utf8').toString('base64');data=data.replace(m[0],m[1]+next+m[3]);write('scenes-data.js',data)}}
-console.log('WAYFORTH V5.11 build OK —',fs.readdirSync(dist).length,'files. BUILD welding effects, benefit badges, residential plot selector, and commercial materials quote form updated; approved V5.9 Home and transitions preserved.');
+console.log('WAYFORTH V5.12 build OK —',fs.readdirSync(dist).length,'files. BUILD hero now shows the full construction image; Residential/Commercial cards pulse and lift alternately. Existing Home, navigation, quote flow, and transitions preserved.');
 }catch(e){console.error('WAYFORTH V5.9:',e.stack||e);process.exitCode=1}
