@@ -1,22 +1,44 @@
-WAYFORTH V5.15 — FILE MANIFEST
+WAYFORTH V5.16 — FILE MANIFEST
 ==============================
 
-Core Build page:
-- wayforth-build-v5.html — native materials browser, cart, quote request form, responsive plot selector, image framing, and back navigation.
+Core Build page and integration:
+- wayforth-build-v5.html — corrected hero framing, residential plot selection, shared six-material browser/cart, customer quote form, and back navigation.
+- patch-wayforth.js — integrates the updated Build page into the existing WAYFORTH site during Vercel build.
+- vercel.json — Build deployment configuration.
 
-Updated build assets:
-- build-commercial-hero-wide.webp — seamless panoramic construction hero image.
-- build-commercial-scene.webp — landscape crop for the Commercial card.
-- build-residential-card.webp — clean residential card image without the blurred filler strip.
-- wf-11-marla.webp — dedicated thumbnail for the 11 Marla plot option.
+Hero and category imagery:
+- build-commercial-hero-wide.webp — new panoramic construction hero image with full edge-to-edge scenery.
+- build-commercial-scene.webp — Commercial category card image.
+- build-residential-card.webp — Residential category card image.
+- build-residential-scene.webp — retained approved supporting image.
 
-Build integration:
-- patch-wayforth.js — writes the full updated Build page into the existing `build` entry in `scenes-data.js` instead of embedding the legacy material page.
+Approved material images (exactly six categories):
+- material-steel.webp — Steel / Sariya · Mughal Steel.
+- material-cement.webp — Cement · Maple Leaf Cement.
+- material-bricks.webp — Bricks · Premium Quality.
+- material-paints.webp — Paints · Berger Paints.
+- material-pipes.webp — Pipes · Popular Pipes.
+- material-electrical.webp — Electrical · Wires & Fittings.
 
-Retained approved assets:
-- wf-1-kanal.webp, wf-2-kanal.webp, wf-5-marla.webp, wf-10-marla.webp, wf-10-marla-excess.webp
-- wf-apartments.webp, wf-plaza.webp, wf-townhouses.webp
-- wf-home-approved.webp, wf-media-approved.webp, wf-approved-home.css, wf-stable-motion.css, wf-stable-motion.js
-- wf-actual-logo-decal.png, wayforth-extra.css, wayforth-extra.js, vercel.json
+Residential and Commercial project assets:
+- wf-5-marla.webp
+- wf-10-marla.webp
+- wf-10-marla-excess.webp
+- wf-11-marla.webp
+- wf-1-kanal.webp
+- wf-2-kanal.webp
+- wf-apartments.webp
+- wf-plaza.webp
+- wf-townhouses.webp
 
-The ZIP is an update bundle for the existing repository. Keep the repository's `index.html`, `app.js`, `styles.css`, and `scenes-data.js` in place.
+Preserved approved main-site assets:
+- wf-home-approved.webp
+- wf-media-approved.webp
+- wf-approved-home.css
+- wf-stable-motion.css
+- wf-stable-motion.js
+- wf-actual-logo-decal.png
+- wayforth-extra.css
+- wayforth-extra.js
+
+The ZIP is an update bundle. Keep the existing repository core files (index.html, app.js, styles.css, scenes-data.js).

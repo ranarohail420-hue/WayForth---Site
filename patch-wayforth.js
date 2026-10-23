@@ -1,4 +1,4 @@
-/* WAYFORTH V5.15 — native materials quote cart, reliable project navigation, and corrected image framing. */
+/* WAYFORTH V5.16 — native materials quote cart, reliable project navigation, and corrected image framing. */
 'use strict';
 const fs=require('fs'),path=require('path');const root=process.cwd(),dist=path.join(root,'dist');
 const file=(n)=>path.join(dist,n);const exists=(n)=>fs.existsSync(file(n));
@@ -37,5 +37,5 @@ if(!buildEntry)throw Error('BUILD scene entry not found in scenes-data.js.');
 const nextBuild=Buffer.from(page,'utf8').toString('base64');
 data=data.replace(buildEntry[0],buildEntry[1]+nextBuild+buildEntry[3]);
 write('scenes-data.js',data);
-console.log('WAYFORTH V5.15 build OK —',fs.readdirSync(dist).length,'files. Native materials selection/cart, reliable Build navigation, and corrected image framing are ready.');
-}catch(e){console.error('WAYFORTH V5.15:',e.stack||e);process.exitCode=1}
+console.log('WAYFORTH V5.16 build OK —',fs.readdirSync(dist).length,'files. Shared six-material Residential/Commercial cart, reference-matched material images, and improved edge-to-edge Build hero are ready.');
+}catch(e){console.error('WAYFORTH V5.16:',e.stack||e);process.exitCode=1}
