@@ -1,8 +1,8 @@
-WAYFORTH V5.16 — FILE MANIFEST
+WAYFORTH V5.18 — FILE MANIFEST
 ==============================
 
 Core Build page and integration:
-- wayforth-build-v5.html — corrected hero framing, residential plot selection, shared six-material browser/cart, customer quote form, and back navigation.
+- wayforth-build-v5.html — refined hero image blend, residential plot selection, shared six-material browser/cart, larger cart item names, custom-unit notice, commercial wholesale guidance, and Home Page navigation.
 - patch-wayforth.js — integrates the updated Build page into the existing WAYFORTH site during Vercel build.
 - vercel.json — Build deployment configuration.
 
@@ -42,3 +42,11 @@ Preserved approved main-site assets:
 - wayforth-extra.js
 
 The ZIP is an update bundle. Keep the existing repository core files (index.html, app.js, styles.css, scenes-data.js).
+
+V5.18 additions:
+- Larger cart material names for easier reading.
+- Custom unit is the final unit option; legacy Load values are converted to Custom.
+- Dismissible custom-unit explanation for customers.
+- Commercial-only wholesale / bulk discount guidance banner.
+- Softer left-edge blend and adjusted framing on the Build hero image.
+- Cart navigation button returns to Home Page.

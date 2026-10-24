@@ -1,39 +1,21 @@
-WAYFORTH V5.16 — BUILD MATERIALS + HERO FIX
-===========================================
+WAYFORTH V5.18 — START HERE
 
-COMMIT MESSAGE
---------------
-WAYFORTH V5.16 — Shared Build Materials Cart, Approved Product Images & Hero Fix
+COMMIT NAME
+WAYFORTH V5.18 — Cart Clarity, Custom Units, Wholesale Notice & Hero Blend Fix
 
-WHAT THIS REVISION CHANGES
---------------------------
-1. Replaces the Build hero photo with a new panoramic construction-site image showing the structure and city scene edge-to-edge, with a lighter blend rather than heavy dark side bands.
-2. Uses exactly the six approved material options and reference-matched pictures:
-   - Steel / Sariya — Mughal Steel
-   - Cement — Maple Leaf Cement
-   - Bricks — Premium Quality
-   - Paints — Berger Paints
-   - Pipes — Popular Pipes
-   - Electrical — Wires & Fittings
-3. Removes the old unsupported broad materials list and legacy Commercial material form.
-4. Keeps materials selection on a separate full-screen interface with the modern quote cart. Residential and Commercial both use this same material browser/cart.
-5. Residential flow remains: Residential → select plot size → Materials & Quote Cart.
-   Commercial flow remains: Commercial → the same Materials & Quote Cart.
-6. Each material card uses the matching local image and preserves its full picture without excessive cropping.
-7. The quote cart supports quantity/unit editing, removing items, customer details, delivery area, notes, and a structured quote request.
-8. Keeps the approved main-site artwork, Home/Trucking/Media assets, and existing scene-transition integration.
+KEY UPDATES
+1. Bigger cart item names for quick recognition.
+2. “Custom” is the last unit option; “Load” is not shown.
+3. Dismissible note explains custom measurement/unit confirmation by the consulting and accounts team.
+4. Commercial has a separate wholesale/bulk discount notice. Residential and Commercial keep the same six approved materials and images.
+5. Refined hero-image left edge blend to reduce the dark/blurred seam.
+6. “← Home Page” returns to the main site Home scene.
 
-HOW TO APPLY TO GITHUB / VERCEL
--------------------------------
-1. Download and extract this ZIP.
-2. Upload the ZIP contents to the ROOT of the existing WAYFORTH repository, replacing matching files only.
-3. Keep your existing index.html, app.js, styles.css, and scenes-data.js. Do not delete them.
-4. In Vercel, keep the Build Command set to: node patch-wayforth.js
-5. Commit with the exact message above and wait for the deployment to finish.
-6. Open Home → Build. Confirm the hero image has no artificial black side panels.
-7. Click Residential, choose a plot size, then Explore Materials & Cart. Verify the six cards and cart.
-8. Return to Build Options, click Commercial, and confirm it opens the same six-material selection/cart interface.
+UPLOAD STEPS
+- Extract the ZIP.
+- Upload its contents to the root of the existing GitHub repository, replacing matching files only.
+- Do not delete index.html, app.js, styles.css, or scenes-data.js.
+- Keep Vercel Build Command: node patch-wayforth.js
+- Commit and test the deployment.
 
-IMPORTANT
----------
-This is an update bundle for your existing repository, not a standalone full-site export. It intentionally does not replace your core index/app/scenes files.
+No live Vercel deployment has been performed from this package.
