@@ -1,0 +1,11 @@
+WAYFORTH V24 — Exact Approved Trucking Composition
+
+This build locks the finalized trucking landing composition to the exact approved artwork and layers only interaction/animation on top.
+
+Included motion:
+- Main truck and road vehicle headlight flashes
+- Animated Chicago-to-Dallas route and pulsing map points
+- Sequential glow on the three WAYFORTH value icons
+- Fast pulsing focus on Ship a Car
+
+The four existing service forms and /api/trucking-inquiry email endpoint remain preserved.
