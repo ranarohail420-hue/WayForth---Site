@@ -1,13 +1,18 @@
-WAYFORTH V26 — CURRENT UPDATE
+WAYFORTH V27 — CURRENT UPDATE
 =============================
 
-Use START_HERE_V26.txt for the current trucking correction and exact commit message.
-This update keeps the approved Home, Build, Media, forms, and email-routing assets.
+Use START_HERE_V27.txt for the current trucking corrections and exact commit name.
 
-Current commit message:
-WAYFORTH V26 — Electric Route Flow, Car Headlights & Ship-a-Car Border Alignment
+Commit name:
+WAYFORTH V27 — True Headlight Flashes & Build-Style Ship-a-Car Pulse
 
-Deployment remains an update to the existing GitHub/Vercel repository; keep index.html, app.js, styles.css, and scenes-data.js. Vercel Build Command: node patch-wayforth.js.
+V27 fixes:
+- Road-car flash effects now sit on the visible headlights of both background cars.
+- Ship a Car uses the Build-style category pulse rhythm while keeping the highlight border fixed to the card edges.
+- The Ship a Car click area matches the corrected card bounds.
+- Electric route animation, blue/cyan map pulses, approved artwork, quote forms, and email-routing assets are preserved.
+
+Deployment remains an update to the existing GitHub/Vercel repository; keep index.html, app.js, styles.css and scenes-data.js. Vercel Build Command: node patch-wayforth.js.
 
 ----------------------------------------------------------------
 

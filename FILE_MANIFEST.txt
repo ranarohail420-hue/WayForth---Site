@@ -1,11 +1,11 @@
-WAYFORTH V26 — CURRENT UPDATE
+WAYFORTH V27 — CURRENT UPDATE
 =============================
 
 Current trucking page: wayforth-trucking-v22.html
 Current build integration: patch-wayforth.js
-Current deploy instructions: START_HERE_V26.txt
+Current deploy instructions: START_HERE_V27.txt
 
-V26 changes: electric-current dash and spark follow the existing Chicago-to-Dallas route without a separate static glowing line; road-car flashes align with the headlights; map pulse points stay blue/cyan; Ship a Car card highlight/click area align to the card border without scaling away from it. Approved truck flashes and glowing value icons are preserved.
+V27 changes: road-car flashes aligned to both background cars' visible headlights; Ship a Car border and click area aligned to the card's baked-in edges; category-style pulse rhythm adopted from Build Residential/Commercial without shifting the border. Electric route current, blue/cyan map pulses, approved artwork, forms, and email routing remain preserved.
 
 WAYFORTH V5.19 — FILE MANIFEST
 ==============================

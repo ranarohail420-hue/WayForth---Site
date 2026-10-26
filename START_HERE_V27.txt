@@ -1,0 +1,22 @@
+WAYFORTH V27 — TRUCKING HEADLIGHT + SHIP-A-CAR PULSE FIX
+======================================================
+
+COMMIT NAME
+WAYFORTH V27 — True Headlight Flashes & Build-Style Ship-a-Car Pulse
+
+WHAT CHANGED
+------------
+1. Repositioned the four road-car flashes onto the visible left/right headlights of both background cars. The main truck's two headlight flashes are unchanged.
+2. Replaced the old fast glow-only Ship a Car highlight with the same 3.35-second category-card pulse rhythm used on Build Residential/Commercial. The border remains locked to the baked-in card edges, so it does not float or scale out of alignment.
+3. Tightened the Ship a Car click area to the same corrected card bounds.
+4. Preserved the electric-current route animation, blue/cyan map pulses, three gold value-icon rings, approved artwork, quote forms, and email-routing endpoint.
+
+DEPLOY
+------
+1. Extract this ZIP into the ROOT of the existing WAYFORTH GitHub repository, replacing matching files.
+2. Keep the repository's existing index.html, app.js, styles.css, and scenes-data.js.
+3. Keep the Vercel Build Command set to: node patch-wayforth.js
+4. Commit and push using the commit name above.
+5. After Vercel finishes deploying, hard-refresh the site and check the two road cars' headlight flashes and the Ship a Car border pulse.
+
+This is an update bundle for the existing repository, not a standalone full-site export. No live Vercel deployment was performed from this package.
