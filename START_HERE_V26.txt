@@ -1,0 +1,27 @@
+WAYFORTH V26 — TRUCKING ELECTRIC ROUTE + HEADLIGHT + CARD ALIGNMENT
+=================================================================
+
+This is an update bundle for the existing WAYFORTH GitHub/Vercel repository.
+It keeps the approved Home, Build, Media, forms, and email-routing setup.
+
+V26 corrections
+---------------
+1. Removed the separate static glowing route line. A short electric-current segment and spark now travel along the existing Chicago-to-Dallas route artwork.
+2. Repositioned the two road-car flash effects onto the visible headlight locations. The approved main-truck flashes are unchanged.
+3. Kept the map pulse points blue/cyan.
+4. Aligned the Ship a Car highlight and click area to the card border. The highlight now pulses by glow only, without scaling away from the border.
+5. Matched the trucking stage and route SVG dimensions to the approved artwork to reduce overlay drift.
+
+COMMIT MESSAGE
+--------------
+WAYFORTH V26 — Electric Route Flow, Car Headlights & Ship-a-Car Border Alignment
+
+DEPLOY
+------
+1. Extract this ZIP into the root of the existing WAYFORTH GitHub repository, replacing matching files.
+2. Keep the repository's existing index.html, app.js, styles.css, and scenes-data.js.
+3. Keep the Vercel Build Command set to: node patch-wayforth.js
+4. Commit and push using the commit message above.
+5. After deployment, hard-refresh the site and test the trucking landing animation.
+
+This ZIP is an update bundle, not a standalone full-site export. No live deployment was performed from this package.

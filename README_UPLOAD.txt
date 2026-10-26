@@ -1,3 +1,16 @@
+WAYFORTH V26 — CURRENT UPDATE
+=============================
+
+Use START_HERE_V26.txt for the current trucking correction and exact commit message.
+This update keeps the approved Home, Build, Media, forms, and email-routing assets.
+
+Current commit message:
+WAYFORTH V26 — Electric Route Flow, Car Headlights & Ship-a-Car Border Alignment
+
+Deployment remains an update to the existing GitHub/Vercel repository; keep index.html, app.js, styles.css, and scenes-data.js. Vercel Build Command: node patch-wayforth.js.
+
+----------------------------------------------------------------
+
 WAYFORTH V5.19 — CUSTOMER-FRIENDLY BUILD QUOTE FLOW
 
 This update keeps the approved Build design and replaces the large informational boxes with cleaner, customer-led guidance.
