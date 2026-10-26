@@ -1,0 +1,16 @@
+WAYFORTH V25 — TRUCKING ANIMATION CORRECTIONS
+=============================================
+
+This package is based directly on the approved V24 trucking composition.
+Only the requested animation/alignment corrections were made:
+
+1. Trust/value glow circles resized and repositioned to sit directly on the original icon borders.
+2. Main truck and road-vehicle flash overlays moved onto the actual headlight locations.
+3. Map pulse nodes changed from white to blue/cyan to match the map artwork.
+4. Chicago → Dallas route overlay changed from moving dotted marks to a continuous electric-current effect with a traveling energy spark.
+
+All approved trucking artwork, four service cards, forms, email API, Home and BUILD assets remain in the package.
+
+COMMIT NAME
+-----------
+WAYFORTH V25 — Trucking Alignment, Headlights, Blue Map & Electric Route
