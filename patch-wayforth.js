@@ -1,4 +1,4 @@
-/* WAYFORTH V5.18 — clearer cart labels, custom-unit notice, commercial wholesale guidance, and refined hero blend. */
+/* WAYFORTH V5.19 — cleaner customer quote flow and contextual custom-unit help. */
 'use strict';
 const fs=require('fs'),path=require('path');const root=process.cwd(),dist=path.join(root,'dist');
 const file=(n)=>path.join(dist,n);const exists=(n)=>fs.existsSync(file(n));
@@ -37,5 +37,5 @@ if(!buildEntry)throw Error('BUILD scene entry not found in scenes-data.js.');
 const nextBuild=Buffer.from(page,'utf8').toString('base64');
 data=data.replace(buildEntry[0],buildEntry[1]+nextBuild+buildEntry[3]);
 write('scenes-data.js',data);
-console.log('WAYFORTH V5.18 build OK —',fs.readdirSync(dist).length,'files. Shared six-material cart, clearer item names, custom-unit notice, commercial wholesale guidance, and refined hero blend are ready.');
+console.log('WAYFORTH V5.19 build OK —',fs.readdirSync(dist).length,'files. Shared six-material cart, customer-friendly commercial copy, contextual custom-unit help, and a cleaner materials screen are ready.');
 }catch(e){console.error('WAYFORTH V5.18:',e.stack||e);process.exitCode=1}

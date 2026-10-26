@@ -1,15 +1,15 @@
-WAYFORTH V5.18 — START HERE
+WAYFORTH V5.19 — START HERE
 
 COMMIT NAME
-WAYFORTH V5.18 — Cart Clarity, Custom Units, Wholesale Notice & Hero Blend Fix
+WAYFORTH V5.19 — Customer-Friendly Build Quote Flow & Clean Materials UX
 
 KEY UPDATES
-1. Bigger cart item names for quick recognition.
-2. “Custom” is the last unit option; “Load” is not shown.
-3. Dismissible note explains custom measurement/unit confirmation by the consulting and accounts team.
-4. Commercial has a separate wholesale/bulk discount notice. Residential and Commercial keep the same six approved materials and images.
-5. Refined hero-image left edge blend to reduce the dark/blurred seam.
-6. “← Home Page” returns to the main site Home scene.
+1. Removed the large custom-unit box.
+2. If a customer chooses Custom as a unit, a short, contextual helper appears next to that unit selector.
+3. Removed the separate Commercial discount banner.
+4. Commercial copy now invites customers to select materials and quantities and explains that WAYFORTH will prepare a tailored quote and review wholesale pricing.
+5. Residential copy is also customer-focused and references the selected plot size.
+6. Approved materials, images, cart behavior, and navigation remain unchanged.
 
 UPLOAD STEPS
 - Extract the ZIP.

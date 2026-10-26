@@ -1,13 +1,13 @@
-WAYFORTH V5.18 — FILE MANIFEST
+WAYFORTH V5.19 — FILE MANIFEST
 ==============================
 
 Core Build page and integration:
-- wayforth-build-v5.html — refined hero image blend, residential plot selection, shared six-material browser/cart, larger cart item names, custom-unit notice, commercial wholesale guidance, and Home Page navigation.
+- wayforth-build-v5.html — approved Build design, shared six-material cart, customer-friendly quote copy, contextual custom-unit helper, and existing navigation.
 - patch-wayforth.js — integrates the updated Build page into the existing WAYFORTH site during Vercel build.
 - vercel.json — Build deployment configuration.
 
 Hero and category imagery:
-- build-commercial-hero-wide.webp — new panoramic construction hero image with full edge-to-edge scenery.
+- build-commercial-hero-wide.webp — panoramic construction hero image.
 - build-commercial-scene.webp — Commercial category card image.
 - build-residential-card.webp — Residential category card image.
 - build-residential-scene.webp — retained approved supporting image.
@@ -43,10 +43,8 @@ Preserved approved main-site assets:
 
 The ZIP is an update bundle. Keep the existing repository core files (index.html, app.js, styles.css, scenes-data.js).
 
-V5.18 additions:
-- Larger cart material names for easier reading.
-- Custom unit is the final unit option; legacy Load values are converted to Custom.
-- Dismissible custom-unit explanation for customers.
-- Commercial-only wholesale / bulk discount guidance banner.
-- Softer left-edge blend and adjusted framing on the Build hero image.
-- Cart navigation button returns to Home Page.
+V5.19 updates:
+- Removed large top-level custom-unit notice.
+- Custom-unit guidance appears only after the customer selects Custom, beside the relevant unit selector.
+- Removed the separate commercial discount banner.
+- Replaced internal-sounding commercial and residential instructions with customer-led quote copy.
