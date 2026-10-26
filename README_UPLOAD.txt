@@ -1,3 +1,31 @@
+WAYFORTH V30 — CURRENT UPDATE
+=============================
+
+Use START_HERE_V30.txt for the latest trucking form changes and exact commit name.
+
+Commit name:
+WAYFORTH V30 — Trucking Form Vehicle Catalog, Date Guard & Transport Choices
+
+V30 is a form-only update over V29:
+- High-contrast white calendar icon; dates before today are blocked/validated.
+- Open Carrier is labelled “Save ~30%”; Enclosed Carrier is labelled “More Protection”.
+- Vehicle type is selected with visual buttons, followed by a 1981–2028 year dropdown and US-market make/model options from NHTSA vPIC where available.
+- An Other / Not Listed route is available for vehicles missing from the catalog.
+- Operability uses the reference-style selection buttons and contextual non-operable guidance.
+- Boat form follows the same interaction pattern using vessel terminology and boat-specific options.
+
+The approved landing page, animation, artwork, logo behavior, Build/Home files, quote endpoint, and email-routing configuration are preserved.
+
+DEPLOY
+1. Extract this ZIP into the ROOT of the existing WAYFORTH GitHub repository, replacing matching files only.
+2. Keep index.html, app.js, styles.css, and scenes-data.js.
+3. Keep the Vercel Build Command: node patch-wayforth.js
+4. Commit using the exact message above and test the Car and Boat form flows.
+
+No live Vercel deployment has been performed from this package.
+
+----------------------------------------------------------------
+
 WAYFORTH V27 — CURRENT UPDATE
 =============================
 

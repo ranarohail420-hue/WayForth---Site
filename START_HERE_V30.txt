@@ -1,0 +1,36 @@
+WAYFORTH V30 — TRUCKING FORM VEHICLE CATALOG & DATE GUARD
+=========================================================
+
+COMMIT NAME
+WAYFORTH V30 — Trucking Form Vehicle Catalog, Date Guard & Transport Choices
+
+FORM-ONLY CHANGES FROM V29
+- Calendar icon is now white/high-contrast against the midnight-blue form.
+- Pickup dates cannot be selected or submitted before today's local date. This applies to car, boat, and freight date fields.
+- Transport Type cards now read Open — Save ~30% and Enclosed — More Protection.
+- Car Vehicle Type is a clear four-button selection: Car / Sedan, SUV / Truck, Pickup Truck, and Van / RV.
+- Vehicle year is a dropdown from 1981 through 2028.
+- Make options load from the NHTSA vPIC vehicle dataset by vehicle category. Model options are queried by make, model year, and category where the dataset supports that year. An Other / Not Listed path allows a customer to enter an unlisted make/model.
+- Vehicle operability uses the reference-style Yes — It Runs / No — Non-Running choices. Selecting non-running shows a short, contextual loading/insurance note.
+- Boat form follows the same route → vessel → contact pattern with vessel-type buttons, year, boat make/model selectors, vessel operability, and boat-specific handling guidance. Other / Not Listed lets customers enter a make/model that is not in the included common US boat-brand list.
+- Existing quote submission endpoint and email routing remain unchanged.
+
+CATALOG NOTE
+Car makes/models use NHTSA's vPIC API, a manufacturer-reported US-market dataset. Model-year-specific model data is available through the API for 1996 and newer; older model years use the broader make-model catalog plus an Other / Not Listed fallback. The API can be rate-limited or may not yet list future-year models, so the fallback is retained.
+
+UNCHANGED
+- Approved trucking landing artwork and layout
+- Truck/car headlight flashes, map pulses, and electric-current route animation
+- Value-icon glow and Ship-a-Car pulse
+- Clickable WAYFORTH Trucking logo / Home navigation
+- Build page, Home page, images, and approved branding
+- API endpoint path: /api/trucking-inquiry
+
+DEPLOY
+1. Extract this ZIP into the ROOT of the existing WAYFORTH GitHub repository and replace matching files.
+2. Keep the repository's existing index.html, app.js, styles.css, and scenes-data.js.
+3. Keep the Vercel Build Command: node patch-wayforth.js
+4. Commit with the exact message above.
+5. After deployment, test Ship a Car → Route → Vehicle → Contact and Ship a Boat → Route → Boat → Contact. Verify that yesterday's date cannot be selected and that the make/model dropdowns populate when the year/category are selected.
+
+This is an update bundle for the existing repository. No live deployment was performed by this package build.

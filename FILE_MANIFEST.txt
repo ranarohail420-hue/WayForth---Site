@@ -1,11 +1,13 @@
-WAYFORTH V27 — CURRENT UPDATE
+WAYFORTH V30 — CURRENT UPDATE
 =============================
 
 Current trucking page: wayforth-trucking-v22.html
 Current build integration: patch-wayforth.js
-Current deploy instructions: START_HERE_V27.txt
+Current deploy instructions: START_HERE_V30.txt
 
-V27 changes: road-car flashes aligned to both background cars' visible headlights; Ship a Car border and click area aligned to the card's baked-in edges; category-style pulse rhythm adopted from Build Residential/Commercial without shifting the border. Electric route current, blue/cyan map pulses, approved artwork, forms, and email routing remain preserved.
+V30 form changes: high-contrast calendar icon; today-or-forward date guard; Open/Enclosed explanatory labels; visual car and boat type selections; 1981–2028 year dropdowns; NHTSA vPIC make/model lookup for car shipments; custom Other / Not Listed fields; reference-style operability choices and boat-specific handling guidance.
+
+All other approved page artwork, landing animations, Build/Home files, and quote/email routing are preserved from V29.
 
 WAYFORTH V5.19 — FILE MANIFEST
 ==============================
