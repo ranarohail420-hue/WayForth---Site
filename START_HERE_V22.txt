@@ -1,0 +1,22 @@
+WAYFORTH V22 — TRUCKING LANDING RESTORE
+
+This package keeps the approved HOME and BUILD work and updates the TRUCKING landing experience only.
+
+Changes:
+- Restored the energetic original WAYFORTH Trucking hero as the visual anchor.
+- Rebuilt the top logo as a clean transparent WF + WAYFORTH TRUCKING lockup (no pasted rectangular logo image).
+- Fixed trucking page wheel/trackpad scrolling inside the embedded scene.
+- Moved the three customer promise points from the bottom into a compact premium strip near the top.
+- Reworked Car, Boat, Load and Carrier cards with shorter professional copy and alternating pulse/float animation.
+- Kept the V21 service forms and /api/trucking-inquiry email-routing endpoint intact for the next forms pass.
+
+UPLOAD
+Extract the ZIP and upload its contents to the ROOT of the existing GitHub repository, replacing matching files.
+Keep the existing index.html, app.js, styles.css and scenes-data.js in the repository.
+The build patch uses those current working files.
+
+VERCEL BUILD COMMAND
+node patch-wayforth.js
+
+COMMIT
+WAYFORTH V22 — Restored Trucking Landing, Scroll Fix & Modern Service Cards

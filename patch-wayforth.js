@@ -1,4 +1,4 @@
-/* WAYFORTH V21 — trucking service forms + approved BUILD preserved. */
+/* WAYFORTH V22 — restored trucking energy + service landing polish; approved BUILD preserved. */
 'use strict';
 const fs=require('fs'),path=require('path');const root=process.cwd(),dist=path.join(root,'dist');
 const file=(n)=>path.join(dist,n);const exists=(n)=>fs.existsSync(file(n));
@@ -37,13 +37,13 @@ if(!buildEntry)throw Error('BUILD scene entry not found in scenes-data.js.');
 const nextBuild=Buffer.from(page,'utf8').toString('base64');
 data=data.replace(buildEntry[0],buildEntry[1]+nextBuild+buildEntry[3]);
 
-/* TRUCKING V21: car shipping first, boat shipping, freight, and carrier forms. */
-const truckingPage=fs.existsSync(path.join(root,'wayforth-trucking-v21.html'))?fs.readFileSync(path.join(root,'wayforth-trucking-v21.html'),'utf8'):'';
-if(!truckingPage)throw Error('Missing wayforth-trucking-v21.html.');
+/* TRUCKING V22: restored animated landing + modern service choices; existing service forms preserved. */
+const truckingPage=fs.existsSync(path.join(root,'wayforth-trucking-v22.html'))?fs.readFileSync(path.join(root,'wayforth-trucking-v22.html'),'utf8'):'';
+if(!truckingPage)throw Error('Missing wayforth-trucking-v22.html.');
 const truckingEntry=data.match(/(\btrucking\s*:\s*['"])([A-Za-z0-9+/=]+)(['"])/);
 if(!truckingEntry)throw Error('TRUCKING scene entry not found in scenes-data.js.');
 const nextTrucking=Buffer.from(truckingPage,'utf8').toString('base64');
 data=data.replace(truckingEntry[0],truckingEntry[1]+nextTrucking+truckingEntry[3]);
 write('scenes-data.js',data);
-console.log('WAYFORTH V21 build OK —',fs.readdirSync(dist).length,'files. Approved BUILD preserved; trucking now includes car shipping, boat shipping, freight and carrier forms.');
-}catch(e){console.error('WAYFORTH V21:',e.stack||e);process.exitCode=1}
+console.log('WAYFORTH V22 build OK —',fs.readdirSync(dist).length,'files. Approved BUILD preserved; trucking landing restored with animated hero, modern service cards and existing forms.');
+}catch(e){console.error('WAYFORTH V22:',e.stack||e);process.exitCode=1}

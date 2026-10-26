@@ -32,3 +32,12 @@ V5.20 — FINAL BUILD BRANDING POLISH
 V21 TRUCKING UPDATE
 -------------------
 Adds wayforth-trucking-v21.html, four trucking service forms, car/boat service imagery, and /api/trucking-inquiry.js for configurable Vercel email routing. See START_HERE_V21.txt.
+
+
+V22 TRUCKING LANDING UPDATE
+- Clean integrated WAYFORTH Trucking logo
+- Original hero energy restored with subtle map/headlight animation
+- Wheel/trackpad scroll fix
+- Customer promise strip moved near top
+- Modern alternating service-card pulse
+- Existing V21 forms/email endpoint preserved
