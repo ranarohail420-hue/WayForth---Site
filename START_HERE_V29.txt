@@ -1,0 +1,20 @@
+WAYFORTH V29 — FORM STEPPER & PREMIUM LIGHTER FORM THEME
+=======================================================
+Only the Trucking quote FORM layer changed from V28.
+
+Changes:
+- Moved the 3-step progress indicator inside the form content, directly above the current step details.
+- Ship a Car reads: 1 ROUTE → 2 VEHICLE → 3 CONTACT.
+- Other service forms receive matching contextual step labels without changing their fields or submission behavior.
+- Brightened the form from near-black to a premium midnight-blue/glass theme.
+- Improved input, choice, focus, button, and divider contrast.
+
+UNCHANGED:
+- Trucking landing artwork/layout
+- Truck/car headlights and map animation
+- Electric route animation
+- Value icon glow
+- Ship-a-Car landing pulse
+- Landing navigation/logo behavior
+- Form field definitions and /api/trucking-inquiry submission endpoint
+- BUILD and Home files
