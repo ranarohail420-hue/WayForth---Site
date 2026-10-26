@@ -28,3 +28,7 @@ V5.20 — FINAL BUILD BRANDING POLISH
 - Kept the smaller project-status line (Residential plot / Commercial bulk order quote).
 - Highlighted the words Residential and Commercial in the main materials heading using the WAYFORTH gold brand color.
 - No approved cart, material catalog, pricing copy, project flow, images, or Home/Trucking/Media behavior was changed.
+
+V21 TRUCKING UPDATE
+-------------------
+Adds wayforth-trucking-v21.html, four trucking service forms, car/boat service imagery, and /api/trucking-inquiry.js for configurable Vercel email routing. See START_HERE_V21.txt.

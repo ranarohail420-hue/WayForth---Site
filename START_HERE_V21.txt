@@ -1,0 +1,67 @@
+WAYFORTH V21 — TRUCKING / CAR SHIPPING FIRST
+============================================
+
+THIS PACKAGE BUILDS ON THE APPROVED V5.20 SITE.
+The finalized HOME and BUILD assets are preserved. V21 replaces only the TRUCKING scene and adds the trucking inquiry email endpoint.
+
+TRUCKING V21 EXPERIENCE
+-----------------------
+1. SHIP A CAR — primary service, using the supplied car-carrier reference image.
+2. SHIP A BOAT — prominent secondary service, using the supplied multi-boat transport image.
+3. MOVE A LOAD — general freight / materials / equipment form.
+4. I'M A CARRIER — carrier / trucker network form.
+
+All four cards open dedicated multi-step forms.
+Car Shipping follows the simple Route -> Vehicle -> Contact structure inspired by the AWZ form flow.
+
+EMAIL DELIVERY
+--------------
+The forms submit to /api/trucking-inquiry.
+The endpoint is included in this ZIP but requires Vercel Environment Variables before it can send real email.
+
+In Vercel -> Project -> Settings -> Environment Variables add:
+
+RESEND_API_KEY
+  Your Resend API key.
+
+WAYFORTH_FROM_EMAIL
+  A sender on a verified domain, for example:
+  WAYFORTH Website <quotes@updates.wayforth.ltd>
+
+WAYFORTH_LEADS_EMAIL
+  The destination inbox or inboxes.
+  Examples:
+  info@wayforth.ltd
+  sales@wayforth.ltd
+  support@wayforth.ltd,sales@wayforth.ltd
+
+Multiple recipients can be comma-separated. This lets support receive every lead, sales receive every lead, or both teams receive the same submission.
+
+After setting the variables, redeploy once.
+
+GITHUB / VERCEL DEPLOYMENT
+--------------------------
+1. Download and extract the ZIP.
+2. Upload the extracted contents into the ROOT of the existing WAYFORTH GitHub repository.
+3. Replace matching package files.
+4. KEEP the existing repository core files such as index.html, app.js, styles.css and scenes-data.js.
+5. Keep the Vercel build command: node patch-wayforth.js
+6. Commit with:
+   WAYFORTH V21 — Car Shipping First Trucking Forms & Email Routing
+7. Let Vercel deploy.
+
+TEST ORDER
+----------
+1. Home -> Trucking.
+2. Confirm the existing WAYFORTH Trucking visual identity remains recognizable.
+3. Open Ship a Car and complete Route -> Vehicle -> Contact.
+4. Open Ship a Boat and confirm route + boat dimension fields.
+5. Open Move a Load and Carrier forms.
+6. Confirm Home navigation still works.
+7. After email variables are configured, submit a real test and verify the inbox receives it.
+
+NOTES
+-----
+- Car and Boat reference images were supplied by the user for this project.
+- Existing approved BUILD files remain in the package unchanged from V5.20.
+- V21 does not expose the destination sales/support email address in client-side HTML.

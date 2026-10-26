@@ -18,6 +18,12 @@
   overlay.querySelector('[data-aux-quote]').addEventListener('click',()=>{
     close(); const btn=document.querySelector('[data-open="quote"]');if(btn)btn.click();
   });
+
+  window.addEventListener('message',e=>{
+    if(!e.data||e.data.type!=='wf-aux')return;
+    const copy=auxCopy[e.data.name]||auxCopy.contact;
+    heading.textContent=copy.title;description.textContent=copy.description;overlay.classList.add('open');
+  });
   overlay.addEventListener('click',e=>{if(e.target===overlay)close()});
   document.addEventListener('keydown',e=>{if(e.key==='Escape')close()});
 })();
