@@ -48,3 +48,12 @@ V5.19 updates:
 - Custom-unit guidance appears only after the customer selects Custom, beside the relevant unit selector.
 - Removed the separate commercial discount banner.
 - Replaced internal-sounding commercial and residential instructions with customer-led quote copy.
+
+
+V5.20 — FINAL BUILD BRANDING POLISH
+------------------------------------
+- Removed the redundant large Residential/Commercial Materials & Quote Cart title from the sticky materials header.
+- Added the approved WAYFORTH / RAW MATERIALS logo lockup to the materials header and made it clickable to Home.
+- Kept the smaller project-status line (Residential plot / Commercial bulk order quote).
+- Highlighted the words Residential and Commercial in the main materials heading using the WAYFORTH gold brand color.
+- No approved cart, material catalog, pricing copy, project flow, images, or Home/Trucking/Media behavior was changed.

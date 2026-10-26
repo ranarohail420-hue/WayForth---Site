@@ -19,3 +19,12 @@ WAYFORTH V5.19 — Customer-Friendly Build Quote Flow & Clean Materials UX
 5. Wait for Vercel to deploy, then test Home → Build → Residential → Materials & Cart and Home → Build → Commercial.
 
 This is an update bundle for the existing repository, not a standalone full-site export. No live Vercel deployment has been performed from this package.
+
+
+V5.20 — FINAL BUILD BRANDING POLISH
+------------------------------------
+- Removed the redundant large Residential/Commercial Materials & Quote Cart title from the sticky materials header.
+- Added the approved WAYFORTH / RAW MATERIALS logo lockup to the materials header and made it clickable to Home.
+- Kept the smaller project-status line (Residential plot / Commercial bulk order quote).
+- Highlighted the words Residential and Commercial in the main materials heading using the WAYFORTH gold brand color.
+- No approved cart, material catalog, pricing copy, project flow, images, or Home/Trucking/Media behavior was changed.
