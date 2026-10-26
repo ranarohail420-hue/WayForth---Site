@@ -41,3 +41,7 @@ V22 TRUCKING LANDING UPDATE
 - Customer promise strip moved near top
 - Modern alternating service-card pulse
 - Existing V21 forms/email endpoint preserved
+
+V23 TRUCKING ANIMATION PASS
+---------------------------
+Use START_HERE_V23.txt for the latest trucking notes. V23 preserves the existing forms/email endpoint and focuses on the approved landing layout and motion.

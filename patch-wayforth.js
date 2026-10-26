@@ -1,4 +1,4 @@
-/* WAYFORTH V22 — restored trucking energy + service landing polish; approved BUILD preserved. */
+/* WAYFORTH V23 — approved trucking landing + animation pass; approved BUILD preserved. */
 'use strict';
 const fs=require('fs'),path=require('path');const root=process.cwd(),dist=path.join(root,'dist');
 const file=(n)=>path.join(dist,n);const exists=(n)=>fs.existsSync(file(n));
@@ -45,5 +45,5 @@ if(!truckingEntry)throw Error('TRUCKING scene entry not found in scenes-data.js.
 const nextTrucking=Buffer.from(truckingPage,'utf8').toString('base64');
 data=data.replace(truckingEntry[0],truckingEntry[1]+nextTrucking+truckingEntry[3]);
 write('scenes-data.js',data);
-console.log('WAYFORTH V22 build OK —',fs.readdirSync(dist).length,'files. Approved BUILD preserved; trucking landing restored with animated hero, modern service cards and existing forms.');
+console.log('WAYFORTH V23 build OK —',fs.readdirSync(dist).length,'files. Approved BUILD preserved; trucking landing finalized with headlight flashes, map route motion, glowing trust icons, fast Ship-a-Car pulse and existing forms.');
 }catch(e){console.error('WAYFORTH V22:',e.stack||e);process.exitCode=1}

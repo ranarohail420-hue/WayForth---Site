@@ -1,0 +1,23 @@
+WAYFORTH V23 — FINAL TRUCKING LANDING ANIMATION PASS
+===================================================
+
+This package builds on the approved Home and BUILD work and the V22 trucking forms.
+
+V23 TRUCKING FRONT-PAGE CHANGES
+-------------------------------
+- Restored the approved trucking visual hierarchy: hero first, trust values integrated at the bottom of the hero, four service cards in one row on desktop.
+- Added flashing headlight overlays positioned over the main truck and visible road vehicle lights.
+- Added animated map-network nodes and a moving Chicago-to-Dallas route spark.
+- Added pulsing/glowing gold trust-value icons.
+- Made SHIP A CAR the primary fast-pulsing service card so customers immediately see the main service.
+- Kept Boat Shipping, Freight/Loads and Carrier Network cards interactive with softer staggered motion.
+- Removed the manual wheel interception code and restored native smooth page scrolling.
+- Existing Car / Boat / Freight / Carrier forms and /api/trucking-inquiry email route are preserved.
+
+GITHUB COMMIT
+-------------
+WAYFORTH V23 — Final Trucking Landing Animations & Car Shipping Focus
+
+DEPLOY
+------
+Extract the ZIP and upload its contents to your existing GitHub repository root, replacing matching files. Do not delete your existing core application files. Keep the Vercel build command as: node patch-wayforth.js
