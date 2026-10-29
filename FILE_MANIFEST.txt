@@ -1,3 +1,12 @@
+WAYFORTH V31 — CURRENT UPDATE
+=============================
+
+Current deploy instructions: START_HERE_V31.txt
+V31 changed files: wayforth-trucking-v22.html (form validation), api/trucking-inquiry.js (validated lead email endpoint), START_HERE_V31.txt, README_UPLOAD.txt, FILE_MANIFEST.txt.
+All other files are unchanged from V30.
+
+----------------------------------------------------------------
+
 WAYFORTH V30 — CURRENT UPDATE
 =============================
 

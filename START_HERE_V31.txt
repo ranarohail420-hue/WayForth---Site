@@ -1,0 +1,47 @@
+WAYFORTH V31 — TRUCKING FORM VALIDATION & HARDENED LEAD EMAIL ENDPOINT
+======================================================================
+
+COMMIT NAME
+WAYFORTH V31 — Trucking Form Validation & Hardened Lead Email Endpoint
+
+CHANGES FROM V30 (no visual or artwork changes)
+Trucking forms (wayforth-trucking-v22.html)
+- Phone / WhatsApp must contain 7 to 15 digits.
+- Freight: Requested Delivery Date cannot be before the Pickup Date.
+- Number of Vehicles must be at least 1 (whole number).
+- Required text fields no longer accept spaces only.
+- Browser autofill and the right mobile keyboard for name, email and phone.
+- Submission source tag updated to "WAYFORTH Trucking V31".
+
+Lead email endpoint (api/trucking-inquiry.js) — same path, same environment variables
+- Server-side validation: name, valid email and phone are required.
+- Limits on field count and field length; HTML is escaped; line breaks in notes are kept.
+- Only same-site requests are accepted (blocks other websites from posting to the endpoint).
+- Contact details appear first in the email; subject includes the customer name; reply-to is the customer.
+- Email-provider call times out after 8 seconds with a clear error message.
+
+UNCHANGED
+- Home, Build, Media, artwork, animation, logo behavior, NHTSA vehicle catalog, date guard
+- Vercel Build Command: node patch-wayforth.js
+- Existing repository files: index.html, app.js, styles.css, scenes-data.js
+
+DEPLOY
+1. Extract this ZIP into the ROOT of the existing WAYFORTH GitHub repository and replace matching files.
+2. Keep index.html, app.js, styles.css and scenes-data.js.
+3. Commit with the exact message above.
+4. In Vercel > Project > Settings > Environment Variables confirm these exist for Production AND Preview:
+   RESEND_API_KEY, WAYFORTH_FROM_EMAIL, WAYFORTH_LEADS_EMAIL (comma-separated for several recipients)
+   If they were just added or changed, redeploy once.
+5. Test after deployment:
+   - Ship a Car, Ship a Boat, Move a Load and Join as a Carrier: submit one real test each and confirm the email arrives.
+   - Type 123 as the phone number: it must be refused.
+   - Freight: pick a delivery date earlier than the pickup date: it must be refused.
+   - Build page: submit one materials quote and confirm the email arrives (see note below).
+
+NOTE
+The Build materials cart sends its request to the main site (index.html / app.js), which is not part of this ZIP. Confirm by test that Build quotes reach your inbox.
+
+This is an update bundle for the existing repository. No live deployment was performed by this package build.
+
+----------------------------------------------------------------
+
