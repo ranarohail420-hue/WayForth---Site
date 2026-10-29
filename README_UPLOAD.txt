@@ -1,3 +1,63 @@
+WAYFORTH V33 — TRUCKING FEATURE STRIP CLEANUP
+=============================================
+
+COMMIT NAME
+WAYFORTH V33 — Trucking Feature Strip Cleanup
+
+CHANGES FROM V32 (artwork only)
+- Removed the small description lines under the three feature headings:
+  "Send the details once; we route it to the right specialist."
+  "Route, timing and equipment details captured before follow-up."
+  "Availability and pricing are confirmed directly by WAYFORTH."
+- Re-centered each heading ("One request. One team.", "Clear transport planning.", "Real human follow-up.") vertically beside its ring icon.
+- Submission source tag updated to "WAYFORTH Trucking V33".
+
+UNCHANGED
+- Rings/icons, dividers, service cards, trailer, headline and everything else in the artwork
+- All V32 form features (make search, 2028-to-1980 year list), V31 validation and lead email endpoint
+- Vercel Build Command: node patch-wayforth.js
+- Existing repository files: index.html, app.js, styles.css, scenes-data.js
+
+DEPLOY
+1. Extract this ZIP into the ROOT of the existing WAYFORTH GitHub repository and replace matching files.
+2. Keep index.html, app.js, styles.css and scenes-data.js.
+3. Commit with the exact message above.
+4. After deployment, open the Trucking page and hard-refresh (Ctrl+Shift+R) so the new artwork loads.
+
+This is an update bundle for the existing repository. No live deployment was performed by this package build.
+
+----------------------------------------------------------------
+
+WAYFORTH V32 — MAKE SEARCH, YEAR ORDER & TRAILER BRANDING CLEANUP
+==================================================================
+
+COMMIT NAME
+WAYFORTH V32 — Vehicle Make Search, Year List Order & Trailer Branding Cleanup
+
+CHANGES FROM V31
+Ship a Car form (wayforth-trucking-v22.html)
+- Vehicle Make now has a search box above the dropdown. Type part of a make name (for example "toy"); the list narrows to matching makes, best matches first. If only one make matches it is selected automatically and its models load. If nothing matches, choose "Other / Not Listed" and type the make.
+- Year list now runs from 2028 at the top down to 1980 at the bottom (used by the car and boat forms).
+- Submission source tag updated to "WAYFORTH Trucking V32".
+
+Trucking artwork (trucking-final-approved.png)
+- The "WAYFORTH TRUCKING" wording on the side of the trailer was removed. The gold WF emblem on the trailer was kept. Nothing else in the artwork changed.
+
+UNCHANGED
+- Everything else from V31 (form validation, lead email endpoint), Home, Build, Media, animation, logo behavior, NHTSA catalog, date guard
+- Vercel Build Command: node patch-wayforth.js
+- Existing repository files: index.html, app.js, styles.css, scenes-data.js
+
+DEPLOY
+1. Extract this ZIP into the ROOT of the existing WAYFORTH GitHub repository and replace matching files.
+2. Keep index.html, app.js, styles.css and scenes-data.js.
+3. Commit with the exact message above.
+4. After deployment, test Ship a Car > Vehicle step: pick a year, type in the Make search box, pick a make and a model, and confirm 2028 is first and 1980 is last in the Year list. If the trailer still shows its old wording, hard-refresh the page (Ctrl+Shift+R).
+
+This is an update bundle for the existing repository. No live deployment was performed by this package build.
+
+----------------------------------------------------------------
+
 WAYFORTH V31 — TRUCKING FORM VALIDATION & HARDENED LEAD EMAIL ENDPOINT
 ======================================================================
 

@@ -1,3 +1,21 @@
+WAYFORTH V33 — CURRENT UPDATE
+=============================
+
+Current deploy instructions: START_HERE_V33.txt
+V33 changed files: trucking-final-approved.png (feature strip cleaned), wayforth-trucking-v22.html (source tag only), START_HERE_V33.txt, README_UPLOAD.txt, FILE_MANIFEST.txt.
+All other files are unchanged from V32.
+
+----------------------------------------------------------------
+
+WAYFORTH V32 — CURRENT UPDATE
+=============================
+
+Current deploy instructions: START_HERE_V32.txt
+V32 changed files: wayforth-trucking-v22.html (make search, year order), trucking-final-approved.png (trailer wording removed), START_HERE_V32.txt, README_UPLOAD.txt, FILE_MANIFEST.txt.
+All other files are unchanged from V31.
+
+----------------------------------------------------------------
+
 WAYFORTH V31 — CURRENT UPDATE
 =============================
 
