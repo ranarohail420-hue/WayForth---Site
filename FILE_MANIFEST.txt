@@ -1,3 +1,12 @@
+WAYFORTH V35 — CURRENT UPDATE
+=============================
+
+Current deploy instructions: START_HERE_V35.txt
+V35 changed files: trucking-final-approved.png (no circle arrows, wider GET QUOTE buttons, TRUCKER NETWORK), trucking-bleed.webp (NEW — full-width side fill), wayforth-trucking-v22.html (full-width layout, ?v=35, source tag), START_HERE_V35.txt, README_UPLOAD.txt, FILE_MANIFEST.txt.
+All other files are unchanged from V34.
+
+----------------------------------------------------------------
+
 WAYFORTH V34 — CURRENT UPDATE
 =============================
 

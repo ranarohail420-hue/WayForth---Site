@@ -1,3 +1,41 @@
+WAYFORTH V35 — TRUCKING FINAL: FULL-WIDTH PAGE, WIDER GET QUOTE BUTTONS & TRUCKER NETWORK
+=========================================================================================
+
+COMMIT NAME
+WAYFORTH V35 — Trucking Final: Full-Width Page, Wider Get Quote Buttons & Trucker Network
+
+CHANGES FROM V34
+1. Card buttons (trucking-final-approved.png)
+   - Removed the small circle-arrow icon to the left of every GET QUOTE button (all 4 cards).
+   - Each GET QUOTE button now stretches across that space; text re-centred, arrow kept on the right.
+2. Carrier card label: "CARRIER NETWORK" now reads "TRUCKER NETWORK" (same font, colour and size).
+3. No more empty side bars on wide screens
+   - New file trucking-bleed.webp: a soft, blurred continuation of the scene (trees, light streaks,
+     city glow) that fills the left and right of the page behind the artwork.
+   - The page now scales to fit the screen height, so the whole Trucking page (nav to buttons)
+     fills the window on laptops, 1080p and wide monitors.
+4. Images are loaded with ?v=35 so browsers pick up the new artwork without a hard refresh.
+5. Submission source tag updated to "WAYFORTH Trucking V35".
+
+UNCHANGED
+- All forms, validation, make search, year list and the lead email endpoint (api/trucking-inquiry.js)
+- Click areas, animations (map pulses, headlight flashes, route, Ship-a-Car pulse)
+- Home, Build, Media
+- Vercel Build Command: node patch-wayforth.js
+- Existing repository files: index.html, app.js, styles.css, scenes-data.js
+
+DEPLOY
+1. Extract this ZIP into the ROOT of the existing WAYFORTH GitHub repository and replace matching files.
+   (New file: trucking-bleed.webp — make sure it is uploaded too.)
+2. Keep index.html, app.js, styles.css and scenes-data.js.
+3. Commit with the exact message above.
+4. After deployment open the Trucking page on a wide screen and check: no dark side bars,
+   no circle arrows, "TRUCKER NETWORK" on the last card, each card still opens its form.
+
+This is an update bundle for the existing repository. No live deployment was performed by this package build.
+
+----------------------------------------------------------------
+
 WAYFORTH V34 — TRUCKING SLOGAN LAYOUT, CARD COPY TRIM & GET QUOTE BUTTONS
 ==========================================================================
 
