@@ -13,9 +13,9 @@ function copy(src,dst){fs.mkdirSync(dst,{recursive:true});
     else if(e.isFile()&&/\.(html?|css|js|json|webp|png|jpe?g|gif|svg|ico|txt|woff2?|ttf|mp4|webm|xml)$/i.test(e.name))fs.copyFileSync(s,d);
   }}
 try{
-  for(const f of ['index.html','wayforth-build-v5.html','wayforth-trucking-v22.html','wayforth-media.html','wf-home-scene.webp','wf-actual-logo-decal.png'])
+  for(const f of ['index.html','wayforth-build-v5.html','wayforth-trucking-v22.html','wayforth-media.html','wf-home-scene-hd.webp','wf-actual-logo-decal.png'])
     if(!fs.existsSync(path.join(root,f)))throw Error('Missing '+f+' at the repository root.');
   fs.rmSync(dist,{recursive:true,force:true});
   copy(root,dist);
-  console.log('WAYFORTH V38 build OK —',fs.readdirSync(dist).length,'files.');
-}catch(e){console.error('WAYFORTH V38:',e.message);process.exitCode=1}
+  console.log('WAYFORTH V39 build OK —',fs.readdirSync(dist).length,'files.');
+}catch(e){console.error('WAYFORTH V39:',e.message);process.exitCode=1}

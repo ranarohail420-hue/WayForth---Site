@@ -1,0 +1,24 @@
+WAYFORTH V39 — CIRCLE REVEAL TRANSITIONS + HD HOME SCENE (based on V38)
+========================================================================
+
+COMMIT NAME
+WAYFORTH V39 — Circle Reveal Transitions & HD Home Scene
+
+WHAT CHANGED FROM V38 (front page layout stays the same: BUILD / MOVE / CREATE panels)
+1. Circle Reveal is now the standard transition:
+   - Clicking BUILD, MOVE, CREATE or a menu item opens the page as a circle growing from the
+     exact spot you clicked, with a glowing ring in the division colour (gold / blue / purple)
+     and the WF logo while the page loads.
+   - Going back Home shrinks the circle back to that spot.
+   - Moving between pages (e.g. Build -> Trucking) closes and re-opens the circle from the centre.
+2. Home scene is sharper: new wf-home-scene-hd.webp (2x resolution, cleaned of compression blocks).
+3. No more zoomed-in scene: the whole picture (crane, globe, truck, Media office) is always shown
+   in full, with BUILD / MOVE / CREATE underneath it instead of on top of the picture.
+   On very wide monitors the sides are filled with a soft blurred glow.
+
+UNCHANGED: Trucking (V36), Build page, Media page, all forms and email delivery, vercel.json.
+
+DEPLOY
+1. Extract this ZIP into the ROOT of the WAYFORTH GitHub repository and replace matching files.
+2. Commit with the exact message above. Vercel settings stay the same.
+3. Open the preview, click each world and the Home links to see the Circle Reveal.
