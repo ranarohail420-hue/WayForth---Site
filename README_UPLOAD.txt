@@ -1,3 +1,40 @@
+WAYFORTH V36 — TRUCKING: TRUE WIDESCREEN ARTWORK & SPREAD-OUT SERVICE CARDS
+============================================================================
+
+COMMIT NAME
+WAYFORTH V36 — Trucking True Widescreen Artwork & Spread-Out Service Cards
+
+CHANGES (includes everything from V35)
+1. Artwork rebuilt as a real widescreen image (trucking-final-approved.png, now 1960 x 941):
+   - The scene itself was widened (trees, road light streaks, sky and skyline continue naturally).
+     No mirrored or stretched side panels on normal laptop / desktop screens.
+   - The four service cards are spread evenly across the full width with more breathing room.
+   - Kept from V35: no circle arrows, wider GET QUOTE buttons, "TRUCKER NETWORK" label.
+2. The page fills the full screen width on laptop and desktop screens; nav sits at the top.
+3. trucking-bleed.webp is now only used on ultra-wide monitors (wider than about 2:1),
+   as a soft blurred fade at the far edges.
+4. All click areas and animations re-aligned to the new layout
+   (menu, Get a Quote, 4 cards, icon glow rings, headlight flashes, map dots, Chicago–Dallas route,
+   Ship-a-Car pulse).
+5. Images load with ?v=36 (no hard refresh needed). Source tag "WAYFORTH Trucking V36".
+
+UNCHANGED
+- All forms, validation and the lead email endpoint (api/trucking-inquiry.js)
+- Home, Build, Media
+- Vercel Build Command: node patch-wayforth.js
+- Existing repository files: index.html, app.js, styles.css, scenes-data.js
+
+DEPLOY
+1. Extract this ZIP into the ROOT of the existing WAYFORTH GitHub repository and replace matching files.
+2. Keep index.html, app.js, styles.css and scenes-data.js.
+3. Commit with the exact message above.
+4. After deployment check the Trucking page: full width, cards spread out, each card opens its form,
+   top menu items and Get a Quote still click correctly.
+
+This is an update bundle for the existing repository. No live deployment was performed by this package build.
+
+----------------------------------------------------------------
+
 WAYFORTH V35 — TRUCKING FINAL: FULL-WIDTH PAGE, WIDER GET QUOTE BUTTONS & TRUCKER NETWORK
 =========================================================================================
 
