@@ -8,6 +8,8 @@
 <meta name="theme-color" content="#04070f">
 <link rel="icon" href="wf-actual-logo-decal.png">
 <link rel="preload" href="wf-home-scene-hd.webp" as="image">
+<link rel="stylesheet" href="wf-header.css?v=42">
+<script src="wf-guide.js?v=42"></script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,300..900&family=Manrope:wght@400;500;700&display=swap">
@@ -24,9 +26,7 @@ button{font:inherit;color:inherit}
 :focus-visible{outline:2px solid var(--gold-2);outline-offset:3px}
 
 /* ---------- top bar ---------- */
-.nav{position:fixed;z-index:15;top:0;left:0;right:0;display:flex;align-items:center;gap:24px;
-  padding:calc(18px + env(safe-area-inset-top,0px)) max(28px,env(safe-area-inset-right,0px)) 18px max(28px,env(safe-area-inset-left,0px));
-  background:linear-gradient(to bottom,rgba(4,7,15,.85),rgba(4,7,15,0));transition:opacity .4s}
+.nav{position:fixed;z-index:15;top:0;left:0;right:0;transition:opacity .4s}
 .brand{display:flex;align-items:center;gap:12px;color:var(--text);text-decoration:none;background:none;border:0;cursor:pointer;padding:0}
 .brand img{width:46px;height:auto;user-select:none;-webkit-user-drag:none}
 .brand,.nav{user-select:none;-webkit-user-select:none}
@@ -133,14 +133,17 @@ body.loading:not(.in-page) .loader{display:block}
 </head>
 <body>
 
-<header class="nav">
-  <button class="brand" data-open="home" aria-label="WAYFORTH home"><img src="wf-actual-logo-decal.png" alt=""><b>WAYFORTH</b></button>
-  <nav class="links" aria-label="Primary">
-    <button data-open="build">Build</button><button data-open="trucking">Trucking</button><button data-open="media">Media</button>
-    <button data-aux="about">About</button><button data-aux="contact">Contact</button><button data-aux="support">Support</button>
+<header class="nav wfh" id="hdr"><div class="wfh-bar">
+  <button class="wfh-logo" data-open="home" aria-label="WAYFORTH home"><img src="wf-hdr-logo.png" alt="WAYFORTH"></button>
+  <nav class="wfh-nav" aria-label="Primary">
+    <button class="on" data-open="home">Home</button>
+    <button data-aux="about">About Us</button>
+    <div class="wfh-dd" id="svc"><button aria-haspopup="true" aria-expanded="false" id="svcBtn">Services</button>
+      <div class="wfh-menu" role="menu"><button role="menuitem" data-open="build">Build <small>Construction material</small></button><button role="menuitem" data-open="trucking">Trucking <small>Cars, freight, loads</small></button><button role="menuitem" data-open="media">Media <small>Creators &amp; revenue</small></button></div></div>
+    <button data-aux="contact">Contact Us</button>
   </nav>
-  <button class="quote" data-open="quote">GET A QUOTE →</button>
-</header>
+  <button class="wfh-quote" data-open="quote" aria-label="Get a quote"><img src="wf-hdr-quote.png" alt=""></button>
+</div></header>
 
 <main id="home" aria-label="WAYFORTH — choose a division">
   <canvas class="fxall" id="fxall" aria-hidden="true"></canvas>
@@ -198,7 +201,7 @@ function ensure(name){
   if(frames[name])return frames[name];
   const f=document.createElement('iframe');f.title='WAYFORTH '+name;f.dataset.p=name;f.dataset.ready='';
   f.addEventListener('load',()=>{f.dataset.ready='1';f.dispatchEvent(new Event('wf-ready'));},{once:true});
-  f.src=PAGES[name]+'?v=41';pageEl.appendChild(f);frames[name]=f;return f;}
+  f.src=PAGES[name]+'?v=42';pageEl.appendChild(f);frames[name]=f;return f;}
 function whenReady(f){return f.dataset.ready==='1'?Promise.resolve():new Promise(r=>{body.classList.add('loading');f.addEventListener('wf-ready',()=>{body.classList.remove('loading');r();},{once:true});});}
 function play(kf,opt){return new Promise(r=>{if(reduced){r();return;}anim=pageEl.animate(kf,opt);anim.onfinish=()=>{anim=null;r();};anim.oncancel=()=>{anim=null;r();};});}
 function settle(){ /* make the screen match `current`, whatever happened before */
@@ -277,6 +280,10 @@ function openAux(name){
   bindForm();
 }
 function openQuote(){
+  if(current!=='home'){go('home');setTimeout(openQuote,900);return;}
+  wfGuide(document.querySelectorAll('#home .w'),'Choose a service to start your quote',{top:Math.max(90,document.querySelector('#home .copy').getBoundingClientRect().top-64)});
+}
+function _oldQuote(){
   openDlg(`<h3 id="ovTitle">What can we quote for you?</h3><p>Choose a division to start your request.</p>
    <div class="choices">
     <button class="choice t-gold" data-pick="build"><b>BUILD</b><small>Homes, plazas and raw materials</small></button>
@@ -301,7 +308,7 @@ function bindForm(){
     const v=Object.fromEntries(new FormData(f).entries());const digits=(v.phone||'').replace(/\D/g,'');
     if(!v.fullName.trim()||!/^\S+@\S+\.\S{2,}$/.test(v.email||'')||digits.length<7||digits.length>15){st.className='status err';st.textContent='Please add your name, a valid email and a phone number (7 to 15 digits).';return;}
     const btn=f.querySelector('[type=submit]');btn.disabled=true;btn.textContent='SENDING…';
-    try{await send({service:'general',serviceLabel:f.dataset.label,source:'WAYFORTH Home V41',details:v});
+    try{await send({service:'general',serviceLabel:f.dataset.label,source:'WAYFORTH Home V42',details:v});
       st.className='status ok';st.textContent='Thank you. Your message has been sent to WAYFORTH and the team will follow up.';btn.textContent='SENT ✓';setTimeout(closeDlg,2200);}
     catch(err){st.className='status err';st.textContent=err.message;btn.disabled=false;btn.textContent='SEND →';}
   });
@@ -319,6 +326,11 @@ async function sendBuildQuote(q){
     toast('Your materials quote has been sent to WAYFORTH.');}
   catch(err){toast(err.message);}
 }
+const svc=document.getElementById('svc'),svcBtn=document.getElementById('svcBtn');
+svcBtn.addEventListener('click',e=>{e.stopPropagation();const o=!svc.classList.contains('open');svc.classList.toggle('open',o);svcBtn.setAttribute('aria-expanded',o);});
+document.addEventListener('click',e=>{if(!e.target.closest('#svc'))svc.classList.remove('open');});
+addEventListener('keydown',e=>{if(e.key==='Escape')svc.classList.remove('open');});
+svc.addEventListener('click',e=>{if(e.target.closest('[data-open]'))svc.classList.remove('open');});
 const T=document.getElementById('toast');let tt;
 function toast(m){T.textContent=m;T.classList.add('show');clearTimeout(tt);tt=setTimeout(()=>T.classList.remove('show'),3200);}
 
@@ -326,7 +338,7 @@ function toast(m){T.textContent=m;T.classList.add('show');clearTimeout(tt);tt=se
 const worlds=[...home.querySelectorAll('.w')];let sceneBox={x:0,y:64,w:innerWidth};
 function place(){
   const w=home.clientWidth,h=home.clientHeight,narrow=innerWidth<=900,AR=1672/582;
-  const top=64,below=Math.min(240,Math.max(150,h*.25)),room=h-top-below, sw=Math.min(w,Math.max(room,260)*AR), x0=(w-sw)/2;sceneBox={x:x0,y:top,w:sw};
+  const top=document.getElementById('hdr').offsetHeight+6,below=Math.min(240,Math.max(150,h*.25)),room=h-top-below, sw=Math.min(w,Math.max(room,260)*AR), x0=(w-sw)/2;sceneBox={x:x0,y:top,w:sw};
   worlds.forEach((p,i)=>{const img=p.querySelector('.seg');
     if(narrow){img.style.left=(-i*innerWidth)+'px';img.style.removeProperty('--sw');img.style.removeProperty('--st');}
     else{const st=top+Math.max(0,(room-sw/AR)*.5);sceneBox.y=st;img.style.setProperty('--sw',sw+'px');img.style.setProperty('--st',st+'px');img.style.left=(x0-p.offsetLeft)+'px';}});
@@ -336,9 +348,10 @@ function place(){
 /* ---------- living scene: real welding, truck headlight flashes, photoshoot flashes ----------
    Positions are points on the scene picture (1672 x 582), so they stay locked to it on every screen. */
 const cv=document.getElementById('fxall'),g=cv.getContext('2d');
-const WELD=[[232,343],[352,330],[446,297],[290,418],[470,420],[382,470],[515,535]].map(p=>({x:p[0],y:p[1],on:0,t:Math.random()*2}));
+const WELD=[[232,343],[352,330],[446,297],[290,418],[470,420],[382,470],[459,527]].map(p=>({x:p[0],y:p[1],on:0,t:Math.random()*2}));
 const HEAD=[[905,492,1],[1060,495,1],[905,548,.55],[1063,548,.55]];
-const CAM=[[1121,488],[1182,492],[1395,470],[1572,463],[1243,506],[1480,505]];
+const CAM=[[1120,482],[1181,485],[1401,470],[1574,463],[1580,352],[1488,478],[1543,486]];
+const BEACON=[[1398,60],[1431,121],[1524,56],[1551,56]];
 const sparks=[],flashes=[];let last=performance.now(),nextCam=.8;
 function glow(x,y,r,c,a){if(a<=0)return;const gr=g.createRadialGradient(x,y,0,x,y,r);gr.addColorStop(0,`rgba(${c},${a})`);gr.addColorStop(.3,`rgba(${c},${a*.45})`);gr.addColorStop(1,`rgba(${c},0)`);g.fillStyle=gr;g.beginPath();g.arc(x,y,r,0,7);g.fill();}
 function fx(now){const dt=Math.min(.05,(now-last)/1000);last=now;const t=now/1000;
@@ -356,10 +369,12 @@ function fx(now){const dt=Math.min(.05,(now-last)/1000);last=now;const t=now/100
     const c=t%4.2,hb=(c<.16||(c>.34&&c<.5))?1:0;
     HEAD.forEach(([x,y,s],i)=>{const p=.6+.15*Math.sin(t*3+i);glow(x,y,18*s,'170,215,255',.35*p*s);
       if(hb){glow(x,y,90*s,'200,228,255',.55*s);}});
+    /* aircraft warning lights on the tower tops: slow red throb */
+    BEACON.forEach(([x,y],i)=>{const k=Math.pow(.5+.5*Math.sin(t*2.1+i*.9),2.2);glow(x,y,14,'255,40,30',.25+.6*k);glow(x,y,2.6,'255,120,100',.5+.5*k);});
     /* media: camera flashes from the photoshoot */
     nextCam-=dt;if(nextCam<=0){const p=CAM[Math.random()*CAM.length|0];flashes.push({x:p[0],y:p[1],l:0});if(Math.random()<.35)flashes.push({x:p[0],y:p[1],l:-.14});nextCam=.35+Math.random()*1.1;}
     for(let i=flashes.length-1;i>=0;i--){const f=flashes[i];f.l+=dt;if(f.l<0)continue;if(f.l>.28){flashes.splice(i,1);continue;}const k2=Math.pow(1-f.l/.28,2);
-      glow(f.x,f.y,70,'235,238,255',.4*k2);glow(f.x,f.y,9,'255,255,255',k2);}
+      glow(f.x,f.y,55,'235,238,255',.38*k2);glow(f.x,f.y,12,'255,255,255',.95*k2);}
   }
   if(!reduced)requestAnimationFrame(fx);}
 requestAnimationFrame(fx);

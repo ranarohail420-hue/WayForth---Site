@@ -1,0 +1,40 @@
+/* WAYFORTH shared header — identical on Home, Build, Trucking and Media.
+   All sizes follow the Trucking artwork (1960 px wide), so every page lines up the same way. */
+.wfh{position:relative;width:100%;container-type:inline-size;z-index:20;font-family:"Inter","Manrope","Segoe UI",Arial,sans-serif}
+.wfh-bar{position:relative;height:3.93cqw;min-height:56px;background:linear-gradient(180deg,#00112a 0%,#000f24 60%,#000d20 100%);border-bottom:1px solid rgba(46,96,156,.75);box-shadow:0 8px 24px rgba(0,0,0,.25)}
+.wfh-logo{position:absolute;left:15.1cqw;top:50%;transform:translateY(-50%);height:3.57cqw;min-height:46px;aspect-ratio:368/70;padding:0;margin:0;border:0;background:none;cursor:pointer;user-select:none;-webkit-user-select:none}
+.wfh-logo img{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;-webkit-user-drag:none}
+.wfh-sub{position:absolute;left:43.2%;width:54.3%;top:79%;transform:translateY(-50%);text-align:center;color:#f4f6fb;font-weight:600;font-size:max(9px,.9cqw);letter-spacing:.42em;text-indent:.42em;white-space:nowrap;line-height:1}
+.wfh-sub.wide{letter-spacing:.24em;text-indent:.24em}
+.wfh-nav{position:absolute;left:52.7cqw;top:0;bottom:0;transform:translateX(-50%);display:flex;align-items:center;gap:max(18px,2.5cqw)}
+.wfh .wfh-nav button{position:relative;background:none;border:0;padding:6px 0;margin:0;color:#eef2f9;font-size:max(13px,.87cqw)!important;font-weight:500!important;line-height:1;font-family:inherit;text-transform:none;letter-spacing:.01em;cursor:pointer;white-space:nowrap;transition:color .2s}
+.wfh-nav button:hover{color:#ffd98a}
+.wfh-nav button.on:after,.wfh-nav button:hover:after{content:"";position:absolute;left:0;right:0;bottom:-6px;height:2px;border-radius:2px;background:linear-gradient(90deg,#f2b84b,#ffd98a);box-shadow:0 0 8px rgba(242,184,75,.7)}
+.wfh-quote{position:absolute;left:77.96cqw;top:50%;transform:translateY(-50%);width:11.94cqw;min-width:150px;aspect-ratio:234/62;padding:0;border:0;background:none;cursor:pointer;transition:transform .25s,filter .25s}
+.wfh-quote img{width:100%;height:100%;display:block;pointer-events:none}
+.wfh-quote:hover{transform:translateY(calc(-50% - 2px));filter:brightness(1.12) drop-shadow(0 0 14px rgba(242,184,75,.55))}
+.wfh :focus-visible{outline:2px solid #ffd98a;outline-offset:3px;border-radius:8px}
+/* Services dropdown (Home page) */
+.wfh-dd{position:relative}
+.wfh-menu{position:absolute;left:50%;top:calc(100% + 16px);transform:translate(-50%,-6px);min-width:220px;padding:8px;border-radius:14px;background:rgba(6,16,34,.97);border:1px solid rgba(242,184,75,.35);box-shadow:0 20px 50px rgba(0,0,0,.5);opacity:0;pointer-events:none;transition:all .2s;display:grid;gap:2px}
+.wfh-dd.open .wfh-menu{opacity:1;pointer-events:auto;transform:translate(-50%,0)}
+.wfh-menu button{display:flex;justify-content:space-between;gap:16px;padding:12px 14px!important;border-radius:10px;font-size:14px!important;text-align:left}
+.wfh-menu button:hover{background:rgba(255,255,255,.06)}
+.wfh-menu button:after{display:none!important}
+.wfh-menu small{color:#9aa8c2;font-size:12px}
+/* narrow screens: logo + quote only */
+@media (max-width:900px){
+  .wfh-bar{height:60px}
+  .wfh-logo{left:14px;height:44px}
+  .wfh-nav{display:none}
+  .wfh-quote{left:auto;right:14px;width:150px}
+}
+
+/* "Choose a service" guide, shown when GET A QUOTE is pressed */
+.wf-guide{position:fixed;z-index:60;left:50%;transform:translate(-50%,10px);padding:12px 20px;border-radius:999px;background:linear-gradient(180deg,#ffd98a,#f2b84b);color:#14100b;font:800 13px/1 "Inter",Arial,sans-serif;letter-spacing:.08em;box-shadow:0 10px 40px rgba(242,184,75,.45);opacity:0;pointer-events:none;transition:all .35s;white-space:nowrap}
+.wf-guide.show{opacity:1;transform:translate(-50%,0)}
+.wf-guide i{display:inline-block;font-style:normal;margin-left:8px;animation:wfg-bob .8s ease-in-out infinite}
+@keyframes wfg-bob{50%{transform:translateY(4px)}}
+@keyframes wf-pick{0%,100%{transform:translateY(0) scale(1)}35%{transform:translateY(-12px) scale(1.035)}65%{transform:translateY(2px) scale(.995)}}
+.wf-pick{animation:wf-pick .9s cubic-bezier(.3,.7,.3,1) both;outline:2px solid rgba(255,217,138,.95);outline-offset:4px;box-shadow:0 0 40px rgba(242,184,75,.55)!important}
+@media (prefers-reduced-motion:reduce){.wf-pick{animation:none}.wf-guide i{animation:none}}

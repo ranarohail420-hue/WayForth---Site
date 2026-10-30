@@ -48,13 +48,16 @@ h1 em{font-style:normal;background:linear-gradient(180deg,var(--violet-2),var(--
 @media (max-width:900px){.links{display:none}.cta{margin-left:auto}.hero{grid-template-columns:1fr}.shot{transform:none}.services{grid-template-columns:1fr}}
 @media (prefers-reduced-motion:reduce){*{transition:none!important}}
 </style>
+<link rel="stylesheet" href="wf-header.css?v=42">
+<style>.m-wfh{position:sticky;top:0}.svc{cursor:pointer}.svc .go{margin-top:6px;font-size:12px;font-weight:800;letter-spacing:.12em;color:var(--violet-2)}</style>
+<script src="wf-guide.js?v=42"></script>
 </head>
 <body>
-<header class="nav">
-  <button class="brand" data-nav="home" aria-label="WAYFORTH home"><img src="wf-actual-logo-decal.png" alt=""><b>WAYFORTH</b><span>MEDIA</span></button>
-  <nav class="links" aria-label="Primary"><button data-nav="home">Home</button><button data-nav="build">Build</button><button data-nav="trucking">Trucking</button><button class="on" data-nav="media">Media</button><button data-aux="about">About</button><button data-aux="contact">Contact</button></nav>
-  <button class="cta" data-aux="media">WORK WITH US →</button>
-</header>
+<header class="wfh m-wfh"><div class="wfh-bar">
+  <button class="wfh-logo" data-nav="home" aria-label="WAYFORTH Media — Home"><img src="wf-hdr-logo.png" alt="WAYFORTH"><span class="wfh-sub">MEDIA</span></button>
+  <nav class="wfh-nav" aria-label="Main navigation"><button data-nav="home">Home</button><button data-aux="about">About Us</button><button data-services>Services</button><button data-aux="contact">Contact Us</button></nav>
+  <button class="wfh-quote" data-guide aria-label="Get a quote"><img src="wf-hdr-quote.png" alt=""></button>
+</div></header>
 <main class="wrap">
   <section class="hero">
     <div>
@@ -66,12 +69,18 @@ h1 em{font-style:normal;background:linear-gradient(180deg,var(--violet-2),var(--
     <div class="shot"><img src="wf-media-approved.webp" alt="The WAYFORTH Media studio at night with a photoshoot in progress"><canvas id="flash"></canvas></div>
   </section>
   <section class="services" aria-label="Media services">
-    <article class="svc"><span class="n">CHANNELS</span><h2>Channel growth</h2><p>We take on Snapchat and TikTok channels and grow them with a steady content plan, on a shared revenue model.</p></article>
-    <article class="svc"><span class="n">PRODUCTION</span><h2>Content production</h2><p>Shoots, edits and short-form video from our studio, made to be posted and to perform.</p></article>
-    <article class="svc"><span class="n">CAMPAIGNS</span><h2>Brand campaigns</h2><p>Launches and promotions for brands, planned, produced and measured by one team.</p></article>
+    <article class="svc" data-aux="media" tabindex="0" role="button"><span class="n">CHANNELS</span><h2>Channel growth</h2><p>We take on Snapchat and TikTok channels and grow them with a steady content plan, on a shared revenue model.</p><span class="go">GET A QUOTE →</span></article>
+    <article class="svc" data-aux="media" tabindex="0" role="button"><span class="n">PRODUCTION</span><h2>Content production</h2><p>Shoots, edits and short-form video from our studio, made to be posted and to perform.</p><span class="go">GET A QUOTE →</span></article>
+    <article class="svc" data-aux="media" tabindex="0" role="button"><span class="n">CAMPAIGNS</span><h2>Brand campaigns</h2><p>Launches and promotions for brands, planned, produced and measured by one team.</p><span class="go">GET A QUOTE →</span></article>
   </section>
 </main>
 <script>
+const svcs=()=>document.querySelectorAll('.services .svc');
+document.addEventListener('click',e=>{
+  if(e.target.closest('[data-services]')){svcs()[0].scrollIntoView({behavior:'smooth',block:'center'});}
+  if(e.target.closest('[data-guide]')){svcs()[0].scrollIntoView({behavior:'smooth',block:'center'});setTimeout(()=>wfGuide(svcs(),'Choose a service to get your quote'),450);}
+});
+document.querySelectorAll('.svc').forEach(c=>c.addEventListener('keydown',e=>{if(e.key==='Enter')c.click();}));
 const P=(m)=>parent!==window&&parent.postMessage(m,'*');
 document.addEventListener('click',e=>{const n=e.target.closest('[data-nav]');if(n){if(n.dataset.nav==='media')return;P({type:'wf-single-nav',page:n.dataset.nav});if(parent===window)location.href=n.dataset.nav==='home'?'/':'/'+n.dataset.nav;}
   const a=e.target.closest('[data-aux]');if(a)P({type:'wf-aux',name:a.dataset.aux});});

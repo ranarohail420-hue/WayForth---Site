@@ -1,0 +1,30 @@
+WAYFORTH V42 — MATCHING HEADERS, QUOTE GUIDE & SCENE POLISH
+=============================================================
+
+COMMIT NAME
+WAYFORTH V42 — Matching Headers, Quote Guide & Scene Polish
+
+HOME PAGE
+- Welding spark moved onto the worker at ground level beside the loader.
+- Photoshoot flashes now fire from the studio lights and camera spots.
+- WF MATERIAL logo on the cement mixer repainted with no dark border, shaded like paint on the drum.
+- Menu: Home · About Us · Services (drop-down: Build, Trucking, Media) · Contact Us.
+- Slow red aircraft-warning lights throbbing on the tops of the tall towers behind the studio.
+
+SAME HEADER ON EVERY PAGE (taken from the Trucking artwork: same logo size, position, gold button)
+- Home:     WAYFORTH                 — Home · About Us · Services · Contact Us
+- Build:    WAYFORTH RAW MATERIALS   — Home · Support · About Us · Contact Us
+- Trucking: WAYFORTH TRUCKING        — Home · Ship · Support · Contact Us
+- Media:    WAYFORTH MEDIA           — Home · About Us · Services · Contact Us
+
+GET A QUOTE (all pages)
+- Pressing GET A QUOTE shows a "Choose a service" hint and the options below bounce one after
+  another (Home: Build/Move/Create; Build: Residential/Commercial or plot sizes; Trucking: the
+  four service cards; Media: the three services), so the customer knows where to click next.
+
+New files: wf-header.css, wf-guide.js, wf-hdr-logo.png, wf-hdr-quote.png (also wf-hdr-logo-trucking.png).
+
+DEPLOY
+1. Extract this ZIP into the ROOT of the WAYFORTH GitHub repository and replace matching files.
+2. Commit with the exact message above. Vercel settings stay the same.
+3. After deploy press Ctrl+Shift+R once.
