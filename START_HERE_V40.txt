@@ -1,0 +1,31 @@
+WAYFORTH V40 — CLEAN CIRCLE REVEAL, NEW LABELS, REAL WORK EFFECTS
+==================================================================
+
+COMMIT NAME
+WAYFORTH V40 — Clean Circle Reveal, New Labels & Live Scene Effects
+
+CHANGES FROM V39
+1. Circle Reveal without the logo: the real Build / Trucking / Media page opens straight inside
+   the circle. The three pages now load quietly in the background as soon as the home page
+   is open, so there is no waiting screen and nothing gets stuck.
+2. Labels:
+   BUILD  -> "Construction Material · Lahore"
+   MOVE   -> "Ship Car's · Freight & Find Loads"
+   CREATE -> "Empowering Creators, Maximizing Revenue"
+3. Same look on every screen (laptop, external monitor, scaled 125%/150% Windows displays):
+   the picture and the words now keep the same proportions, and the words always sit below
+   the picture instead of over it on shorter screens.
+4. Live scene effects locked to the picture:
+   - Build: small blue-white welding arcs with falling sparks on the floors (the old
+     "party popper" bursts are gone).
+   - Truck: the random light lines are gone; the headlights now glow and give a double
+     high-beam flash every few seconds.
+   - Media: camera / photoshoot flashes around the studio.
+5. "WF MATERIAL" logo added on the cement mixer drum (wf-home-scene-hd.webp).
+
+UNCHANGED: Trucking, Build page, Media page, all forms and email delivery, vercel.json.
+
+DEPLOY
+1. Extract this ZIP into the ROOT of the WAYFORTH GitHub repository and replace matching files.
+2. Commit with the exact message above. Vercel settings stay the same.
+3. After deploy, press Ctrl+Shift+R once on each screen so the new picture loads.
