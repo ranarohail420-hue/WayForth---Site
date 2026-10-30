@@ -1,3 +1,12 @@
+WAYFORTH V34 — CURRENT UPDATE
+=============================
+
+Current deploy instructions: START_HERE_V34.txt
+V34 changed files: trucking-final-approved.png (slogan layout, card copy, GET QUOTE buttons), wayforth-trucking-v22.html (source tag only), START_HERE_V34.txt, README_UPLOAD.txt, FILE_MANIFEST.txt.
+All other files are unchanged from V33.
+
+----------------------------------------------------------------
+
 WAYFORTH V33 — CURRENT UPDATE
 =============================
 

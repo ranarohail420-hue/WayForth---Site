@@ -1,0 +1,33 @@
+WAYFORTH V34 — TRUCKING SLOGAN LAYOUT, CARD COPY TRIM & GET QUOTE BUTTONS
+==========================================================================
+
+COMMIT NAME
+WAYFORTH V34 — Trucking Slogan Layout, Card Copy Trim & Get Quote Buttons
+
+CHANGES FROM V33 (artwork only: trucking-final-approved.png)
+1. Large "WAYFORTH TRUCKING" headline removed from the hero (the brand name stays in the top-left logo).
+   "FREIGHT MOVES PEOPLE FORWARD" and "Reliable freight. Stronger connections. A smoother road ahead." are now one tidy slogan block with the gold accent line between them.
+2. Service card text shortened:
+   Ship a Car:    "Door-to-door auto transport" / "Fast, reliable"
+   Ship a Boat:   "Move a boat or watercraft"
+   Move a Load:   "Pallets, equipment, materials or" / "general freight"
+   I'm a Carrier: "Truckers connect with the" / "WAYFORTH network."
+3. All four card buttons now read "GET QUOTE".
+4. Submission source tag updated to "WAYFORTH Trucking V34".
+
+UNCHANGED
+- Top navigation and logo, truck and trailer, feature strip, card photos, card headings, arrow icons
+- All forms and logic from V31-V33 (make search, 2028-1980 year list, validation, lead email endpoint)
+- Vercel Build Command: node patch-wayforth.js
+- Existing repository files: index.html, app.js, styles.css, scenes-data.js
+
+DEPLOY
+1. Extract this ZIP into the ROOT of the existing WAYFORTH GitHub repository and replace matching files.
+2. Keep index.html, app.js, styles.css and scenes-data.js.
+3. Commit with the exact message above.
+4. After deployment, open the Trucking page and hard-refresh (Ctrl+Shift+R) so the new artwork loads.
+
+This is an update bundle for the existing repository. No live deployment was performed by this package build.
+
+----------------------------------------------------------------
+
