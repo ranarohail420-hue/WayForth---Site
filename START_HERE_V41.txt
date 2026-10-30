@@ -1,0 +1,25 @@
+WAYFORTH V41 — SMOOTH, RELIABLE NAVIGATION & CLEAN EFFECTS
+===========================================================
+
+COMMIT NAME
+WAYFORTH V41 — Smooth Reliable Navigation & Clean Effects
+
+CHANGES FROM V40
+1. Navigation rebuilt so it always lands on the right page:
+   - Only one transition runs at a time; clicks made during a transition are queued, never mixed.
+   - Home / logo / menu inside Build, Trucking and Media always return to Home and stay there
+     (extra clicks on the panels while the circle is closing are ignored).
+   - Page-to-page (e.g. Build -> Trucking) closes, then opens the circle cleanly.
+   - Browser Back / Forward step through pages correctly (the pages no longer add hidden
+     history entries).
+2. The Home top bar (logo + menu) no longer shows on top of the Build / Trucking / Media headers,
+   so the logos at the top are never doubled or overlapped.
+3. Effects cleaned: no more "+" cross marks on welding or headlight flashes — only soft glows
+   and small falling sparks.
+
+UNCHANGED: layout, labels, picture, Trucking, Build page, Media page, forms, vercel.json.
+
+DEPLOY
+1. Extract this ZIP into the ROOT of the WAYFORTH GitHub repository and replace matching files.
+2. Commit with the exact message above. Vercel settings stay the same.
+3. After deploy press Ctrl+Shift+R once.
