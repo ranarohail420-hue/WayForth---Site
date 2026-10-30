@@ -8,7 +8,7 @@
 <meta name="theme-color" content="#04070f">
 <link rel="icon" href="wf-actual-logo-decal.png">
 <link rel="preload" href="wf-home-scene-hd.webp" as="image">
-<link rel="stylesheet" href="wf-header.css?v=42">
+<link rel="stylesheet" href="wf-header.css?v=43">
 <script src="wf-guide.js?v=42"></script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -26,7 +26,17 @@ button{font:inherit;color:inherit}
 :focus-visible{outline:2px solid var(--gold-2);outline-offset:3px}
 
 /* ---------- top bar ---------- */
-.nav{position:fixed;z-index:15;top:0;left:0;right:0;transition:opacity .4s}
+.nav{position:fixed;z-index:15;top:0;left:0;right:0;display:flex;align-items:center;gap:24px;
+  padding:calc(18px + env(safe-area-inset-top,0px)) max(28px,env(safe-area-inset-right,0px)) 18px max(28px,env(safe-area-inset-left,0px));
+  background:linear-gradient(to bottom,rgba(4,7,15,.85),rgba(4,7,15,0));transition:opacity .4s}
+.links .on{color:var(--text)}
+.dd{position:relative}
+.dd-menu{position:absolute;right:-10px;top:calc(100% + 14px);min-width:230px;padding:8px;border-radius:14px;background:rgba(6,16,34,.97);border:1px solid rgba(242,184,75,.35);box-shadow:0 20px 50px rgba(0,0,0,.5);opacity:0;pointer-events:none;transform:translateY(-6px);transition:all .2s;display:grid;gap:2px}
+.dd.open .dd-menu{opacity:1;pointer-events:auto;transform:none}
+.dd.open #svcBtn{color:var(--text)}
+.dd-menu button{display:flex!important;justify-content:space-between;gap:16px;padding:12px 14px!important;border-radius:10px;color:var(--text)!important;font-size:14px;text-align:left}
+.dd-menu button:hover{background:rgba(255,255,255,.06)}
+.dd-menu small{color:var(--muted);font-size:12px}
 .brand{display:flex;align-items:center;gap:12px;color:var(--text);text-decoration:none;background:none;border:0;cursor:pointer;padding:0}
 .brand img{width:46px;height:auto;user-select:none;-webkit-user-drag:none}
 .brand,.nav{user-select:none;-webkit-user-select:none}
@@ -133,17 +143,16 @@ body.loading:not(.in-page) .loader{display:block}
 </head>
 <body>
 
-<header class="nav wfh" id="hdr"><div class="wfh-bar">
-  <button class="wfh-logo" data-open="home" aria-label="WAYFORTH home"><img src="wf-hdr-logo.png" alt="WAYFORTH"></button>
-  <nav class="wfh-nav" aria-label="Primary">
+<header class="nav" id="hdr">
+  <button class="brand" data-open="home" aria-label="WAYFORTH home"><img src="wf-actual-logo-decal.png" alt=""><b>WAYFORTH</b></button>
+  <nav class="links" aria-label="Primary">
     <button class="on" data-open="home">Home</button>
     <button data-aux="about">About Us</button>
-    <div class="wfh-dd" id="svc"><button aria-haspopup="true" aria-expanded="false" id="svcBtn">Services</button>
-      <div class="wfh-menu" role="menu"><button role="menuitem" data-open="build">Build <small>Construction material</small></button><button role="menuitem" data-open="trucking">Trucking <small>Cars, freight, loads</small></button><button role="menuitem" data-open="media">Media <small>Creators &amp; revenue</small></button></div></div>
+    <div class="dd" id="svc"><button aria-haspopup="true" aria-expanded="false" id="svcBtn">Services</button>
+      <div class="dd-menu" role="menu"><button role="menuitem" data-open="build">Build <small>Construction material</small></button><button role="menuitem" data-open="trucking">Trucking <small>Cars, freight, loads</small></button><button role="menuitem" data-open="media">Media <small>Creators &amp; revenue</small></button></div></div>
     <button data-aux="contact">Contact Us</button>
   </nav>
-  <button class="wfh-quote" data-open="quote" aria-label="Get a quote"><img src="wf-hdr-quote.png" alt=""></button>
-</div></header>
+</header>
 
 <main id="home" aria-label="WAYFORTH — choose a division">
   <canvas class="fxall" id="fxall" aria-hidden="true"></canvas>
@@ -338,7 +347,7 @@ function toast(m){T.textContent=m;T.classList.add('show');clearTimeout(tt);tt=se
 const worlds=[...home.querySelectorAll('.w')];let sceneBox={x:0,y:64,w:innerWidth};
 function place(){
   const w=home.clientWidth,h=home.clientHeight,narrow=innerWidth<=900,AR=1672/582;
-  const top=document.getElementById('hdr').offsetHeight+6,below=Math.min(240,Math.max(150,h*.25)),room=h-top-below, sw=Math.min(w,Math.max(room,260)*AR), x0=(w-sw)/2;sceneBox={x:x0,y:top,w:sw};
+  const top=64,below=Math.min(240,Math.max(150,h*.25)),room=h-top-below, sw=Math.min(w,Math.max(room,260)*AR), x0=(w-sw)/2;sceneBox={x:x0,y:top,w:sw};
   worlds.forEach((p,i)=>{const img=p.querySelector('.seg');
     if(narrow){img.style.left=(-i*innerWidth)+'px';img.style.removeProperty('--sw');img.style.removeProperty('--st');}
     else{const st=top+Math.max(0,(room-sw/AR)*.5);sceneBox.y=st;img.style.setProperty('--sw',sw+'px');img.style.setProperty('--st',st+'px');img.style.left=(x0-p.offsetLeft)+'px';}});

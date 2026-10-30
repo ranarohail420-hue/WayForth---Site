@@ -1,0 +1,18 @@
+WAYFORTH V43 — ORIGINAL HOME TOP BAR RESTORED
+==============================================
+
+COMMIT NAME
+WAYFORTH V43 — Original Home Top Bar Restored
+
+CHANGES FROM V42
+- Home page top bar is back exactly as before (small WF logo + WAYFORTH on the left,
+  menu on the right, soft fade into the picture). No GET A QUOTE button on Home.
+- Home menu: Home · About Us · Services · Contact Us
+  (Services opens a small list: Build, Trucking, Media).
+- Everything else from V42 is kept: Build / Trucking / Media headers, quote guide,
+  welding, camera flashes, red tower lights, cement mixer logo, Circle Reveal.
+
+DEPLOY
+1. Extract this ZIP into the ROOT of the WAYFORTH GitHub repository and replace matching files.
+2. Commit with the exact message above. Vercel settings stay the same.
+3. Press Ctrl+Shift+R once after deploy.
