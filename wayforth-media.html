@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>WAYFORTH MEDIA — Storytelling for real impact</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,300..900&family=Manrope:wght@400;500;700&display=swap">
+<style>
+:root{--ink:#04070f;--line:rgba(190,170,255,.2);--text:#f2f4fa;--muted:#a9b2cc;--violet:#a46bff;--violet-2:#d6bcff;--gold:#f2b84b;
+  --display:"Archivo","Arial Narrow",Arial,sans-serif;--body:"Manrope","Segoe UI",Arial,sans-serif;color-scheme:dark}
+*{box-sizing:border-box}
+html,body{margin:0;min-height:100%}
+body{background:radial-gradient(ellipse 80% 60% at 70% 30%,rgba(164,107,255,.22),transparent 60%),var(--ink);color:var(--text);font-family:var(--body);-webkit-font-smoothing:antialiased}
+button{font:inherit;color:inherit}
+:focus-visible{outline:2px solid var(--violet-2);outline-offset:3px}
+.nav{position:sticky;top:0;z-index:10;display:flex;align-items:center;gap:22px;padding:18px max(28px,env(safe-area-inset-right,0px)) 18px max(28px,env(safe-area-inset-left,0px));background:linear-gradient(to bottom,rgba(4,7,15,.92),rgba(4,7,15,.6));backdrop-filter:blur(10px)}
+.brand{display:flex;align-items:center;gap:12px;background:none;border:0;cursor:pointer;padding:0}
+.brand img{width:44px}.brand b{font:600 14px/1 var(--display);font-stretch:125%;letter-spacing:.3em}
+.brand span{font:600 11px/1 var(--display);letter-spacing:.34em;color:var(--violet-2)}
+.links{display:flex;gap:24px;margin-left:auto;font-size:13px}
+.links button{background:none;border:0;color:var(--muted);cursor:pointer;padding:4px 0}
+.links button:hover,.links button.on{color:var(--text)}
+.cta{border:1px solid rgba(214,188,255,.6);background:rgba(164,107,255,.1);color:var(--violet-2);padding:11px 18px;border-radius:999px;font-size:12px;font-weight:800;letter-spacing:.12em;cursor:pointer}
+.cta:hover{background:rgba(164,107,255,.22)}
+.wrap{padding-inline:max(28px,env(safe-area-inset-left,0px)) max(28px,env(safe-area-inset-right,0px));max-width:1320px;margin:0 auto}
+.hero{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,1fr);gap:clamp(24px,5vw,72px);align-items:center;padding-block:clamp(30px,6vh,80px)}
+.eyebrow{font-size:12px;letter-spacing:.34em;text-transform:uppercase;color:var(--violet-2)}
+h1{margin:14px 0 18px;font:900 clamp(52px,8.5vw,140px)/.84 var(--display);font-stretch:125%;letter-spacing:-.03em}
+h1 em{font-style:normal;background:linear-gradient(180deg,var(--violet-2),var(--violet));-webkit-background-clip:text;background-clip:text;color:transparent}
+.lead{margin:0;max-width:46ch;font-size:17px;line-height:1.65;color:#cdd3e6}
+.row{display:flex;gap:12px;flex-wrap:wrap;margin-top:28px}
+.btn{border:0;border-radius:999px;padding:14px 22px;font-weight:800;font-size:12px;letter-spacing:.12em;cursor:pointer}
+.btn.primary{background:linear-gradient(180deg,var(--violet-2),var(--violet));color:#120a22}
+.btn.ghost{background:none;border:1px solid var(--line)}
+.shot{position:relative;border-radius:26px;overflow:hidden;aspect-ratio:4/3;box-shadow:0 40px 100px rgba(0,0,0,.55),0 0 80px rgba(164,107,255,.35);transform:perspective(1200px) rotateY(-8deg);transition:transform .8s cubic-bezier(.2,.8,.2,1)}
+.shot:hover{transform:perspective(1200px) rotateY(0)}
+.shot img{width:100%;height:100%;object-fit:cover;display:block}
+.shot canvas{position:absolute;inset:0;width:100%;height:100%;pointer-events:none}
+.services{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;padding-block:20px 70px}
+.svc{padding:26px 24px;border-radius:20px;border:1px solid var(--line);background:rgba(18,12,36,.5);display:grid;gap:12px;align-content:start;transition:border-color .3s,transform .3s}
+.svc:hover{border-color:var(--violet);transform:translateY(-4px)}
+.svc .n{font:800 12px/1 var(--display);letter-spacing:.2em;color:var(--violet-2)}
+.svc h2{margin:0;font:800 24px/1.05 var(--display);font-stretch:115%}
+.svc p{margin:0;color:#c3cadd;line-height:1.6;font-size:15px}
+.back{position:fixed;left:max(20px,env(safe-area-inset-left,0px));bottom:calc(20px + env(safe-area-inset-bottom,0px));z-index:10}
+@media (max-width:900px){.links{display:none}.cta{margin-left:auto}.hero{grid-template-columns:1fr}.shot{transform:none}.services{grid-template-columns:1fr}}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+</head>
+<body>
+<header class="nav">
+  <button class="brand" data-nav="home" aria-label="WAYFORTH home"><img src="wf-actual-logo-decal.png" alt=""><b>WAYFORTH</b><span>MEDIA</span></button>
+  <nav class="links" aria-label="Primary"><button data-nav="home">Home</button><button data-nav="build">Build</button><button data-nav="trucking">Trucking</button><button class="on" data-nav="media">Media</button><button data-aux="about">About</button><button data-aux="contact">Contact</button></nav>
+  <button class="cta" data-aux="media">WORK WITH US →</button>
+</header>
+<main class="wrap">
+  <section class="hero">
+    <div>
+      <span class="eyebrow">WAYFORTH Media · Create</span>
+      <h1>Stories with <em>real impact.</em></h1>
+      <p class="lead">We grow channels, produce content and run campaigns for creators and brands, from the first shoot to the audience it reaches.</p>
+      <div class="row"><button class="btn primary" data-aux="media">START A PROJECT →</button><button class="btn ghost" data-nav="home">← BACK TO HOME</button></div>
+    </div>
+    <div class="shot"><img src="wf-media-approved.webp" alt="The WAYFORTH Media studio at night with a photoshoot in progress"><canvas id="flash"></canvas></div>
+  </section>
+  <section class="services" aria-label="Media services">
+    <article class="svc"><span class="n">CHANNELS</span><h2>Channel growth</h2><p>We take on Snapchat and TikTok channels and grow them with a steady content plan, on a shared revenue model.</p></article>
+    <article class="svc"><span class="n">PRODUCTION</span><h2>Content production</h2><p>Shoots, edits and short-form video from our studio, made to be posted and to perform.</p></article>
+    <article class="svc"><span class="n">CAMPAIGNS</span><h2>Brand campaigns</h2><p>Launches and promotions for brands, planned, produced and measured by one team.</p></article>
+  </section>
+</main>
+<script>
+const P=(m)=>parent!==window&&parent.postMessage(m,'*');
+document.addEventListener('click',e=>{const n=e.target.closest('[data-nav]');if(n){if(n.dataset.nav==='media')return;P({type:'wf-single-nav',page:n.dataset.nav});if(parent===window)location.href=n.dataset.nav==='home'?'/':'/'+n.dataset.nav;}
+  const a=e.target.closest('[data-aux]');if(a)P({type:'wf-aux',name:a.dataset.aux});});
+/* camera flashes over the studio photo */
+const c=document.getElementById('flash'),g=c.getContext('2d');let fl=[],last=performance.now();
+const pts=[[.2,.72],[.35,.7],[.62,.66],[.85,.68],[.5,.42],[.28,.5]];
+(function f(now){const dt=Math.min(.05,(now-last)/1000);last=now;const r=c.getBoundingClientRect();if(c.width!==Math.round(r.width)){c.width=r.width;c.height=r.height;}
+  g.clearRect(0,0,c.width,c.height);g.globalCompositeOperation='lighter';
+  if(Math.random()<dt*1.4){const p=pts[Math.random()*pts.length|0];fl.push({x:p[0]*c.width,y:p[1]*c.height,l:0});}
+  fl=fl.filter(q=>(q.l+=dt)<.3);fl.forEach(q=>{const k=Math.pow(1-q.l/.3,2),R=c.width*.18,gr=g.createRadialGradient(q.x,q.y,0,q.x,q.y,R);gr.addColorStop(0,`rgba(255,255,255,${k})`);gr.addColorStop(.15,`rgba(230,225,255,${k*.5})`);gr.addColorStop(1,'rgba(200,190,255,0)');g.fillStyle=gr;g.beginPath();g.arc(q.x,q.y,R,0,7);g.fill();});
+  if(!matchMedia('(prefers-reduced-motion: reduce)').matches)requestAnimationFrame(f);})(last);
+</script>
+</body>
+</html>

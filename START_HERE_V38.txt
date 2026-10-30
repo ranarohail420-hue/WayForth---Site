@@ -1,0 +1,38 @@
+WAYFORTH V38 — NEW "THREE WORLDS" HOME + WORKING BUILD / TRUCKING / MEDIA PAGES
+================================================================================
+
+COMMIT NAME
+WAYFORTH V38 — Three Worlds Home, Working Navigation & Media Page
+
+WHAT THIS IS
+A complete, standalone version of the site. The new index.html does everything itself, so the
+old Home code (app.js, styles.css, scenes-data.js) is no longer used. That is what fixes the
+buttons that did not click.
+
+WHAT CHANGED
+1. New Home (index.html) — Option 3 "Three Worlds":
+   one continuous scene across BUILD / MOVE / CREATE panels; hovering a panel spotlights it,
+   shows its description and button; welding sparks, road light streaks and camera flashes.
+   Real menu: Build, Trucking, Media, About, Contact, Support, and GET A QUOTE.
+2. Clicking a world (or a menu item) grows it to full screen and opens that page:
+   /build  -> wayforth-build-v5.html (unchanged, approved Build page)
+   /trucking -> wayforth-trucking-v22.html (V36, finalized)
+   /media  -> wayforth-media.html (NEW Media page in the same style)
+   Every Home / logo / menu link inside those pages now returns correctly. Browser Back works too.
+3. GET A QUOTE asks Build / Move / Create, then opens the right page or form.
+4. About / Contact / Support / Media "Work with us" open a short form that emails the team.
+5. Build materials cart quotes are now emailed through the same lead endpoint as Trucking.
+6. Phones: the three worlds stack vertically with their buttons always visible.
+
+DEPLOY
+1. Extract this ZIP into the ROOT of the WAYFORTH GitHub repository and REPLACE matching files
+   (this includes index.html, patch-wayforth.js and vercel.json — replacing them is intended).
+2. Commit with the exact message above.
+3. Vercel settings stay the same (Build Command: node patch-wayforth.js, Output: dist).
+4. Environment variables (already set for Trucking) are reused for all forms:
+   RESEND_API_KEY, WAYFORTH_FROM_EMAIL, WAYFORTH_LEADS_EMAIL
+5. After deploy, test: click BUILD, MOVE, CREATE; the logo/Home inside each page; GET A QUOTE;
+   send one Contact form and one Build cart quote and confirm both emails arrive.
+
+The old files app.js, styles.css, scenes-data.js, wf-home-approved.webp etc. can stay in the
+repository; they are simply not used any more.

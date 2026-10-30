@@ -1,207 +1,321 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
-  <meta name="theme-color" content="#02060d">
-  <meta name="description" content="WAYFORTH — Build, Trucking and Media in one connected experience.">
-  <title>WAYFORTH — Move. Build. Create.</title>
-  <link rel="preload" as="image" href="globe-opening.webp">
-  <link rel="preload" as="image" href="world-build.webp">
-  <link rel="preload" as="image" href="world-truck.webp">
-  <link rel="preload" as="image" href="world-dd.webp">
-  <link rel="stylesheet" href="styles.css">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>WAYFORTH — Build. Move. Create.</title>
+<meta name="description" content="WAYFORTH brings construction, trucking and media under one company. Build. Move. Create.">
+<meta name="theme-color" content="#04070f">
+<link rel="icon" href="wf-actual-logo-decal.png">
+<link rel="preload" href="wf-home-scene.webp" as="image">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,300..900&family=Manrope:wght@400;500;700&display=swap">
+<style>
+/* WAYFORTH V38 — Option 3 "Three Worlds" home. Standalone: no dependency on the old index/app/scenes files. */
+:root{
+  --ink:#04070f;--line:rgba(170,195,235,.18);--text:#f2f4fa;--muted:#a3b0c8;
+  --gold:#f2b84b;--gold-2:#ffd98a;--blue:#3fa2ff;--violet:#a46bff;
+  --display:"Archivo","Arial Narrow",Arial,sans-serif;--body:"Manrope","Segoe UI",Arial,sans-serif;color-scheme:dark}
+*{box-sizing:border-box}
+html,body{height:100%;margin:0}
+body{background:var(--ink);color:var(--text);font-family:var(--body);overflow:hidden;-webkit-font-smoothing:antialiased}
+button{font:inherit;color:inherit}
+:focus-visible{outline:2px solid var(--gold-2);outline-offset:3px}
+
+/* ---------- top bar ---------- */
+.nav{position:fixed;z-index:30;top:0;left:0;right:0;display:flex;align-items:center;gap:24px;
+  padding:calc(18px + env(safe-area-inset-top,0px)) max(28px,env(safe-area-inset-right,0px)) 18px max(28px,env(safe-area-inset-left,0px));
+  background:linear-gradient(to bottom,rgba(4,7,15,.85),rgba(4,7,15,0));transition:opacity .4s}
+.brand{display:flex;align-items:center;gap:12px;color:var(--text);text-decoration:none;background:none;border:0;cursor:pointer;padding:0}
+.brand img{width:46px;height:auto}
+.brand b{font:600 15px/1 var(--display);font-stretch:125%;letter-spacing:.32em}
+.links{display:flex;gap:26px;margin-left:auto;font-size:13px;letter-spacing:.06em}
+.links button{background:none;border:0;padding:4px 0;cursor:pointer;color:var(--muted);transition:color .2s}
+.links button:hover{color:var(--text)}
+.quote{border:1px solid rgba(242,184,75,.7);color:var(--gold-2);background:rgba(242,184,75,.06);padding:11px 18px;border-radius:999px;
+  font-size:12px;font-weight:700;letter-spacing:.12em;cursor:pointer;white-space:nowrap;transition:background .25s,box-shadow .25s}
+.quote:hover{background:rgba(242,184,75,.16);box-shadow:0 0 24px rgba(242,184,75,.3)}
+body.in-page .nav{opacity:0;pointer-events:none}
+
+/* ---------- home: three worlds over one continuous scene ---------- */
+#home{position:fixed;inset:0;display:flex;background:var(--ink);transition:opacity .6s ease,transform .9s cubic-bezier(.2,.8,.2,1)}
+body.in-page #home{opacity:0;transform:scale(1.04);pointer-events:none}
+.w{container-type:inline-size;position:relative;flex:1;min-width:0;overflow:hidden;cursor:pointer;border:0;padding:0;margin:0;text-align:left;background:none;
+  transition:flex 1s cubic-bezier(.2,.8,.2,1)}
+.w + .w{border-left:1px solid rgba(255,255,255,.08)}
+.seg{position:absolute;top:calc(56px + env(safe-area-inset-top,0px));left:0;width:var(--sw,100vw);max-width:none;height:auto;pointer-events:none;user-select:none;
+  filter:brightness(.92) saturate(1.05);transition:filter .8s;
+  -webkit-mask-image:linear-gradient(to bottom,transparent 0,#000 8%,#000 78%,transparent 100%);mask-image:linear-gradient(to bottom,transparent 0,#000 8%,#000 78%,transparent 100%)}
+#home:has(.w:hover) .seg{filter:brightness(.45) saturate(.7)}
+#home .w:hover .seg,#home .w:focus-visible .seg{filter:brightness(1.05) saturate(1.15)}
+#home:has(.w:hover) .w{flex:.75}
+#home .w:hover,#home .w:focus-visible{flex:1.9}
+.w:after{content:"";position:absolute;inset:0;pointer-events:none;background:linear-gradient(to top,rgba(4,7,15,.95) 0%,rgba(4,7,15,.1) 42%,transparent 70%,rgba(4,7,15,.45) 100%)}
+.fx{position:absolute;inset:0;z-index:1;pointer-events:none;width:100%;height:100%}
+.copy{position:absolute;z-index:2;left:clamp(18px,3vw,44px);right:clamp(18px,3vw,44px);bottom:calc(64px + env(safe-area-inset-bottom,0px));display:grid;gap:12px}
+.eyebrow{font-size:11px;letter-spacing:.32em;text-transform:uppercase}
+.copy h2{margin:0;font:900 clamp(30px,17cqi,104px)/.86 var(--display);font-stretch:110%;letter-spacing:-.02em;transition:font-stretch .8s}
+.w:hover h2{font-stretch:125%}
+.copy p{margin:0;max-width:38ch;color:#c9d3e6;font-size:15px;line-height:1.55;opacity:0;transform:translateY(12px);transition:all .6s .15s}
+.copy .go{justify-self:start;font-size:12px;font-weight:800;letter-spacing:.14em;padding:12px 20px;border-radius:999px;color:var(--ink);opacity:0;transform:translateY(12px);transition:all .6s .25s}
+.w:hover .copy p,.w:hover .copy .go,.w:focus-visible .copy p,.w:focus-visible .copy .go{opacity:1;transform:none}
+.bar{position:absolute;z-index:2;left:0;right:0;bottom:0;height:3px;transform:scaleX(0);transform-origin:left;transition:transform .8s}
+.w:hover .bar{transform:scaleX(1)}
+.gold-bg{background:linear-gradient(180deg,var(--gold-2),var(--gold))}.blue-bg{background:linear-gradient(180deg,#9fd3ff,var(--blue))}.violet-bg{background:linear-gradient(180deg,#d6bcff,var(--violet))}
+.t-gold{color:var(--gold)}.t-blue{color:var(--blue)}.t-violet{color:var(--violet)}
+.tagline{position:fixed;z-index:3;left:0;right:0;bottom:calc(18px + env(safe-area-inset-bottom,0px));text-align:center;font-size:11px;letter-spacing:.42em;text-transform:uppercase;color:var(--muted);pointer-events:none;transition:opacity .4s}
+body.in-page .tagline{opacity:0}
+
+/* first load */
+.w{animation:rise 1.1s cubic-bezier(.2,.8,.2,1) both}
+.w:nth-child(2){animation-delay:.12s}.w:nth-child(3){animation-delay:.24s}
+@keyframes rise{from{opacity:0;transform:translateY(40px)}to{opacity:1;transform:none}}
+
+/* ---------- section pages (Build / Trucking / Media) ---------- */
+#page{position:fixed;inset:0;z-index:20;opacity:0;pointer-events:none;transition:opacity .6s ease .15s;background:var(--ink)}
+body.in-page #page{opacity:1;pointer-events:auto}
+#page iframe{position:absolute;inset:0;width:100%;height:100%;border:0;background:var(--ink)}
+.wipe{position:fixed;z-index:25;pointer-events:none;border-radius:0;opacity:0}
+.loader{position:fixed;z-index:26;left:50%;top:50%;width:46px;height:46px;margin:-23px 0 0 -23px;border-radius:50%;border:2px solid rgba(242,184,75,.2);border-top-color:var(--gold);animation:spin .8s linear infinite;display:none}
+body.loading .loader{display:block}
+@keyframes spin{to{transform:rotate(360deg)}}
+
+/* ---------- dialogs ---------- */
+.overlay{position:fixed;inset:0;z-index:60;display:none;place-items:center;padding:20px;background:rgba(2,6,13,.78);backdrop-filter:blur(12px)}
+.overlay.open{display:grid}
+.dlg{width:min(560px,100%);max-height:calc(100vh - 40px);overflow:auto;border:1px solid rgba(240,199,122,.45);border-radius:20px;padding:clamp(22px,4vw,34px);
+  background:linear-gradient(140deg,#0b294b,#020813);box-shadow:0 20px 95px #0009;display:grid;gap:16px}
+.dlg h3{margin:0;font:800 clamp(24px,3vw,34px)/1.05 var(--display);font-stretch:115%}
+.dlg p{margin:0;line-height:1.6;color:#b9c8da}
+.choices{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
+.choice{display:grid;gap:6px;padding:16px 14px;border-radius:14px;border:1px solid var(--line);background:rgba(255,255,255,.03);cursor:pointer;text-align:left}
+.choice b{font:800 15px/1 var(--display);font-stretch:118%;letter-spacing:.1em}
+.choice small{font-size:12px;color:var(--muted);line-height:1.4}
+.choice:hover{border-color:currentColor;background:rgba(255,255,255,.06)}
+.dlg form{display:grid;gap:12px}
+.dlg label{display:grid;gap:6px;font-size:12px;font-weight:700;color:#ffd078;letter-spacing:.03em}
+.dlg input,.dlg textarea,.dlg select{width:100%;border:1px solid rgba(93,156,207,.42);border-radius:12px;background:rgba(4,24,43,.72);color:#f5f9fd;padding:12px 14px;font:inherit;font-size:14px}
+.dlg textarea{min-height:90px;resize:vertical}
+.row2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.actions{display:flex;gap:10px;flex-wrap:wrap}
+.btn{border:0;border-radius:999px;padding:12px 20px;font-weight:800;font-size:12px;letter-spacing:.12em;cursor:pointer}
+.btn.primary{background:linear-gradient(180deg,var(--gold-2),var(--gold));color:#14100b}
+.btn.ghost{background:none;border:1px solid var(--line);color:var(--text)}
+.status{font-size:13px;min-height:1em}.status.ok{color:#7be2a6}.status.err{color:#ff9d8a}
+
+.toast{position:fixed;z-index:80;left:50%;top:calc(80px + env(safe-area-inset-top,0px));transform:translate(-50%,-10px);opacity:0;transition:all .35s;
+  background:rgba(8,14,30,.92);border:1px solid var(--line);padding:12px 18px;border-radius:12px;font-size:13px;pointer-events:none;max-width:90vw}
+.toast.show{opacity:1;transform:translate(-50%,0)}
+
+/* ---------- phones / narrow screens ---------- */
+@media (max-width:900px){
+  .links{display:none}.quote{margin-left:auto;padding:10px 14px}
+  #home{flex-direction:column}
+  .w + .w{border-left:0;border-top:1px solid rgba(255,255,255,.08)}
+  .seg{top:50%!important;width:300vw!important;transform:translateY(-55%);-webkit-mask-image:none;mask-image:none}
+  #home .w:hover,#home .w:focus-visible,#home:has(.w:hover) .w{flex:1}
+  .copy{bottom:16px}.copy p{display:none}.copy .go{opacity:1;transform:none;padding:9px 14px;font-size:11px}
+  .copy h2{font-size:clamp(34px,12vw,60px)}
+  .tagline{display:none}
+  .choices{grid-template-columns:1fr}.row2{grid-template-columns:1fr}
+}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
 </head>
 <body>
-  <div id="boot" class="boot" aria-hidden="true"><span>WAYFORTH</span></div>
 
-  <main id="app" class="app" aria-live="polite">
-    <!-- HOME: persistent scene. No HTML navigation happens when division buttons are tapped. -->
-    <section id="scene-home" class="scene scene-home is-active" data-scene="home" aria-label="WAYFORTH Home">
-      <div class="home-bg"></div>
-      <div class="sky-depth"></div>
-      <div class="horizon"></div>
-      <div class="road-grid"></div>
-      <div class="road-streak rs-a"></div>
-      <div class="road-streak rs-b"></div>
+<header class="nav">
+  <button class="brand" data-open="home" aria-label="WAYFORTH home"><img src="wf-actual-logo-decal.png" alt=""><b>WAYFORTH</b></button>
+  <nav class="links" aria-label="Primary">
+    <button data-open="build">Build</button><button data-open="trucking">Trucking</button><button data-open="media">Media</button>
+    <button data-aux="about">About</button><button data-aux="contact">Contact</button><button data-aux="support">Support</button>
+  </nav>
+  <button class="quote" data-open="quote">GET A QUOTE →</button>
+</header>
 
-      <header class="home-header">
-        <img src="brand-logo.webp" alt="WAYFORTH" class="home-logo">
-        <nav class="desktop-nav" aria-label="Primary">
-          <button data-open="home" class="nav-link">HOME</button>
-          <button data-open="build" class="nav-link">BUILD</button>
-          <button data-open="trucking" class="nav-link">TRUCKING</button>
-          <button data-open="media" class="nav-link">MEDIA</button>
-          <button data-open="quote" class="quote-nav">GET A QUOTE →</button>
-        </nav>
-      </header>
+<main id="home" aria-label="WAYFORTH — choose a division">
+  <button class="w" data-open="build" aria-label="Build — construction and materials">
+    <img class="seg" src="wf-home-scene.webp" alt="" draggable="false">
+    <canvas class="fx" data-fx="weld"></canvas>
+    <span class="copy"><span class="eyebrow t-gold">01 · Construction</span><h2>BUILD</h2>
+      <p>Residential plots from 5 marla to 2 kanal, plus commercial bulk orders. Pick your materials and get one clear quote.</p>
+      <span class="go gold-bg">EXPLORE BUILD →</span></span><span class="bar gold-bg"></span>
+  </button>
+  <button class="w" data-open="trucking" aria-label="Move — trucking and transport">
+    <img class="seg" src="wf-home-scene.webp" alt="" draggable="false">
+    <canvas class="fx" data-fx="road"></canvas>
+    <span class="copy"><span class="eyebrow t-blue">02 · Transport</span><h2>MOVE</h2>
+      <p>Cars, boats and freight across the US, with a trucker network behind every load.</p>
+      <span class="go blue-bg">GET A QUOTE →</span></span><span class="bar blue-bg"></span>
+  </button>
+  <button class="w" data-open="media" aria-label="Create — WAYFORTH Media">
+    <img class="seg" src="wf-home-scene.webp" alt="" draggable="false">
+    <canvas class="fx" data-fx="flash"></canvas>
+    <span class="copy"><span class="eyebrow t-violet">03 · Studio</span><h2>CREATE</h2>
+      <p>Channels, content and production that turn attention into an audience.</p>
+      <span class="go violet-bg">SEE MEDIA →</span></span><span class="bar violet-bg"></span>
+  </button>
+</main>
+<p class="tagline">Different industries. A brighter tomorrow.</p>
 
-      <div id="home-globe" class="globe-stage">
-        <i class="orbit orbit-a"></i><i class="orbit orbit-b"></i><i class="orbit orbit-c"></i>
-        <img src="globe-opening.webp" alt="WAYFORTH globe" class="globe-img">
-      </div>
+<section id="page" aria-live="polite"><iframe id="frame" title="WAYFORTH page"></iframe></section>
+<div class="loader" aria-hidden="true"></div>
 
-      <button class="division build-world" data-open="build" aria-label="Open WAYFORTH Build">
-        <span class="build-stack" aria-hidden="true">
-          <img class="build-piece floor-1" src="world-build.webp" alt="">
-          <img class="build-piece floor-2" src="world-build.webp" alt="">
-          <img class="build-piece floor-3" src="world-build.webp" alt="">
-          <img class="build-piece floor-4" src="world-build.webp" alt="">
-          <img class="build-piece crane-piece" src="world-build.webp" alt="">
-          <img class="build-final" src="world-build.webp" alt="WAYFORTH Build construction site">
-        </span>
-        <i class="spark spark-1"></i><i class="spark spark-2"></i><i class="spark spark-3"></i><i class="spark spark-4"></i>
-        <i class="worklight wl-1"></i><i class="worklight wl-2"></i><i class="worklight wl-3"></i><i class="worklight wl-4"></i>
-        <span class="division-card build-card"><strong>BUILD</strong><small>REAL PROJECTS.<br>LASTING VALUE.</small><b>›</b></span>
-      </button>
+<!-- Quote chooser + general inquiry + about/contact -->
+<div class="overlay" id="ov" role="dialog" aria-modal="true" aria-labelledby="ovTitle">
+  <div class="dlg" id="dlg"></div>
+</div>
+<div class="toast" id="toast" role="status"></div>
 
-      <button class="division dd-world" data-open="media" aria-label="Open WAYFORTH Media">
-        <img class="dd-dark" src="world-dd.webp" alt="">
-        <img class="dd-lit" src="world-dd.webp" alt="Digital Dynasty studio">
-        <i class="camera-flash cam-1"></i><i class="camera-flash cam-2"></i><i class="camera-flash cam-3"></i>
-        <i class="softbox sb-1"></i><i class="softbox sb-2"></i><i class="softbox sb-3"></i>
-        <span class="division-card media-card"><strong>MEDIA</strong><small>POWERED BY<br>DIGITAL DYNASTY.</small><b>›</b></span>
-      </button>
+<script>
+(()=>{
+'use strict';
+const PAGES={build:'wayforth-build-v5.html',trucking:'wayforth-trucking-v22.html',media:'wayforth-media.html'};
+const body=document.body,frame=document.getElementById('frame'),home=document.getElementById('home');
+const reduced=matchMedia('(prefers-reduced-motion: reduce)').matches;
+let current='home';
 
-      <button class="division truck-world" data-open="trucking" aria-label="Open WAYFORTH Trucking">
-        <img class="truck-img" src="world-truck.webp" alt="WAYFORTH truck">
-        <i class="wheel wheel-front"></i><i class="wheel wheel-rear-a"></i><i class="wheel wheel-rear-b"></i>
-        <i class="headlamp lamp-a"></i><i class="headlamp lamp-b"></i><i class="headlamp lamp-c"></i>
-        <span class="division-card truck-card"><strong>TRUCKING</strong><small>FREIGHT FORWARD.<br>OPPORTUNITY FURTHER.</small><b>›</b></span>
-      </button>
+/* ---------- routing: /build, /trucking, /media (and #build etc.) ---------- */
+function routeFromURL(){
+  const p=(location.pathname.replace(/^\/+|\/+$/g,'')||location.hash.slice(1)||'home').toLowerCase();
+  return PAGES[p]?p:(p==='quote'?'quote':'home');
+}
+function go(name,push=true,fromEl){
+  if(name==='quote'){openQuote();return;}
+  if(name==='home'||!PAGES[name]){
+    if(current==='home')return;
+    current='home';body.classList.remove('in-page','loading');
+    if(push)history.pushState({p:'home'},'','/');
+    document.title='WAYFORTH — Build. Move. Create.';
+    setTimeout(()=>{if(current==='home'){frame.onload=null;try{frame.contentWindow.location.replace('about:blank')}catch(_){}}},700);
+    return;
+  }
+  current=name;
+  if(push)history.pushState({p:name},'','/'+name);
+  body.classList.add('loading');
+  if(fromEl&&!reduced)expand(fromEl);
+  const want=name;frame.onload=()=>{if(current!==want)return;body.classList.remove('loading');body.classList.add('in-page');try{document.title=frame.contentDocument.title||document.title}catch(_){} };
+  const url=PAGES[name]+'?v=38';try{frame.contentWindow.location.replace(url)}catch(_){frame.src=url}
+}
+/* the clicked world grows to fill the screen before the page appears */
+function expand(el){
+  const r=el.getBoundingClientRect(),w=document.createElement('div');w.className='wipe';
+  const img=el.querySelector('.seg');
+  Object.assign(w.style,{left:r.left+'px',top:r.top+'px',width:r.width+'px',height:r.height+'px',opacity:1,overflow:'hidden',background:'#04070f'});
+  if(img){const c=img.cloneNode();c.style.left=img.style.left;w.appendChild(c);}
+  document.body.appendChild(w);
+  w.animate([{left:r.left+'px',top:r.top+'px',width:r.width+'px',height:r.height+'px',opacity:1},{left:'0px',top:'0px',width:innerWidth+'px',height:innerHeight+'px',opacity:1,offset:.75},{left:'0px',top:'0px',width:innerWidth+'px',height:innerHeight+'px',opacity:0}],
+    {duration:1100,easing:'cubic-bezier(.65,0,.2,1)',fill:'forwards'}).onfinish=()=>w.remove();
+}
+document.addEventListener('click',e=>{
+  const o=e.target.closest('[data-open]');if(o){e.preventDefault();go(o.dataset.open,true,o.classList.contains('w')?o:null);return;}
+  const a=e.target.closest('[data-aux]');if(a){e.preventDefault();openAux(a.dataset.aux);}
+});
+addEventListener('popstate',()=>go(routeFromURL(),false));
 
-      <div class="home-tagline">
-        <h1><span>MOVE.</span> <span>BUILD.</span> <span>CREATE.</span></h1>
-        <p>DIFFERENT INDUSTRIES. A BRIGHTER TOMORROW.</p>
-      </div>
-    </section>
+/* ---------- messages from the Build / Trucking / Media pages ---------- */
+addEventListener('message',e=>{
+  if(e.origin!==location.origin&&e.origin!=='null')return;
+  const d=e.data||{};
+  if(d.type==='wf-single-nav')go(d.page||'home');
+  else if(d.type==='wf-aux')openAux(d.name);
+  else if(d.type==='wf-build-quote')sendBuildQuote(d.payload||d);
+});
 
-    <!-- BUILD and TRUCKING are preloaded inside this persistent app. They do not navigate to another document. -->
-    <section id="scene-build" class="scene scene-content scene-embedded" data-scene="build" aria-label="WAYFORTH Build">
-      <iframe id="build-frame" class="embedded-scene-frame" title="WAYFORTH Build complete materials and quote workspace"></iframe>
-    </section>
+/* ---------- dialogs ---------- */
+const ov=document.getElementById('ov'),dlg=document.getElementById('dlg');
+function openDlg(html){dlg.innerHTML=html;ov.classList.add('open');const f=dlg.querySelector('input,button');f&&f.focus({preventScroll:true});}
+function closeDlg(){ov.classList.remove('open');}
+ov.addEventListener('click',e=>{if(e.target===ov||e.target.closest('[data-close]'))closeDlg();});
+addEventListener('keydown',e=>{if(e.key==='Escape')closeDlg();});
+const AUX={
+  about:['About WAYFORTH','WAYFORTH brings construction, freight and trucking, and digital media together under one company, focused on dependable work and lasting partnerships.'],
+  contact:['Contact Us','Need construction, trucking or media support? Send us a message and the WAYFORTH team will follow up.'],
+  media:['Work with WAYFORTH Media','Tell us about your channel, brand or project and the media team will follow up.'],
+  support:['Support','Need help with a quote, an ongoing project, a shipment or a media service? Send the details and we will point you to the right person.']
+};
+function openAux(name){
+  const [t,p]=AUX[name]||AUX.contact;
+  openDlg(`<h3 id="ovTitle">${t}</h3><p>${p}</p>${formHTML(name==='about'?'General inquiry':name==='media'?'Media inquiry':t)}`);
+  bindForm();
+}
+function openQuote(){
+  openDlg(`<h3 id="ovTitle">What can we quote for you?</h3><p>Choose a division to start your request.</p>
+   <div class="choices">
+    <button class="choice t-gold" data-pick="build"><b>BUILD</b><small>Homes, plazas and raw materials</small></button>
+    <button class="choice t-blue" data-pick="trucking"><b>MOVE</b><small>Cars, boats, freight and carriers</small></button>
+    <button class="choice t-violet" data-pick="media"><b>CREATE</b><small>Channels, content and production</small></button>
+   </div><div class="actions"><button class="btn ghost" data-close>CLOSE</button></div>`);
+  dlg.querySelectorAll('[data-pick]').forEach(b=>b.onclick=()=>{closeDlg();
+    if(b.dataset.pick==='media'){openDlg(`<h3 id="ovTitle">Media inquiry</h3><p>Tell us about your channel, brand or project.</p>${formHTML('Media inquiry')}`);bindForm();}
+    else go(b.dataset.pick);});
+}
+function formHTML(label){
+  return `<form id="inq" data-label="${label}" novalidate>
+    <div class="row2"><label>Full name<input id="f-name" name="fullName" autocomplete="name" required></label><label>Phone / WhatsApp<input id="f-phone" name="phone" type="tel" inputmode="tel" autocomplete="tel" required></label></div>
+    <label>Email<input id="f-email" name="email" type="email" autocomplete="email" required></label>
+    <label>Message<textarea id="f-notes" name="notes" placeholder="How can we help?"></textarea></label>
+    <div class="status" id="f-status" role="status"></div>
+    <div class="actions"><button class="btn primary" type="submit">SEND →</button><button class="btn ghost" type="button" data-close>CLOSE</button></div></form>`;
+}
+function bindForm(){
+  const f=document.getElementById('inq');if(!f)return;
+  f.addEventListener('submit',async e=>{e.preventDefault();const st=document.getElementById('f-status');
+    const v=Object.fromEntries(new FormData(f).entries());const digits=(v.phone||'').replace(/\D/g,'');
+    if(!v.fullName.trim()||!/^\S+@\S+\.\S{2,}$/.test(v.email||'')||digits.length<7||digits.length>15){st.className='status err';st.textContent='Please add your name, a valid email and a phone number (7 to 15 digits).';return;}
+    const btn=f.querySelector('[type=submit]');btn.disabled=true;btn.textContent='SENDING…';
+    try{await send({service:'general',serviceLabel:f.dataset.label,source:'WAYFORTH Home V38',details:v});
+      st.className='status ok';st.textContent='Thank you. Your message has been sent to WAYFORTH and the team will follow up.';btn.textContent='SENT ✓';setTimeout(closeDlg,2200);}
+    catch(err){st.className='status err';st.textContent=err.message;btn.disabled=false;btn.textContent='SEND →';}
+  });
+}
+async function send(payload){
+  const r=await fetch('/api/trucking-inquiry',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload)});
+  const j=await r.json().catch(()=>({}));if(!r.ok)throw new Error(j.message||'Unable to send right now. Please try again.');return j;
+}
+/* Build materials cart → same lead email endpoint */
+async function sendBuildQuote(q){
+  const lines=(q.materials||[]).map(m=>`${m.material||m.name||'Item'}${m.category?' ('+m.category+')':''}: ${m.quantity||''} ${m.unit||''}`.trim()).join('\n');
+  try{await send({service:'build',serviceLabel:'Build Materials Quote',source:'WAYFORTH Build V38',details:{
+      fullName:q.contactName||'',email:q.email||'',phone:q.phone||'',projectType:(q.project&&q.project.kind)||'',projectOption:(q.project&&q.project.option)||'',
+      projectLocation:q.projectLocation||'',materials:lines,notes:q.notes||''}});
+    toast('Your materials quote has been sent to WAYFORTH.');}
+  catch(err){toast(err.message);}
+}
+const T=document.getElementById('toast');let tt;
+function toast(m){T.textContent=m;T.classList.add('show');clearTimeout(tt);tt=setTimeout(()=>T.classList.remove('show'),3200);}
 
-    <section id="scene-trucking" class="scene scene-content scene-embedded" data-scene="trucking" aria-label="WAYFORTH Trucking">
-      <iframe id="trucking-frame" class="embedded-scene-frame" title="WAYFORTH Trucking complete operations workspace"></iframe>
-    </section>
+/* ---------- one continuous scene across the three worlds ---------- */
+const worlds=[...home.querySelectorAll('.w')];
+function place(){
+  const w=home.clientWidth,narrow=innerWidth<=900;
+  worlds.forEach((p,i)=>{const img=p.querySelector('.seg');
+    if(narrow){img.style.left=(-i*innerWidth)+'px';img.style.removeProperty('--sw');}
+    else{img.style.setProperty('--sw',w+'px');img.style.left=(-p.offsetLeft)+'px';}});
+}
+(function loop(){if(!body.classList.contains('in-page'))place();requestAnimationFrame(loop);})();
 
-    <section id="scene-media" class="scene scene-content scene-media" data-scene="media" aria-label="WAYFORTH Media">
-      <div class="media-atmosphere"></div>
-      <div class="media-gridlines"></div>
-      <button class="scene-home-btn" data-open="home">← HOME</button>
-      <div class="media-copy">
-        <div class="eyebrow">WAYFORTH MEDIA × DIGITAL DYNASTY</div>
-        <h2>CREATE<br><span>AT SCALE.</span></h2>
-        <p>Choose the part of Digital Dynasty you need. The studio stays in the scene while the service layer changes around it.</p>
-        <div class="media-service-grid" aria-label="Digital Dynasty services">
-          <button class="media-service is-selected" data-media-service="Content Production" data-media-copy="Production, creative development and content systems for brands and creators."><b>01</b><span>CONTENT<br>PRODUCTION</span></button>
-          <button class="media-service" data-media-service="Social Distribution" data-media-copy="Multi-platform publishing, distribution strategy and audience growth."><b>02</b><span>SOCIAL<br>DISTRIBUTION</span></button>
-          <button class="media-service" data-media-service="Brand Growth" data-media-copy="Campaigns, creative strategy and growth systems designed to scale brands."><b>03</b><span>BRAND<br>GROWTH</span></button>
-          <button class="media-service" data-media-service="Creator Partnerships" data-media-copy="Creator collaborations, partnerships and campaign infrastructure."><b>04</b><span>CREATOR<br>PARTNERSHIPS</span></button>
-          <button class="media-service" data-media-service="YouTube / MCN" data-media-copy="YouTube channel growth, network support and creator infrastructure."><b>05</b><span>YOUTUBE<br>/ MCN</span></button>
-          <button class="media-service" data-media-service="Licensing & Rights" data-media-copy="Content licensing, rights opportunities and commercial distribution support."><b>06</b><span>LICENSING<br>& RIGHTS</span></button>
-        </div>
-        <div class="media-selected">
-          <small id="media-selected-label">SELECTED / CONTENT PRODUCTION</small>
-          <p id="media-selected-copy">Production, creative development and content systems for brands and creators.</p>
-        </div>
-        <div class="media-actions">
-          <button data-open="quote" data-quote="media">START A MEDIA BRIEF →</button>
-          <a href="https://digitaldynasty.media" target="_blank" rel="noopener">DIGITAL DYNASTY ↗</a>
-        </div>
-      </div>
-      <div class="media-visual">
-        <img src="world-dd.webp" alt="Digital Dynasty studio">
-        <i class="media-flash mf-1"></i><i class="media-flash mf-2"></i><i class="media-flash mf-3"></i>
-        <i class="media-softlight msl-1"></i><i class="media-softlight msl-2"></i><i class="media-softlight msl-3"></i>
-      </div>
-    </section>
+/* ---------- living effects: welding sparks, road light, camera flashes ---------- */
+const fxs=[...home.querySelectorAll('.fx')],parts=new Map(fxs.map(c=>[c,[]]));let last=performance.now();
+function fx(now){const dt=Math.min(.05,(now-last)/1000);last=now;
+  if(!body.classList.contains('in-page'))fxs.forEach(c=>{
+    const r=c.getBoundingClientRect();if(c.width!==Math.round(r.width)||c.height!==Math.round(r.height)){c.width=r.width;c.height=r.height;}
+    const g=c.getContext('2d'),W=c.width,H=c.height,P=parts.get(c),k=c.dataset.fx;g.clearRect(0,0,W,H);g.globalCompositeOperation='lighter';
+    if(k==='weld'&&Math.random()<dt*2.2){const x=W*(.3+Math.random()*.5),y=H*(.25+Math.random()*.3);for(let i=0;i<40;i++)P.push({x,y,vx:(Math.random()-.5)*260,vy:-Math.random()*200,l:0,m:.5+Math.random()*.6,s:1});P.push({x,y,l:0,m:.18,s:0});}
+    if(k==='flash'&&Math.random()<dt*1.6)P.push({x:W*(.1+Math.random()*.8),y:H*(.35+Math.random()*.3),l:0,m:.3,s:2});
+    if(k==='road'&&Math.random()<dt*14)P.push({x:W+20,y:H*(.6+Math.random()*.2),vx:-(600+Math.random()*700),l:0,m:3,s:3,len:60+Math.random()*120,c:Math.random()<.5?'255,175,80':'110,180,255'});
+    for(let i=P.length-1;i>=0;i--){const p=P[i];p.l+=dt;if(p.l>p.m||p.x<-200){P.splice(i,1);continue;}const f=1-p.l/p.m;
+      if(p.s===1){p.vy+=520*dt;p.x+=p.vx*dt;p.y+=p.vy*dt;g.strokeStyle=`rgba(255,${180+70*f|0},${80+150*f*f|0},${f})`;g.lineWidth=1.5;g.beginPath();g.moveTo(p.x,p.y);g.lineTo(p.x-p.vx*.02,p.y-p.vy*.02);g.stroke();}
+      else if(p.s!==3){const R=p.s?180:70,gr=g.createRadialGradient(p.x,p.y,0,p.x,p.y,R);gr.addColorStop(0,`rgba(255,255,255,${f})`);gr.addColorStop(.15,`rgba(220,230,255,${f*.5})`);gr.addColorStop(1,'rgba(200,215,255,0)');g.fillStyle=gr;g.beginPath();g.arc(p.x,p.y,R,0,7);g.fill();}
+      else{p.x+=p.vx*dt;const gr=g.createLinearGradient(p.x,0,p.x+p.len,0);gr.addColorStop(0,`rgba(${p.c},.55)`);gr.addColorStop(1,`rgba(${p.c},0)`);g.strokeStyle=gr;g.lineWidth=2;g.beginPath();g.moveTo(p.x,p.y);g.lineTo(p.x+p.len,p.y);g.stroke();}
+    }});
+  if(!reduced)requestAnimationFrame(fx);}
+requestAnimationFrame(fx);
 
-    <!-- Quote router. This is deliberately easy to revise in the next quote-list pass. -->
-    <section id="scene-quote" class="scene scene-content scene-quote" data-scene="quote" aria-label="WAYFORTH Quote">
-      <button class="scene-home-btn" data-open="home">← HOME</button>
-      <div class="quote-shell">
-        <div class="eyebrow">WAYFORTH / START HERE</div>
-        <h2>WHAT CAN WE<br><span>MOVE FORWARD?</span></h2>
-        <div class="quote-options">
-          <button data-open="build" class="quote-choice"><b>BUILD</b><span>Materials & project quote</span><em>→</em></button>
-          <button data-open="trucking" data-form="trucker" class="quote-choice"><b>TRUCKER</b><span>Plan my work week</span><em>→</em></button>
-          <button data-open="trucking" data-form="broker" class="quote-choice"><b>BROKER</b><span>Move my freight</span><em>→</em></button>
-          <button data-open="media" class="quote-choice"><b>MEDIA</b><span>Content & brand growth</span><em>→</em></button>
-        </div>
-      </div>
-    </section>
-
-    <!-- Persistent transition object. It never requires a page load. -->
-    <div id="portal" class="portal" aria-hidden="true">
-      <div id="portal-globe" class="portal-globe">
-        <i class="portal-orbit po-a"></i><i class="portal-orbit po-b"></i>
-        <img src="globe-opening.webp" alt="">
-      </div>
-      <div class="portal-energy"></div>
-    </div>
-  </main>
-
-  <!-- BUILD modal -->
-  <div id="material-modal" class="modal" aria-hidden="true">
-    <div class="modal-card">
-      <button class="modal-close" data-close="material">×</button>
-      <div class="eyebrow">WAYFORTH BUILD</div>
-      <h3 id="material-title">Material</h3>
-      <p id="material-supplier" class="modal-sub"></p>
-      <div class="form-grid">
-        <label>Specification<select id="material-spec"></select></label>
-        <label>Quantity<input id="material-qty" type="number" min="1" value="1" inputmode="decimal"></label>
-        <label>Unit<select id="material-unit"></select></label>
-        <label>Target price<input id="material-price" type="number" min="0" placeholder="Optional" inputmode="decimal"></label>
-      </div>
-      <label class="full-label">Project note<textarea id="material-note" rows="3" placeholder="Delivery location, preferred brand/specification, timing…"></textarea></label>
-      <button id="add-material" class="primary-cta">ADD TO QUOTE →</button>
-    </div>
-  </div>
-
-  <!-- Trucking forms -->
-  <div id="trucking-modal" class="modal" aria-hidden="true">
-    <div class="modal-card trucking-form-shell">
-      <button class="modal-close" data-close="trucking">×</button>
-      <div class="eyebrow" id="truck-form-kicker">WAYFORTH TRUCKING</div>
-      <h3 id="truck-form-title">Plan my week.</h3>
-      <form id="trucker-form" class="dynamic-form">
-        <label>Current state<input name="current_state" placeholder="e.g. Illinois" required></label>
-        <label>MC number<input name="mc_number" placeholder="MC number, if available"></label>
-        <label>Days you want to work<input name="work_days" placeholder="e.g. Mon–Fri" required></label>
-        <label>Weekend / home days<input name="home_days" placeholder="Choose up to 2 days"></label>
-        <label>Start from<input name="start" placeholder="City / State / ZIP" required></label>
-        <label>Get me back to<input name="return" placeholder="Home City / State / ZIP" required></label>
-        <label>WhatsApp / contact<input name="contact" placeholder="+1 …" required></label>
-        <label class="full-label">Anything else?<textarea name="notes" rows="3" placeholder="Preferred lanes, places to avoid, home-time notes…"></textarea></label>
-        <button class="primary-cta" type="submit">PLAN MY ROUTE →</button>
-      </form>
-      <form id="broker-form" class="dynamic-form is-hidden">
-        <label>Pickup location<input name="pickup" placeholder="City / State / ZIP" required></label>
-        <label>Destination<input name="destination" placeholder="City / State / ZIP" required></label>
-        <label>Frequency<select name="frequency"><option>One-time</option><option>Recurring</option></select></label>
-        <label>Equipment<select name="equipment"><option>Dry Van</option><option>Reefer</option><option>Flatbed</option><option>Power Only</option><option>Box Truck</option><option>Hotshot</option><option>Other</option></select></label>
-        <label>Rate<input name="rate" placeholder="$ / all-in rate"></label>
-        <label class="full-label">Comments<textarea name="comments" rows="3" placeholder="Commodity, weight, appointment requirements…"></textarea></label>
-        <button class="primary-cta" type="submit">FIND A TRUCK →</button>
-      </form>
-    </div>
-  </div>
-
-  <!-- Quote cart -->
-  <div id="cart-drawer" class="drawer" aria-hidden="true">
-    <div class="drawer-card">
-      <button class="modal-close" data-close="cart">×</button>
-      <div class="eyebrow">BUILD QUOTE LIST</div>
-      <h3>Your project materials.</h3>
-      <div id="cart-items" class="cart-items"></div>
-      <button id="send-cart" class="primary-cta">REQUEST FINAL QUOTE →</button>
-    </div>
-  </div>
-
-  <div id="toast" class="toast" role="status"></div>
-  <script src="scenes-data.js"></script>
-  <script src="app.js"></script>
+/* open the page in the address bar on first load (/build, /trucking, /media, /quote) */
+const first=routeFromURL();if(first!=='home')go(first,false);
+})();
+</script>
 </body>
 </html>
