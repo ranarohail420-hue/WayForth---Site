@@ -1,144 +1,31 @@
-/* WAYFORTH V5.9 — V5.8 motion preserved; cement decal removed and native scene transitions left unstacked. */
-.wf-final-home{isolation:isolate;overflow:hidden;}
-.wf-final-art{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;object-position:center;filter:none;transform-origin:center;backface-visibility:hidden;}
+/* WAYFORTH V37 — cinematic landing + living scene */
+.wf-fx{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:4;opacity:0;transition:opacity 1.2s ease}
+.wf-fx.on{opacity:1}
 
-/* FIRST LANDING ONLY.
-   Match the already-approved BUILD / TRUCKING / MEDIA / HOME transition language:
-   the existing globe-opening asset grows through the center, then hands off to HOME.
-   No rotation, no new artwork, no changes to the working scene-transition system. */
-html.wf-v55-boot body.ready #scene-home .wf-final-art{
-  animation:wf58-home-under-portal .78s cubic-bezier(.18,.72,.2,1) both;
-}
-@keyframes wf58-home-under-portal{
-  0%,18%{opacity:0;filter:brightness(.72)}
-  48%{opacity:.22;filter:brightness(.84)}
-  72%{opacity:.82;filter:brightness(.97)}
-  100%{opacity:1;filter:brightness(1)}
-}
-.wf-v58-entry{
-  position:absolute;left:50%;top:48%;width:min(31vw,520px);height:auto;z-index:18;
-  transform:translate(-50%,-50%) scale(.20);transform-origin:center;
-  opacity:0;pointer-events:none;object-fit:contain;will-change:transform,opacity,filter;
-  filter:drop-shadow(0 0 24px rgba(74,159,255,.24));
-}
-html.wf-v55-boot body.ready #scene-home .wf-v58-entry{
-  animation:wf58-entry-portal .78s cubic-bezier(.18,.72,.2,1) both;
-}
-@keyframes wf58-entry-portal{
-  0%{opacity:0;transform:translate(-50%,-50%) scale(.18);filter:brightness(.78) drop-shadow(0 0 12px rgba(74,159,255,.12))}
-  12%{opacity:1;transform:translate(-50%,-50%) scale(.32);filter:brightness(.94) drop-shadow(0 0 18px rgba(74,159,255,.20))}
-  48%{opacity:1;transform:translate(-50%,-50%) scale(1.02);filter:brightness(1.08) drop-shadow(0 0 26px rgba(74,159,255,.28))}
-  76%{opacity:.96;transform:translate(-50%,-50%) scale(2.35);filter:brightness(1.05) drop-shadow(0 0 34px rgba(74,159,255,.20))}
-  100%{opacity:0;transform:translate(-50%,-50%) scale(4.65);filter:brightness(1)}
-}
+/* ---------- intro (first load only) ---------- */
+.wf-intro{position:absolute;inset:0;z-index:40;pointer-events:auto;cursor:pointer;overflow:hidden;perspective:1400px}
+.wf-intro-bg{position:absolute;inset:0;background:radial-gradient(ellipse at 50% 46%,#0a1d3d 0%,#040b1a 45%,#01040b 100%)}
+.wf-intro-stars{position:absolute;inset:0;width:100%;height:100%}
+.wf-intro-globe{position:absolute;border-radius:50%;background-repeat:no-repeat;will-change:transform,opacity,filter;
+  box-shadow:0 0 70px rgba(64,150,255,.45),0 0 160px rgba(40,110,255,.25);
+  -webkit-mask-image:radial-gradient(circle,#000 66%,rgba(0,0,0,.92) 70%,transparent 72%);mask-image:radial-gradient(circle,#000 66%,rgba(0,0,0,.92) 70%,transparent 72%)}
+.wf-intro-globe:after{content:"";position:absolute;inset:0;border-radius:50%;mix-blend-mode:screen;
+  background:conic-gradient(from 0deg,transparent 0 62%,rgba(140,205,255,.0) 64%,rgba(170,220,255,.38) 72%,rgba(255,214,140,.22) 76%,transparent 84%);
+  animation:wfSweep 2.4s linear infinite}
+@keyframes wfSweep{to{transform:rotate(360deg)}}
+.wf-intro-rings{position:absolute;left:50%;top:50%;width:0;height:0;transform-style:preserve-3d;pointer-events:none}
+.wf-intro-rings i{position:absolute;left:0;top:0;border-radius:50%;transform-style:preserve-3d;border:1.5px solid rgba(255,196,92,.75);
+  box-shadow:0 0 16px rgba(255,180,60,.55),inset 0 0 12px rgba(255,180,60,.25)}
+.wf-intro-rings i:nth-child(2){border-color:rgba(98,182,255,.75);box-shadow:0 0 16px rgba(70,160,255,.55),inset 0 0 12px rgba(70,160,255,.25)}
+.wf-intro-rings i:nth-child(3){border-color:rgba(255,236,190,.55);border-style:dashed}
+.wf-intro-word{position:absolute;left:0;right:0;text-align:center;color:#f6d38a;font:300 clamp(16px,1.6vw,28px)/1 Montserrat,Inter,Arial,sans-serif;
+  letter-spacing:.9em;text-indent:.9em;text-shadow:0 0 18px rgba(255,190,80,.55);opacity:0;pointer-events:none}
+.wf-intro-word small{display:block;margin-top:14px;font-size:.42em;letter-spacing:.7em;color:#9fc8ff;text-shadow:0 0 12px rgba(80,160,255,.6)}
+.wf-intro-skip{position:absolute;right:22px;bottom:20px;z-index:3;border:1px solid rgba(255,214,140,.45);background:rgba(3,10,24,.55);color:#f3d29a;
+  font:600 11px/1 Inter,Arial,sans-serif;letter-spacing:.18em;padding:10px 14px;border-radius:30px;cursor:pointer;backdrop-filter:blur(6px)}
+.wf-slice{position:absolute;inset:0;pointer-events:none;background-size:100% 100%;background-repeat:no-repeat;will-change:transform,opacity,filter;z-index:3}
+.wf-intro-flash{position:absolute;inset:0;z-index:5;pointer-events:none;background:radial-gradient(circle at 48% 36%,rgba(255,240,210,.9),rgba(120,190,255,.25) 30%,transparent 60%);opacity:0}
 
-.wf-v55-stage{position:absolute;left:0;top:0;right:auto;bottom:auto;pointer-events:none;overflow:hidden;z-index:4;contain:layout paint;backface-visibility:hidden;transform:translateZ(0);}
-.wf-v55-stage i,.wf-v55-stage img{position:absolute;display:block;pointer-events:none;}
-html.wf-v55-boot body.ready #scene-home .wf-v55-stage{animation:wf55-stage-in 1.25s ease-out .62s both;}
-@keyframes wf55-stage-in{0%{opacity:0}100%{opacity:1}}
-
-/* Globe pulse is now centered on the baked globe itself. No hard outline/ring is drawn,
-   so it reads as the globe breathing rather than a separate circle floating above it. */
-.wf-v55-globe{
-  left:50%;top:34%;width:31.2%;aspect-ratio:1;border-radius:50%;
-  transform:translate(-50%,-50%) scale(1);opacity:.50;
-  background:radial-gradient(circle,
-    rgba(109,198,255,.12) 0 43%,
-    rgba(82,180,255,.14) 52%,
-    rgba(70,166,255,.25) 63%,
-    rgba(62,145,255,.14) 71%,
-    transparent 82%);
-  box-shadow:0 0 44px rgba(58,157,255,.25),inset 0 0 48px rgba(112,203,255,.15);
-  filter:blur(.10px);
-  animation:wf57-globe-breathe 3.05s ease-in-out infinite;
-  will-change:transform,opacity,filter;
-  -webkit-mask-image:linear-gradient(to bottom,#000 0%,#000 60%,rgba(0,0,0,.62) 72%,transparent 84%);
-  mask-image:linear-gradient(to bottom,#000 0%,#000 60%,rgba(0,0,0,.62) 72%,transparent 84%);
-}
-@keyframes wf57-globe-breathe{
-  0%,100%{transform:translate(-50%,-50%) scale(1);opacity:.36;filter:brightness(.94) blur(.10px);box-shadow:0 0 36px rgba(58,157,255,.18),inset 0 0 42px rgba(112,203,255,.10)}
-  50%{transform:translate(-50%,-50%) scale(1.052);opacity:.86;filter:brightness(1.24) blur(0);box-shadow:0 0 68px rgba(72,177,255,.42),inset 0 0 58px rgba(133,215,255,.22)}
-}
-
-/* Crane activity: only a fine cable motion. The fake hanging sign/load from V5.4 is gone. */
-.wf-v55-crane{
-  left:26.2%;top:26.5%;width:.20%;height:7.2%;transform-origin:50% 0;
-  animation:wf55-crane-cable 4.9s ease-in-out infinite;opacity:.64;will-change:transform;
-}
-.wf-v55-crane:before{
-  content:"";position:absolute;left:50%;top:0;width:1px;height:100%;transform:translateX(-50%);
-  background:linear-gradient(to bottom,rgba(33,24,17,.18),rgba(21,15,13,.92) 24%,rgba(18,13,11,.90) 84%,rgba(219,146,49,.44));
-  box-shadow:0 0 1px rgba(255,190,94,.28);
-}
-@keyframes wf55-crane-cable{
-  0%,100%{transform:translateY(0) rotate(-.28deg) scaleY(.985)}
-  28%{transform:translateY(1px) rotate(.18deg) scaleY(1.012)}
-  58%{transform:translateY(2px) rotate(.32deg) scaleY(1.025)}
-  80%{transform:translateY(.5px) rotate(-.12deg) scaleY(.996)}
-}
-
-/* V5.6 final alignment: small warm flashes sit directly on the existing crane boom lamps. */
-.wf-v55-crane-flash{width:1.25%;aspect-ratio:1;border-radius:50%;mix-blend-mode:screen;opacity:.18;
-  background:radial-gradient(circle,#fffbd8 0 7%,#ffd56a 10% 18%,rgba(255,147,24,.62) 25%,rgba(255,103,14,.20) 44%,transparent 68%);
-  filter:blur(.05px);animation:wf56-crane-twinkle 2.65s steps(1,end) infinite;will-change:opacity,transform,filter;}
-.wf-v55-crane-flash-1{left:1.47%;top:8.05%;animation-delay:-.20s;}
-.wf-v55-crane-flash-2{left:8.95%;top:11.76%;animation-delay:-1.12s;}
-.wf-v55-crane-flash-3{left:16.38%;top:15.17%;animation-delay:-.57s;}
-.wf-v55-crane-flash-4{left:20.49%;top:17.72%;animation-delay:-1.74s;}
-.wf-v55-crane-flash-5{left:24.09%;top:19.63%;animation-delay:-.88s;}
-.wf-v55-crane-flash-6{left:27.86%;top:21.54%;animation-delay:-2.04s;}
-.wf-v55-crane-flash-7{left:30.90%;top:23.24%;animation-delay:-1.36s;}
-@keyframes wf56-crane-twinkle{
-  0%,100%{opacity:.18;transform:scale(.82);filter:brightness(.90)}
-  9%{opacity:.92;transform:scale(1.10);filter:brightness(1.45)}
-  12%{opacity:.28;transform:scale(.88);filter:brightness(.96)}
-  36%{opacity:.18}
-  42%{opacity:.72;transform:scale(1.04);filter:brightness(1.28)}
-  45%{opacity:.20;transform:scale(.84);filter:brightness(.92)}
-}
-
-/* BUILD welding — starts immediately and keeps a natural irregular double-flash rhythm. */
-.wf-v55-weld{width:4.8%;aspect-ratio:1;border-radius:50%;mix-blend-mode:screen;opacity:0;
-  background:radial-gradient(circle,#fff 0 3%,#fff9dc 4% 7%,rgba(255,211,83,.96) 8% 12%,rgba(255,122,20,.54) 18%,transparent 60%);
-  filter:blur(.12px);will-change:opacity,transform;}
-.wf-v55-weld:before,.wf-v55-weld:after{content:"";position:absolute;left:50%;top:50%;background:linear-gradient(90deg,transparent,rgba(255,239,184,.94),transparent);transform:translate(-50%,-50%);}
-.wf-v55-weld:before{width:125%;height:1px}.wf-v55-weld:after{width:1px;height:125%;}
-.wf-v55-weld-a{left:27.35%;top:62.1%;animation:wf55-weld-a 2.35s steps(1,end) -.18s infinite;}
-.wf-v55-weld-b{left:16.15%;top:59.7%;width:3.9%;animation:wf55-weld-b 2.85s steps(1,end) -.62s infinite;}
-@keyframes wf55-weld-a{0%{opacity:.98;transform:scale(.78)}2%{opacity:0}5%{opacity:.72;transform:scale(1.08)}7%{opacity:0}10%{opacity:1;transform:scale(.70)}13%,100%{opacity:0}}
-@keyframes wf55-weld-b{0%,23%{opacity:0}24%{opacity:.88;transform:scale(.76)}26%{opacity:0}29%{opacity:.60;transform:scale(1.04)}31%,100%{opacity:0}}
-
-/* MEDIA flashes — active from the first second, but short enough to remain photographic. */
-.wf-v55-media-flash{width:5.7%;aspect-ratio:1;border-radius:50%;mix-blend-mode:screen;opacity:0;
-  background:radial-gradient(circle,#fff 0 4%,rgba(244,248,255,.98) 6%,rgba(166,204,255,.58) 16%,rgba(94,133,255,.22) 31%,transparent 65%);
-  will-change:opacity,transform;}
-.wf-v55-media-a{left:66.8%;top:58.45%;animation:wf55-media-a 2.28s steps(1,end) -.15s infinite;}
-.wf-v55-media-b{left:91.75%;top:58.9%;animation:wf55-media-b 2.82s steps(1,end) -.94s infinite;}
-.wf-v55-media-c{left:79.0%;top:61.15%;width:4.4%;animation:wf55-media-c 3.2s steps(1,end) -1.42s infinite;}
-@keyframes wf55-media-a{0%{opacity:.98;transform:scale(.82)}2%{opacity:.18}4%{opacity:.72;transform:scale(1.08)}6%,100%{opacity:0}}
-@keyframes wf55-media-b{0%,20%{opacity:0}21%{opacity:.88;transform:scale(.88)}23%{opacity:.15}25%{opacity:.62;transform:scale(1.08)}27%,100%{opacity:0}}
-@keyframes wf55-media-c{0%,45%{opacity:0}46%{opacity:.76;transform:scale(.8)}48%{opacity:0}50%{opacity:.45;transform:scale(1.04)}52%,100%{opacity:0}}
-
-/* Truck lights: low beam remains visible; high beam rises/falls like a real dipper. */
-.wf-v55-headlight{width:2.45%;aspect-ratio:1;border-radius:50%;mix-blend-mode:screen;opacity:.31;
-  background:radial-gradient(circle,#fff 0 6%,#def8ff 8% 12%,rgba(77,195,255,.72) 18%,rgba(35,102,255,.23) 37%,transparent 66%);
-  filter:blur(.08px);animation:wf55-dipper 4.0s ease-in-out infinite;will-change:opacity,transform,filter;}
-.wf-v55-headlight-left{left:53.15%;top:58.72%;}
-.wf-v55-headlight-right{left:61.88%;top:58.62%;animation-delay:.08s;}
-.wf-v55-headlight-low-left{left:53.26%;top:64.35%;width:2.10%;animation-delay:.12s;}
-.wf-v55-headlight-low-right{left:62.05%;top:64.02%;width:2.10%;animation-delay:.20s;}
-.wf-v55-cement-headlight{left:12.35%;top:61.9%;width:1.65%;animation-delay:.16s;}
-@keyframes wf55-dipper{0%,24%,100%{opacity:.31;transform:scale(.92);filter:brightness(.9)}29%,35%{opacity:.96;transform:scale(1.16);filter:brightness(1.5)}42%,62%{opacity:.35;transform:scale(.94);filter:brightness(.94)}67%,74%{opacity:.83;transform:scale(1.09);filter:brightness(1.3)}80%{opacity:.32;transform:scale(.93);filter:brightness(.91)}}
-.wf-v55-roof-lights{left:51.4%;top:47.85%;width:7.2%;height:1.7%;border-radius:999px;mix-blend-mode:screen;opacity:.29;
-  background:radial-gradient(ellipse at center,rgba(255,211,90,.95),rgba(255,135,25,.30) 40%,transparent 73%);
-  animation:wf55-roof-lights 3.15s ease-in-out infinite;}
-@keyframes wf55-roof-lights{0%,100%{opacity:.27;filter:brightness(.9)}45%,58%{opacity:.71;filter:brightness(1.28)}}
-
-/* No secondary Home-return animation: original site transition remains the only transition layer. */
-
-@media(max-aspect-ratio:13/10){
-  .wf-v55-stage{display:none!important}
-  html.wf-v55-boot body.ready #scene-home .wf-final-art{animation:wf55-mobile-reveal 1.45s ease-out both;}
-  @keyframes wf55-mobile-reveal{0%{opacity:0;transform:scale(1.05);filter:brightness(.55)}100%{opacity:1;transform:scale(1);filter:brightness(1)}}
-}
-@media(prefers-reduced-motion:reduce){.wf-v55-stage{display:none!important}html.wf-v55-boot body.ready #scene-home .wf-final-art{animation:none!important;opacity:1!important;transform:none!important}.wf-v58-entry{display:none!important}}
+/* card light sweep after landing */
+.wf-home-card.wf-sweep:after{transform:translateX(120%)}
+@media(prefers-reduced-motion:reduce){.wf-intro{display:none!important}.wf-fx{display:none}}

@@ -1,0 +1,38 @@
+WAYFORTH V37 — FULL-SCREEN CINEMATIC HOME LANDING
+==================================================
+
+COMMIT NAME
+WAYFORTH V37 — Full-Screen Cinematic Home Landing & Living Scene
+
+CHANGES (Trucking V36 is included unchanged)
+1. New widescreen Home artwork: wf-home-wide.webp (1960 x 941)
+   - Scene widened naturally (no stretched sides). Fills the whole screen on laptops, desktops and ultra-wide.
+   - BUILD card moved left (under the building), MEDIA card moved right (under the Media office).
+   - Any leftover screen space is filled with a soft blurred copy of the scene — never empty bars.
+2. Cinematic first-load intro (about 4 seconds, "SKIP INTRO" button, click/scroll/any key skips it):
+   stars wheel around as the camera orbits the WAYFORTH globe with glowing orbit rings ->
+   "WAYFORTH — BUILD · MOVE · CREATE" -> the camera pulls back, the globe lands on the real globe,
+   the construction site swings in from the left, the Media office from the right, the truck drives up,
+   and the cards slide in.
+3. Living scene after landing:
+   - BUILD: crane trolley travels along the jib, the hook lifts and swings a steel beam, crane lamps
+     and red beacon blink, welding arcs with falling sparks on several floors.
+   - TRUCK: wheels spin, headlights pulse with a high-beam double flash, roof marker lights chase,
+     light streaks race along the road under the truck.
+   - MEDIA: random camera / photoshoot flashes around the studio and tripods, soft studio glow.
+   - Globe breathes, city lights twinkle, two satellite glints orbit it.
+   - Scene leans slightly with the mouse (depth). Cards get a light sweep on hover.
+4. Accessibility: visitors with "reduce motion" turned on skip the intro and effects.
+
+FILES CHANGED: wf-home-wide.webp (new), wf-approved-home.css, wf-stable-motion.css, wf-stable-motion.js,
+patch-wayforth.js (new Home markup), START_HERE_V37.txt, README_UPLOAD.txt.
+UNCHANGED: Trucking (V36), Build, Media pages, forms, api/trucking-inquiry.js, vercel.json.
+
+DEPLOY
+1. Extract this ZIP into the ROOT of the existing WAYFORTH GitHub repository and replace matching files.
+2. Keep index.html, app.js, styles.css and scenes-data.js.
+3. Commit with the exact message above. Vercel Build Command stays: node patch-wayforth.js
+4. After deploy, open the site in a fresh tab: watch the intro, then click BUILD / TRUCKING / MEDIA,
+   the top menu and GET A QUOTE to confirm each opens correctly.
+
+This is an update bundle for the existing repository. No live deployment was performed by this package build.
