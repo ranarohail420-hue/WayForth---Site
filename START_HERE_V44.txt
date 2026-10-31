@@ -1,0 +1,24 @@
+WAYFORTH V44 — BUILD SHOWROOM
+=============================
+
+COMMIT NAME
+WAYFORTH V44 — Build Showroom Landing
+
+WHAT CHANGED (everything else is the same as V43)
+1. The Build page now opens with the Showroom:
+   "What are you building?" with two large cards, HOME and COMMERCIAL, that float in turn.
+   - HOME  -> 6 plot sizes (5 Marla, 10 Marla, 10 Marla+, 11 Marla, 1 Kanal, 2 Kanal)
+   - COMMERCIAL -> Apartments, Malls & Plazas, Townhouses
+   The chosen card flies to full screen and the options spin in as 3D cards (drag, scroll,
+   arrows or click). START QUOTE opens the existing materials cart and quote form for that
+   option; "Back" in the cart returns to the showroom.
+2. The floor grid lines and mirror reflections at the bottom were removed.
+3. HD photos (free Pexels / Unsplash licence) saved as bs-*.webp.
+4. GET A QUOTE on the Build page now points visitors at Home / Commercial (or the options).
+5. Circle Reveal stays the transition from the Home page into Build / Trucking / Media.
+
+DEPLOY
+1. Extract this ZIP into the ROOT of the WAYFORTH GitHub repository and replace matching files
+   (new files: bs-home.webp, bs-commercial.webp, bs-5-marla.webp ... bs-townhouses.webp).
+2. Commit with the exact message above. Vercel settings stay the same.
+3. Press Ctrl+Shift+R once after deploy.
