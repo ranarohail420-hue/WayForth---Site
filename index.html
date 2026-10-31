@@ -53,15 +53,18 @@ body.in-page .nav{opacity:0;pointer-events:none}
 /* ---------- home: three worlds over one continuous scene ---------- */
 #home{position:fixed;inset:0;display:flex;background:var(--ink);transition:opacity .6s ease,transform .9s cubic-bezier(.2,.8,.2,1)}
 body.in-page #home{pointer-events:none}
+body.settled #home,body.settled .nav,body.settled .tagline{visibility:hidden}
 .w{container-type:inline-size;position:relative;flex:1;min-width:0;overflow:hidden;cursor:pointer;border:0;padding:0;margin:0;text-align:left;background:none;
-  transition:flex 1s cubic-bezier(.2,.8,.2,1)}
+  transition:flex .6s cubic-bezier(.25,1,.5,1);will-change:flex-grow}
 .w + .w{border-left:1px solid rgba(255,255,255,.08)}
 .seg{position:absolute;top:var(--st,64px);left:0;width:var(--sw,100vw);max-width:none;height:auto;pointer-events:none;user-select:none;
-  filter:brightness(.92) saturate(1.05);transition:filter .8s;
+  will-change:transform;backface-visibility:hidden;
   -webkit-mask-image:linear-gradient(to bottom,transparent 0,#000 3%,#000 90%,transparent 100%);mask-image:linear-gradient(to bottom,transparent 0,#000 3%,#000 90%,transparent 100%)}
 #home:before{content:"";position:absolute;inset:-40px;background:url("wf-home-scene-hd.webp") center/cover;filter:blur(40px) brightness(.35) saturate(1.2);pointer-events:none}
-#home:has(.w:hover) .seg{filter:brightness(.45) saturate(.7)}
-#home .w:hover .seg,#home .w:focus-visible .seg{filter:brightness(1.05) saturate(1.15)}
+/* dim / light via a cheap overlay instead of filtering the large image */
+.w:before{content:"";position:absolute;inset:0;z-index:1;background:#050a18;opacity:.06;transition:opacity .45s ease;pointer-events:none}
+#home:has(.w:hover) .w:not(:hover):before{opacity:.55}
+#home .w:hover:before{opacity:0}
 #home:has(.w:hover) .w{flex:.75}
 #home .w:hover,#home .w:focus-visible{flex:1.9}
 .w:after{content:"";position:absolute;inset:0;pointer-events:none;background:linear-gradient(to top,rgba(4,7,15,.92) 0%,rgba(4,7,15,.35) 22%,transparent 40%)}
@@ -210,12 +213,12 @@ function ensure(name){
   if(frames[name])return frames[name];
   const f=document.createElement('iframe');f.title='WAYFORTH '+name;f.dataset.p=name;f.dataset.ready='';
   f.addEventListener('load',()=>{f.dataset.ready='1';f.dispatchEvent(new Event('wf-ready'));},{once:true});
-  f.src=PAGES[name]+'?v=45';pageEl.appendChild(f);frames[name]=f;return f;}
+  f.src=PAGES[name]+'?v=46';pageEl.appendChild(f);frames[name]=f;return f;}
 function whenReady(f){return f.dataset.ready==='1'?Promise.resolve():new Promise(r=>{body.classList.add('loading');f.addEventListener('wf-ready',()=>{body.classList.remove('loading');r();},{once:true});});}
 function play(kf,opt){return new Promise(r=>{if(reduced){r();return;}anim=pageEl.animate(kf,opt);anim.onfinish=()=>{anim=null;r();};anim.oncancel=()=>{anim=null;r();};});}
 function settle(){ /* make the screen match `current`, whatever happened before */
   const inPage=current!=='home';
-  body.classList.toggle('in-page',inPage);body.classList.remove('closing');
+  body.classList.toggle('in-page',inPage);body.classList.remove('closing');body.classList.toggle('settled',inPage);
   Object.entries(frames).forEach(([k,f])=>f.classList.toggle('on',inPage&&k===current));
   shownPage=inPage?current:null;
   document.title=inPage?((frames[current]&&(()=>{try{return frames[current].contentDocument.title}catch(_){return ''}})())||'WAYFORTH'):'WAYFORTH — Build. Move. Create.';
@@ -225,16 +228,16 @@ async function openPage(name,o){
   try{f.contentWindow.postMessage({type:'wf-reset'},'*');if(f.contentWindow.wfBuildReset)f.contentWindow.wfBuildReset();}catch(_){}
   Object.entries(frames).forEach(([k,fr])=>fr.classList.toggle('on',k===name));
   body.classList.add('in-page');
-  await play([{clipPath:`circle(0px at ${o.x}px ${o.y}px)`},{clipPath:`circle(${far(o.x,o.y)}px at ${o.x}px ${o.y}px)`}],{duration:850,easing:EASE_IN});
+  await play([{clipPath:`circle(0px at ${o.x}px ${o.y}px)`},{clipPath:`circle(${far(o.x,o.y)}px at ${o.x}px ${o.y}px)`}],{duration:700,easing:EASE_IN});
 }
 async function closePage(o){
   body.classList.add('closing');body.classList.remove('in-page');
-  await play([{clipPath:`circle(${far(o.x,o.y)}px at ${o.x}px ${o.y}px)`},{clipPath:`circle(0px at ${o.x}px ${o.y}px)`}],{duration:650,easing:EASE_OUT,fill:'forwards'});
+  await play([{clipPath:`circle(${far(o.x,o.y)}px at ${o.x}px ${o.y}px)`},{clipPath:`circle(0px at ${o.x}px ${o.y}px)`}],{duration:560,easing:EASE_OUT,fill:'forwards'});
   if(anim)anim.cancel();pageEl.getAnimations().forEach(a=>a.cancel());
   body.classList.remove('closing');Object.values(frames).forEach(f=>f.classList.remove('on'));
 }
 async function run(name,o){
-  busy=true;body.classList.add('busy');
+  busy=true;body.classList.add('busy');body.classList.remove('settled');
   try{
     if(name==='home'){ if(shownPage)await closePage(o); }
     else if(shownPage!==name){ if(shownPage)await closePage({x:innerWidth/2,y:innerHeight/2}); await openPage(name,shownPage?{x:innerWidth/2,y:innerHeight/2}:o); }
@@ -346,12 +349,16 @@ function toast(m){T.textContent=m;T.classList.add('show');clearTimeout(tt);tt=se
 
 /* ---------- one continuous scene across the three worlds ---------- */
 const worlds=[...home.querySelectorAll('.w')];let sceneBox={x:0,y:64,w:innerWidth};
+const lastX=new Map();let lastKey='';
 function place(){
   const w=home.clientWidth,h=home.clientHeight,narrow=innerWidth<=900,AR=1672/582;
   const top=64,below=Math.min(240,Math.max(150,h*.25)),room=h-top-below, sw=Math.min(w,Math.max(room,260)*AR), x0=(w-sw)/2;sceneBox={x:x0,y:top,w:sw};
   worlds.forEach((p,i)=>{const img=p.querySelector('.seg');
-    if(narrow){img.style.left=(-i*innerWidth)+'px';img.style.removeProperty('--sw');img.style.removeProperty('--st');}
-    else{const st=top+Math.max(0,(room-sw/AR)*.5);sceneBox.y=st;img.style.setProperty('--sw',sw+'px');img.style.setProperty('--st',st+'px');img.style.left=(x0-p.offsetLeft)+'px';}});
+    if(narrow){img.style.transform='';lastX.delete(img);img.style.left=(-i*innerWidth)+'px';img.style.removeProperty('--sw');img.style.removeProperty('--st');}
+    else{const st=top+Math.max(0,(room-sw/AR)*.5);sceneBox.y=st;const key=sw+'|'+st;
+      if(key!==lastKey||!img.dataset.sized){img.style.setProperty('--sw',sw+'px');img.style.setProperty('--st',st+'px');img.dataset.sized='1';}
+      const x=Math.round(x0-p.offsetLeft);if(lastX.get(img)!==x){lastX.set(img,x);img.style.left='0px';img.style.transform=`translate3d(${x}px,0,0)`;}}});
+  lastKey=sw+'|'+(sceneBox.y);
 }
 (function loop(){if(!body.classList.contains('in-page'))place();requestAnimationFrame(loop);})();
 
@@ -366,7 +373,7 @@ const sparks=[],flashes=[];let last=performance.now(),nextCam=.8;
 function glow(x,y,r,c,a){if(a<=0)return;const gr=g.createRadialGradient(x,y,0,x,y,r);gr.addColorStop(0,`rgba(${c},${a})`);gr.addColorStop(.3,`rgba(${c},${a*.45})`);gr.addColorStop(1,`rgba(${c},0)`);g.fillStyle=gr;g.beginPath();g.arc(x,y,r,0,7);g.fill();}
 function fx(now){const dt=Math.min(.05,(now-last)/1000);last=now;const t=now/1000;
   if(!body.classList.contains('in-page')&&innerWidth>900){
-    const d=Math.min(devicePixelRatio||1,2),W=home.clientWidth,H=home.clientHeight;if(cv.width!==Math.round(W*d)||cv.height!==Math.round(H*d)){cv.width=W*d;cv.height=H*d;}
+    const d=1,W=home.clientWidth,H=home.clientHeight;if(cv.width!==Math.round(W*d)||cv.height!==Math.round(H*d)){cv.width=W*d;cv.height=H*d;}
     const k=sceneBox.w/1672;g.setTransform(d*k,0,0,d*k,d*sceneBox.x,d*sceneBox.y);g.clearRect(-sceneBox.x/k,-sceneBox.y/k,W/k,H/k);g.globalCompositeOperation='lighter';
     /* welding: a small blue-white arc that flickers, a few orange sparks that drop and fade */
     WELD.forEach(w=>{w.t-=dt;if(w.t<=0){w.on=!w.on;w.t=w.on?.6+Math.random()*1.6:.8+Math.random()*2.4;}

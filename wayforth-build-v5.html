@@ -103,14 +103,16 @@ body.bsr-on main{display:none!important}
 #bsr .row{position:absolute;inset:0;display:flex}
 /* ---------- panels ---------- */
 #bsr .pnl{container-type:inline-size;position:relative;flex:1 1 0;min-width:0;border:0;padding:0;margin:0;background:#0b1730;cursor:pointer;overflow:hidden;text-align:left;
-  transition:flex .9s cubic-bezier(.2,.8,.2,1)}
+  transition:flex .6s cubic-bezier(.25,1,.5,1);will-change:flex-grow}
 #bsr .pnl + .pnl{border-left:1px solid rgba(255,255,255,.12)}
-#bsr .pnl img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform 1.6s cubic-bezier(.2,.8,.2,1),filter .7s;filter:brightness(1) saturate(1.08)}
+#bsr .pnl img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform 1.2s cubic-bezier(.25,1,.5,1);will-change:transform;backface-visibility:hidden}
+#bsr .pnl:before{content:"";position:absolute;inset:0;z-index:1;background:#050a18;opacity:0;transition:opacity .45s;pointer-events:none}
+#bsr .row:has(.pnl:hover) .pnl:not(:hover):before{opacity:.5}
 #bsr .pnl:after{content:"";position:absolute;inset:0;pointer-events:none;background:linear-gradient(to top,rgba(5,10,24,.85) 0%,rgba(5,10,24,.25) 28%,transparent 48%),linear-gradient(to bottom,rgba(5,10,24,.35),transparent 18%)}
 #bsr .row:has(.pnl:hover) .pnl:not(:hover){flex:.75}
 #bsr .row .pnl:hover,#bsr .row .pnl:focus-visible{flex:1.7}
-#bsr .row:has(.pnl:hover) .pnl:not(:hover) img{filter:brightness(.55) saturate(.75)}
-#bsr .row .pnl:hover img{filter:brightness(1) saturate(1.12);transform:scale(1.04)}
+
+#bsr .row .pnl:hover img{transform:scale(1.04)}
 #bsr .pnl .c{position:absolute;z-index:2;left:clamp(18px,3.4cqi,56px);right:clamp(18px,3cqi,48px);bottom:clamp(22px,5vh,56px);display:grid;gap:12px}
 #bsr .pnl .k{font-size:12px;font-weight:700;letter-spacing:.3em;text-transform:uppercase;color:rgb(var(--c))}
 #bsr .pnl h2{margin:0;font:900 clamp(40px,11cqi,128px)/.86 var(--display);font-stretch:118%;letter-spacing:-.02em;text-shadow:0 6px 40px rgba(0,0,0,.45)}
@@ -127,18 +129,17 @@ body.bsr-on main{display:none!important}
 #bsr .q b{font:900 clamp(28px,3.4vw,56px)/1 var(--display);font-stretch:118%;text-shadow:0 4px 30px rgba(0,0,0,.6)}
 #bsr .q b em{font-style:normal;color:var(--gold)}
 /* alternate idle motion on the two landing panels */
-#bsr .bs-land .pnl img{animation:bs-kb 12s ease-in-out infinite}
-#bsr .bs-land .pnl.comm img{animation-delay:-6s}
+
 @keyframes bs-kb{0%,100%{transform:scale(1)}50%{transform:scale(1.07)}}
-#bsr .bs-land .pnl.home{animation:bs-glow-l 8s ease-in-out infinite}
-#bsr .bs-land .pnl.comm{animation:bs-glow-r 8s ease-in-out infinite}
-@keyframes bs-glow-l{0%,100%{flex-grow:1.12}50%{flex-grow:.88}}
-@keyframes bs-glow-r{0%,100%{flex-grow:.88}50%{flex-grow:1.12}}
+/* alternate highlight: a light sweep crosses each panel in turn (transform only, no layout) */
+#bsr .bs-land .pnl .sw{position:absolute;inset:0;z-index:1;pointer-events:none;background:linear-gradient(105deg,transparent 35%,rgba(255,255,255,.16) 50%,transparent 65%);transform:translate3d(-110%,0,0);animation:bs-sweep 7s cubic-bezier(.45,0,.2,1) infinite}
+#bsr .bs-land .pnl.comm .sw{animation-delay:3.5s}
+@keyframes bs-sweep{0%{transform:translate3d(-110%,0,0)}30%,100%{transform:translate3d(110%,0,0)}}
 #bsr .row:hover .pnl{animation:none}
-#bsr .bs-opts .pnl img{filter:brightness(.92) saturate(1.05)}
+
 /* entrance */
 #bsr .bs-land .pnl{opacity:0;transform:translateY(40px)}
-#bsr .bs-land.in .pnl{opacity:1;transform:none;transition:opacity .9s,transform 1.1s cubic-bezier(.2,.8,.2,1),flex .9s cubic-bezier(.2,.8,.2,1)}
+#bsr .bs-land.in .pnl{opacity:1;transform:none;transition:opacity .7s,transform .8s cubic-bezier(.25,1,.5,1),flex .6s cubic-bezier(.25,1,.5,1)}
 #bsr .bs-land.in .pnl.comm{transition-delay:.15s,.15s,0s}
 /* options view */
 #bsr .bs-opts .head{position:absolute;z-index:5;left:0;right:0;top:0;display:flex;align-items:flex-end;justify-content:space-between;gap:16px;padding:clamp(16px,3vh,30px) max(28px,env(safe-area-inset-right,0px)) 18px max(28px,env(safe-area-inset-left,0px));
@@ -147,8 +148,8 @@ body.bsr-on main{display:none!important}
 #bsr .bs-opts .head small{font-size:12px;letter-spacing:.34em;text-transform:uppercase;color:rgb(var(--tint))}
 #bsr .bs-opts .head h3{margin:6px 0 0;font:900 clamp(26px,3vw,48px)/1 var(--display);font-stretch:118%}
 #bsr .bs-back{border:1px solid rgba(255,255,255,.3);background:rgba(5,10,24,.55);backdrop-filter:blur(8px);border-radius:999px;padding:11px 18px;font-size:12px;font-weight:800;letter-spacing:.1em;cursor:pointer}
-#bsr .bs-opts .pnl{--c:var(--tint);opacity:0;transform:translateY(60px)}
-#bsr .bs-opts.on .pnl{animation:bs-rise .8s cubic-bezier(.2,.8,.2,1) forwards;animation-delay:calc(var(--i)*70ms + 150ms)}
+#bsr .bs-opts .pnl{--c:var(--tint);opacity:0;transform:translate3d(0,60px,0)}
+#bsr .bs-opts.on .pnl{animation:bs-rise .6s cubic-bezier(.25,1,.5,1) forwards;animation-delay:calc(var(--i)*55ms + 120ms)}
 @keyframes bs-rise{to{opacity:1;transform:none}}
 #bsr .bs-opts .pnl h2{font-size:clamp(26px,16cqi,72px);transition:font-size .6s}
 #bsr .bs-opts .pnl p,#bsr .bs-opts .pnl .cta{opacity:0;max-height:0;overflow:hidden;transition:opacity .45s .15s,max-height .45s}
@@ -178,9 +179,9 @@ body.bsr-on main{display:none!important}
   <section class="bs-land" id="bs-land">
     <div class="row">
       <button class="pnl home" data-k="res" aria-label="Home — residential"><img src="bs-home.webp" alt="Modern home"><span class="c"><span class="k">Houses · DHA · Bahria</span><h2>HOME</h2>
-        <span class="chips"><i>5 Marla</i><i>10 Marla</i><i>11 Marla</i><i>1 Kanal</i><i>2 Kanal</i></span><span class="cta">CHOOSE PLOT SIZE →</span></span><span class="bar"></span></button>
+        <span class="chips"><i>5 Marla</i><i>10 Marla</i><i>11 Marla</i><i>1 Kanal</i><i>2 Kanal</i></span><span class="cta">CHOOSE PLOT SIZE →</span></span><span class="bar"></span><span class="sw"></span></button>
       <button class="pnl comm" data-k="comm" aria-label="Commercial"><img src="bs-commercial.webp" alt="Commercial towers"><span class="c"><span class="k">Malls · Plazas · Apartments</span><h2>COMMERCIAL</h2>
-        <span class="chips"><i>Apartments</i><i>Malls &amp; Plazas</i><i>Townhouses</i></span><span class="cta">CHOOSE PROJECT →</span></span><span class="bar"></span></button>
+        <span class="chips"><i>Apartments</i><i>Malls &amp; Plazas</i><i>Townhouses</i></span><span class="cta">CHOOSE PROJECT →</span></span><span class="bar"></span><span class="sw"></span></button>
     </div>
     <div class="q"><small>WAYFORTH Build · Lahore</small><b>What are you <em>building?</em></b></div>
   </section>
@@ -207,6 +208,8 @@ const D={res:{tint:'242,184,75',kind:'Residential',kick:'Residential · Lahore',
    ['Apartments','Commercial · Apartments','bs-apartments.webp','Multi-storey residential blocks at wholesale rates.'],
    ['Malls & Plazas','Commercial · Malls & Plazas','bs-malls.webp','Retail, offices and mixed-use plazas.'],
    ['Townhouses','Commercial · Townhouses','bs-townhouses.webp','Rows of homes for housing schemes.']]}};
+/* decode every option photo in the background so opening the options never stutters */
+setTimeout(()=>Object.values(D).forEach(d=>d.items.forEach(o=>{const im=new Image();im.src=o[2];im.decode&&im.decode().catch(()=>{});})),600);
 let cur=null,origin={x:innerWidth/2,y:innerHeight/2},anim=null;
 const far=(x,y)=>Math.hypot(Math.max(x,innerWidth-x),Math.max(y,innerHeight))+40;
 function fill(k){const d=D[k];cur=k;bsr.style.setProperty('--tint',d.tint);
@@ -215,12 +218,12 @@ function fill(k){const d=D[k];cur=k;bsr.style.setProperty('--tint',d.tint);
   row.querySelectorAll('.pnl').forEach(b=>b.addEventListener('click',()=>{const o=D[cur].items[+b.dataset.i];if(window.wfBuildOpen)window.wfBuildOpen(D[cur].kind,o[1]);}));}
 function openOpts(k,x,y){fill(k);origin={x,y:y-hdr()};opts.classList.add('on');
   if(reduced)return;anim&&anim.cancel();
-  anim=opts.animate([{clipPath:`circle(0px at ${origin.x}px ${origin.y}px)`},{clipPath:`circle(${far(origin.x,origin.y)}px at ${origin.x}px ${origin.y}px)`}],{duration:850,easing:'cubic-bezier(.33,.8,.2,1)'});}
+  anim=opts.animate([{clipPath:`circle(0px at ${origin.x}px ${origin.y}px)`},{clipPath:`circle(${far(origin.x,origin.y)}px at ${origin.x}px ${origin.y}px)`}],{duration:650,easing:'cubic-bezier(.33,.8,.2,1)'});}
 function closeOpts(instant){if(!opts.classList.contains('on'))return;
   const done=()=>{opts.classList.remove('on');row.innerHTML='';};
   if(instant||reduced){anim&&anim.cancel();done();return;}
   anim&&anim.cancel();
-  anim=opts.animate([{clipPath:`circle(${far(origin.x,origin.y)}px at ${origin.x}px ${origin.y}px)`},{clipPath:`circle(0px at ${origin.x}px ${origin.y}px)`}],{duration:650,easing:'cubic-bezier(.6,0,.4,1)',fill:'forwards'});
+  anim=opts.animate([{clipPath:`circle(${far(origin.x,origin.y)}px at ${origin.x}px ${origin.y}px)`},{clipPath:`circle(0px at ${origin.x}px ${origin.y}px)`}],{duration:520,easing:'cubic-bezier(.6,0,.4,1)',fill:'forwards'});
   anim.onfinish=()=>{anim.cancel();done();};}
 land.querySelectorAll('.pnl').forEach(p=>p.addEventListener('click',e=>{const r=p.getBoundingClientRect();openOpts(p.dataset.k,e.clientX||r.left+r.width/2,e.clientY||r.top+r.height/2);}));
 document.getElementById('bs-back').addEventListener('click',()=>closeOpts());

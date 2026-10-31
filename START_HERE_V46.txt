@@ -1,0 +1,22 @@
+WAYFORTH V46 — SMOOTHER TRANSITIONS & PANELS
+============================================
+
+COMMIT NAME
+WAYFORTH V46 — Smoother Transitions, Panels & Landing
+
+CHANGES FROM V45
+1. Home panels: hover now widens a panel with a single smooth GPU ease instead of
+   re-laying out the whole page every frame. Dimming of the other panels uses a light
+   overlay instead of a blur/brightness filter (this was the main cause of the lag).
+2. Home artwork layers move with translate3d (GPU) and only update when they change.
+3. Circle Reveal is faster and lighter: 700ms in, 560ms out. While a page is open the
+   Home scene behind it is paused/hidden, so the open page gets the full frame rate.
+4. Build landing: the HOME / COMMERCIAL panels no longer "breathe" by resizing; a soft
+   light sweep moves across them instead (no layout work). Option panels open in 650ms,
+   close in 520ms, and their photos are decoded in advance so the first open doesn't stutter.
+5. Effects canvas renders at 1x density, cutting its cost by up to 4x on Retina screens.
+
+DEPLOY
+1. Extract this ZIP into the ROOT of the WAYFORTH GitHub repository and replace matching files.
+2. Commit with the exact message above. Vercel settings stay the same.
+3. Press Ctrl+Shift+R once after deploy.
