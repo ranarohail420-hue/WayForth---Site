@@ -1,0 +1,21 @@
+WAYFORTH V45 — BUILD PANELS + CIRCLE REVEAL + FRESH START
+==========================================================
+
+COMMIT NAME
+WAYFORTH V45 — Build Full-Screen Panels, Circle Reveal & Fresh Start
+
+CHANGES FROM V44
+1. Build landing now uses two full-height panels, HOME and COMMERCIAL, filling the whole
+   screen (same style as the Home page). They breathe in turn; hovering one widens it.
+2. Choosing a panel opens the options with the same Circle Reveal used across the site.
+   Options are full-height panels too (6 plot sizes / 3 commercial projects); hovering one
+   widens it and shows START QUOTE, which opens the materials cart. BACK closes the circle.
+3. Fresh start: every time a visitor opens Build, Trucking or Media from Home, the page
+   starts from its own landing (no half-finished steps or open forms). The quote cart keeps
+   its items.
+4. GET A QUOTE on Build points at the Home / Commercial panels (or the options).
+
+DEPLOY
+1. Extract this ZIP into the ROOT of the WAYFORTH GitHub repository and replace matching files.
+2. Commit with the exact message above. Vercel settings stay the same.
+3. Press Ctrl+Shift+R once after deploy.

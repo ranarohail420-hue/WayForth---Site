@@ -210,7 +210,7 @@ function ensure(name){
   if(frames[name])return frames[name];
   const f=document.createElement('iframe');f.title='WAYFORTH '+name;f.dataset.p=name;f.dataset.ready='';
   f.addEventListener('load',()=>{f.dataset.ready='1';f.dispatchEvent(new Event('wf-ready'));},{once:true});
-  f.src=PAGES[name]+'?v=42';pageEl.appendChild(f);frames[name]=f;return f;}
+  f.src=PAGES[name]+'?v=45';pageEl.appendChild(f);frames[name]=f;return f;}
 function whenReady(f){return f.dataset.ready==='1'?Promise.resolve():new Promise(r=>{body.classList.add('loading');f.addEventListener('wf-ready',()=>{body.classList.remove('loading');r();},{once:true});});}
 function play(kf,opt){return new Promise(r=>{if(reduced){r();return;}anim=pageEl.animate(kf,opt);anim.onfinish=()=>{anim=null;r();};anim.oncancel=()=>{anim=null;r();};});}
 function settle(){ /* make the screen match `current`, whatever happened before */
@@ -222,6 +222,7 @@ function settle(){ /* make the screen match `current`, whatever happened before 
 }
 async function openPage(name,o){
   const f=ensure(name);await whenReady(f);
+  try{f.contentWindow.postMessage({type:'wf-reset'},'*');if(f.contentWindow.wfBuildReset)f.contentWindow.wfBuildReset();}catch(_){}
   Object.entries(frames).forEach(([k,fr])=>fr.classList.toggle('on',k===name));
   body.classList.add('in-page');
   await play([{clipPath:`circle(0px at ${o.x}px ${o.y}px)`},{clipPath:`circle(${far(o.x,o.y)}px at ${o.x}px ${o.y}px)`}],{duration:850,easing:EASE_IN});

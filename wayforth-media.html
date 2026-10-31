@@ -75,6 +75,7 @@ h1 em{font-style:normal;background:linear-gradient(180deg,var(--violet-2),var(--
   </section>
 </main>
 <script>
+addEventListener('message',e=>{if(e.data&&e.data.type==='wf-reset')scrollTo(0,0);});
 const svcs=()=>document.querySelectorAll('.services .svc');
 document.addEventListener('click',e=>{
   if(e.target.closest('[data-services]')){svcs()[0].scrollIntoView({behavior:'smooth',block:'center'});}
