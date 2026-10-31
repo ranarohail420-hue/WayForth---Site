@@ -1,0 +1,24 @@
+WAYFORTH V47 — HEADER, CONTACT, SUPPORT & BUILD PANEL FIX
+=========================================================
+
+COMMIT NAME
+WAYFORTH V47 — New Quote Button, Contact & Support Dialogs, Build Panel Fix
+
+CHANGES FROM V46
+1. Build landing: the COMMERCIAL photo had dark side bands that showed as an empty gap when
+   the panel widened on hover. The photo is now trimmed, so HOME and COMMERCIAL are both full
+   pictures with no gaps.
+2. GET A QUOTE: the image button is replaced with a crisp gold button (text + arrow, light sweep
+   on hover). It is identical on Build, Trucking and Media.
+3. Header menu (Build, Trucking and Media):
+   - Home      → the WAYFORTH landing page.
+   - Support   → call-back form: name + phone (email optional) + message, emailed to WAYFORTH.
+   - About Us  → unchanged for now (to be designed).
+   - Contact Us→ dialog with 0323-146 6332 and 0321-402 2222 (tap to call) and a WhatsApp button
+                 (wa.me/923231466332).
+4. Email endpoint: Support requests are accepted without an email address.
+
+DEPLOY
+1. Extract this ZIP into the ROOT of the WAYFORTH GitHub repository and replace matching files.
+2. Commit with the exact message above. Vercel settings stay the same.
+3. Press Ctrl+Shift+R once after deploy.

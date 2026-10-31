@@ -10,9 +10,15 @@
 .wfh .wfh-nav button{position:relative;background:none;border:0;padding:6px 0;margin:0;color:#eef2f9;font-size:max(13px,.87cqw)!important;font-weight:500!important;line-height:1;font-family:inherit;text-transform:none;letter-spacing:.01em;cursor:pointer;white-space:nowrap;transition:color .2s}
 .wfh-nav button:hover{color:#ffd98a}
 .wfh-nav button.on:after,.wfh-nav button:hover:after{content:"";position:absolute;left:0;right:0;bottom:-6px;height:2px;border-radius:2px;background:linear-gradient(90deg,#f2b84b,#ffd98a);box-shadow:0 0 8px rgba(242,184,75,.7)}
-.wfh-quote{position:absolute;left:77.96cqw;top:50%;transform:translateY(-50%);width:11.94cqw;min-width:150px;aspect-ratio:234/62;padding:0;border:0;background:none;cursor:pointer;transition:transform .25s,filter .25s}
-.wfh-quote img{width:100%;height:100%;display:block;pointer-events:none}
-.wfh-quote:hover{transform:translateY(calc(-50% - 2px));filter:brightness(1.12) drop-shadow(0 0 14px rgba(242,184,75,.55))}
+.wfh-quote{position:absolute;left:77.96cqw;top:50%;transform:translateY(-50%);height:max(42px,2.75cqw);min-width:150px;padding:0 max(18px,1.25cqw);display:inline-flex;align-items:center;justify-content:center;gap:max(8px,.6cqw);border:0;border-radius:999px;overflow:hidden;cursor:pointer;
+  background:linear-gradient(180deg,#ffe6a8 0%,#f6c35c 48%,#dc9a2e 100%);color:#1b1306;font:800 max(12px,.78cqw)/1 "Inter","Manrope",Arial,sans-serif;letter-spacing:.14em;white-space:nowrap;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.65),inset 0 -2px 0 rgba(120,70,0,.25),0 0 0 1px rgba(255,214,130,.55),0 8px 24px rgba(242,184,75,.32);transition:transform .25s cubic-bezier(.22,1,.36,1),box-shadow .25s}
+.wfh-quote svg{width:1.25em;height:1.25em;flex:none;transition:transform .3s cubic-bezier(.22,1,.36,1)}
+.wfh-quote:after{content:"";position:absolute;top:0;bottom:0;left:-60%;width:40%;background:linear-gradient(105deg,transparent,rgba(255,255,255,.55),transparent);transform:skewX(-18deg);transition:left .6s cubic-bezier(.22,1,.36,1);pointer-events:none}
+.wfh-quote:hover{transform:translateY(calc(-50% - 2px));box-shadow:inset 0 1px 0 rgba(255,255,255,.7),inset 0 -2px 0 rgba(120,70,0,.25),0 0 0 1px rgba(255,224,150,.8),0 12px 30px rgba(242,184,75,.5)}
+.wfh-quote:hover:after{left:120%}
+.wfh-quote:hover svg{transform:translateX(3px)}
+.wfh-quote:active{transform:translateY(-50%) scale(.98)}
 .wfh :focus-visible{outline:2px solid #ffd98a;outline-offset:3px;border-radius:8px}
 /* Services dropdown (Home page) */
 .wfh-dd{position:relative}
@@ -27,7 +33,7 @@
   .wfh-bar{height:60px}
   .wfh-logo{left:14px;height:44px}
   .wfh-nav{display:none}
-  .wfh-quote{left:auto;right:14px;width:150px}
+  .wfh-quote{left:auto;right:14px;height:40px;font-size:11px}
 }
 
 /* "Choose a service" guide, shown when GET A QUOTE is pressed */

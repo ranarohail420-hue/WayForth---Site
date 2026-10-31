@@ -58,7 +58,8 @@ module.exports = async function handler(req, res) {
 
   const email = oneLine(details.email, 254);
   const phoneDigits = String(details.phone || '').replace(/\D/g, '');
-  if (!oneLine(details.fullName, 120) || !isEmail(email) || phoneDigits.length < 7 || phoneDigits.length > 15) {
+  const emailOptional = body.service === 'support';
+  if (!oneLine(details.fullName, 120) || (!isEmail(email) && !(emailOptional && !email)) || phoneDigits.length < 7 || phoneDigits.length > 15) {
     return res.status(400).json({message: 'Please check your name, email and phone number and try again.'});
   }
 
@@ -78,8 +79,8 @@ module.exports = async function handler(req, res) {
         from,
         to: recipients,
         subject: `WAYFORTH Website — ${label} — ${oneLine(details.fullName, 60).replace(/[<>]/g, '')}`,
-        reply_to: email,
-        html: `<div style="font-family:Arial,sans-serif;max-width:720px;margin:auto;color:#172033"><h2>New ${clean(label)}</h2><p>A customer submitted a request through the WAYFORTH Trucking website.</p><table style="width:100%;border-collapse:collapse">${rows}</table><p style="margin-top:20px;color:#65758b;font-size:12px">Source: ${clean(oneLine(body.source || 'WAYFORTH Website', 80))}<br>Received: ${clean(received)}</p></div>`
+        ...(email ? {reply_to: email} : {}),
+        html: `<div style="font-family:Arial,sans-serif;max-width:720px;margin:auto;color:#172033"><h2>New ${clean(label)}</h2><p>A customer submitted a request through the WAYFORTH website.</p><table style="width:100%;border-collapse:collapse">${rows}</table><p style="margin-top:20px;color:#65758b;font-size:12px">Source: ${clean(oneLine(body.source || 'WAYFORTH Website', 80))}<br>Received: ${clean(received)}</p></div>`
       })
     });
     const data = await response.json().catch(() => ({}));
