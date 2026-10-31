@@ -1,0 +1,29 @@
+WAYFORTH V48 — MATERIALS SHOWCASE + V47 HEADER UPDATES
+======================================================
+
+COMMIT NAME
+WAYFORTH V48 — Materials Showcase, Slide-Away Cart, New Header & Contact
+
+CHANGES (includes everything from V47)
+1. New "Choose materials" step on Build (opens after picking a plot size or commercial project,
+   with the same Circle Reveal):
+   - Feathered style: the material photo fills the screen to the right and melts into the dark
+     side; name, description, spec tags, quantity, unit and ADD TO CART on the left.
+   - Photos: Cement C1, Bricks B1, Steel S1, Paints P4, Pipes T2, Electrical group set (A).
+   - New photo slides in when moving between materials; ← → arrows, swipe, mouse wheel or
+     keyboard arrows. (Bottom "PIPES" word, progress lines and "NEXT" label removed.)
+   - Quote cart is a tray on the right: round arrow button slides it away, a CART tab on the
+     right edge (with item count) pulls it back (click or drag). The cart is kept for the visit.
+   - REQUEST MATERIALS QUOTE sends the cart, name, phone, email and area to WAYFORTH by email.
+   - GET A QUOTE on this step points at ADD TO CART.
+2. Header (Build, Trucking, Media): new gold GET A QUOTE button, identical everywhere; fits on
+   phones without covering the logo.
+3. Home → landing page. Support → call-back form (name + phone, email optional).
+   Contact Us → 0323-146 6332, 0321-402 2222 (tap to call) and WhatsApp.
+4. Build landing: COMMERCIAL photo no longer shows a gap on hover.
+5. Smoothness: photo changes use GPU transforms only; no blur filters or masks while animating.
+
+DEPLOY
+1. Extract this ZIP into the ROOT of the WAYFORTH GitHub repository and replace matching files.
+2. Commit with the exact message above. Vercel settings stay the same.
+3. Press Ctrl+Shift+R once after deploy.

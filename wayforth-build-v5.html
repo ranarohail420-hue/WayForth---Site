@@ -88,9 +88,9 @@ nav{display:flex;gap:clamp(0px,.2vw,4px);align-items:center}nav button{color:#d5
 @media(max-width:620px){.materials-top{flex-direction:column;align-items:stretch}.materials-top-left{width:100%}.materials-brand .logo-copy{display:flex}.materials-nav{max-width:none;width:100%;justify-content:flex-start}.materials-nav button{flex:1 1 auto}.materials-content{padding-top:18px}.materials-intro h1{font-size:clamp(28px,8.4vw,38px)}}
 
 </style>
-<link rel="stylesheet" href="wf-header.css?v=47">
+<link rel="stylesheet" href="wf-header.css?v=48">
 <style>html,body{overflow-x:hidden}.top-wfh{position:sticky;top:0;z-index:60;width:100vw;margin-left:calc(50% - 50vw);margin-right:0}.top-wfh .wfh-nav button{color:#eef2f9!important;background:none!important;border:0!important;border-radius:0!important;padding:6px 0!important;letter-spacing:.01em!important}</style>
-<script src="wf-guide.js?v=42"></script>
+<script src="wf-guide.js?v=48"></script>
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,300..900&family=Manrope:wght@400;500;700&display=swap">
 <style>/* WAYFORTH Build Showroom V45 — full-height panels + circle reveal */
 body.bsr-on main{display:none!important}
@@ -227,13 +227,13 @@ function closeOpts(instant){if(!opts.classList.contains('on'))return;
   anim.onfinish=()=>{anim.cancel();done();};}
 land.querySelectorAll('.pnl').forEach(p=>p.addEventListener('click',e=>{const r=p.getBoundingClientRect();openOpts(p.dataset.k,e.clientX||r.left+r.width/2,e.clientY||r.top+r.height/2);}));
 document.getElementById('bs-back').addEventListener('click',()=>closeOpts());
-addEventListener('keydown',e=>{if(e.key==='Escape')closeOpts();});
+addEventListener('keydown',e=>{if(e.key==='Escape'&&!(window.wfmIsOpen&&window.wfmIsOpen()))closeOpts();});
 /* always start from the Build landing when the visitor comes back to this page (the cart is kept) */
-window.wfBuildReset=()=>{closeOpts(true);const m=document.getElementById('materials-mode');if(m)m.classList.remove('open');window.scrollTo(0,0);
+window.wfBuildReset=()=>{closeOpts(true);if(window.wfmClose)window.wfmClose(true);const m=document.getElementById('materials-mode');if(m)m.classList.remove('open');window.scrollTo(0,0);
   land.classList.remove('in');requestAnimationFrame(()=>requestAnimationFrame(()=>land.classList.add('in')));};
 addEventListener('message',e=>{if(e.data&&e.data.type==='wf-reset')window.wfBuildReset();});
-window.wfBuildGuideTargets=()=>opts.classList.contains('on')?row.querySelectorAll('.pnl'):land.querySelectorAll('.pnl');
-window.wfBuildGuideText=()=>opts.classList.contains('on')?'Pick an option to start your quote':'Choose Home or Commercial to start your quote';
+window.wfBuildGuideTargets=()=>window.wfmIsOpen&&window.wfmIsOpen()?[window.wfmAddButton()]:opts.classList.contains('on')?row.querySelectorAll('.pnl'):land.querySelectorAll('.pnl');
+window.wfBuildGuideText=()=>window.wfmIsOpen&&window.wfmIsOpen()?'Set a quantity and add it to your cart':opts.classList.contains('on')?'Pick an option to start your quote':'Choose Home or Commercial to start your quote';
 })();
 </script>
 
@@ -383,7 +383,7 @@ function openMaterials(){
  materialsMode.classList.add('open');materialsMode.scrollTop=0;renderCart();renderCatalog();
 }
 document.getElementById('open-materials').addEventListener('click',openMaterials);
-window.wfBuildOpen=(kind,option)=>{clearCart();project={kind,option};openMaterials();};
+window.wfBuildOpen=(kind,option)=>{project={kind,option};if(window.wfmOpen){window.wfmOpen(kind,option);return}clearCart();openMaterials();};
 document.getElementById('return-picker').addEventListener('click',()=>{
  if(document.getElementById('bsr')){materialsMode.classList.remove('open');return}if(project?.kind==='Commercial'){setStep('categories');return}
  setStep('residential',true);
@@ -412,5 +412,176 @@ document.addEventListener('keydown',e=>{if(e.key==='Escape'){const modal=documen
 renderCatalog();renderCart();
 })();
 </script>
+<!-- WAYFORTH V48 · materials showcase (feathered photo, side cart tray). Opened by window.wfBuildOpen(kind, option). -->
+<style>
+#wfm{--t:214,190,140;--cw:360px;--ease:cubic-bezier(.22,1,.36,1);--gold:#f2b84b;--gold-2:#ffd98a;--line:rgba(170,195,235,.16);--muted:#9fb0c9;--display:"Archivo","Arial Narrow",Arial,sans-serif;--body:"Manrope","Inter","Segoe UI",Arial,sans-serif;
+  position:fixed;z-index:90;left:0;right:0;bottom:0;top:var(--wfm-top,64px);overflow:hidden;color:#f2f4fa;font-family:var(--body);background:radial-gradient(ellipse 60% 70% at 20% 60%,#0d1d3d,#050b18 70%);
+  visibility:hidden;clip-path:circle(0 at var(--ox,50%) var(--oy,50%));-webkit-font-smoothing:antialiased}
+#wfm.on{visibility:visible;clip-path:circle(150% at var(--ox,50%) var(--oy,50%));transition:clip-path .7s cubic-bezier(.65,0,.25,1)}
+#wfm.closing{visibility:visible;clip-path:circle(0 at var(--ox,50%) var(--oy,50%));transition:clip-path .55s cubic-bezier(.65,0,.35,1)}
+#wfm *{box-sizing:border-box}#wfm button,#wfm input,#wfm select{font:inherit;color:inherit}
+#wfm :focus-visible{outline:2px solid var(--gold-2);outline-offset:3px}
+#wfm .media{position:absolute;z-index:1;isolation:isolate;top:0;bottom:0;left:22%;right:var(--cw);overflow:hidden;transition:right .6s var(--ease)}
+#wfm .media:before{content:"";position:absolute;z-index:49;top:0;bottom:0;left:-1px;width:36%;pointer-events:none;background:linear-gradient(90deg,#071229 0%,rgba(7,18,41,.92) 18%,rgba(7,18,41,.55) 55%,transparent)}
+#wfm.tray-off .media{right:0}
+#wfm .ph{position:absolute;inset:0;overflow:hidden;transform:translate3d(100%,0,0);transition:transform 1s cubic-bezier(.77,0,.18,1)}
+#wfm .ph .in{position:absolute;inset:0;transform:translate3d(-100%,0,0);transition:transform 1s cubic-bezier(.77,0,.18,1)}
+#wfm .ph.back{transform:translate3d(-100%,0,0)}#wfm .ph.back .in{transform:translate3d(100%,0,0)}
+#wfm .ph.on,#wfm .ph.on .in{transform:none}
+#wfm .ph.idle{visibility:hidden}
+#wfm .ph.notr,#wfm .ph.notr .in,#wfm .ph.notr img{transition:none!important}
+#wfm .ph img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transform:scale(1.07);transition:transform 1.6s cubic-bezier(.22,1,.36,1)}
+#wfm .ph.on img{transform:scale(1)}
+#wfm .cut{position:absolute;inset:0 0 0 20%;display:grid;place-items:center;pointer-events:none;opacity:0;transform:translateY(16px);transition:opacity .6s var(--ease),transform .8s var(--ease)}
+#wfm .cut.on{opacity:1;transform:none}
+#wfm .cut img{max-width:80%;max-height:78%;object-fit:contain;filter:drop-shadow(0 40px 40px rgba(0,0,0,.6));animation:wfm-bob 6s ease-in-out infinite}
+@keyframes wfm-bob{50%{transform:translateY(-12px)}}
+#wfm .media:after{content:"";position:absolute;inset:0;z-index:50;pointer-events:none;background:linear-gradient(0deg,rgba(5,11,24,.7),transparent 26%),linear-gradient(180deg,rgba(5,11,24,.35),transparent 16%)}
+#wfm .bar{position:absolute;z-index:6;left:clamp(24px,4vw,64px);top:clamp(16px,3vh,28px);display:flex;align-items:center;gap:14px}
+#wfm .back{display:inline-flex;align-items:center;gap:8px;border:1px solid rgba(255,255,255,.22);background:rgba(5,10,24,.72);border-radius:999px;padding:10px 16px;font-size:12px;font-weight:800;letter-spacing:.08em;cursor:pointer;transition:border-color .25s,background .25s}
+#wfm .back:hover{border-color:var(--gold);background:rgba(242,184,75,.12)}
+#wfm .proj{font-size:12px;color:var(--muted);letter-spacing:.04em}#wfm .proj b{display:block;color:var(--gold-2);font-size:10.5px;letter-spacing:.22em}
+#wfm .info{position:absolute;z-index:5;left:clamp(24px,4vw,64px);top:50%;transform:translateY(-50%);width:min(440px,34vw)}
+#wfm .idx{display:flex;align-items:center;gap:14px;margin-bottom:18px;font:800 13px/1 var(--display);letter-spacing:.2em;color:var(--muted)}
+#wfm .idx b{font:900 46px/1 var(--display);font-stretch:120%;color:transparent;-webkit-text-stroke:1.2px rgb(var(--t));letter-spacing:0;transition:-webkit-text-stroke-color .6s}
+#wfm .idx i{flex:0 0 60px;height:2px;background:rgb(var(--t));transition:background .6s}
+#wfm .k{display:inline-block;font-size:12px;font-weight:700;letter-spacing:.3em;text-transform:uppercase;color:rgb(var(--t));transition:color .6s}
+#wfm h2{margin:12px 0 16px;font:900 clamp(50px,5.4vw,96px)/.88 var(--display);font-stretch:125%;letter-spacing:-.02em;text-shadow:0 10px 40px rgba(0,0,0,.45)}
+#wfm .info p{margin:0 0 22px;color:#d1d9ea;font-size:16.5px;line-height:1.6;max-width:36ch}
+#wfm .spec{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 26px;padding:0;list-style:none}
+#wfm .spec li{font-size:11.5px;font-weight:800;letter-spacing:.1em;padding:8px 12px;border-radius:999px;border:1px solid rgba(var(--t),.5);background:rgba(8,16,34,.72)}
+#wfm .anim>*{transition:opacity .45s var(--ease),transform .7s var(--ease)}
+#wfm .anim.out>*{opacity:0;transform:translateX(-24px)}
+#wfm .anim>*:nth-child(2){transition-delay:.05s}#wfm .anim>*:nth-child(3){transition-delay:.1s}#wfm .anim>*:nth-child(4){transition-delay:.15s}#wfm .anim>*:nth-child(5){transition-delay:.2s}#wfm .anim>*:nth-child(6){transition-delay:.25s}
+#wfm .buy{display:flex;align-items:center;gap:8px;flex-wrap:wrap;padding:8px;border-radius:20px;background:rgba(8,16,34,.86);border:1px solid rgba(255,255,255,.12);width:max-content;max-width:100%}
+#wfm .buy input{width:84px;border:0;background:rgba(255,255,255,.07);border-radius:12px;padding:12px;font-size:15px;font-variant-numeric:tabular-nums}
+#wfm .buy select{border:0;background:rgba(255,255,255,.07);border-radius:12px;padding:12px 10px;font-size:14px}
+#wfm select option{background:#0b1630}
+#wfm .add{border:0;border-radius:14px;padding:14px 22px;font-weight:800;font-size:13px;letter-spacing:.1em;cursor:pointer;color:#14100b;background:linear-gradient(180deg,var(--gold-2),var(--gold));box-shadow:0 8px 30px rgba(242,184,75,.35);transition:transform .25s var(--ease)}
+#wfm .add:hover{transform:translateY(-2px)}
+#wfm .pager{position:absolute;z-index:6;left:clamp(24px,4vw,64px);bottom:clamp(20px,4vh,40px);display:flex;align-items:center;gap:12px}
+#wfm .ar{width:52px;height:52px;border-radius:50%;border:1px solid rgba(255,255,255,.28);background:rgba(5,10,24,.7);cursor:pointer;display:grid;place-items:center;transition:all .25s var(--ease)}
+#wfm .ar svg{width:20px;height:20px}
+#wfm .ar:hover{background:var(--gold);color:#14100b;border-color:var(--gold);transform:scale(1.05)}
+/* cart tray */
+#wfm .cart{position:absolute;z-index:8;top:0;right:0;bottom:0;width:var(--cw);display:flex;flex-direction:column;gap:14px;background:linear-gradient(180deg,#0d1c3b,#081227);border-left:1px solid var(--line);padding:22px;transition:transform .6s var(--ease);box-shadow:-24px 0 60px rgba(0,0,0,.35)}
+#wfm.tray-off .cart{transform:translateX(100%)}
+#wfm .cart .top{display:flex;align-items:center;justify-content:space-between;gap:10px}
+#wfm .cart h3{margin:6px 0 0;font:900 26px/1 var(--display);font-stretch:115%}
+#wfm .cart small.k{font-size:11px;letter-spacing:.24em;color:var(--gold-2)}
+#wfm .tuck{flex:none;width:44px;height:44px;border-radius:50%;border:1px solid rgba(242,184,75,.55);background:rgba(242,184,75,.1);color:var(--gold-2);cursor:pointer;display:grid;place-items:center;transition:all .25s var(--ease)}
+#wfm .tuck svg{width:18px;height:18px;transition:transform .25s var(--ease)}
+#wfm .tuck:hover{background:var(--gold);color:#14100b}#wfm .tuck:hover svg{transform:translateX(2px)}
+#wfm .lines{flex:1;overflow:auto;display:grid;align-content:start;gap:10px;min-height:60px}
+#wfm .cl{display:grid;grid-template-columns:56px 1fr auto;gap:10px;align-items:center;padding:8px;border-radius:12px;background:rgba(255,255,255,.04);border:1px solid var(--line);animation:wfm-in .4s var(--ease)}
+@keyframes wfm-in{from{opacity:0;transform:translateX(24px)}}
+#wfm .cl img{width:56px;height:46px;border-radius:8px;object-fit:cover}
+#wfm .cl b{display:block;font-size:14px}#wfm .cl small{color:var(--muted);font-size:12px;font-variant-numeric:tabular-nums}
+#wfm .cl button{border:0;background:none;color:var(--muted);cursor:pointer;font-size:18px}
+#wfm .empty{color:var(--muted);font-size:13px;text-align:center;padding:24px 10px;border:1px dashed var(--line);border-radius:14px}
+#wfm form{display:grid;gap:8px}#wfm form input{width:100%;border:1px solid rgba(255,255,255,.16);background:rgba(4,12,28,.6);border-radius:10px;padding:10px 12px;font-size:13px}
+#wfm .send{border:0;border-radius:999px;padding:13px;font-weight:800;letter-spacing:.1em;font-size:12px;background:linear-gradient(180deg,var(--gold-2),var(--gold));color:#14100b;cursor:pointer}
+#wfm .send:disabled{opacity:.6;cursor:default}
+#wfm .st{font-size:12.5px;line-height:1.45;min-height:0}#wfm .st.err{color:#ff9b8a}#wfm .st.ok{color:#7fe0a8}
+#wfm .tab{position:absolute;z-index:9;right:0;top:50%;transform:translate(110%,-50%);display:flex;flex-direction:column;align-items:center;gap:10px;padding:16px 10px 14px 12px;border-radius:16px 0 0 16px;border:1px solid rgba(242,184,75,.6);border-right:0;background:linear-gradient(180deg,#13254a,#0a1631);box-shadow:-10px 0 30px rgba(0,0,0,.45);cursor:grab;touch-action:none;transition:transform .5s var(--ease)}
+#wfm.tray-off .tab{transform:translate(0,-50%);transition-delay:.3s}
+#wfm .tab svg{width:16px;height:16px;color:var(--gold-2)}
+#wfm .tab span{writing-mode:vertical-rl;transform:rotate(180deg);font:800 12px/1 var(--display);letter-spacing:.22em;color:var(--gold-2)}
+#wfm .tab i{font-style:normal;display:grid;place-items:center;min-width:22px;height:22px;border-radius:11px;background:var(--gold);color:#14100b;font-size:11px;font-weight:800}
+#wfm .tab:hover{border-color:var(--gold)}
+#wfm .bump{animation:wfm-bump .5s}@keyframes wfm-bump{40%{transform:translate(0,-50%) scale(1.1)}}
+#wfm .toast{position:absolute;z-index:12;left:50%;top:18px;transform:translate(-50%,-8px);opacity:0;transition:all .3s var(--ease);background:rgba(8,14,30,.94);border:1px solid var(--line);padding:11px 18px;border-radius:12px;font-size:13px;pointer-events:none;white-space:nowrap}
+#wfm .toast.show{opacity:1;transform:translate(-50%,0)}
+@media (max-width:1000px){
+  #wfm{--cw:min(380px,92vw)}
+  #wfm .media{left:0!important;right:0!important;bottom:44%}#wfm .media:before{width:auto;left:0;right:0;top:auto;bottom:0;height:40%;background:linear-gradient(0deg,#071229,transparent)}
+  #wfm .cut{inset:0}
+  #wfm .info{top:auto;bottom:92px;transform:none;width:auto;right:18px;left:18px}#wfm h2{font-size:44px;margin:8px 0 10px}#wfm .info p{font-size:14px;margin-bottom:14px}#wfm .spec{display:none}#wfm .idx{margin-bottom:10px}#wfm .idx b{font-size:30px}
+  #wfm .pager{left:18px;bottom:18px}#wfm .bar{left:16px;top:14px}#wfm .proj{display:none}}
+@media (prefers-reduced-motion:reduce){#wfm,#wfm *{animation:none!important;transition:none!important}}
+</style>
+<section id="wfm" class="tray-off" role="dialog" aria-modal="true" aria-label="Choose materials">
+  <div class="media" id="wfm-media"><div class="cut" id="wfm-cut"><img id="wfm-cutimg" alt="" decoding="async"></div></div>
+  <div class="bar"><button class="back" id="wfm-back" type="button">← <span id="wfm-backtxt">Change plot size</span></button><span class="proj"><b>WAYFORTH BUILD · LAHORE</b><span id="wfm-proj">Residential project</span></span></div>
+  <section class="info" aria-live="polite"><div class="anim out" id="wfm-anim">
+    <div class="idx"><b id="wfm-ix">01</b><i></i><span>/ 06</span></div>
+    <span class="k" id="wfm-brand"></span><h2 id="wfm-name"></h2><p id="wfm-desc"></p><ul class="spec" id="wfm-spec"></ul>
+    <div class="buy"><input id="wfm-q" type="number" min="1" value="1" inputmode="numeric" aria-label="Quantity"><select id="wfm-u" aria-label="Unit"></select><button class="add" id="wfm-add" type="button">ADD TO CART +</button></div>
+  </div></section>
+  <nav class="pager" aria-label="Materials"><button class="ar" id="wfm-prev" type="button" aria-label="Previous material"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M11 6l-6 6 6 6"/></svg></button><button class="ar" id="wfm-next" type="button" aria-label="Next material"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button></nav>
+  <aside class="cart" id="wfm-cart" aria-label="Quote cart">
+    <div class="top"><div><small class="k">YOUR PROJECT BASKET</small><h3>Quote cart</h3></div><button class="tuck" id="wfm-tuck" type="button" aria-label="Slide the cart to the side"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg></button></div>
+    <div class="lines" id="wfm-lines"></div>
+    <form id="wfm-form" novalidate><input name="contactName" placeholder="Full name" autocomplete="name" aria-label="Full name"><input name="phone" type="tel" placeholder="WhatsApp / phone" autocomplete="tel" aria-label="Phone"><input name="email" type="email" placeholder="Email" autocomplete="email" aria-label="Email"><input name="projectLocation" placeholder="Project / delivery area" aria-label="Project or delivery area"><div class="st" id="wfm-st" role="status"></div><button class="send" type="submit">REQUEST MATERIALS QUOTE →</button></form>
+  </aside>
+  <button class="tab" id="wfm-tab" type="button" aria-label="Pull the cart back"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M15 6l-6 6 6 6"/></svg><span>CART</span><i id="wfm-tabn">0</i></button>
+  <div class="toast" id="wfm-toast" role="status"></div>
+</section>
+<script>
+(()=>{
+const $=id=>document.getElementById(id),W=$('wfm');
+const M=[
+ {id:'cement',name:'Cement',brand:'Maple Leaf Cement',img:'wfm-cement.webp',t:'214,190,140',units:['Bags','Metric Tons','Custom'],desc:'Ordinary Portland cement in 50 kg bags for foundations, structure and plaster, delivered to your site.',spec:['50 KG BAG','OPC TYPE-I','42.5 N']},
+ {id:'bricks',name:'Bricks',brand:'Premium Kiln Bricks',img:'wfm-bricks.webp',t:'235,110,70',units:['Pieces','Pallets','Custom'],desc:'First-class red kiln bricks for walls and boundaries, supplied by the thousand.',spec:['A-CLASS','9 × 4.5 × 3 IN','PER 1000']},
+ {id:'steel',name:'Steel / Sariya',brand:'Mughal Steel',img:'wfm-steel.webp',t:'214,140,80',units:['Kg','Metric Tons','Pieces','Custom'],desc:'Grade 60 deformed sariya for slabs, beams and columns, cut to length and tied in bundles.',spec:['GRADE 60','#3 – #8','40 FT LENGTHS']},
+ {id:'paints',name:'Paints',brand:'Berger Paints',img:'wfm-paints.webp',t:'90,150,255',units:['Buckets','Litres','Gallons','Custom'],desc:'Interior emulsion, weather-shield exterior paint and primers in every shade.',spec:['EMULSION','WEATHER SHIELD','PRIMERS']},
+ {id:'pipes',name:'Pipes',brand:'Popular Pipes',img:'wfm-pipes.webp',t:'170,190,215',units:['Pieces','Feet','Metres','Custom'],desc:'New uPVC and PPR water and drainage pipes with elbows, tees and fittings.',spec:['uPVC','PPR','FITTINGS']},
+ {id:'electrical',name:'Electrical',brand:'Wires & Fittings',img:'wfm-electrical-bg.webp',cut:'wfm-electrical.webp',thumb:'wfm-electrical.webp',t:'242,184,75',units:['Pieces','Sets','Rolls','Metres','Custom'],desc:'Copper wire rolls, switches, sockets, circuit breakers, bulbs and fittings for the whole house.',spec:['COPPER WIRE','SWITCHES','BREAKERS']}];
+const N=M.length,media=$('wfm-media');
+const layers=M.map(m=>{const d=document.createElement('div');d.className='ph idle';const w=document.createElement('div');w.className='in';const im=new Image();im.alt='';im.decoding='async';im.dataset.src=m.img;w.appendChild(im);d.appendChild(w);media.insertBefore(d,$('wfm-cut'));return d;});
+let loaded=false;function load(){if(loaded)return;loaded=true;layers.forEach(l=>{const im=l.querySelector('img');im.src=im.dataset.src;im.decode&&im.decode().catch(()=>{});});const c=new Image();c.src=M[5].cut;}
+let i=-1,z=1,project={kind:'Residential',option:'Residential project'};
+function show(k,dir){k=(k+N)%N;if(k===i)return;const first=i<0,prev=i;i=k;const m=M[i];
+  W.style.setProperty('--t',m.t);
+  const L=layers[i];L.classList.add('notr');L.classList.remove('on','idle');L.classList.toggle('back',dir<0);L.style.zIndex=++z;void L.offsetWidth;L.classList.remove('notr');L.classList.add('on');
+  if(prev>=0){const P=layers[prev];setTimeout(()=>{if(i!==prev){P.classList.add('notr','idle');P.classList.remove('on');void P.offsetWidth;P.classList.remove('notr');}},1050);}
+  const cut=$('wfm-cut');cut.style.zIndex=z+1;
+  if(m.cut){cut.classList.remove('on');setTimeout(()=>{$('wfm-cutimg').src=m.cut;cut.classList.add('on');},first?0:380);}else cut.classList.remove('on');
+  const an=$('wfm-anim');an.classList.add('out');
+  setTimeout(()=>{$('wfm-ix').textContent=String(i+1).padStart(2,'0');$('wfm-brand').textContent=m.brand;$('wfm-name').textContent=m.name;$('wfm-desc').textContent=m.desc;
+    $('wfm-spec').innerHTML=m.spec.map(s=>`<li>${s}</li>`).join('');$('wfm-u').innerHTML=m.units.map(u=>`<option>${u}</option>`).join('');$('wfm-q').value=1;an.classList.remove('out');},first?60:380);}
+let lock=0;const go=d=>{const n=performance.now();if(n<lock)return;lock=n+700;show(i+d,d);};
+$('wfm-prev').onclick=()=>go(-1);$('wfm-next').onclick=()=>go(1);
+addEventListener('keydown',e=>{if(!W.classList.contains('on')||e.target.closest('input,select'))return;if(e.key==='ArrowRight')go(1);if(e.key==='ArrowLeft')go(-1);if(e.key==='Escape')close();});
+media.addEventListener('wheel',e=>{e.preventDefault();const d=Math.sign(e.deltaY||e.deltaX);if(d)go(d);},{passive:false});
+let sx=null;W.addEventListener('pointerdown',e=>{if(!e.target.closest('input,select,button,.cart'))sx=e.clientX;});addEventListener('pointerup',e=>{if(sx===null)return;const d=e.clientX-sx;sx=null;if(Math.abs(d)>60)go(-Math.sign(d));});
+/* cart (kept for the whole visit) */
+const cart=new Map();
+function renderCart(){$('wfm-lines').innerHTML=cart.size?[...cart.values()].map(c=>`<div class="cl"><img src="${c.m.thumb||c.m.img}" alt=""><span><b>${c.m.name}</b><small>${c.q} ${c.u}</small></span><button type="button" data-rm="${c.m.id}" aria-label="Remove ${c.m.name}">×</button></div>`).join(''):'<div class="empty">Your cart is empty. Add materials to start your quote.</div>';$('wfm-tabn').textContent=cart.size;}
+$('wfm-lines').addEventListener('click',e=>{const r=e.target.closest('[data-rm]');if(r){cart.delete(r.dataset.rm);renderCart();}});
+let tt;function toast(s){const T=$('wfm-toast');T.textContent=s;T.classList.add('show');clearTimeout(tt);tt=setTimeout(()=>T.classList.remove('show'),2200);}
+$('wfm-add').onclick=()=>{const m=M[i],u=$('wfm-u').value,q=Math.max(1,+$('wfm-q').value||1),p=cart.get(m.id);cart.set(m.id,{m,q:p&&p.u===u?p.q+q:q,u});renderCart();
+  const tb=$('wfm-tab');tb.classList.remove('bump');void tb.offsetWidth;tb.classList.add('bump');toast(`${m.name} added to your quote cart`);};
+const setTray=on=>W.classList.toggle('tray-off',!on);
+$('wfm-tuck').onclick=()=>setTray(false);
+const tab=$('wfm-tab');let tx=null,moved=0;
+tab.addEventListener('pointerdown',e=>{tx=e.clientX;moved=0;tab.setPointerCapture(e.pointerId);});
+tab.addEventListener('pointermove',e=>{if(tx===null)return;const d=Math.min(0,e.clientX-tx);moved=Math.abs(d);tab.style.transition='none';tab.style.transform=`translate(${d}px,-50%)`;if(d<-70){tx=null;tab.style.transition='';tab.style.transform='';setTray(true);}});
+tab.addEventListener('pointerup',()=>{if(tx===null)return;tx=null;tab.style.transition='';tab.style.transform='';if(moved<6)setTray(true);});
+$('wfm-form').addEventListener('submit',e=>{e.preventDefault();const st=$('wfm-st'),f=e.target,v=Object.fromEntries(new FormData(f).entries());
+  const dg=(v.phone||'').replace(/\D/g,'');
+  if(!cart.size){st.className='st err';st.textContent='Add at least one material to your cart first.';return;}
+  if(!v.contactName.trim()||dg.length<7||dg.length>15||!/^\S+@\S+\.\S{2,}$/.test(v.email||'')){st.className='st err';st.textContent='Please add your name, phone number and a valid email.';return;}
+  const materials=[...cart.values()].map(c=>({material:c.m.name,quantity:String(c.q),unit:c.u,category:'Materials'}));
+  const req={source:'build-materials-showcase',project,contactName:v.contactName,companyName:'',phone:v.phone,email:v.email,projectLocation:v.projectLocation,materials,notes:''};
+  if(parent!==window)parent.postMessage({type:'wf-build-quote',...req,payload:req},'*');
+  st.className='st ok';st.textContent='Your materials quote request has been sent to WAYFORTH. The team will confirm pricing and availability.';f.querySelector('.send').disabled=true;f.querySelector('.send').textContent='QUOTE REQUEST SENT ✓';});
+/* open / close with the site's Circle Reveal */
+let px=innerWidth/2,py=innerHeight/2;addEventListener('pointerdown',e=>{px=e.clientX;py=e.clientY;},true);
+function topH(){const h=document.querySelector('.wfh');return h?Math.round(h.getBoundingClientRect().bottom):64;}
+function open(kind,option){load();project={kind:kind||'Residential',option:option||'Project'};
+  const com=/commercial/i.test(project.kind);$('wfm-proj').textContent=com?`Commercial project · ${project.option}`:`Residential project · ${project.option}`;$('wfm-backtxt').textContent=com?'Back to projects':'Change plot size';
+  const t=topH();W.style.setProperty('--wfm-top',t+'px');W.style.setProperty('--ox',px+'px');W.style.setProperty('--oy',(py-t)+'px');
+  const f=$('wfm-form');f.querySelector('.send').disabled=false;f.querySelector('.send').textContent='REQUEST MATERIALS QUOTE →';$('wfm-st').textContent='';
+  setTray(innerWidth>1000);
+  W.classList.remove('closing');i=-1;layers.forEach(l=>{l.classList.add('notr','idle');l.classList.remove('on');void l.offsetWidth;l.classList.remove('notr');});void W.offsetWidth;W.classList.add('on');show(0,1);renderCart();}
+function close(instant){if(!W.classList.contains('on'))return;W.classList.remove('on');if(instant){return;}W.classList.add('closing');setTimeout(()=>W.classList.remove('closing'),560);}
+$('wfm-back').onclick=()=>close();
+window.wfmOpen=open;window.wfmClose=close;window.wfmIsOpen=()=>W.classList.contains('on');window.wfmAddButton=()=>$('wfm-add');
+renderCart();
+setTimeout(load,2500);
+})();
+</script>
+
 </body>
 </html>

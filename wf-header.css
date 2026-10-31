@@ -33,11 +33,12 @@
   .wfh-bar{height:60px}
   .wfh-logo{left:14px;height:44px}
   .wfh-nav{display:none}
-  .wfh-quote{left:auto;right:14px;height:40px;font-size:11px}
+  .wfh-quote{left:auto;right:12px;height:36px;min-width:0;padding:0 12px;font-size:10px;letter-spacing:.1em}
+  .wfh-logo{height:38px;min-height:38px}
 }
 
 /* "Choose a service" guide, shown when GET A QUOTE is pressed */
-.wf-guide{position:fixed;z-index:60;left:50%;transform:translate(-50%,10px);padding:12px 20px;border-radius:999px;background:linear-gradient(180deg,#ffd98a,#f2b84b);color:#14100b;font:800 13px/1 "Inter",Arial,sans-serif;letter-spacing:.08em;box-shadow:0 10px 40px rgba(242,184,75,.45);opacity:0;pointer-events:none;transition:all .35s;white-space:nowrap}
+.wf-guide{position:fixed;z-index:200;left:50%;transform:translate(-50%,10px);padding:12px 20px;border-radius:999px;background:linear-gradient(180deg,#ffd98a,#f2b84b);color:#14100b;font:800 13px/1 "Inter",Arial,sans-serif;letter-spacing:.08em;box-shadow:0 10px 40px rgba(242,184,75,.45);opacity:0;pointer-events:none;transition:all .35s;white-space:nowrap}
 .wf-guide.show{opacity:1;transform:translate(-50%,0)}
 .wf-guide i{display:inline-block;font-style:normal;margin-left:8px;animation:wfg-bob .8s ease-in-out infinite}
 @keyframes wfg-bob{50%{transform:translateY(4px)}}

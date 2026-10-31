@@ -8,8 +8,8 @@
 <meta name="theme-color" content="#04070f">
 <link rel="icon" href="wf-actual-logo-decal.png">
 <link rel="preload" href="wf-home-scene-hd.webp" as="image">
-<link rel="stylesheet" href="wf-header.css?v=47">
-<script src="wf-guide.js?v=42"></script>
+<link rel="stylesheet" href="wf-header.css?v=48">
+<script src="wf-guide.js?v=48"></script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,300..900&family=Manrope:wght@400;500;700&display=swap">
@@ -220,7 +220,7 @@ function ensure(name){
   if(frames[name])return frames[name];
   const f=document.createElement('iframe');f.title='WAYFORTH '+name;f.dataset.p=name;f.dataset.ready='';
   f.addEventListener('load',()=>{f.dataset.ready='1';f.dispatchEvent(new Event('wf-ready'));},{once:true});
-  f.src=PAGES[name]+'?v=47';pageEl.appendChild(f);frames[name]=f;return f;}
+  f.src=PAGES[name]+'?v=48';pageEl.appendChild(f);frames[name]=f;return f;}
 function whenReady(f){return f.dataset.ready==='1'?Promise.resolve():new Promise(r=>{body.classList.add('loading');f.addEventListener('wf-ready',()=>{body.classList.remove('loading');r();},{once:true});});}
 function play(kf,opt){return new Promise(r=>{if(reduced){r();return;}anim=pageEl.animate(kf,opt);anim.onfinish=()=>{anim=null;r();};anim.oncancel=()=>{anim=null;r();};});}
 function settle(){ /* make the screen match `current`, whatever happened before */
