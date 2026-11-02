@@ -17,5 +17,5 @@ try{
     if(!fs.existsSync(path.join(root,f)))throw Error('Missing '+f+' at the repository root.');
   fs.rmSync(dist,{recursive:true,force:true});
   copy(root,dist);
-  console.log('WAYFORTH V50 build OK —',fs.readdirSync(dist).length,'files.');
-}catch(e){console.error('WAYFORTH V50:',e.message);process.exitCode=1}
+  console.log('WAYFORTH V51 build OK —',fs.readdirSync(dist).length,'files.');
+}catch(e){console.error('WAYFORTH V51:',e.message);process.exitCode=1}

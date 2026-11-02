@@ -1,0 +1,21 @@
+WAYFORTH V51 — NEW MEDIA PAGE (DEPTH ZOOM, NO PAGE SCROLL)
+==========================================================
+
+COMMIT NAME
+WAYFORTH V51 — Media Depth-Zoom Experience & Lead Form
+
+CHANGES FROM V50 (all V50 changes included)
+1. Media page rebuilt as a fixed-screen experience: the page never scrolls; each scroll, swipe or
+   arrow key moves to the next panel with the Depth Zoom (current panel flies past, next comes
+   out of the depth). Six panels: Home · About · Platforms · Services · Founders · Contact.
+2. Top menu: Home (WAYFORTH landing page) · About Us · Services · Support · Contact Us, plus the
+   gold GET A QUOTE. Phone: menu button with a dropdown.
+3. Founders panel: Ahmad Hassan & Rohail Azam, Co-Founders.
+4. Contact panel form (I'm a creator / I'm a brand / Support) sends to the WAYFORTH inbox through
+   the same email endpoint. Support needs name + phone (email optional).
+5. Calls and WhatsApp buttons on the Contact panel.
+
+DEPLOY
+1. Extract this ZIP into the ROOT of the WAYFORTH GitHub repository and replace matching files.
+2. Commit with the exact message above. Vercel settings stay the same.
+3. Press Ctrl+Shift+R once after deploy.
