@@ -88,9 +88,9 @@ nav{display:flex;gap:clamp(0px,.2vw,4px);align-items:center}nav button{color:#d5
 @media(max-width:620px){.materials-top{flex-direction:column;align-items:stretch}.materials-top-left{width:100%}.materials-brand .logo-copy{display:flex}.materials-nav{max-width:none;width:100%;justify-content:flex-start}.materials-nav button{flex:1 1 auto}.materials-content{padding-top:18px}.materials-intro h1{font-size:clamp(28px,8.4vw,38px)}}
 
 </style>
-<link rel="stylesheet" href="wf-header.css?v=51">
+<link rel="stylesheet" href="wf-header.css?v=52">
 <style>html,body{overflow-x:hidden}.top-wfh{position:sticky;top:0;z-index:60;width:100vw;margin-left:calc(50% - 50vw);margin-right:0}.top-wfh .wfh-nav button{color:#eef2f9!important;background:none!important;border:0!important;border-radius:0!important;padding:6px 0!important;letter-spacing:.01em!important}</style>
-<script src="wf-guide.js?v=51"></script>
+<script src="wf-guide.js?v=52"></script>
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,300..900&family=Manrope:wght@400;500;700&display=swap">
 <style>/* WAYFORTH Build Showroom V45 — full-height panels + circle reveal */
 body.bsr-on main{display:none!important}
@@ -464,7 +464,7 @@ renderCatalog();renderCart();
 /* cart tray */
 #wfm .cart{position:absolute;z-index:8;top:0;right:0;bottom:0;width:var(--cw);display:flex;flex-direction:column;gap:14px;background:linear-gradient(180deg,#0d1c3b,#081227);border-left:1px solid var(--line);padding:22px;transition:transform .6s var(--ease);box-shadow:-24px 0 60px rgba(0,0,0,.35)}
 #wfm.tray-off .cart{transform:translateX(100%)}
-#wfm .cart .top{padding-top:6px;display:flex;align-items:center;justify-content:space-between;gap:10px}
+#wfm .cart .ctop{padding-top:6px;display:flex;align-items:flex-start;justify-content:space-between;gap:10px}
 #wfm .cart h3{margin:6px 0 0;font:900 26px/1 var(--display);font-stretch:115%}
 #wfm .cart small.k{display:block;margin-top:10px;font-size:11px;letter-spacing:.24em;color:var(--gold-2)}
 #wfm .badge{display:inline-flex;align-items:center;gap:6px;font-size:10.5px;font-weight:800;letter-spacing:.14em;padding:6px 11px;border-radius:999px;background:rgba(242,184,75,.14);color:var(--gold-2);border:1px solid rgba(242,184,75,.5);max-width:250px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
@@ -517,7 +517,7 @@ renderCatalog();renderCart();
   </div></section>
   <nav class="pager" aria-label="Materials"><button class="ar" id="wfm-prev" type="button" aria-label="Previous material"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M11 6l-6 6 6 6"/></svg></button><button class="ar" id="wfm-next" type="button" aria-label="Next material"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button></nav>
   <aside class="cart" id="wfm-cart" aria-label="Quote cart">
-    <div class="top"><div><span class="badge" id="wfm-badge">⌂ HOME</span><small class="k" id="wfm-ck">YOUR PROJECT BASKET</small><h3 id="wfm-ch">Home project list</h3><p class="cnote" id="wfm-cn">Your materials for one home. Soon: full-build totals for your plot size.</p></div><button class="tuck" id="wfm-tuck" type="button" aria-label="Slide the cart to the side"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg></button></div>
+    <div class="ctop"><div><span class="badge" id="wfm-badge">⌂ HOME</span><small class="k" id="wfm-ck">YOUR PROJECT BASKET</small><h3 id="wfm-ch">Home project list</h3><p class="cnote" id="wfm-cn">Your materials for one home. Soon: full-build totals for your plot size.</p></div><button class="tuck" id="wfm-tuck" type="button" aria-label="Slide the cart to the side"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg></button></div>
     <div class="lines" id="wfm-lines"></div>
     <form id="wfm-form" novalidate><input name="contactName" placeholder="Full name" autocomplete="name" aria-label="Full name"><input name="phone" type="tel" placeholder="WhatsApp / phone" autocomplete="tel" aria-label="Phone"><input name="email" type="email" placeholder="Email" autocomplete="email" aria-label="Email"><input name="projectLocation" placeholder="Project / delivery area" aria-label="Project or delivery area"><div class="bulk"><input name="company" placeholder="Company" aria-label="Company"><input name="site" placeholder="Site / phase" aria-label="Site or phase"></div><div class="st" id="wfm-st" role="status"></div><button class="send" type="submit">REQUEST MATERIALS QUOTE →</button></form>
   </aside>

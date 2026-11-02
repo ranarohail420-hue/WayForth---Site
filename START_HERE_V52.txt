@@ -1,0 +1,25 @@
+WAYFORTH V52 — CART FIX, CLEAN LOGO, NEW MEDIA HOME & ABOUT
+===========================================================
+
+COMMIT NAME
+WAYFORTH V52 — Cart Header Fix, Clean Logo, Media Home & Team
+
+CHANGES FROM V51
+1. Build carts (Home and Commercial): the header no longer overlaps the note and items.
+2. WAYFORTH logo (Build, Trucking, Media headers): stray gold speck above the "F" removed.
+3. Trucking: "I'm a Carrier" now shows a driver sitting in his truck; "Move a Load" shows a
+   truck carrying a load.
+4. Media page now has its own sections — scrolling no longer jumps between menu items:
+   - Home: creator photo wall (filming, podcasts, vlogging), rotating headline, then a second
+     screen with a bright stats band and the platforms.
+   - About Us: our story + values, then the team — Ahmad Hassan & Rohail Azam (Co-Founders)
+     with the crew: Video Editors, Designers, Researchers, Content Strategists.
+   - Services: platforms, then the six services and four steps.
+   - Support / Contact Us: the form (Support pre-selected from the Support menu).
+   Scroll moves only within the section you are on; the menu switches sections.
+   The WAYFORTH logo returns to the main WAYFORTH landing page.
+
+DEPLOY
+1. Extract this ZIP into the ROOT of the WAYFORTH GitHub repository and replace matching files.
+2. Commit with the exact message above. Vercel settings stay the same.
+3. Press Ctrl+Shift+R once after deploy.

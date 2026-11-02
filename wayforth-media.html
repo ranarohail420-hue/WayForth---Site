@@ -4,7 +4,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,300..900&family=Manrope:wght@400;500;700;800&family=Playfair+Display:ital,wght@1,700&display=swap">
 <style>
-/* WAYFORTH V51 Media — no page scroll. The screen stays fixed; the wheel / swipe / arrow keys move panels in place.
+/* WAYFORTH V52 Media — no page scroll. The screen stays fixed; the wheel / swipe / arrow keys move panels in place.
    Three motion styles share the same six panels: A Panel stack, B Side rail, C Depth zoom. Dark violet Media brand by choice. */
 :root{--bg:#0a0118;--text:#f5f2ff;--muted:#b1a8cc;--v:164,107,255;--v2:#d6bcff;--gold:#f2b84b;--line:rgba(214,188,255,.16);
   --display:"Archivo","Arial Narrow",Arial,sans-serif;--body:"Manrope","Segoe UI",Arial,sans-serif;--serif:"Playfair Display",Georgia,serif;--ease:cubic-bezier(.77,0,.18,1);--soft:cubic-bezier(.22,1,.36,1);--hh:72px;color-scheme:dark}
@@ -148,35 +148,74 @@ body.C .st [data-i]{transform:translate3d(0,0,0) scale(.92)}body.C .st.cur [data
   .links.open{display:flex}.links button{padding:12px 14px;text-align:left;border-radius:10px}.links button:after{display:none}}
 @media (max-width:980px){.hero,.split{grid-template-columns:1fr}.art{display:none}.nums,.plats{grid-template-columns:1fr 1fr}.team{grid-template-columns:1fr}.svcs{grid-template-columns:1fr 1fr}.prog{right:10px}.st{padding-bottom:12vh}.split>.form{display:none}.split.connect>.form{display:block}.connect .cinfo{display:none}.fc{grid-template-columns:auto 1fr;padding:20px}.plat p,.svc p{display:none}.hint{display:none}}
 @media (prefers-reduced-motion:reduce){*{animation:none!important}.st,.st [data-i]{transition-duration:.01s!important}}
+
+/* ---------- V52: Home hero with creator collage, About crew ---------- */
+.hx{display:grid;grid-template-rows:auto 1fr auto;gap:2.2vh;height:100%;width:100%;text-align:center;padding:1vh 0}
+.hx h1{font-size:clamp(40px,5.6vw,92px);line-height:.92}.hx .rot{font-size:.42em;margin-left:auto;margin-right:auto}
+.col{display:grid;grid-template-columns:repeat(5,1fr);grid-template-rows:1fr 1fr;gap:12px;min-height:0;perspective:900px}
+.ct{position:relative;border-radius:18px;overflow:hidden;border:1px solid rgba(214,188,255,.18);box-shadow:0 20px 40px rgba(0,0,0,.35);animation:ctf 7s ease-in-out infinite;animation-delay:calc(var(--k)*-.7s)}
+.ct img{width:100%;height:100%;object-fit:cover;display:block;transition:transform 1s var(--soft)}.ct:hover img{transform:scale(1.07)}
+.ct:after{content:"";position:absolute;inset:0;background:linear-gradient(0deg,rgba(10,1,24,.5),transparent 50%)}
+.ct2,.ct4,.ct7,.ct9{transform:translateY(14px)}
+@keyframes ctf{50%{translate:0 -8px}}
+.hx-b{display:flex;align-items:center;justify-content:center;gap:28px;flex-wrap:wrap}
+.avs{display:flex;align-items:center}.avs img{width:40px;height:40px;border-radius:50%;object-fit:cover;border:2px solid #0a0118;margin-left:-10px}.avs img:first-child{margin-left:0}
+.avs span{margin-left:12px;text-align:left;font-size:12px;color:var(--muted);line-height:1.35}.avs b{display:block;color:#fff;font-size:13px}
+.band{display:grid;grid-template-columns:repeat(4,1fr);margin-top:30px;border-radius:24px;overflow:hidden;background:linear-gradient(90deg,#6b3df0,#a46bff 45%,#ff5fbe);box-shadow:0 20px 60px rgba(164,107,255,.35)}
+.band div{padding:24px 22px;text-align:center}.band div+div{border-left:1px solid rgba(255,255,255,.25)}.band b{display:block;font:900 clamp(30px,3.6vw,52px)/1 var(--display);font-stretch:118%}.band span{display:block;margin-top:6px;font-size:11px;font-weight:800;letter-spacing:.2em;color:rgba(255,255,255,.85)}
+.pl{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin-top:26px}.pl span{font-weight:800;font-size:13px;letter-spacing:.06em;padding:10px 16px;border-radius:999px;border:1px solid rgba(var(--c),.6);background:rgba(var(--c),.12)}
+.vals{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:26px}.vals div{padding:18px;border-radius:18px;border:1px solid var(--line);background:rgba(255,255,255,.04)}
+.vals i{display:grid;place-items:center;width:38px;height:38px;border-radius:12px;font-style:normal;background:rgba(164,107,255,.25);color:var(--v2);margin-bottom:12px}.vals b{display:block;font:900 16px/1.1 var(--display)}.vals small{display:block;margin-top:5px;color:var(--muted);font-size:12.5px}
+.aph{position:relative;border-radius:28px;overflow:hidden;aspect-ratio:4/3.4;box-shadow:0 40px 90px rgba(0,0,0,.5)}.aph img{width:100%;height:100%;object-fit:cover}
+.aph:after{content:"";position:absolute;inset:0;background:linear-gradient(0deg,rgba(10,1,24,.85),transparent 55%)}
+.aph .q{position:absolute;z-index:1;left:26px;bottom:24px;font:italic 700 clamp(20px,2vw,28px)/1.25 var(--serif)}
+.tm{display:grid;grid-template-columns:.9fr 1.1fr;gap:18px;margin-top:22px;align-items:stretch}
+.fd2{display:grid;gap:14px}.fd2 .fc{padding:22px}
+.rl{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.ro{position:relative;border-radius:22px;overflow:hidden;min-height:150px;border:1px solid var(--line)}.ro img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform 1s var(--soft)}.ro:hover img{transform:scale(1.06)}
+.ro:after{content:"";position:absolute;inset:0;background:linear-gradient(0deg,rgba(10,1,24,.92) 15%,rgba(10,1,24,.2))}
+.ro span{position:absolute;z-index:1;left:16px;right:16px;bottom:14px}.ro b{display:block;font:900 18px/1.1 var(--display)}.ro small{display:block;margin-top:4px;color:#cfc6e6;font-size:12.5px}
+@media (max-width:980px){.col{grid-template-columns:repeat(3,1fr)}.ct7,.ct8,.ct9,.ct10{display:none}.band{grid-template-columns:1fr 1fr}.band div:nth-child(3){border-left:0}.vals{grid-template-columns:1fr}.aph{display:none}.tm,.rl{grid-template-columns:1fr 1fr}.fd2{grid-column:span 2}.ro{min-height:110px}.ro small{display:none}.hx h1{font-size:40px}}
 </style>
 </head><body class="C">
 
 <div class="bgfx" aria-hidden="true"><span class="blob b1" id="b1"></span><span class="blob b2" id="b2"></span><span class="blob b3" id="b3"></span><span class="gridl"></span></div>
 
 <header class="nav">
-  <button class="brand" data-site="home" aria-label="WAYFORTH — Home"><img src="wf-hdr-logo.png" alt="WAYFORTH"><small>MEDIA</small></button>
+  <button class="brand" data-site="home" aria-label="WAYFORTH — main site"><img src="wf-hdr-logo.png" alt="WAYFORTH"><small>MEDIA</small></button>
   <button class="burger" id="burger" aria-label="Open menu" aria-expanded="false"><span></span><span></span><span></span></button>
-  <nav class="links" id="links" aria-label="Main"><button data-site="home">Home</button><button data-go="1">About Us</button><button data-go="2">Services</button><button data-go="5" data-who="support">Support</button><button data-go="5" data-who="creator">Contact Us</button></nav>
-  <button class="cta hq" data-go="5">GET A QUOTE →</button>
+  <nav class="links" id="links" aria-label="Main"><button data-go="home">Home</button><button data-go="about">About Us</button><button data-go="services">Services</button><button data-go="contact" data-who="support" data-nav="support">Support</button><button data-go="contact" data-who="creator" data-nav="contact">Contact Us</button></nav>
+  <button class="cta hq" data-go="contact">GET A QUOTE →</button>
 </header>
 
 <main class="stage" id="stage">
-  <section class="st" data-name="Home"><div class="card"><div class="in hero">
-    <div><span class="eyebrow" data-i>WAYFORTH MEDIA · USA · UAE · LHR</span>
-      <h1 data-i style="--d:1">Creative &amp;<br><span class="grad">Modern</span><span class="rot"><span><i>through innovation.</i><i>through collaboration.</i><i>through smart strategy.</i><i>through content mastery.</i><i>through innovation.</i></span></span></h1>
-      <p class="lead" data-i style="--d:2">We help creators and brands grow their channels, repurpose content across every platform and turn attention into revenue — while you keep full creative freedom.</p>
-      <div class="btns" data-i style="--d:3"><button class="cta" data-go="5">START A PROJECT →</button><button class="ghost" data-go="5" data-who="creator">APPLY AS A CREATOR</button></div></div>
-    <div class="art" data-i style="--d:2"><span class="orb"></span><span class="orb2"></span><span class="chip c1"><i style="background:#fffc00;color:#000">👻</i>Discover Shows</span><span class="chip c2"><i style="background:#ff0033">▶</i>Shorts</span><span class="chip c3"><i style="background:#1877f2">f</i>Reels</span><span class="chip c4"><i style="background:#111;border:1px solid #25f4ee">♪</i>TikTok</span></div>
+<section class="st" data-name="Home" data-view="home"><div class="card"><div class="in hx">
+    <div class="hx-t"><span class="eyebrow" data-i>WAYFORTH MEDIA · USA · UAE · LHR</span>
+      <h1 data-i style="--d:1">Creative &amp; <span class="grad">Modern</span><span class="rot"><span><i>through innovation.</i><i>through collaboration.</i><i>through smart strategy.</i><i>through content mastery.</i><i>through innovation.</i></span></span></h1></div>
+    <div class="col" data-i style="--d:2"><div class="ct ct1" style="--k:1"><img src="media-cr1.webp" alt="" decoding="async"></div><div class="ct ct2" style="--k:2"><img src="media-cr2.webp" alt="" decoding="async"></div><div class="ct ct3" style="--k:3"><img src="media-cr3.webp" alt="" decoding="async"></div><div class="ct ct4" style="--k:4"><img src="media-cr4.webp" alt="" decoding="async"></div><div class="ct ct5" style="--k:5"><img src="media-cr5.webp" alt="" decoding="async"></div><div class="ct ct6" style="--k:6"><img src="media-cr6.webp" alt="" decoding="async"></div><div class="ct ct7" style="--k:7"><img src="media-cr7.webp" alt="" decoding="async"></div><div class="ct ct8" style="--k:8"><img src="media-cr8.webp" alt="" decoding="async"></div><div class="ct ct9" style="--k:9"><img src="media-cr9.webp" alt="" decoding="async"></div><div class="ct ct10" style="--k:10"><img src="media-cr10.webp" alt="" decoding="async"></div></div>
+    <div class="hx-b" data-i style="--d:3"><div class="avs"><img src="media-cr2.webp" alt=""><img src="media-cr4.webp" alt=""><img src="media-cr7.webp" alt=""><span><b>Creators &amp; brands</b>USA · UAE · Lahore</span></div>
+      <div class="btns"><button class="cta" data-go="contact">START A PROJECT →</button><button class="ghost" data-go="contact" data-who="creator">APPLY AS A CREATOR</button></div></div>
   </div></div></section>
-
-  <section class="st" data-name="About"><div class="card"><div class="in">
+<section class="st" data-name="Why us" data-view="home"><div class="card"><div class="in">
     <span class="eyebrow" data-i>The gateway to growth</span>
     <h2 data-i style="--d:1">Empowering creators,<br><span class="grad">maximizing revenue.</span></h2>
-    <p class="lead" data-i style="--d:2">WAYFORTH Media is a social media management company. We work hand-in-hand with creators to extend their reach and build new income streams through curated content and platform-native distribution — no extra workload, and we never claim ownership of your channel.</p>
-    <div class="nums"><div class="num" data-i style="--d:3"><b>4</b><span>PLATFORMS</span></div><div class="num" data-i style="--d:4"><b>3</b><span>MARKETS · USA · UAE · LHR</span></div><div class="num" data-i style="--d:5"><b>2</b><span>CO-FOUNDERS ON EVERY ACCOUNT</span></div><div class="num" data-i style="--d:6"><b>24/7</b><span>REAL SUPPORT</span></div></div>
+    <p class="lead" data-i style="--d:2">We grow channels, repurpose content across every platform and turn attention into revenue — no extra workload, and we never claim ownership of your channel.</p>
+    <div class="band" data-i style="--d:3"><div><b>4</b><span>PLATFORMS</span></div><div><b>3</b><span>MARKETS</span></div><div><b>24/7</b><span>REAL SUPPORT</span></div><div><b>100%</b><span>YOUR CHANNEL, YOUR RIGHTS</span></div></div>
+    <div class="pl" data-i style="--d:4"><span style="--c:255,252,0">Snapchat</span><span style="--c:24,119,242">Meta</span><span style="--c:255,0,51">YouTube</span><span style="--c:37,244,238">TikTok</span><button class="ghost" data-go="services">SEE SERVICES →</button></div>
   </div></div></section>
-
-  <section class="st" data-name="Platforms"><div class="card"><div class="in">
+<section class="st" data-name="Our story" data-view="about"><div class="card"><div class="in split">
+    <div><span class="eyebrow" data-i>About us</span><h2 data-i style="--d:1">We do great things<br><span class="grad">together.</span></h2>
+      <p class="lead" data-i style="--d:2">WAYFORTH Media is a social media management company built for creators and brands. We study each audience, build a personal game plan and handle the editing, posting and optimizing — so you can keep creating.</p>
+      <div class="vals"><div data-i style="--d:3"><i>◎</i><b>Transparency</b><small>Clear reports, no surprises</small></div><div data-i style="--d:4"><i>✦</i><b>Experienced crew</b><small>Editors, designers, researchers</small></div><div data-i style="--d:5"><i>↗</i><b>Real results</b><small>Measured every month</small></div></div></div>
+    <div class="aph" data-i style="--d:2"><img src="media-studio.webp" alt="" decoding="async"><span class="q">“Founded on trust.<br>Focused on relationships.”</span></div>
+  </div></div></section>
+<section class="st" data-name="Our team" data-view="about"><div class="card"><div class="in">
+    <span class="eyebrow" data-i>Let's meet our team</span><h2 data-i style="--d:1">Led by the founders, <span class="grad">powered by a crew.</span></h2>
+    <div class="tm"><div class="fd2" data-i style="--d:2"><div class="fc"><span class="av">AH</span><div><b>Ahmad Hassan</b><small>CO-FOUNDER</small><p>Partnerships, platform expansion and creator growth.</p></div></div>
+      <div class="fc"><span class="av">RA</span><div><b>Rohail Azam</b><small>CO-FOUNDER</small><p>Client success, strategy and long-term relationships.</p></div></div></div>
+    <div class="rl"><div class="ro" data-i style="--d:3"><img src="media-editor.webp" alt="" decoding="async"><span><b>Video Editors</b><small>Cut, caption and re-edit for every platform.</small></span></div><div class="ro" data-i style="--d:4"><img src="media-designer.webp" alt="" decoding="async"><span><b>Designers</b><small>Thumbnails, covers and brand visuals.</small></span></div><div class="ro" data-i style="--d:5"><img src="media-research.webp" alt="" decoding="async"><span><b>Researchers</b><small>Trends, audiences and what to post next.</small></span></div><div class="ro" data-i style="--d:6"><img src="media-strategy.webp" alt="" decoding="async"><span><b>Content Strategists</b><small>Plans, calendars and growth goals.</small></span></div></div></div>
+  </div></div></section>
+<section class="st" data-name="Platforms" data-view="services"><div class="card"><div class="in">
     <span class="eyebrow" data-i>Platforms we monetize on</span>
     <h2 data-i style="--d:1">One video. <span class="grad">Every platform.</span></h2>
     <div class="plats">
@@ -186,8 +225,7 @@ body.C .st [data-i]{transform:translate3d(0,0,0) scale(.92)}body.C .st.cur [data
       <div class="plat" data-i style="--d:5;--c:37,244,238"><span class="ic">♪</span><h3>TikTok</h3><p>Localized short-form, repurposed for Shorts, Snap and Reels — one idea, paid four times.</p></div>
     </div>
   </div></div></section>
-
-  <section class="st" data-name="Services"><div class="card"><div class="in split">
+<section class="st" data-name="Services" data-view="services"><div class="card"><div class="in split">
     <div><span class="eyebrow" data-i>What we do</span><h2 data-i style="--d:1">Six ways we<br><span class="grad">grow you.</span></h2>
       <p class="lead" data-i style="--d:2">You pre-approve the edits. We handle everything else, and you collect the revenue.</p>
       <div class="steps" data-i style="--d:3"><span><b>1</b>Connect</span><span><b>2</b>Strategy</span><span><b>3</b>We create &amp; post</span><span><b>4</b>You collect</span></div></div>
@@ -200,17 +238,7 @@ body.C .st [data-i]{transform:translate3d(0,0,0) scale(.92)}body.C .st.cur [data
       <div class="svc" data-i style="--d:7"><span class="n">06</span><h3>Creator strategy</h3><p>A personal game plan for your audience and goals.</p></div>
     </div>
   </div></div></section>
-
-  <section class="st" data-name="Founders"><div class="card"><div class="in">
-    <span class="eyebrow" data-i>The founders</span>
-    <h2 data-i style="--d:1">A team of two. <span class="grad">On every account.</span></h2>
-    <p class="lead" data-i style="--d:2">No hand-offs and no account managers you've never met — the co-founders personally handle every creator and brand.</p>
-    <div class="team"><div class="fc" data-i style="--d:3"><span class="av">AH</span><div><b>Ahmad Hassan</b><small>CO-FOUNDER</small><p>Partnerships, platform expansion and creator growth.</p></div></div>
-      <div class="fc" data-i style="--d:4"><span class="av">RA</span><div><b>Rohail Azam</b><small>CO-FOUNDER</small><p>Client success, strategy and long-term relationships.</p></div></div></div>
-    <p class="quote" data-i style="--d:5">“New revenue for creators — with their creative freedom fully intact.”</p>
-  </div></div></section>
-
-  <section class="st" data-name="Contact"><div class="card"><div class="in split connect">
+<section class="st" data-name="Contact" data-view="contact"><div class="card"><div class="in split connect">
     <div><span class="eyebrow" data-i>Let's create something incredible</span><h2 data-i style="--d:1">Get in touch<br><span class="grad">with us.</span></h2>
       <p class="lead" data-i style="--d:2">Tell us about your channel or brand. A co-founder replies personally — usually within the hour.</p>
       <div class="cinfo"><a href="tel:+923231466332" data-i style="--d:3"><i>✆</i><span><small>CALL</small>0323-146 6332</span></a><a href="tel:+923214022222" data-i style="--d:4"><i>✆</i><span><small>CALL</small>0321-402 2222</span></a><a class="wa" href="https://wa.me/923231466332" target="_blank" rel="noopener" data-i style="--d:5"><i>✉</i><span><small>WHATSAPP</small>Chat now</span></a></div></div>
@@ -238,24 +266,27 @@ body.C .st [data-i]{transform:translate3d(0,0,0) scale(.92)}body.C .st.cur [data
 <script>
 (()=>{
 const S=[...document.querySelectorAll('.st')],N=S.length,prog=document.getElementById('prog');
-prog.innerHTML=S.map((s,i)=>`<button data-go="${i}" aria-label="${s.dataset.name}"><span>${s.dataset.name.toUpperCase()}</span></button>`).join('');
-let cur=-1,lock=false;
+let cur=-1,lock=false,navKey='home';
 const blobs=['b1','b2','b3'].map(x=>document.getElementById(x));
+const view=i=>S[i].dataset.view,inView=v=>S.map((s,k)=>k).filter(k=>view(k)===v);
 function go(i){i=Math.max(0,Math.min(N-1,i));if(i===cur)return;cur=i;lock=true;setTimeout(()=>lock=false,1050);
+  const v=view(i),L=inView(v),pos=L.indexOf(i);
   S.forEach((s,k)=>{s.classList.toggle('cur',k===i);s.classList.toggle('past',k<i);s.classList.toggle('far',k<i-1);s.setAttribute('aria-hidden',k!==i);});
-  prog.querySelectorAll('button').forEach((b,k)=>b.classList.toggle('on',k===i));
-  document.querySelectorAll('.links button').forEach(b=>b.classList.toggle('on',+b.dataset.go===i&&(!b.dataset.who||b.dataset.who==='creator')));
-  document.getElementById('count').innerHTML=`<b>${String(i+1).padStart(2,'0')}</b>/ ${String(N).padStart(2,'0')}`;
-  document.getElementById('hint').style.opacity=i===N-1?0:1;
+  prog.innerHTML=L.length>1?L.map(k=>`<button data-to="${k}" class="${k===i?'on':''}" aria-label="${S[k].dataset.name}"><span>${S[k].dataset.name.toUpperCase()}</span></button>`).join(''):'';
+  document.querySelectorAll('.links button').forEach(b=>b.classList.toggle('on',v==='contact'?b.dataset.nav===navKey:b.dataset.go===v));
+  document.getElementById('count').innerHTML=L.length>1?`<b>${String(pos+1).padStart(2,'0')}</b>/ ${String(L.length).padStart(2,'0')}`:'';
+  document.getElementById('hint').style.opacity=pos<L.length-1?1:0;
   blobs.forEach((b,k)=>b.style.transform=`translate3d(${Math.sin(i*1.3+k)*12}vw,${Math.cos(i*1.1+k*2)*10}vh,0) scale(${1+((i+k)%3)*.1})`);}
-document.addEventListener('click',e=>{const b=e.target.closest('[data-go]');if(!b)return;go(+b.dataset.go);
+function step(d){if(lock)return;const n=cur+d;if(n<0||n>=N||view(n)!==view(cur))return;go(n);}
+document.addEventListener('click',e=>{const p=e.target.closest('[data-to]');if(p){go(+p.dataset.to);return;}
+  const b=e.target.closest('[data-go]');if(!b)return;const v=b.dataset.go;navKey=b.dataset.nav||(v==='contact'?'contact':v);cur=-2;go(inView(v)[0]);
   if(b.dataset.who){const r=document.querySelector(`.who input[value="${b.dataset.who}"]`);if(r)r.checked=true;}});
 let acc=0,t0=0;
 addEventListener('wheel',e=>{if(e.target.closest('textarea,select'))return;e.preventDefault();const n=performance.now();if(n-t0>250)acc=0;t0=n;acc+=e.deltaY;
-  if(lock)return;if(acc>40){acc=0;go(cur+1);}else if(acc<-40){acc=0;go(cur-1);}},{passive:false});
-addEventListener('keydown',e=>{if(e.target.closest('input,textarea,select'))return;if(['ArrowDown','PageDown',' '].includes(e.key)){e.preventDefault();if(!lock)go(cur+1);}if(['ArrowUp','PageUp'].includes(e.key)){e.preventDefault();if(!lock)go(cur-1);}});
+  if(lock)return;if(acc>40){acc=0;step(1);}else if(acc<-40){acc=0;step(-1);}},{passive:false});
+addEventListener('keydown',e=>{if(e.target.closest('input,textarea,select'))return;if(['ArrowDown','PageDown',' '].includes(e.key)){e.preventDefault();step(1);}if(['ArrowUp','PageUp'].includes(e.key)){e.preventDefault();step(-1);}});
 let ty=null;addEventListener('touchstart',e=>{ty=e.touches[0].clientY;},{passive:true});
-addEventListener('touchend',e=>{if(ty===null)return;const d=ty-e.changedTouches[0].clientY;ty=null;if(Math.abs(d)>50&&!lock)go(cur+(d>0?1:-1));},{passive:true});
+addEventListener('touchend',e=>{if(ty===null)return;const d=ty-e.changedTouches[0].clientY;ty=null;if(Math.abs(d)>50)step(d>0?1:-1);},{passive:true});
 function _mode(m){document.body.classList.remove('A','B','C');document.body.classList.add(m);document.querySelectorAll('.dock button').forEach(b=>b.classList.toggle('on',b.dataset.t===m));
   S.forEach(s=>{s.style.transition='none';});const c=cur;cur=-1;go(Math.max(0,c));requestAnimationFrame(()=>requestAnimationFrame(()=>S.forEach(s=>s.style.transition='')));}
 
@@ -266,7 +297,7 @@ document.addEventListener('click',e=>{const s=e.target.closest('[data-site]');if
 const burger=document.getElementById('burger'),links=document.getElementById('links');
 function closeMenu(){links.classList.remove('open');burger.setAttribute('aria-expanded','false');}
 burger.addEventListener('click',e=>{e.stopPropagation();const o=!links.classList.contains('open');links.classList.toggle('open',o);burger.setAttribute('aria-expanded',o);});
-addEventListener('message',e=>{if(e.data&&e.data.type==='wf-reset'){closeMenu();go(0);}});
+addEventListener('message',e=>{if(e.data&&e.data.type==='wf-reset'){closeMenu();navKey='home';go(0);}});
 /* lead form -> WAYFORTH inbox (via the site's email endpoint) */
 const mf=document.getElementById('mform'),ms=document.getElementById('mstatus');
 mf.addEventListener('submit',e=>{e.preventDefault();const v=Object.fromEntries(new FormData(mf).entries());const sup=v.who==='support';
