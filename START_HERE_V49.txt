@@ -1,0 +1,33 @@
+WAYFORTH V49 — MATERIALS POLISH, NEW CONTACT & ABOUT, MODERN TRUCKING
+=====================================================================
+
+COMMIT NAME
+WAYFORTH V49 — Materials Polish, Award About Us, Contact Tiles & Modern Trucking
+
+CHANGES FROM V48
+HOME
+ - Menu (Home · About Us · Services · Contact Us) uses the same font and size as WAYFORTH.
+ - Lines between BUILD / MOVE / CREATE are hidden; only the hovered panel shows its edges.
+ - Slogan sits in a thin band at the bottom with gold lines either side.
+ - Taglines: "Ship Cars · Freight & Find Loads · United States" and "Empowering Creators · USA · UAE · LHR".
+ - WF MATERIAL decal on the cement mixer is darker and crisp.
+BUILD
+ - No more oval edge after opening or closing the materials screen.
+ - Cart stays hidden until the first item is added, then slides in. Spec tags removed.
+ - Round arrow back button; project label short and inside the dark side ("Commercial project · Apartments").
+ - Home cart = gold "HOME · 10 MARLA" badge; Commercial cart = steel-blue "COMMERCIAL · …" badge and button.
+ - "10 Marla+" removed; "Houses · DHA · Bahria" and "Malls · Plazas · Apartments" removed.
+ - New Pipes photo (grey PVC stack) and new Electrical photo (breaker board, copper wire, fan regulator switch board).
+ALL PAGES
+ - Contact Us: spotlight tiles with glowing icons. Trucking shows US line + email "Coming soon" and WhatsApp.
+ - About Us: gold award plaque under a spotlight (Build: Lahore + Ahmad Hassan & Rohail Azam; Trucking: 24/7 real agents; Home: all divisions).
+ - "Choose a service" hint: dark glass pill with a bouncing gold arrow.
+TRUCKING
+ - Menu: Home · Support · About Us · Contact Us.
+ - Four service cards replaced by moving expanding panels (hover widens); yellow glow border removed; left artwork patch darkened.
+ - Quote forms: split layout (service photo + steps on the left). Questions, options and steps unchanged.
+
+DEPLOY
+1. Extract this ZIP into the ROOT of the WAYFORTH GitHub repository and replace matching files.
+2. Commit with the exact message above. Vercel settings stay the same.
+3. Press Ctrl+Shift+R once after deploy.

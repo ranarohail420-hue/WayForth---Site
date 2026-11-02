@@ -8,8 +8,8 @@
 <meta name="theme-color" content="#04070f">
 <link rel="icon" href="wf-actual-logo-decal.png">
 <link rel="preload" href="wf-home-scene-hd.webp" as="image">
-<link rel="stylesheet" href="wf-header.css?v=48">
-<script src="wf-guide.js?v=48"></script>
+<link rel="stylesheet" href="wf-header.css?v=49">
+<script src="wf-guide.js?v=49"></script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,300..900&family=Manrope:wght@400;500;700&display=swap">
@@ -42,8 +42,8 @@ button{font:inherit;color:inherit}
 .brand,.nav{user-select:none;-webkit-user-select:none}
 ::selection{background:rgba(242,184,75,.35)}
 .brand b{font:600 15px/1 var(--display);font-stretch:125%;letter-spacing:.32em}
-.links{display:flex;gap:26px;margin-left:auto;font-size:13px;letter-spacing:.06em}
-.links button{background:none;border:0;padding:4px 0;cursor:pointer;color:var(--muted);transition:color .2s}
+.links{display:flex;gap:30px;margin-left:auto;font:600 15px/1 var(--display);font-stretch:112%;letter-spacing:.08em}
+.links button{background:none;border:0;padding:4px 0;cursor:pointer;color:#c9d3e6;font:inherit;letter-spacing:inherit;transition:color .2s}
 .links button:hover{color:var(--text)}
 .quote{border:1px solid rgba(242,184,75,.7);color:var(--gold-2);background:rgba(242,184,75,.06);padding:11px 18px;border-radius:999px;
   font-size:12px;font-weight:700;letter-spacing:.12em;cursor:pointer;white-space:nowrap;transition:background .25s,box-shadow .25s}
@@ -56,7 +56,8 @@ body.in-page #home{pointer-events:none}
 body.settled #home,body.settled .nav,body.settled .tagline{visibility:hidden}
 .w{container-type:inline-size;position:relative;flex:1;min-width:0;overflow:hidden;cursor:pointer;border:0;padding:0;margin:0;text-align:left;background:none;
   transition:flex .6s cubic-bezier(.25,1,.5,1);will-change:flex-grow}
-.w + .w{border-left:1px solid rgba(255,255,255,.08)}
+.w + .w{border-left:0}
+#home .w:hover{box-shadow:inset 1px 0 0 rgba(255,255,255,.22),inset -1px 0 0 rgba(255,255,255,.22)}
 .seg{position:absolute;top:var(--st,64px);left:0;width:var(--sw,100vw);max-width:none;height:auto;pointer-events:none;user-select:none;
   will-change:transform;backface-visibility:hidden;
   -webkit-mask-image:linear-gradient(to bottom,transparent 0,#000 3%,#000 90%,transparent 100%);mask-image:linear-gradient(to bottom,transparent 0,#000 3%,#000 90%,transparent 100%)}
@@ -69,7 +70,7 @@ body.settled #home,body.settled .nav,body.settled .tagline{visibility:hidden}
 #home .w:hover,#home .w:focus-visible{flex:1.9}
 .w:after{content:"";position:absolute;inset:0;pointer-events:none;background:linear-gradient(to top,rgba(4,7,15,.92) 0%,rgba(4,7,15,.35) 22%,transparent 40%)}
 .fx{position:absolute;inset:0;z-index:1;pointer-events:none;width:100%;height:100%}
-.copy{position:absolute;z-index:2;left:clamp(18px,3vw,44px);right:clamp(18px,3vw,44px);bottom:calc(clamp(34px,6vh,56px) + env(safe-area-inset-bottom,0px));display:grid;gap:12px}
+.copy{position:absolute;z-index:2;left:clamp(18px,3vw,44px);right:clamp(18px,3vw,44px);bottom:calc(clamp(44px,7vh,64px) + env(safe-area-inset-bottom,0px));display:grid;gap:12px}
 .eyebrow{font-size:clamp(10px,1.45vh,12px);font-weight:700;letter-spacing:.22em;text-transform:uppercase;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .copy h2{margin:0;font:900 clamp(30px,min(15cqi,10.5vh),96px)/.86 var(--display);font-stretch:110%;letter-spacing:-.02em;transition:font-stretch .8s}
 .w:hover h2{font-stretch:125%}
@@ -80,7 +81,9 @@ body.settled #home,body.settled .nav,body.settled .tagline{visibility:hidden}
 .w:hover .bar{transform:scaleX(1)}
 .gold-bg{background:linear-gradient(180deg,var(--gold-2),var(--gold))}.blue-bg{background:linear-gradient(180deg,#9fd3ff,var(--blue))}.violet-bg{background:linear-gradient(180deg,#d6bcff,var(--violet))}
 .t-gold{color:var(--gold)}.t-blue{color:var(--blue)}.t-violet{color:var(--violet)}
-.tagline{position:fixed;z-index:3;left:0;right:0;bottom:calc(18px + env(safe-area-inset-bottom,0px));text-align:center;font-size:11px;letter-spacing:.42em;text-transform:uppercase;color:var(--muted);pointer-events:none;transition:opacity .4s}
+.tagline{position:fixed;z-index:3;left:0;right:0;bottom:calc(10px + env(safe-area-inset-bottom,0px));margin:0;display:flex;align-items:center;justify-content:center;gap:22px;font-size:10.5px;letter-spacing:.46em;text-transform:uppercase;color:#e8dcc0;pointer-events:none;transition:opacity .4s}
+.tagline:before,.tagline:after{content:"";width:min(16vw,220px);height:1px;background:linear-gradient(90deg,transparent,rgba(242,184,75,.85))}
+.tagline:after{background:linear-gradient(90deg,rgba(242,184,75,.85),transparent)}
 body.in-page .tagline{opacity:0}
 
 /* first load */
@@ -124,6 +127,46 @@ body.loading:not(.in-page) .loader{display:block}
 .ct-row em{font-style:normal;font-size:12px;font-weight:800;letter-spacing:.12em;color:#ffd078}
 .ct-ic{width:46px;height:46px;border-radius:50%;display:grid;place-items:center;background:linear-gradient(180deg,#ffd98a,#f2b84b);color:#14100b}.ct-ic svg{width:22px;height:22px}
 .ct-row.wa{border-color:rgba(37,211,102,.45)}.ct-row.wa .ct-ic{background:#25d366;color:#fff}.ct-row.wa em{color:#5fe39a}.ct-row.wa:hover{border-color:#25d366;background:rgba(37,211,102,.08)}
+
+/* ---------- V49 Contact (spotlight tiles) ---------- */
+.dlg.contact{position:relative;width:min(760px,100%);overflow:hidden;border-color:rgba(242,184,75,.45);background:linear-gradient(160deg,#16294f,#081227 70%);box-shadow:0 30px 90px rgba(0,0,0,.6),0 0 70px rgba(242,184,75,.14);padding:clamp(24px,4vw,40px);gap:10px;animation:dlgIn .5s cubic-bezier(.22,1,.36,1)}
+@keyframes dlgIn{from{opacity:0;transform:translateY(24px) scale(.97)}}
+.ct-glow{position:absolute;left:-10%;right:-10%;top:-55%;height:90%;background:radial-gradient(ellipse at 50% 100%,rgba(242,184,75,.32),transparent 60%);pointer-events:none}
+.ct-x{position:absolute;right:16px;top:16px;width:40px;height:40px;border-radius:50%;border:1px solid rgba(242,184,75,.5);background:rgba(5,10,24,.4);color:#ffd98a;font-size:22px;cursor:pointer}
+.ct-k{position:relative;font-size:11px;letter-spacing:.3em;color:#ffd98a;font-weight:800}
+.dlg.contact h3{position:relative;font-size:clamp(32px,4vw,48px)}.dlg.contact>p{position:relative;max-width:52ch}
+.ct-tiles{position:relative;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;margin-top:14px}
+.ct-t{display:grid;justify-items:center;gap:8px;padding:26px 14px 20px;border-radius:20px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.12);color:#f5f9fd;text-decoration:none;text-align:center;transition:transform .35s cubic-bezier(.22,1,.36,1),border-color .25s,background .25s}
+.ct-t:hover{transform:translateY(-5px);border-color:#f2b84b;background:rgba(242,184,75,.08)}
+.ct-i{width:62px;height:62px;border-radius:50%;display:grid;place-items:center;background:linear-gradient(180deg,#ffd98a,#f2b84b);color:#14100b;box-shadow:0 0 34px rgba(242,184,75,.5);margin-bottom:6px;animation:ctPulse 2.8s ease-in-out infinite}
+.ct-i svg{width:26px;height:26px}
+@keyframes ctPulse{50%{box-shadow:0 0 50px rgba(242,184,75,.75)}}
+.ct-t small{font-size:11px;letter-spacing:.24em;color:#9fb3c8;font-weight:700}.ct-t b{font-size:19px;font-variant-numeric:tabular-nums;white-space:nowrap}
+.ct-t em{font-style:normal;font-size:11px;font-weight:800;letter-spacing:.14em;color:#ffd078}
+.ct-t.wa .ct-i{background:#25d366;color:#fff;box-shadow:0 0 34px rgba(37,211,102,.5);animation-name:ctPulseG}
+@keyframes ctPulseG{50%{box-shadow:0 0 50px rgba(37,211,102,.75)}}
+.ct-t.wa:hover{border-color:#25d366;background:rgba(37,211,102,.08)}.ct-t.wa em{color:#5fe39a}
+.ct-t.soon{opacity:.8}.ct-t.soon b{color:#ffd98a}.ct-t.soon em{color:#9fb3c8;letter-spacing:.06em;font-weight:600}
+/* ---------- V49 About (gold award plaque under a spotlight) ---------- */
+.overlay.ov-about{background:radial-gradient(ellipse 60% 50% at 50% 100%,rgba(242,184,75,.1),transparent 70%),rgba(1,3,9,.9)}
+.dlg.about{position:relative;width:min(720px,100%);max-height:none;overflow:visible;background:none;border:0;box-shadow:none;padding:110px 0 70px;display:block}
+.ab-beam{position:absolute;left:50%;top:-40px;width:min(640px,96vw);height:calc(100% - 20px);transform:translateX(-50%);background:linear-gradient(180deg,rgba(255,236,190,.5),rgba(255,220,150,.07) 70%,transparent);clip-path:polygon(43% 0,57% 0,100% 100%,0 100%);filter:blur(16px);pointer-events:none;animation:abFlick 5s ease-in-out infinite}
+@keyframes abFlick{50%{opacity:.8}}
+.ab-lamp{position:absolute;left:50%;top:-40px;width:96px;height:28px;transform:translateX(-50%);border-radius:0 0 48px 48px;background:linear-gradient(180deg,#2a3346,#0c1220);box-shadow:0 14px 40px rgba(255,230,170,.75)}
+.ab-plaque{position:relative;padding:clamp(28px,4vw,44px) clamp(24px,4vw,52px);border-radius:24px;text-align:center;color:#1b1306;background:linear-gradient(180deg,#f8e4ab,#dcaa4a 42%,#ad781f);border:5px solid #fbe8b5;box-shadow:0 40px 90px rgba(0,0,0,.7),0 -10px 60px rgba(255,220,150,.35),inset 0 2px 0 rgba(255,255,255,.6);animation:abIn .8s cubic-bezier(.22,1,.36,1),abFloat 6s ease-in-out .8s infinite;overflow:hidden}
+.ab-plaque:before{content:"";position:absolute;inset:0;background:linear-gradient(115deg,transparent 40%,rgba(255,255,255,.35) 50%,transparent 60%);background-size:250% 100%;animation:abShine 4.5s ease-in-out infinite;pointer-events:none}
+@keyframes abIn{from{opacity:0;transform:translateY(-40px) scale(.94)}}
+@keyframes abFloat{50%{transform:translateY(-8px)}}
+@keyframes abShine{0%{background-position:120% 0}60%,100%{background-position:-60% 0}}
+.ab-k{font-size:11px;letter-spacing:.42em;font-weight:800;color:#5a3c0b}
+.dlg.about h3{margin:10px 0 14px;font-size:clamp(28px,3.4vw,42px);color:#1b1306}
+.dlg.about .ab-plaque p{margin:0 auto 10px;max-width:52ch;color:#2b1e07;line-height:1.65;font-size:15.5px}
+.ab-who{display:flex;justify-content:center;flex-wrap:wrap;gap:28px;margin-top:18px;padding-top:16px;border-top:1px solid rgba(90,60,11,.35)}
+.ab-who span{font:800 17px/1.2 var(--display);font-stretch:112%}.ab-who small{display:block;margin-top:4px;font:700 10.5px/1 var(--body);letter-spacing:.24em;color:#5a3c0b}
+.ab-ped{position:absolute;left:50%;bottom:30px;width:80%;height:26px;transform:translateX(-50%);border-radius:50%;background:radial-gradient(ellipse,rgba(255,220,150,.35),transparent 70%)}
+.ab-x{position:absolute;left:50%;bottom:0;transform:translateX(-50%);border:1px solid rgba(255,220,150,.45);background:rgba(5,10,24,.6);color:#ffd98a;border-radius:999px;padding:11px 22px;font-weight:800;font-size:12px;letter-spacing:.14em;cursor:pointer}
+@media (max-width:640px){.ct-tiles{grid-template-columns:1fr}.ct-t{grid-template-columns:auto 1fr;justify-items:start;text-align:left;padding:14px}.ct-i{width:48px;height:48px;grid-row:span 3;margin:0}}
+@media (prefers-reduced-motion:reduce){.ab-plaque,.ab-plaque:before,.ab-beam,.ct-i{animation:none}}
 .dlg textarea{min-height:90px;resize:vertical}
 .row2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
 .actions{display:flex;gap:10px;flex-wrap:wrap}
@@ -174,13 +217,13 @@ body.loading:not(.in-page) .loader{display:block}
   </button>
   <button class="w" data-open="trucking" aria-label="Move — trucking and transport">
     <img class="seg" src="wf-home-scene-hd.webp" alt="" draggable="false">
-    <span class="copy"><span class="eyebrow t-blue">Ship Car's · Freight &amp; Find Loads</span><h2>MOVE</h2>
+    <span class="copy"><span class="eyebrow t-blue">Ship Cars · Freight &amp; Find Loads · United States</span><h2>MOVE</h2>
       <p>Cars, boats and freight across the US, with a trucker network behind every load.</p>
       <span class="go blue-bg">GET A QUOTE →</span></span><span class="bar blue-bg"></span>
   </button>
   <button class="w" data-open="media" aria-label="Create — WAYFORTH Media">
     <img class="seg" src="wf-home-scene-hd.webp" alt="" draggable="false">
-    <span class="copy"><span class="eyebrow t-violet">Empowering Creators, Maximizing Revenue</span><h2>CREATE</h2>
+    <span class="copy"><span class="eyebrow t-violet">Empowering Creators · USA · UAE · LHR</span><h2>CREATE</h2>
       <p>Channels, content and production that turn attention into an audience.</p>
       <span class="go violet-bg">SEE MEDIA →</span></span><span class="bar violet-bg"></span>
   </button>
@@ -220,7 +263,7 @@ function ensure(name){
   if(frames[name])return frames[name];
   const f=document.createElement('iframe');f.title='WAYFORTH '+name;f.dataset.p=name;f.dataset.ready='';
   f.addEventListener('load',()=>{f.dataset.ready='1';f.dispatchEvent(new Event('wf-ready'));},{once:true});
-  f.src=PAGES[name]+'?v=48';pageEl.appendChild(f);frames[name]=f;return f;}
+  f.src=PAGES[name]+'?v=49';pageEl.appendChild(f);frames[name]=f;return f;}
 function whenReady(f){return f.dataset.ready==='1'?Promise.resolve():new Promise(r=>{body.classList.add('loading');f.addEventListener('wf-ready',()=>{body.classList.remove('loading');r();},{once:true});});}
 function play(kf,opt){return new Promise(r=>{if(reduced){r();return;}anim=pageEl.animate(kf,opt);anim.onfinish=()=>{anim=null;r();};anim.oncancel=()=>{anim=null;r();};});}
 function settle(){ /* make the screen match `current`, whatever happened before */
@@ -284,7 +327,7 @@ addEventListener('message',e=>{
 
 /* ---------- dialogs ---------- */
 const ov=document.getElementById('ov'),dlg=document.getElementById('dlg');
-function openDlg(html){dlg.innerHTML=html;ov.classList.add('open');const f=dlg.querySelector('input,button');f&&f.focus({preventScroll:true});}
+function openDlg(html,cls){dlg.className='dlg'+(cls?' '+cls:'');ov.className='overlay'+(cls?' ov-'+cls.split(' ')[0]:'');dlg.innerHTML=html;void ov.offsetWidth;ov.classList.add('open');const f=dlg.querySelector('input,button');f&&f.focus({preventScroll:true});}
 function closeDlg(){ov.classList.remove('open');}
 ov.addEventListener('click',e=>{if(e.target===ov||e.target.closest('[data-close]'))closeDlg();});
 addEventListener('keydown',e=>{if(e.key==='Escape')closeDlg();});
@@ -297,11 +340,20 @@ const AUX={
 const WA='https://wa.me/923231466332';
 const PH=[['0323-146 6332','+923231466332'],['0321-402 2222','+923214022222']];
 const WA_SVG='<svg viewBox="0 0 32 32" aria-hidden="true"><path fill="currentColor" d="M16 3C8.8 3 3 8.7 3 15.8c0 2.5.7 4.9 2 7L3 29l6.4-2c2 1.1 4.3 1.7 6.6 1.7 7.2 0 13-5.7 13-12.8S23.2 3 16 3zm0 23.4c-2.1 0-4.1-.6-5.9-1.7l-.4-.3-3.8 1.2 1.2-3.7-.3-.4a10.4 10.4 0 0 1-1.8-5.7C5 10 10 5.2 16 5.2S27 10 27 15.8s-5 10.6-11 10.6zm6-7.9c-.3-.2-1.9-.9-2.2-1s-.5-.2-.7.2-.8 1-1 1.2-.4.2-.7 0a8.8 8.8 0 0 1-4.4-3.8c-.3-.6.3-.5.9-1.7.1-.2 0-.4 0-.5l-1-2.4c-.3-.6-.5-.5-.7-.5h-.6c-.2 0-.6.1-.9.4s-1.1 1.1-1.1 2.7 1.2 3.1 1.3 3.3 2.3 3.5 5.5 4.9c2 .9 2.8.9 3.8.8.6-.1 1.9-.8 2.2-1.5s.3-1.3.2-1.5c-.1-.1-.3-.2-.6-.3z"/></svg>';
+const MAIL_SVG='<svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M3 5h18a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1zm1 3.2V17h16V8.2l-8 5-8-5zM5.2 7l6.8 4.25L18.8 7H5.2z"/></svg>';
+const TEL_SVG='<svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M6.6 10.8a15.1 15.1 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.25 11.4 11.4 0 0 0 3.6.57 1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.25.2 2.45.57 3.57a1 1 0 0 1-.25 1z"/></svg>';
 function openContact(){
-  openDlg(`<h3 id="ovTitle">Contact Us</h3><p>Call us directly or message us on WhatsApp. We usually reply within the hour during working hours.</p>
-   <div class="ct-list">${PH.map(([n,tel],i)=>`<a class="ct-row" href="tel:${tel}"><span class="ct-ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M6.6 10.8a15.1 15.1 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.25 11.4 11.4 0 0 0 3.6.57 1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.25.2 2.45.57 3.57a1 1 0 0 1-.25 1z"/></svg></span><span><small>Call us · line ${i+1}</small><b>${n}</b></span><em>CALL →</em></a>`).join('')}
-    <a class="ct-row wa" href="${WA}" target="_blank" rel="noopener"><span class="ct-ic">${WA_SVG}</span><span><small>Chat with us</small><b>WhatsApp</b></span><em>OPEN →</em></a></div>
-   <div class="actions"><button class="btn ghost" data-close>CLOSE</button></div>`);
+  const us=current==='trucking';
+  const tiles=us?[
+     `<div class="ct-t soon"><span class="ct-i">${TEL_SVG}</span><small>US LINE</small><b>Coming soon</b><em>To be added</em></div>`,
+     `<div class="ct-t soon"><span class="ct-i">${MAIL_SVG}</span><small>EMAIL</small><b>Coming soon</b><em>To be added</em></div>`,
+     `<a class="ct-t wa" href="${WA}" target="_blank" rel="noopener"><span class="ct-i">${WA_SVG}</span><small>WHATSAPP</small><b>Chat now</b><em>OPEN →</em></a>`]
+   :[...PH.map(([n,tel],i)=>`<a class="ct-t" href="tel:${tel}"><span class="ct-i">${TEL_SVG}</span><small>LINE ${i+1}</small><b>${n}</b><em>CALL →</em></a>`),
+     `<a class="ct-t wa" href="${WA}" target="_blank" rel="noopener"><span class="ct-i">${WA_SVG}</span><small>WHATSAPP</small><b>Chat now</b><em>OPEN →</em></a>`];
+  openDlg(`<span class="ct-glow" aria-hidden="true"></span><button class="ct-x" type="button" data-close aria-label="Close">×</button>
+   <span class="ct-k">${us?'WAYFORTH TRUCKING · UNITED STATES':'WAYFORTH · LAHORE'}</span><h3 id="ovTitle">Contact Us</h3>
+   <p>${us?'Our US phone line and email are being set up. Until then, message us on WhatsApp and a real agent will reply.':'Call us directly or message us on WhatsApp. We usually reply within the hour during working hours.'}</p>
+   <div class="ct-tiles">${tiles.join('')}</div>`,'contact');
 }
 function openSupport(){
   openDlg(`<h3 id="ovTitle">Support</h3><p>Leave your name and number and the WAYFORTH team will call you back. Tell us briefly what you need help with.</p>
@@ -313,8 +365,18 @@ function openSupport(){
     <div class="actions"><button class="btn primary" type="submit">REQUEST A CALL BACK →</button><button class="btn ghost" type="button" data-close>CLOSE</button></div></form>`);
   bindForm();
 }
+const ABOUT={
+  build:['About WAYFORTH Build','We are based in Lahore and work directly with vendors the market already trusts. We build trust first, then your dream home or your commercial project. The owners are directly involved in every job.','Our managing partners personally handle every client, so the work ethic, the trust and the relationship stay with you for the long term, through ongoing supply and a professional partnership.'],
+  trucking:['About WAYFORTH Trucking','We offer truck dispatching, car shipping and boat shipping, and we help you move your load. Support is available 24/7 with real agents, never a bot.','Pickup and delivery are covered end to end, so there are no surprises. With that level of support we build long-term relationships that go a long way, just like our trucks and loads.'],
+  home:['About WAYFORTH','WAYFORTH brings construction materials in Lahore, trucking across the United States and creator media together under one company.','The owners are directly involved, and every client gets dependable work, honest communication and a relationship built to last.']};
+function openAbout(){
+  const k=current==='build'?'build':current==='trucking'?'trucking':'home';const [h,a,b]=ABOUT[k];
+  const who=k==='build'?'<div class="ab-who"><span>Ahmad Hassan<small>MANAGING PARTNER</small></span><span>Rohail Azam<small>MANAGING PARTNER</small></span></div>':k==='trucking'?'<div class="ab-who"><span>24/7<small>REAL AGENTS</small></span><span>USA<small>COAST TO COAST</small></span></div>':'<div class="ab-who"><span>Build<small>LAHORE</small></span><span>Move<small>UNITED STATES</small></span><span>Create<small>USA · UAE · LHR</small></span></div>';
+  openDlg(`<span class="ab-beam" aria-hidden="true"></span><span class="ab-lamp" aria-hidden="true"></span><div class="ab-plaque"><span class="ab-k">WAYFORTH</span><h3 id="ovTitle">${h}</h3><p>${a}</p><p>${b}</p>${who}</div><span class="ab-ped" aria-hidden="true"></span><button class="ab-x" type="button" data-close>CLOSE</button>`,'about');
+}
 function openAux(name){
   if(name==='contact')return openContact();
+  if(name==='about')return openAbout();
   if(name==='support')return openSupport();
   const [t,p]=AUX[name]||AUX.contact;
   openDlg(`<h3 id="ovTitle">${t}</h3><p>${p}</p>${formHTML(name==='about'?'General inquiry':name==='media'?'Media inquiry':t)}`);
