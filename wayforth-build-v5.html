@@ -88,9 +88,9 @@ nav{display:flex;gap:clamp(0px,.2vw,4px);align-items:center}nav button{color:#d5
 @media(max-width:620px){.materials-top{flex-direction:column;align-items:stretch}.materials-top-left{width:100%}.materials-brand .logo-copy{display:flex}.materials-nav{max-width:none;width:100%;justify-content:flex-start}.materials-nav button{flex:1 1 auto}.materials-content{padding-top:18px}.materials-intro h1{font-size:clamp(28px,8.4vw,38px)}}
 
 </style>
-<link rel="stylesheet" href="wf-header.css?v=49">
+<link rel="stylesheet" href="wf-header.css?v=50">
 <style>html,body{overflow-x:hidden}.top-wfh{position:sticky;top:0;z-index:60;width:100vw;margin-left:calc(50% - 50vw);margin-right:0}.top-wfh .wfh-nav button{color:#eef2f9!important;background:none!important;border:0!important;border-radius:0!important;padding:6px 0!important;letter-spacing:.01em!important}</style>
-<script src="wf-guide.js?v=49"></script>
+<script src="wf-guide.js?v=50"></script>
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,300..900&family=Manrope:wght@400;500;700&display=swap">
 <style>/* WAYFORTH Build Showroom V45 — full-height panels + circle reveal */
 body.bsr-on main{display:none!important}
@@ -464,7 +464,7 @@ renderCatalog();renderCart();
 /* cart tray */
 #wfm .cart{position:absolute;z-index:8;top:0;right:0;bottom:0;width:var(--cw);display:flex;flex-direction:column;gap:14px;background:linear-gradient(180deg,#0d1c3b,#081227);border-left:1px solid var(--line);padding:22px;transition:transform .6s var(--ease);box-shadow:-24px 0 60px rgba(0,0,0,.35)}
 #wfm.tray-off .cart{transform:translateX(100%)}
-#wfm .cart .top{display:flex;align-items:center;justify-content:space-between;gap:10px}
+#wfm .cart .top{padding-top:6px;display:flex;align-items:center;justify-content:space-between;gap:10px}
 #wfm .cart h3{margin:6px 0 0;font:900 26px/1 var(--display);font-stretch:115%}
 #wfm .cart small.k{display:block;margin-top:10px;font-size:11px;letter-spacing:.24em;color:var(--gold-2)}
 #wfm .badge{display:inline-flex;align-items:center;gap:6px;font-size:10.5px;font-weight:800;letter-spacing:.14em;padding:6px 11px;border-radius:999px;background:rgba(242,184,75,.14);color:var(--gold-2);border:1px solid rgba(242,184,75,.5);max-width:250px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
@@ -477,6 +477,8 @@ renderCatalog();renderCart();
 #wfm .tuck{flex:none;width:44px;height:44px;border-radius:50%;border:1px solid rgba(242,184,75,.55);background:rgba(242,184,75,.1);color:var(--gold-2);cursor:pointer;display:grid;place-items:center;transition:all .25s var(--ease)}
 #wfm .tuck svg{width:18px;height:18px;transition:transform .25s var(--ease)}
 #wfm .tuck:hover{background:var(--gold);color:#14100b}#wfm .tuck:hover svg{transform:translateX(2px)}
+#wfm .cnote{margin:6px 0 0;font-size:12px;line-height:1.45;color:var(--muted);max-width:30ch}
+#wfm .bulk{display:none;grid-template-columns:1fr 1fr;gap:8px}#wfm.com .bulk{display:grid}
 #wfm .lines{flex:1;overflow:auto;display:grid;align-content:start;gap:10px;min-height:60px}
 #wfm .cl{display:grid;grid-template-columns:56px 1fr auto;gap:10px;align-items:center;padding:8px;border-radius:12px;background:rgba(255,255,255,.04);border:1px solid var(--line);animation:wfm-in .4s var(--ease)}
 @keyframes wfm-in{from{opacity:0;transform:translateX(24px)}}
@@ -515,9 +517,9 @@ renderCatalog();renderCart();
   </div></section>
   <nav class="pager" aria-label="Materials"><button class="ar" id="wfm-prev" type="button" aria-label="Previous material"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M11 6l-6 6 6 6"/></svg></button><button class="ar" id="wfm-next" type="button" aria-label="Next material"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button></nav>
   <aside class="cart" id="wfm-cart" aria-label="Quote cart">
-    <div class="top"><div><span class="badge" id="wfm-badge">⌂ HOME</span><small class="k" id="wfm-ck">YOUR PROJECT BASKET</small><h3>Quote cart</h3></div><button class="tuck" id="wfm-tuck" type="button" aria-label="Slide the cart to the side"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg></button></div>
+    <div class="top"><div><span class="badge" id="wfm-badge">⌂ HOME</span><small class="k" id="wfm-ck">YOUR PROJECT BASKET</small><h3 id="wfm-ch">Home project list</h3><p class="cnote" id="wfm-cn">Your materials for one home. Soon: full-build totals for your plot size.</p></div><button class="tuck" id="wfm-tuck" type="button" aria-label="Slide the cart to the side"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg></button></div>
     <div class="lines" id="wfm-lines"></div>
-    <form id="wfm-form" novalidate><input name="contactName" placeholder="Full name" autocomplete="name" aria-label="Full name"><input name="phone" type="tel" placeholder="WhatsApp / phone" autocomplete="tel" aria-label="Phone"><input name="email" type="email" placeholder="Email" autocomplete="email" aria-label="Email"><input name="projectLocation" placeholder="Project / delivery area" aria-label="Project or delivery area"><div class="st" id="wfm-st" role="status"></div><button class="send" type="submit">REQUEST MATERIALS QUOTE →</button></form>
+    <form id="wfm-form" novalidate><input name="contactName" placeholder="Full name" autocomplete="name" aria-label="Full name"><input name="phone" type="tel" placeholder="WhatsApp / phone" autocomplete="tel" aria-label="Phone"><input name="email" type="email" placeholder="Email" autocomplete="email" aria-label="Email"><input name="projectLocation" placeholder="Project / delivery area" aria-label="Project or delivery area"><div class="bulk"><input name="company" placeholder="Company" aria-label="Company"><input name="site" placeholder="Site / phase" aria-label="Site or phase"></div><div class="st" id="wfm-st" role="status"></div><button class="send" type="submit">REQUEST MATERIALS QUOTE →</button></form>
   </aside>
   <button class="tab" id="wfm-tab" type="button" aria-label="Pull the cart back"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M15 6l-6 6 6 6"/></svg><span>CART</span><i id="wfm-tabn">0</i></button>
   <div class="toast" id="wfm-toast" role="status"></div>
@@ -544,14 +546,15 @@ function show(k,dir){k=(k+N)%N;if(k===i)return;const first=i<0,prev=i;i=k;const 
   if(m.cut){cut.classList.remove('on');setTimeout(()=>{$('wfm-cutimg').src=m.cut;cut.classList.add('on');},first?0:380);}else cut.classList.remove('on');
   const an=$('wfm-anim');an.classList.add('out');
   setTimeout(()=>{$('wfm-ix').textContent=String(i+1).padStart(2,'0');$('wfm-brand').textContent=m.brand;$('wfm-name').textContent=m.name;$('wfm-desc').textContent=m.desc;
-    $('wfm-spec').innerHTML=m.spec.map(s=>`<li>${s}</li>`).join('');$('wfm-u').innerHTML=m.units.map(u=>`<option>${u}</option>`).join('');$('wfm-q').value=1;an.classList.remove('out');},first?60:380);}
+    $('wfm-spec').innerHTML=m.spec.map(s=>`<li>${s}</li>`).join('');$('wfm-u').innerHTML=unitsFor(m).map(u=>`<option>${u}</option>`).join('');$('wfm-q').value=1;an.classList.remove('out');},first?60:380);}
 let lock=0;const go=d=>{const n=performance.now();if(n<lock)return;lock=n+700;show(i+d,d);};
 $('wfm-prev').onclick=()=>go(-1);$('wfm-next').onclick=()=>go(1);
 addEventListener('keydown',e=>{if(!W.classList.contains('on')||e.target.closest('input,select'))return;if(e.key==='ArrowRight')go(1);if(e.key==='ArrowLeft')go(-1);if(e.key==='Escape')close();});
 media.addEventListener('wheel',e=>{e.preventDefault();const d=Math.sign(e.deltaY||e.deltaX);if(d)go(d);},{passive:false});
 let sx=null;W.addEventListener('pointerdown',e=>{if(!e.target.closest('input,select,button,.cart'))sx=e.clientX;});addEventListener('pointerup',e=>{if(sx===null)return;const d=e.clientX-sx;sx=null;if(Math.abs(d)>60)go(-Math.sign(d));});
 /* cart (kept for the whole visit) */
-const cart=new Map();
+const carts={home:new Map(),com:new Map()};let cart=carts.home;
+const BULK=['Truckloads','Metric Tons','Pallets'];const unitsFor=m=>W.classList.contains('com')?[...BULK,...m.units.filter(u=>!BULK.includes(u)&&!/^(pieces|custom)$/i.test(u)),'Custom']:m.units;
 function renderCart(){$('wfm-lines').innerHTML=cart.size?[...cart.values()].map(c=>`<div class="cl"><img src="${c.m.thumb||c.m.img}" alt=""><span><b>${c.m.name}</b><small>${c.q} ${c.u}</small></span><button type="button" data-rm="${c.m.id}" aria-label="Remove ${c.m.name}">×</button></div>`).join(''):'<div class="empty">Your cart is empty. Add materials to start your quote.</div>';$('wfm-tabn').textContent=cart.size;}
 $('wfm-lines').addEventListener('click',e=>{const r=e.target.closest('[data-rm]');if(r){cart.delete(r.dataset.rm);renderCart();}});
 let tt;function toast(s){const T=$('wfm-toast');T.textContent=s;T.classList.add('show');clearTimeout(tt);tt=setTimeout(()=>T.classList.remove('show'),2200);}
@@ -568,7 +571,7 @@ $('wfm-form').addEventListener('submit',e=>{e.preventDefault();const st=$('wfm-s
   if(!cart.size){st.className='st err';st.textContent='Add at least one material to your cart first.';return;}
   if(!v.contactName.trim()||dg.length<7||dg.length>15||!/^\S+@\S+\.\S{2,}$/.test(v.email||'')){st.className='st err';st.textContent='Please add your name, phone number and a valid email.';return;}
   const materials=[...cart.values()].map(c=>({material:c.m.name,quantity:String(c.q),unit:c.u,category:'Materials'}));
-  const req={source:'build-materials-showcase',project,contactName:v.contactName,companyName:'',phone:v.phone,email:v.email,projectLocation:v.projectLocation,materials,notes:''};
+  const isCom=W.classList.contains('com');const req={source:isCom?'build-bulk-order':'build-home-project',project,contactName:v.contactName,companyName:isCom?(v.company||''):'',phone:v.phone,email:v.email,projectLocation:v.projectLocation,materials,notes:isCom&&v.site?('Site / phase: '+v.site):''};
   if(parent!==window)parent.postMessage({type:'wf-build-quote',...req,payload:req},'*');
   st.className='st ok';st.textContent='Your materials quote request has been sent to WAYFORTH. The team will confirm pricing and availability.';f.querySelector('.send').disabled=true;f.querySelector('.send').textContent='QUOTE REQUEST SENT ✓';});
 /* open / close with the site's Circle Reveal */
@@ -577,9 +580,8 @@ function topH(){const h=document.querySelector('.wfh');return h?Math.round(h.get
 function open(kind,option){load();project={kind:kind||'Residential',option:option||'Project'};
   const com=/commercial/i.test(project.kind);const opt=String(project.option).replace(/^commercial\s*·\s*/i,'');$('wfm-proj').textContent=(com?'Commercial project · ':'Residential project · ')+opt;$('wfm-back').setAttribute('aria-label',com?'Back to projects':'Change plot size');$('wfm-back').title=com?'Back to projects':'Change plot size';
   const t=topH();W.style.setProperty('--wfm-top',t+'px');W.style.setProperty('--ox',px+'px');W.style.setProperty('--oy',(py-t)+'px');
-  const f=$('wfm-form');f.querySelector('.send').disabled=false;f.querySelector('.send').textContent='REQUEST MATERIALS QUOTE →';$('wfm-st').textContent='';
-  setTray(cart.size>0&&innerWidth>1000);
-  W.classList.toggle('com',com);$('wfm-badge').textContent=com?'▦ COMMERCIAL · '+opt:'⌂ HOME · '+opt;$('wfm-ck').textContent=com?'BULK ORDER BASKET':'YOUR PROJECT BASKET';
+  const f=$('wfm-form');f.querySelector('.send').disabled=false;f.querySelector('.send').textContent=com?'REQUEST BULK PRICING →':'REQUEST HOME QUOTE →';$('wfm-st').textContent='';
+  W.classList.toggle('com',com);cart=com?carts.com:carts.home;$('wfm-ch').textContent=com?'Bulk order sheet':'Home project list';$('wfm-cn').textContent=com?'Bulk only: order by truckload, ton or pallet at wholesale rates.':'Your materials for one home. Soon: full-build totals for your plot size.';setTray(cart.size>0&&innerWidth>1000);$('wfm-badge').textContent=com?'▦ COMMERCIAL · '+opt:'⌂ HOME · '+opt;$('wfm-ck').textContent=com?'BULK ORDER BASKET':'YOUR PROJECT BASKET';
   W.classList.remove('closing');i=-1;layers.forEach(l=>{l.classList.add('notr','idle');l.classList.remove('on');void l.offsetWidth;l.classList.remove('notr');});void W.offsetWidth;W.classList.add('on');ra&&ra.cancel();if(!matchMedia('(prefers-reduced-motion: reduce)').matches){const x=px,y=py-t;ra=W.animate([{clipPath:`circle(0px at ${x}px ${y}px)`},{clipPath:`circle(${farR(x,y)}px at ${x}px ${y}px)`}],{duration:700,easing:'cubic-bezier(.33,.8,.2,1)'});ra.onfinish=()=>{ra=null;};}show(0,1);renderCart();}
 let ra=null;const farR=(x,y)=>Math.hypot(Math.max(x,W.clientWidth-x),Math.max(y,W.clientHeight-y))+40;
 function close(instant){if(!W.classList.contains('on'))return;W.classList.remove('on');ra&&ra.cancel();if(instant||matchMedia('(prefers-reduced-motion: reduce)').matches)return;

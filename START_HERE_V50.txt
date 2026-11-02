@@ -1,0 +1,25 @@
+WAYFORTH V50 — SEPARATE CARTS, VIP ABOUT US, BRIGHT BUILD DIALOGS
+=================================================================
+
+COMMIT NAME
+WAYFORTH V50 — Home & Bulk Carts, VIP About Us, Bright Build Dialogs, Ship a Car Focus
+
+CHANGES FROM V49
+1. Build carts are now two separate carts:
+   - Home: "Home project list" (gold), REQUEST HOME QUOTE. Ready for full-build totals per plot size later.
+   - Commercial: "Bulk order sheet" (steel blue), units Truckloads / Metric Tons / Pallets first,
+     extra Company and Site / phase fields, REQUEST BULK PRICING.
+   Switching Home <-> Commercial switches the cart and its contents.
+2. Trucking: "Ship a Car" is the main service — it slowly breathes wider with a light sweep when
+   nobody is hovering.
+3. Floating About Us cards move with a smooth slow wave (no more jumpy / shimmering text).
+4. Main About Us (Home and Media): VIP graphite & silver card under two spotlights, with
+   Ahmad Hassan and Rohail Azam as Co-Founders.
+5. Build About Us, Contact Us and Support: bright split layout (photo + white/cream side).
+   Contact keeps the three round-icon tiles. No founder names on Build or Trucking.
+6. Trucking About Us (gold plaque), Contact and Support show a blurred truck-on-the-road background.
+
+DEPLOY
+1. Extract this ZIP into the ROOT of the WAYFORTH GitHub repository and replace matching files.
+2. Commit with the exact message above. Vercel settings stay the same.
+3. Press Ctrl+Shift+R once after deploy.
