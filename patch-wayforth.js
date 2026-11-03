@@ -5,10 +5,10 @@
 'use strict';
 const fs = require('fs'), path = require('path'), crypto = require('crypto');
 const root = process.cwd(), dist = path.join(root, 'dist');
-const VERSION = 'V53';
+const VERSION = 'V53.1';
 const PAGES = ['index.html', 'wayforth-build-v5.html', 'wayforth-trucking-v22.html', 'wayforth-media.html', 'privacy.html', '404.html'];
 const SHARED = ['wf-header.css', 'wf-guide.js'];
-const ALWAYS = ['favicon.ico', 'robots.txt', '.well-known/security.txt'];
+const ALWAYS = ['favicon.ico'];
 const ASSET_RE = /([A-Za-z0-9_\-./]+\.(?:webp|png|jpe?g|gif|svg|ico|css|js|mp4|webm|woff2?|txt))/g;
 
 const CSP = hashes => [
@@ -49,6 +49,7 @@ try {
 
   // collect every local file the live pages reference
   const files = new Set([...SHARED, ...ALWAYS]);
+  files.delete('robots.txt');
   for (const f of [...PAGES, ...SHARED]) {
     const text = fs.readFileSync(path.join(root, f), 'utf8');
     for (const m of text.matchAll(ASSET_RE)) {
@@ -61,6 +62,10 @@ try {
   fs.rmSync(dist, {recursive: true, force: true});
   fs.mkdirSync(dist, {recursive: true});
   for (const f of files) copyFile(f);
+  // small text files are written by the build itself (hidden folders like .well-known are often skipped on upload)
+  fs.writeFileSync(path.join(dist, 'robots.txt'), 'User-agent: *\nAllow: /\nDisallow: /api/\n');
+  fs.mkdirSync(path.join(dist, '.well-known'), {recursive: true});
+  fs.writeFileSync(path.join(dist, '.well-known', 'security.txt'), 'Contact: mailto:info@wayforth.ltd\nExpires: 2027-11-03T00:00:00.000Z\nPreferred-Languages: en\n');
   for (const f of PAGES) {
     const html = fs.readFileSync(path.join(root, f), 'utf8');
     fs.writeFileSync(path.join(dist, f), addCsp(html));
