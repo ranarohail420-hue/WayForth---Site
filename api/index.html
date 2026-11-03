@@ -1,0 +1,562 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>WAYFORTH — Build. Move. Create.</title>
+<meta name="description" content="WAYFORTH brings construction, trucking and media under one company. Build. Move. Create.">
+<meta name="theme-color" content="#04070f">
+<link rel="icon" href="/favicon.ico?v=56" sizes="any"><link rel="icon" type="image/png" sizes="192x192" href="/wf-icon-192.png?v=56"><link rel="apple-touch-icon" href="/wf-apple-touch.png?v=56">
+<link rel="preload" href="wf-home-scene-hd.webp" as="image">
+<link rel="stylesheet" href="wf-header.css?v=56">
+<script src="wf-guide.js?v=56"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,300..900&family=Manrope:wght@400;500;700&family=Playfair+Display:ital,wght@1,700&display=swap">
+<style>
+/* WAYFORTH V40 — Circle Reveal (no logo), preloaded pages, real welding/headlight/camera effects. Based on V38 — Option 3 "Three Worlds" home. Standalone: no dependency on the old index/app/scenes files. */
+:root{
+  --ink:#04070f;--line:rgba(170,195,235,.18);--text:#f2f4fa;--muted:#a3b0c8;
+  --gold:#f2b84b;--gold-2:#ffd98a;--blue:#3fa2ff;--violet:#a46bff;
+  --display:"Archivo","Arial Narrow",Arial,sans-serif;--body:"Manrope","Segoe UI",Arial,sans-serif;color-scheme:dark}
+*{box-sizing:border-box}
+html,body{height:100%;margin:0}
+body{background:var(--ink);color:var(--text);font-family:var(--body);overflow:hidden;-webkit-font-smoothing:antialiased}
+button{font:inherit;color:inherit}
+:focus-visible{outline:2px solid var(--gold-2);outline-offset:3px}
+
+/* ---------- top bar ---------- */
+.nav{position:fixed;z-index:15;top:0;left:0;right:0;display:flex;align-items:center;gap:24px;
+  padding:calc(18px + env(safe-area-inset-top,0px)) max(28px,env(safe-area-inset-right,0px)) 18px max(28px,env(safe-area-inset-left,0px));
+  background:linear-gradient(to bottom,rgba(4,7,15,.85),rgba(4,7,15,0));transition:opacity .4s}
+.links .on{color:var(--text)}
+.dd{position:relative}
+.dd-menu{position:absolute;right:-10px;top:calc(100% + 14px);min-width:230px;padding:8px;border-radius:14px;background:rgba(6,16,34,.97);border:1px solid rgba(242,184,75,.35);box-shadow:0 20px 50px rgba(0,0,0,.5);opacity:0;pointer-events:none;transform:translateY(-6px);transition:all .2s;display:grid;gap:2px}
+.dd.open .dd-menu{opacity:1;pointer-events:auto;transform:none}
+.dd.open #svcBtn{color:var(--text)}
+.dd-menu button{display:flex!important;justify-content:space-between;gap:16px;padding:12px 14px!important;border-radius:10px;color:var(--text)!important;font-size:14px;text-align:left}
+.dd-menu button:hover{background:rgba(255,255,255,.06)}
+.dd-menu small{color:var(--muted);font-size:12px}
+.brand{display:flex;align-items:center;gap:12px;color:var(--text);text-decoration:none;background:none;border:0;cursor:pointer;padding:0}
+.brand img{width:46px;height:auto;user-select:none;-webkit-user-drag:none}
+.brand,.nav{user-select:none;-webkit-user-select:none}
+::selection{background:rgba(242,184,75,.35)}
+.brand b{font:600 15px/1 var(--display);font-stretch:125%;letter-spacing:.32em}
+.links{display:flex;gap:30px;margin-left:auto;font:600 15px/1 var(--display);font-stretch:112%;letter-spacing:.08em}
+.links button{background:none;border:0;padding:4px 0;cursor:pointer;color:#c9d3e6;font:inherit;letter-spacing:inherit;transition:color .2s}
+.links button:hover{color:var(--text)}
+.quote{border:1px solid rgba(242,184,75,.7);color:var(--gold-2);background:rgba(242,184,75,.06);padding:11px 18px;border-radius:999px;
+  font-size:12px;font-weight:700;letter-spacing:.12em;cursor:pointer;white-space:nowrap;transition:background .25s,box-shadow .25s}
+.quote:hover{background:rgba(242,184,75,.16);box-shadow:0 0 24px rgba(242,184,75,.3)}
+body.in-page .nav{opacity:0;pointer-events:none}
+
+/* ---------- home: three worlds over one continuous scene ---------- */
+#home{position:fixed;inset:0;display:flex;background:var(--ink);transition:opacity .6s ease,transform .9s cubic-bezier(.2,.8,.2,1)}
+body.in-page #home{pointer-events:none}
+body.settled #home,body.settled .nav,body.settled .tagline{visibility:hidden}
+.w{container-type:inline-size;position:relative;flex:1;min-width:0;overflow:hidden;cursor:pointer;border:0;padding:0;margin:0;text-align:left;background:none;
+  transition:flex .6s cubic-bezier(.25,1,.5,1);will-change:flex-grow}
+.w + .w{border-left:0}
+#home .w:hover{box-shadow:inset 1px 0 0 rgba(255,255,255,.22),inset -1px 0 0 rgba(255,255,255,.22)}
+.seg{position:absolute;top:var(--st,64px);left:0;width:var(--sw,100vw);max-width:none;height:auto;pointer-events:none;user-select:none;
+  will-change:transform;backface-visibility:hidden;
+  -webkit-mask-image:linear-gradient(to bottom,transparent 0,#000 3%,#000 90%,transparent 100%);mask-image:linear-gradient(to bottom,transparent 0,#000 3%,#000 90%,transparent 100%)}
+#home:before{content:"";position:absolute;inset:-40px;background:url("wf-home-scene-hd.webp") center/cover;filter:blur(40px) brightness(.35) saturate(1.2);pointer-events:none}
+/* dim / light via a cheap overlay instead of filtering the large image */
+.w:before{content:"";position:absolute;inset:0;z-index:1;background:#050a18;opacity:.06;transition:opacity .45s ease;pointer-events:none}
+#home:has(.w:hover) .w:not(:hover):before{opacity:.55}
+#home .w:hover:before{opacity:0}
+#home:has(.w:hover) .w{flex:.75}
+#home .w:hover,#home .w:focus-visible{flex:1.9}
+.w:after{content:"";position:absolute;inset:0;pointer-events:none;background:linear-gradient(to top,rgba(4,7,15,.92) 0%,rgba(4,7,15,.35) 22%,transparent 40%)}
+.fx{position:absolute;inset:0;z-index:1;pointer-events:none;width:100%;height:100%}
+.copy{position:absolute;z-index:2;left:clamp(18px,3vw,44px);right:clamp(18px,3vw,44px);bottom:calc(clamp(44px,7vh,64px) + env(safe-area-inset-bottom,0px));display:grid;gap:12px}
+.eyebrow{font-size:clamp(10px,1.45vh,12px);font-weight:700;letter-spacing:.22em;text-transform:uppercase;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.copy h2{margin:0;font:900 clamp(30px,min(15cqi,10.5vh),96px)/.86 var(--display);font-stretch:110%;letter-spacing:-.02em;transition:font-stretch .8s}
+.w:hover h2{font-stretch:125%}
+.copy p{margin:0;max-width:38ch;color:#c9d3e6;font-size:15px;line-height:1.55;opacity:0;max-height:0;overflow:hidden;transform:translateY(12px);transition:all .6s .15s}
+.copy .go{justify-self:start;font-size:12px;font-weight:800;letter-spacing:.14em;padding:0 20px;max-height:0;overflow:hidden;line-height:40px;border-radius:999px;color:var(--ink);opacity:0;transform:translateY(12px);transition:all .6s .25s}
+.w:hover .copy p,.w:hover .copy .go,.w:focus-visible .copy p,.w:focus-visible .copy .go{opacity:1;transform:none;max-height:140px}
+.bar{position:absolute;z-index:2;left:0;right:0;bottom:0;height:3px;transform:scaleX(0);transform-origin:left;transition:transform .8s}
+.w:hover .bar{transform:scaleX(1)}
+.gold-bg{background:linear-gradient(180deg,var(--gold-2),var(--gold))}.blue-bg{background:linear-gradient(180deg,#9fd3ff,var(--blue))}.violet-bg{background:linear-gradient(180deg,#d6bcff,var(--violet))}
+.t-gold{color:var(--gold)}.t-blue{color:var(--blue)}.t-violet{color:var(--violet)}
+.tagline{position:fixed;z-index:3;left:0;right:0;bottom:calc(10px + env(safe-area-inset-bottom,0px));margin:0;display:flex;align-items:center;justify-content:center;gap:22px;font-size:10.5px;letter-spacing:.46em;text-transform:uppercase;color:#e8dcc0;pointer-events:none;transition:opacity .4s}
+.tagline:before,.tagline:after{content:"";width:min(16vw,220px);height:1px;background:linear-gradient(90deg,transparent,rgba(242,184,75,.85))}
+.tagline:after{background:linear-gradient(90deg,rgba(242,184,75,.85),transparent)}
+body.in-page .tagline{opacity:0}
+
+/* first load */
+.w{animation:rise 1.1s cubic-bezier(.2,.8,.2,1) both}
+.w:nth-child(2){animation-delay:.12s}.w:nth-child(3){animation-delay:.24s}
+@keyframes rise{from{opacity:0;transform:translateY(40px)}to{opacity:1;transform:none}}
+
+/* ---------- section pages (Build / Trucking / Media) ---------- */
+#page{position:fixed;inset:0;z-index:20;visibility:hidden;pointer-events:none;background:var(--ink);will-change:clip-path}
+body.in-page #page,body.closing #page{visibility:visible}
+body.in-page #page{pointer-events:auto}
+body.busy #home,body.busy .nav{pointer-events:none}
+.ring{position:fixed;z-index:24;border-radius:50%;pointer-events:none;border:2px solid var(--rc);box-shadow:0 0 40px var(--rc),inset 0 0 40px var(--rc);transform:translate(-50%,-50%)}
+#page iframe{position:absolute;inset:0;width:100%;height:100%;border:0;background:var(--ink);visibility:hidden}
+#page iframe.on{visibility:visible}
+.fxall{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:1}
+@keyframes pulse{50%{transform:scale(1.08);opacity:.75}}
+.loader{position:fixed;z-index:26;left:50%;top:50%;width:46px;height:46px;margin:-23px 0 0 -23px;border-radius:50%;border:2px solid rgba(242,184,75,.2);border-top-color:var(--gold);animation:spin .8s linear infinite;display:none}
+body.loading:not(.in-page) .loader{display:block}
+@keyframes spin{to{transform:rotate(360deg)}}
+
+/* ---------- dialogs ---------- */
+.overlay{position:fixed;inset:0;z-index:60;display:none;place-items:center;padding:20px;background:rgba(2,6,13,.78);backdrop-filter:blur(12px)}
+.overlay.open{display:grid}
+.dlg{width:min(560px,100%);max-height:calc(100vh - 40px);overflow:auto;border:1px solid rgba(240,199,122,.45);border-radius:20px;padding:clamp(22px,4vw,34px);
+  background:linear-gradient(140deg,#0b294b,#020813);box-shadow:0 20px 95px #0009;display:grid;gap:16px}
+.dlg h3{margin:0;font:800 clamp(24px,3vw,34px)/1.05 var(--display);font-stretch:115%}
+.dlg p{margin:0;line-height:1.6;color:#b9c8da}
+.choices{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
+.choice{display:grid;gap:6px;padding:16px 14px;border-radius:14px;border:1px solid var(--line);background:rgba(255,255,255,.03);cursor:pointer;text-align:left}
+.choice b{font:800 15px/1 var(--display);font-stretch:118%;letter-spacing:.1em}
+.choice small{font-size:12px;color:var(--muted);line-height:1.4}
+.choice:hover{border-color:currentColor;background:rgba(255,255,255,.06)}
+.dlg form{display:grid;gap:12px}
+.dlg label{display:grid;gap:6px;font-size:12px;font-weight:700;color:#ffd078;letter-spacing:.03em}
+.dlg input,.dlg textarea,.dlg select{width:100%;border:1px solid rgba(93,156,207,.42);border-radius:12px;background:rgba(4,24,43,.72);color:#f5f9fd;padding:12px 14px;font:inherit;font-size:14px}
+.ct-list{display:grid;gap:10px;margin:18px 0 6px}
+.ct-row{display:grid;grid-template-columns:46px 1fr auto;align-items:center;gap:14px;padding:12px 14px;border-radius:14px;border:1px solid rgba(240,199,122,.3);background:rgba(4,24,43,.6);color:#f5f9fd;text-decoration:none;transition:border-color .2s,transform .2s,background .2s}
+.ct-row:hover{border-color:#f2b84b;transform:translateY(-2px);background:rgba(242,184,75,.08)}
+.ct-row small{display:block;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#9fb3c8}.ct-row b{display:block;font-size:20px;font-variant-numeric:tabular-nums;letter-spacing:.02em}
+.ct-row em{font-style:normal;font-size:12px;font-weight:800;letter-spacing:.12em;color:#ffd078}
+.ct-ic{width:46px;height:46px;border-radius:50%;display:grid;place-items:center;background:linear-gradient(180deg,#ffd98a,#f2b84b);color:#14100b}.ct-ic svg{width:22px;height:22px}
+.ct-row.wa{border-color:rgba(37,211,102,.45)}.ct-row.wa .ct-ic{background:#25d366;color:#fff}.ct-row.wa em{color:#5fe39a}.ct-row.wa:hover{border-color:#25d366;background:rgba(37,211,102,.08)}
+
+/* ---------- V49 Contact (spotlight tiles) ---------- */
+.dlg.contact{position:relative;width:min(760px,100%);overflow:hidden;border-color:rgba(242,184,75,.45);background:linear-gradient(160deg,#16294f,#081227 70%);box-shadow:0 30px 90px rgba(0,0,0,.6),0 0 70px rgba(242,184,75,.14);padding:clamp(24px,4vw,40px);gap:10px;animation:dlgIn .5s cubic-bezier(.22,1,.36,1)}
+@keyframes dlgIn{from{opacity:0;transform:translateY(24px) scale(.97)}}
+.ct-glow{position:absolute;left:-10%;right:-10%;top:-55%;height:90%;background:radial-gradient(ellipse at 50% 100%,rgba(242,184,75,.32),transparent 60%);pointer-events:none}
+.ct-x{position:absolute;right:16px;top:16px;width:40px;height:40px;border-radius:50%;border:1px solid rgba(242,184,75,.5);background:rgba(5,10,24,.4);color:#ffd98a;font-size:22px;cursor:pointer}
+.ct-k{position:relative;font-size:11px;letter-spacing:.3em;color:#ffd98a;font-weight:800}
+.dlg.contact h3{position:relative;font-size:clamp(32px,4vw,48px)}.dlg.contact>p{position:relative;max-width:52ch}
+.ct-tiles{position:relative;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;margin-top:14px}
+.ct-t{display:grid;justify-items:center;gap:8px;padding:26px 14px 20px;border-radius:20px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.12);color:#f5f9fd;text-decoration:none;text-align:center;transition:transform .35s cubic-bezier(.22,1,.36,1),border-color .25s,background .25s}
+.ct-t:hover{transform:translateY(-5px);border-color:#f2b84b;background:rgba(242,184,75,.08)}
+.ct-i{width:62px;height:62px;border-radius:50%;display:grid;place-items:center;background:linear-gradient(180deg,#ffd98a,#f2b84b);color:#14100b;box-shadow:0 0 34px rgba(242,184,75,.5);margin-bottom:6px;animation:ctPulse 2.8s ease-in-out infinite}
+.ct-i svg{width:26px;height:26px}
+@keyframes ctPulse{50%{box-shadow:0 0 50px rgba(242,184,75,.75)}}
+.ct-t small{font-size:11px;letter-spacing:.24em;color:#9fb3c8;font-weight:700}.ct-t b{font-size:19px;font-variant-numeric:tabular-nums;white-space:nowrap}
+.ct-t em{font-style:normal;font-size:11px;font-weight:800;letter-spacing:.14em;color:#ffd078}
+.ct-t.wa .ct-i{background:#25d366;color:#fff;box-shadow:0 0 34px rgba(37,211,102,.5);animation-name:ctPulseG}
+@keyframes ctPulseG{50%{box-shadow:0 0 50px rgba(37,211,102,.75)}}
+.ct-t.wa:hover{border-color:#25d366;background:rgba(37,211,102,.08)}.ct-t.wa em{color:#5fe39a}
+.ct-t.soon{opacity:.8}.ct-t.soon b{color:#ffd98a}.ct-t.soon em{color:#9fb3c8;letter-spacing:.06em;font-weight:600}
+/* ---------- V49 About (gold award plaque under a spotlight) ---------- */
+.overlay.ov-about{background:radial-gradient(ellipse 60% 50% at 50% 100%,rgba(242,184,75,.1),transparent 70%),rgba(1,3,9,.9)}
+.dlg.about{position:relative;width:min(720px,100%);max-height:none;overflow:visible;background:none;border:0;box-shadow:none;padding:110px 0 70px;display:block}
+.ab-beam{position:absolute;left:50%;top:-40px;width:min(640px,96vw);height:calc(100% - 20px);transform:translateX(-50%);background:linear-gradient(180deg,rgba(255,236,190,.5),rgba(255,220,150,.07) 70%,transparent);clip-path:polygon(43% 0,57% 0,100% 100%,0 100%);filter:blur(16px);pointer-events:none;animation:abFlick 5s ease-in-out infinite}
+@keyframes abFlick{50%{opacity:.8}}
+.ab-lamp{position:absolute;left:50%;top:-40px;width:96px;height:28px;transform:translateX(-50%);border-radius:0 0 48px 48px;background:linear-gradient(180deg,#2a3346,#0c1220);box-shadow:0 14px 40px rgba(255,230,170,.75)}
+.ab-plaque{position:relative;padding:clamp(28px,4vw,44px) clamp(24px,4vw,52px);border-radius:24px;text-align:center;color:#1b1306;background:linear-gradient(180deg,#f8e4ab,#dcaa4a 42%,#ad781f);border:5px solid #fbe8b5;box-shadow:0 40px 90px rgba(0,0,0,.7),0 -10px 60px rgba(255,220,150,.35),inset 0 2px 0 rgba(255,255,255,.6);animation:abIn .8s cubic-bezier(.22,1,.36,1),abFloat 6s ease-in-out .8s infinite;overflow:hidden}
+.ab-plaque:before{content:"";position:absolute;inset:0;background:linear-gradient(115deg,transparent 40%,rgba(255,255,255,.35) 50%,transparent 60%);background-size:250% 100%;animation:abShine 4.5s ease-in-out infinite;pointer-events:none}
+@keyframes abIn{from{opacity:0;transform:translateY(-40px) scale(.94)}}
+@keyframes abFloat{50%{transform:translateY(-8px)}}
+@keyframes abShine{0%{background-position:120% 0}60%,100%{background-position:-60% 0}}
+.ab-k{font-size:11px;letter-spacing:.42em;font-weight:800;color:#5a3c0b}
+.dlg.about h3{margin:10px 0 14px;font-size:clamp(28px,3.4vw,42px);color:#1b1306}
+.dlg.about .ab-plaque p{margin:0 auto 10px;max-width:52ch;color:#2b1e07;line-height:1.65;font-size:15.5px}
+.ab-who{display:flex;justify-content:center;flex-wrap:wrap;gap:28px;margin-top:18px;padding-top:16px;border-top:1px solid rgba(90,60,11,.35)}
+.ab-who span{font:800 17px/1.2 var(--display);font-stretch:112%}.ab-who small{display:block;margin-top:4px;font:700 10.5px/1 var(--body);letter-spacing:.24em;color:#5a3c0b}
+.ab-ped{position:absolute;left:50%;bottom:30px;width:80%;height:26px;transform:translateX(-50%);border-radius:50%;background:radial-gradient(ellipse,rgba(255,220,150,.35),transparent 70%)}
+.ab-x{position:absolute;left:50%;bottom:0;transform:translateX(-50%);border:1px solid rgba(255,220,150,.45);background:rgba(5,10,24,.6);color:#ffd98a;border-radius:999px;padding:11px 22px;font-weight:800;font-size:12px;letter-spacing:.14em;cursor:pointer}
+@media (max-width:640px){.ct-tiles{grid-template-columns:1fr}.ct-t{grid-template-columns:auto 1fr;justify-items:start;text-align:left;padding:14px}.ct-i{width:48px;height:48px;grid-row:span 3;margin:0}}
+@media (prefers-reduced-motion:reduce){.ab-plaque,.ab-plaque:before,.ab-beam,.ct-i{animation:none}}
+
+/* ---------- V50: smooth wave (sub-pixel, GPU) for floating cards ---------- */
+@keyframes abFloat{0%,100%{transform:translate3d(0,0,0) rotate(0deg)}25%{transform:translate3d(0,-6px,0) rotate(-.25deg)}75%{transform:translate3d(0,4px,0) rotate(.25deg)}}
+.ab-plaque,.vp-card{will-change:transform;backface-visibility:hidden;-webkit-font-smoothing:antialiased;transform:translateZ(0)}
+.ab-plaque{animation:abIn .8s cubic-bezier(.22,1,.36,1),abFloat 8s cubic-bezier(.45,0,.55,1) .8s infinite}
+/* trucking: road behind the dialogs */
+.overlay.pg-trucking{background:linear-gradient(rgba(2,6,13,.72),rgba(2,6,13,.82)),url("tk-road-bg.webp") center/cover}
+.overlay.pg-trucking.ov-about{background:radial-gradient(ellipse 60% 50% at 50% 100%,rgba(242,184,75,.14),transparent 70%),linear-gradient(rgba(1,3,9,.7),rgba(1,3,9,.86)),url("tk-road-bg.webp") center/cover}
+/* ---------- V50: VIP main About (graphite + silver, two spotlights) ---------- */
+.overlay.ov-vip{background:radial-gradient(ellipse 60% 50% at 50% 100%,rgba(168,120,255,.16),transparent 70%),linear-gradient(180deg,rgba(7,6,15,.94),rgba(17,13,34,.96))}
+.dlg.vip{position:relative;width:min(760px,100%);max-height:none;overflow:visible;background:none;border:0;box-shadow:none;padding:130px 0 70px;display:block}
+.vp-beam{position:absolute;top:-60px;width:min(420px,60vw);height:calc(100% - 40px);background:linear-gradient(180deg,rgba(235,225,255,.5),rgba(190,160,255,.07) 70%,transparent);clip-path:polygon(44% 0,56% 0,100% 100%,0 100%);filter:blur(14px);pointer-events:none;animation:abFlick 5s ease-in-out infinite}
+.vp-beam.l{left:14%;transform:translateX(-50%) rotate(-14deg)}.vp-beam.r{left:86%;transform:translateX(-50%) rotate(14deg);animation-delay:-2.5s}
+.vp-lamp{position:absolute;top:-60px;width:84px;height:26px;border-radius:0 0 42px 42px;background:linear-gradient(180deg,#30303c,#121220);box-shadow:0 14px 36px rgba(225,210,255,.75)}
+.vp-lamp.l{left:14%;transform:translateX(-50%) rotate(-14deg)}.vp-lamp.r{left:86%;transform:translateX(-50%) rotate(14deg)}
+.vp-card{position:relative;text-align:center;padding:clamp(30px,4vw,48px) clamp(24px,4vw,56px);border-radius:24px;color:#f4f2fb;background:linear-gradient(160deg,#2c2b37,#191824);border:4px solid #c3bfd2;box-shadow:0 40px 90px rgba(0,0,0,.7),inset 0 0 0 6px rgba(168,120,255,.22),0 -10px 60px rgba(225,210,255,.18);animation:abIn .8s cubic-bezier(.22,1,.36,1),abFloat 8s cubic-bezier(.45,0,.55,1) .8s infinite}
+.vp-k{font-size:11px;letter-spacing:.46em;font-weight:800;color:#b996ff}
+.dlg.vip h3{margin:12px 0 16px;font-size:clamp(30px,3.6vw,44px)}
+.dlg.vip .vp-card p{margin:0 auto 10px;max-width:52ch;color:#c9c5d8;line-height:1.65;font-size:15.5px}
+.vp-fd{display:flex;justify-content:center;align-items:center;gap:clamp(18px,4vw,44px);margin-top:22px;padding-top:20px;border-top:1px solid rgba(195,191,210,.3)}
+.vp-fd span{display:grid;gap:8px}.vp-fd b{font:italic 700 clamp(24px,3vw,34px)/1 "Playfair Display",Georgia,serif;background:linear-gradient(90deg,#fff,#cdb0ff);-webkit-background-clip:text;background-clip:text;color:transparent}
+.vp-fd i{font-style:normal;font-size:10.5px;letter-spacing:.34em;font-weight:800;color:#b996ff}
+.vp-dot{width:8px;height:8px;border-radius:50%;background:#b996ff;box-shadow:0 0 14px #b996ff}
+.dlg.vip .ab-x{bottom:0;border-color:rgba(200,180,255,.45);color:#e3d6ff}
+/* ---------- V50: Build bright split dialogs (About, Contact, Support) ---------- */
+.overlay.pg-build{background:rgba(220,232,245,.35);backdrop-filter:blur(14px)}
+.dlg.split{width:min(980px,100%);padding:0;display:grid;grid-template-columns:42% 58%;gap:0;overflow:hidden;border:0;border-radius:24px;background:#fff;color:#132036;box-shadow:0 40px 100px rgba(0,30,70,.35);animation:dlgIn .5s cubic-bezier(.22,1,.36,1)}
+.sp-ph{position:relative;min-height:440px;background-size:cover;background-position:center}
+.sp-ph span{position:absolute;left:28px;bottom:28px;color:#fff;font:900 clamp(34px,4vw,54px)/.92 var(--display);font-stretch:120%;text-shadow:0 6px 30px rgba(0,0,0,.5)}
+.sp-ph:after{content:"";position:absolute;inset:0;background:linear-gradient(0deg,rgba(5,20,40,.55),transparent 55%);pointer-events:none}.sp-ph span{z-index:1}
+.sp-r{position:relative;padding:clamp(26px,3.4vw,44px);display:grid;align-content:center;gap:12px;background:linear-gradient(160deg,#ffffff,#f3f6fb)}
+.sp-k{font-size:11px;letter-spacing:.3em;font-weight:800;color:#c88a14}
+.dlg.split h3{color:#0f1d33;font-size:clamp(32px,3.6vw,46px)}
+.dlg.split p{color:#4a5a72}
+.sp-x{position:absolute;right:16px;top:16px;width:40px;height:40px;border-radius:50%;border:1px solid #dfe5ee;background:#fff;color:#132036;font-size:22px;cursor:pointer}
+.dlg.split .ct-tiles{margin-top:8px}
+.dlg.split .ct-t{background:#fff;border:1px solid #e3e8f0;color:#132036;box-shadow:0 10px 26px rgba(0,40,90,.08)}
+.dlg.split .ct-t:hover{border-color:#f2b84b;background:#fffaf0}
+.dlg.split .ct-t small{color:#7a879b}.dlg.split .ct-t b{font-size:16px}.dlg.split .ct-t em{color:#b77d0c}.dlg.split .ct-t.wa em{color:#1a9f52}
+.dlg.split .ct-i{width:52px;height:52px;box-shadow:0 8px 22px rgba(242,184,75,.45);animation:none}.dlg.split .ct-t.wa .ct-i{box-shadow:0 8px 22px rgba(37,211,102,.4)}
+.dlg.split label{color:#8a5a06}
+.dlg.split input,.dlg.split textarea{background:#fff;border:1px solid #d9e0ea;color:#132036}
+.dlg.split .status.ok{color:#1a9f52}.dlg.split .status.err{color:#c0392b}
+.dlg.about-b .sp-r{background:linear-gradient(160deg,#fffaf0,#f6ead2)}
+.dlg.about-b .sp-r p{color:#4a4436;line-height:1.7}
+.ab-pts{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:8px;padding-top:16px;border-top:1px solid rgba(0,0,0,.1)}
+.ab-pts span{font:800 15px/1.2 var(--display);color:#0f2f5c}.ab-pts small{display:block;margin-top:5px;font:700 10px/1.3 var(--body);letter-spacing:.16em;color:#c88a14}
+@media (max-width:760px){.dlg.split{grid-template-columns:1fr}.sp-ph{min-height:170px}.dlg.split .ct-tiles{grid-template-columns:1fr}.ab-pts{grid-template-columns:1fr}}
+.dlg textarea{min-height:90px;resize:vertical}
+.row2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.actions{display:flex;gap:10px;flex-wrap:wrap}
+.btn{border:0;border-radius:999px;padding:12px 20px;font-weight:800;font-size:12px;letter-spacing:.12em;cursor:pointer}
+.btn.primary{background:linear-gradient(180deg,var(--gold-2),var(--gold));color:#14100b}
+.btn.ghost{background:none;border:1px solid var(--line);color:var(--text)}
+.status{font-size:13px;min-height:1em}.status.ok{color:#7be2a6}.status.err{color:#ff9d8a}
+
+.toast{position:fixed;z-index:80;left:50%;top:calc(80px + env(safe-area-inset-top,0px));transform:translate(-50%,-10px);opacity:0;transition:all .35s;
+  background:rgba(8,14,30,.92);border:1px solid var(--line);padding:12px 18px;border-radius:12px;font-size:13px;pointer-events:none;max-width:90vw}
+.toast.show{opacity:1;transform:translate(-50%,0)}
+
+/* ---------- phones / narrow screens ---------- */
+@media (max-width:900px){
+  .links{display:none}.quote{margin-left:auto;padding:10px 14px}
+  #home{flex-direction:column}
+  .w + .w{border-left:0;border-top:1px solid rgba(255,255,255,.08)}
+  .seg{top:50%!important;width:300vw!important;transform:translateY(-55%);-webkit-mask-image:none;mask-image:none}
+  #home .w:hover,#home .w:focus-visible,#home:has(.w:hover) .w{flex:1}
+  .copy{bottom:16px}.copy p{display:none}.copy .go{opacity:1;transform:none;padding:9px 14px;font-size:11px}
+  .copy h2{font-size:clamp(34px,12vw,60px)}
+  .tagline{display:none}
+  .choices{grid-template-columns:1fr}.row2{grid-template-columns:1fr}
+}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+.wf-hp{position:absolute!important;left:-10000px!important;width:1px!important;height:1px!important;opacity:0!important}.wf-consent{margin:8px 0 0;font-size:11.5px;line-height:1.45;opacity:.72}.wf-consent a{color:inherit;text-decoration:underline}.legal{position:fixed;z-index:4;right:16px;bottom:calc(9px + env(safe-area-inset-bottom,0px));font-size:10px;letter-spacing:.24em;text-transform:uppercase;color:rgba(232,220,192,.55);text-decoration:none}.legal:hover{color:#f2b84b}body.in-page .legal{display:none}</style>
+</head>
+<body>
+
+<header class="nav" id="hdr">
+  <button class="brand" data-open="home" aria-label="WAYFORTH home"><img src="wf-actual-logo-decal.png" alt=""><b>WAYFORTH</b></button>
+  <nav class="links" aria-label="Primary">
+    <button class="on" data-open="home">Home</button>
+    <button data-aux="about">About Us</button>
+    <div class="dd" id="svc"><button aria-haspopup="true" aria-expanded="false" id="svcBtn">Services</button>
+      <div class="dd-menu" role="menu"><button role="menuitem" data-open="build">Build <small>Construction material</small></button><button role="menuitem" data-open="trucking">Trucking <small>Cars, freight, loads</small></button><button role="menuitem" data-open="media">Media <small>Creators &amp; revenue</small></button></div></div>
+    <button data-aux="contact">Contact Us</button>
+  </nav>
+</header>
+
+<main id="home" aria-label="WAYFORTH — choose a division">
+  <canvas class="fxall" id="fxall" aria-hidden="true"></canvas>
+  <button class="w" data-open="build" aria-label="Build — construction and materials">
+    <img class="seg" src="wf-home-scene-hd.webp" alt="" draggable="false">
+    <span class="copy"><span class="eyebrow t-gold">Construction Material · Lahore</span><h2>BUILD</h2>
+      <p>Residential plots from 5 marla to 2 kanal, plus commercial bulk orders. Pick your materials and get one clear quote.</p>
+      <span class="go gold-bg">EXPLORE BUILD →</span></span><span class="bar gold-bg"></span>
+  </button>
+  <button class="w" data-open="trucking" aria-label="Move — trucking and transport">
+    <img class="seg" src="wf-home-scene-hd.webp" alt="" draggable="false">
+    <span class="copy"><span class="eyebrow t-blue">Ship Cars · Freight &amp; Find Loads · United States</span><h2>MOVE</h2>
+      <p>Cars, boats and freight across the US, with a trucker network behind every load.</p>
+      <span class="go blue-bg">GET A QUOTE →</span></span><span class="bar blue-bg"></span>
+  </button>
+  <button class="w" data-open="media" aria-label="Create — WAYFORTH Media">
+    <img class="seg" src="wf-home-scene-hd.webp" alt="" draggable="false">
+    <span class="copy"><span class="eyebrow t-violet">Empowering Creators · USA · UAE · LHR</span><h2>CREATE</h2>
+      <p>Channels, content and production that turn attention into an audience.</p>
+      <span class="go violet-bg">SEE MEDIA →</span></span><span class="bar violet-bg"></span>
+  </button>
+</main>
+<p class="tagline">Different industries. A brighter tomorrow.</p>
+<a class="legal" href="/privacy">Privacy</a>
+
+<section id="page" aria-live="polite"></section>
+<div class="loader" aria-hidden="true"></div>
+
+<!-- Quote chooser + general inquiry + about/contact -->
+<div class="overlay" id="ov" role="dialog" aria-modal="true" aria-labelledby="ovTitle">
+  <div class="dlg" id="dlg"></div>
+</div>
+<div class="toast" id="toast" role="status"></div>
+
+<script>
+(()=>{
+'use strict';
+const PAGES={build:'wayforth-build-v5.html',trucking:'wayforth-trucking-v22.html',media:'wayforth-media.html'};
+const body=document.body,home=document.getElementById('home');
+const reduced=matchMedia('(prefers-reduced-motion: reduce)').matches;
+let current='home';
+
+/* ---------- routing: /build, /trucking, /media (and #build etc.) ---------- */
+function routeFromURL(){
+  const p=(location.pathname.replace(/^\/+|\/+$/g,'')||location.hash.slice(1)||'home').toLowerCase();
+  return PAGES[p]?p:(p==='quote'?'quote':'home');
+}
+/* ---------- Circle Reveal: one transition at a time, always ending on the right page ----------
+   Pages are created once with their address already set (no extra browser-history entries),
+   loaded quietly in the background, and shown inside a circle that grows from the click point. */
+const pageEl=document.getElementById('page'),frames={};
+const EASE_IN='cubic-bezier(.33,.8,.2,1)',EASE_OUT='cubic-bezier(.6,0,.4,1)';
+let origin={x:innerWidth/2,y:innerHeight/2},anim=null,busy=false,pending=null,shownPage=null;
+const far=(x,y)=>Math.hypot(Math.max(x,innerWidth-x),Math.max(y,innerHeight-y))+20;
+function ensure(name){
+  if(frames[name])return frames[name];
+  const f=document.createElement('iframe');f.title='WAYFORTH '+name;f.dataset.p=name;f.dataset.ready='';
+  f.addEventListener('load',()=>{f.dataset.ready='1';f.dispatchEvent(new Event('wf-ready'));},{once:true});
+  f.src=PAGES[name]+'?v=56';pageEl.appendChild(f);frames[name]=f;return f;}
+function whenReady(f){return f.dataset.ready==='1'?Promise.resolve():new Promise(r=>{body.classList.add('loading');f.addEventListener('wf-ready',()=>{body.classList.remove('loading');r();},{once:true});});}
+function play(kf,opt){return new Promise(r=>{if(reduced){r();return;}anim=pageEl.animate(kf,opt);anim.onfinish=()=>{anim=null;r();};anim.oncancel=()=>{anim=null;r();};});}
+function settle(){ /* make the screen match `current`, whatever happened before */
+  const inPage=current!=='home';
+  body.classList.toggle('in-page',inPage);body.classList.remove('closing');body.classList.toggle('settled',inPage);
+  Object.entries(frames).forEach(([k,f])=>f.classList.toggle('on',inPage&&k===current));
+  shownPage=inPage?current:null;
+  document.title=inPage?((frames[current]&&(()=>{try{return frames[current].contentDocument.title}catch(_){return ''}})())||'WAYFORTH'):'WAYFORTH — Build. Move. Create.';
+}
+async function openPage(name,o){
+  const f=ensure(name);await whenReady(f);
+  try{f.contentWindow.postMessage({type:'wf-reset'},location.origin);if(f.contentWindow.wfBuildReset)f.contentWindow.wfBuildReset();}catch(_){}
+  Object.entries(frames).forEach(([k,fr])=>fr.classList.toggle('on',k===name));
+  body.classList.add('in-page');
+  await play([{clipPath:`circle(0px at ${o.x}px ${o.y}px)`},{clipPath:`circle(${far(o.x,o.y)}px at ${o.x}px ${o.y}px)`}],{duration:700,easing:EASE_IN});
+}
+async function closePage(o){
+  body.classList.add('closing');body.classList.remove('in-page');
+  await play([{clipPath:`circle(${far(o.x,o.y)}px at ${o.x}px ${o.y}px)`},{clipPath:`circle(0px at ${o.x}px ${o.y}px)`}],{duration:560,easing:EASE_OUT,fill:'forwards'});
+  if(anim)anim.cancel();pageEl.getAnimations().forEach(a=>a.cancel());
+  body.classList.remove('closing');Object.values(frames).forEach(f=>f.classList.remove('on'));
+}
+async function run(name,o){
+  busy=true;body.classList.add('busy');body.classList.remove('settled');
+  try{
+    if(name==='home'){ if(shownPage)await closePage(o); }
+    else if(shownPage!==name){ if(shownPage)await closePage({x:innerWidth/2,y:innerHeight/2}); await openPage(name,shownPage?{x:innerWidth/2,y:innerHeight/2}:o); }
+  }catch(_){}
+  pageEl.getAnimations().forEach(a=>a.cancel());
+  settle();
+  busy=false;body.classList.remove('busy');
+  if(pending){const p=pending;pending=null;if(p.name!==current||p.name!==shownPage){current=p.name;run(p.name,p.o);}}
+}
+function go(name,push=true){
+  if(name==='quote'){openQuote();return;}
+  if(!PAGES[name])name='home';
+  const o={...origin};origin={x:innerWidth/2,y:innerHeight/2};
+  if(name===current&&!busy)return;
+  if(push&&name!==current)history.pushState({p:name},'',name==='home'?'/':'/'+name);
+  current=name;
+  if(busy){pending={name,o};return;}
+  run(name,o);
+}
+/* warm up the three pages after the home page has settled */
+addEventListener('load',()=>setTimeout(()=>['build','trucking','media'].forEach((p,i)=>setTimeout(()=>ensure(p),i*700)),1200));
+document.addEventListener('click',e=>{
+  const o=e.target.closest('[data-open]');if(o){e.preventDefault();const r=o.getBoundingClientRect();
+    origin=(e.clientX||e.clientY)?{x:e.clientX,y:e.clientY}:{x:r.left+r.width/2,y:r.top+r.height/2};go(o.dataset.open,true);return;}
+  const a=e.target.closest('[data-aux]');if(a){e.preventDefault();openAux(a.dataset.aux);}
+});
+addEventListener('popstate',()=>{origin={x:innerWidth/2,y:innerHeight/2};go(routeFromURL(),false);});
+
+/* ---------- messages from the Build / Trucking / Media pages ---------- */
+addEventListener('message',e=>{
+  if(e.origin!==location.origin||!Object.values(frames).some(f=>f.contentWindow===e.source))return;
+  const d=e.data||{};
+  if(d.type==='wf-single-nav'){origin={x:innerWidth/2,y:innerHeight/2};go(d.page||'home');}
+  else if(d.type==='wf-aux')openAux(d.name);
+  else if(d.type==='wf-build-quote')sendBuildQuote(d.payload||d,e.source);
+  else if(d.type==='wf-media-lead'){const src=e.source;send({service:d.service==='support'?'support':'media',serviceLabel:d.label||'Media inquiry',source:'WAYFORTH Media',details:d.details||{}})
+    .then(()=>src&&src.postMessage({type:'wf-media-lead-result',ok:true},location.origin)).catch(err=>src&&src.postMessage({type:'wf-media-lead-result',ok:false,message:err.message},location.origin));}
+});
+
+/* ---------- dialogs ---------- */
+const ov=document.getElementById('ov'),dlg=document.getElementById('dlg');
+function openDlg(html,cls){dlg.className='dlg'+(cls?' '+cls:'');ov.className='overlay pg-'+current+(cls?' ov-'+cls.split(' ')[0]:'');dlg.innerHTML=html;void ov.offsetWidth;ov.classList.add('open');const f=dlg.querySelector('input,button');f&&f.focus({preventScroll:true});}
+function closeDlg(){ov.classList.remove('open');}
+ov.addEventListener('click',e=>{if(e.target===ov||e.target.closest('[data-close]'))closeDlg();});
+addEventListener('keydown',e=>{if(e.key==='Escape')closeDlg();});
+const AUX={
+  about:['About WAYFORTH','WAYFORTH brings construction, freight and trucking, and digital media together under one company, focused on dependable work and lasting partnerships.'],
+  contact:['Contact Us','Need construction, trucking or media support? Send us a message and the WAYFORTH team will follow up.'],
+  media:['Work with WAYFORTH Media','Tell us about your channel, brand or project and the media team will follow up.'],
+  support:['Support','Need help with a quote, an ongoing project, a shipment or a media service? Send the details and we will point you to the right person.']
+};
+const WA='https://wa.me/923231466332';
+const PH=[['0323-146 6332','+923231466332'],['0321-402 2222','+923214022222']];
+const WA_SVG='<svg viewBox="0 0 32 32" aria-hidden="true"><path fill="currentColor" d="M16 3C8.8 3 3 8.7 3 15.8c0 2.5.7 4.9 2 7L3 29l6.4-2c2 1.1 4.3 1.7 6.6 1.7 7.2 0 13-5.7 13-12.8S23.2 3 16 3zm0 23.4c-2.1 0-4.1-.6-5.9-1.7l-.4-.3-3.8 1.2 1.2-3.7-.3-.4a10.4 10.4 0 0 1-1.8-5.7C5 10 10 5.2 16 5.2S27 10 27 15.8s-5 10.6-11 10.6zm6-7.9c-.3-.2-1.9-.9-2.2-1s-.5-.2-.7.2-.8 1-1 1.2-.4.2-.7 0a8.8 8.8 0 0 1-4.4-3.8c-.3-.6.3-.5.9-1.7.1-.2 0-.4 0-.5l-1-2.4c-.3-.6-.5-.5-.7-.5h-.6c-.2 0-.6.1-.9.4s-1.1 1.1-1.1 2.7 1.2 3.1 1.3 3.3 2.3 3.5 5.5 4.9c2 .9 2.8.9 3.8.8.6-.1 1.9-.8 2.2-1.5s.3-1.3.2-1.5c-.1-.1-.3-.2-.6-.3z"/></svg>';
+const MAIL_SVG='<svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M3 5h18a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1zm1 3.2V17h16V8.2l-8 5-8-5zM5.2 7l6.8 4.25L18.8 7H5.2z"/></svg>';
+const TEL_SVG='<svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M6.6 10.8a15.1 15.1 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.25 11.4 11.4 0 0 0 3.6.57 1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.25.2 2.45.57 3.57a1 1 0 0 1-.25 1z"/></svg>';
+function openContact(){
+  if(current==='build'){
+    const tiles=[...PH.map(([n,tel],i)=>`<a class="ct-t" href="tel:${tel}"><span class="ct-i">${TEL_SVG}</span><small>LINE ${i+1}</small><b>${n}</b><em>CALL →</em></a>`),`<a class="ct-t wa" href="${WA}" target="_blank" rel="noopener"><span class="ct-i">${WA_SVG}</span><small>WHATSAPP</small><b>Chat now</b><em>OPEN →</em></a>`];
+    openDlg(`<div class="sp-ph" style="background-image:url('bs-commercial.webp')"><span>Let's<br>build.</span></div><div class="sp-r"><button class="sp-x" type="button" data-close aria-label="Close">×</button><span class="sp-k">WAYFORTH BUILD · LAHORE</span><h3 id="ovTitle">Contact Us</h3><p>Call us or message us on WhatsApp.</p><div class="ct-tiles">${tiles.join('')}</div></div>`,'split');return;}
+  const us=current==='trucking';
+  const tiles=us?[
+     `<div class="ct-t soon"><span class="ct-i">${TEL_SVG}</span><small>US LINE</small><b>Coming soon</b><em>To be added</em></div>`,
+     `<div class="ct-t soon"><span class="ct-i">${MAIL_SVG}</span><small>EMAIL</small><b>Coming soon</b><em>To be added</em></div>`,
+     `<a class="ct-t wa" href="${WA}" target="_blank" rel="noopener"><span class="ct-i">${WA_SVG}</span><small>WHATSAPP</small><b>Chat now</b><em>OPEN →</em></a>`]
+   :[...PH.map(([n,tel],i)=>`<a class="ct-t" href="tel:${tel}"><span class="ct-i">${TEL_SVG}</span><small>LINE ${i+1}</small><b>${n}</b><em>CALL →</em></a>`),
+     `<a class="ct-t wa" href="${WA}" target="_blank" rel="noopener"><span class="ct-i">${WA_SVG}</span><small>WHATSAPP</small><b>Chat now</b><em>OPEN →</em></a>`];
+  openDlg(`<span class="ct-glow" aria-hidden="true"></span><button class="ct-x" type="button" data-close aria-label="Close">×</button>
+   <span class="ct-k">${us?'WAYFORTH TRUCKING · UNITED STATES':'WAYFORTH · LAHORE'}</span><h3 id="ovTitle">Contact Us</h3>
+   <p>${us?'Our US phone line and email are being set up. Until then, message us on WhatsApp and a real agent will reply.':'Call us directly or message us on WhatsApp. We usually reply within the hour during working hours.'}</p>
+   <div class="ct-tiles">${tiles.join('')}</div>`,'contact');
+}
+function supportForm(){return `<form id="inq" data-label="Support callback request" data-kind="support" novalidate><input class="wf-hp" name="wf_hp" tabindex="-1" autocomplete="off" aria-hidden="true">
+    <div class="row2"><label>Full name<input id="f-name" name="fullName" autocomplete="name" required></label><label>Phone number to call back<input id="f-phone" name="phone" type="tel" inputmode="tel" autocomplete="tel" placeholder="03XX-XXXXXXX" required></label></div>
+    <label>Email (optional)<input id="f-email" name="email" type="email" autocomplete="email"></label>
+    <label>How can we help?<textarea id="f-notes" name="notes" placeholder="Order, delivery, quote or anything else"></textarea></label>
+    <div class="status" id="f-status" role="status"></div>
+    <p class="wf-consent">By sending, you agree to our <a href="/privacy" target="_blank" rel="noopener">Privacy Policy</a>. We never sell your details.</p><div class="actions"><button class="btn primary" type="submit">REQUEST A CALL BACK →</button></div></form>`;}
+function openSupport(){
+  if(current==='build'){openDlg(`<div class="sp-ph" style="background-image:url('bs-commercial.webp')"><span>We'll call<br>you back.</span></div><div class="sp-r"><button class="sp-x" type="button" data-close aria-label="Close">×</button><span class="sp-k">WAYFORTH BUILD · SUPPORT</span><h3 id="ovTitle">Support</h3><p>Leave your name and number and the WAYFORTH team will call you back.</p>${supportForm()}</div>`,'split');bindForm();return;}
+  openDlg(`<h3 id="ovTitle">Support</h3><p>Leave your name and number and the WAYFORTH team will call you back. Tell us briefly what you need help with.</p>
+   <form id="inq" data-label="Support callback request" data-kind="support" novalidate><input class="wf-hp" name="wf_hp" tabindex="-1" autocomplete="off" aria-hidden="true">
+    <div class="row2"><label>Full name<input id="f-name" name="fullName" autocomplete="name" required></label><label>Phone number to call back<input id="f-phone" name="phone" type="tel" inputmode="tel" autocomplete="tel" placeholder="03XX-XXXXXXX" required></label></div>
+    <label>Email (optional)<input id="f-email" name="email" type="email" autocomplete="email"></label>
+    <label>How can we help?<textarea id="f-notes" name="notes" placeholder="Order, delivery, quote, shipment or anything else"></textarea></label>
+    <div class="status" id="f-status" role="status"></div>
+    <p class="wf-consent">By sending, you agree to our <a href="/privacy" target="_blank" rel="noopener">Privacy Policy</a>. We never sell your details.</p><div class="actions"><button class="btn primary" type="submit">REQUEST A CALL BACK →</button><button class="btn ghost" type="button" data-close>CLOSE</button></div></form>`);
+  bindForm();
+}
+const ABOUT={
+  build:['About WAYFORTH Build','We are based in Lahore and work directly with vendors the market already trusts. We build trust first, then your dream home or your commercial project. The owners are directly involved in every job.','Our managing partners personally handle every client, so the work ethic, the trust and the relationship stay with you for the long term, through ongoing supply and a professional partnership.'],
+  trucking:['About WAYFORTH Trucking','We offer truck dispatching, car shipping and boat shipping, and we help you move your load. Support is available 24/7 with real agents, never a bot.','Pickup and delivery are covered end to end, so there are no surprises. With that level of support we build long-term relationships that go a long way, just like our trucks and loads.'],
+  home:['About WAYFORTH','WAYFORTH brings construction materials in Lahore, trucking across the United States and creator media together under one company.','The owners are directly involved, and every client gets dependable work, honest communication and a relationship built to last.']};
+function openAbout(){
+  if(current==='build'){const [h,a,b]=ABOUT.build;
+    openDlg(`<div class="sp-ph" style="background-image:url('bs-home.webp')"></div><div class="sp-r ab-cream"><button class="sp-x" type="button" data-close aria-label="Close">×</button><span class="sp-k">WAYFORTH BUILD · LAHORE</span><h3 id="ovTitle">${h}</h3><p>${a}</p><p>${b}</p><div class="ab-pts"><span>Trusted vendors<small>DIRECT FROM THE MARKET</small></span><span>Trust first<small>THEN YOUR BUILD</small></span><span>Owners involved<small>IN EVERY PROJECT</small></span></div></div>`,'split about-b');return;}
+  if(current==='trucking'){const [h,a,b]=ABOUT.trucking;
+    openDlg(`<span class="ab-beam" aria-hidden="true"></span><span class="ab-lamp" aria-hidden="true"></span><div class="ab-plaque"><span class="ab-k">WAYFORTH</span><h3 id="ovTitle">${h}</h3><p>${a}</p><p>${b}</p><div class="ab-who"><span>24/7<small>REAL AGENTS</small></span><span>USA<small>COAST TO COAST</small></span></div></div><span class="ab-ped" aria-hidden="true"></span><button class="ab-x" type="button" data-close>CLOSE</button>`,'about');return;}
+  openDlg(`<span class="vp-beam l" aria-hidden="true"></span><span class="vp-beam r" aria-hidden="true"></span><span class="vp-lamp l" aria-hidden="true"></span><span class="vp-lamp r" aria-hidden="true"></span>
+   <div class="vp-card"><span class="vp-k">WAYFORTH</span><h3 id="ovTitle">About WAYFORTH</h3><p>Construction materials in Lahore, trucking across the United States and creator media in the USA, UAE and Lahore — one company, run personally by its founders.</p><p>Every client gets dependable work, honest communication and a relationship built to last.</p>
+   <div class="vp-fd"><span><b>Ahmad Hassan</b><i>CO-FOUNDER</i></span><span class="vp-dot" aria-hidden="true"></span><span><b>Rohail Azam</b><i>CO-FOUNDER</i></span></div></div><button class="ab-x" type="button" data-close>CLOSE</button>`,'vip');
+}
+function openAux(name){
+  if(name==='contact')return openContact();
+  if(name==='about')return openAbout();
+  if(name==='support')return openSupport();
+  const [t,p]=AUX[name]||AUX.contact;
+  openDlg(`<h3 id="ovTitle">${t}</h3><p>${p}</p>${formHTML(name==='about'?'General inquiry':name==='media'?'Media inquiry':t)}`);
+  bindForm();
+}
+function openQuote(){
+  if(current!=='home'){go('home');setTimeout(openQuote,900);return;}
+  wfGuide(document.querySelectorAll('#home .w'),'Choose a service to start your quote',{top:Math.max(90,document.querySelector('#home .copy').getBoundingClientRect().top-64)});
+}
+function _oldQuote(){
+  openDlg(`<h3 id="ovTitle">What can we quote for you?</h3><p>Choose a division to start your request.</p>
+   <div class="choices">
+    <button class="choice t-gold" data-pick="build"><b>BUILD</b><small>Homes, plazas and raw materials</small></button>
+    <button class="choice t-blue" data-pick="trucking"><b>MOVE</b><small>Cars, boats, freight and carriers</small></button>
+    <button class="choice t-violet" data-pick="media"><b>CREATE</b><small>Channels, content and production</small></button>
+   </div><div class="actions"><button class="btn ghost" data-close>CLOSE</button></div>`);
+  dlg.querySelectorAll('[data-pick]').forEach(b=>b.onclick=()=>{closeDlg();
+    if(b.dataset.pick==='media'){openDlg(`<h3 id="ovTitle">Media inquiry</h3><p>Tell us about your channel, brand or project.</p>${formHTML('Media inquiry')}`);bindForm();}
+    else go(b.dataset.pick);});
+}
+function formHTML(label){
+  return `<form id="inq" data-label="${label}" novalidate><input class="wf-hp" name="wf_hp" tabindex="-1" autocomplete="off" aria-hidden="true">
+    <div class="row2"><label>Full name<input id="f-name" name="fullName" autocomplete="name" required></label><label>Phone / WhatsApp<input id="f-phone" name="phone" type="tel" inputmode="tel" autocomplete="tel" required></label></div>
+    <label>Email<input id="f-email" name="email" type="email" autocomplete="email" required></label>
+    <label>Message<textarea id="f-notes" name="notes" placeholder="How can we help?"></textarea></label>
+    <div class="status" id="f-status" role="status"></div>
+    <p class="wf-consent">By sending, you agree to our <a href="/privacy" target="_blank" rel="noopener">Privacy Policy</a>. We never sell your details.</p><div class="actions"><button class="btn primary" type="submit">SEND →</button><button class="btn ghost" type="button" data-close>CLOSE</button></div></form>`;
+}
+function bindForm(){
+  const f=document.getElementById('inq');if(!f)return;
+  f.addEventListener('submit',async e=>{e.preventDefault();const st=document.getElementById('f-status');
+    const v=Object.fromEntries(new FormData(f).entries());const digits=(v.phone||'').replace(/\D/g,'');
+    const optMail=f.dataset.kind==='support';const mailOk=/^\S+@\S+\.\S{2,}$/.test(v.email||'')||(optMail&&!(v.email||'').trim());
+    if(!v.fullName.trim()||!mailOk||digits.length<7||digits.length>15){st.className='status err';st.textContent=optMail?'Please add your name and a phone number (7 to 15 digits).':'Please add your name, a valid email and a phone number (7 to 15 digits).';return;}
+    const btn=f.querySelector('[type=submit]');btn.disabled=true;btn.textContent='SENDING…';
+    try{await send({service:f.dataset.kind==='support'?'support':'general',serviceLabel:f.dataset.label,source:'WAYFORTH Website',details:v});
+      st.className='status ok';st.textContent=f.dataset.kind==='support'?'Thank you. The WAYFORTH team will call you back shortly.':'Thank you. Your message has been sent to WAYFORTH and the team will follow up.';btn.textContent='SENT ✓';setTimeout(closeDlg,2200);}
+    catch(err){st.className='status err';st.textContent=err.message;btn.disabled=false;btn.textContent='SEND →';}
+  });
+}
+async function send(payload){
+  const r=await fetch('/api/trucking-inquiry',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload)});
+  const j=await r.json().catch(()=>({}));if(!r.ok)throw new Error(j.message||'Unable to send right now. Please try again.');return j;
+}
+/* Build materials cart → same lead email endpoint */
+async function sendBuildQuote(q,src){
+  const lines=(q.materials||[]).slice(0,30).map(m=>`${m.material||m.name||'Item'}${m.category?' ('+m.category+')':''}: ${m.quantity||''} ${m.unit||''}`.trim()).join('\n');
+  const bulk=q.source==='build-bulk-order';
+  const reply=(ok,message)=>src&&src.postMessage({type:'wf-build-quote-result',ok,message},location.origin);
+  try{await send({service:'build',serviceLabel:bulk?'Build — Bulk Order (Commercial)':'Build — Home Project Quote',source:'WAYFORTH Build',details:{
+      fullName:q.contactName||'',email:q.email||'',phone:q.phone||'',company:q.companyName||'',projectType:(q.project&&q.project.kind)||'',projectOption:(q.project&&q.project.option)||'',
+      projectLocation:q.projectLocation||'',materials:lines,notes:q.notes||''}});
+    reply(true);toast('Your materials quote has been sent to WAYFORTH.');}
+  catch(err){reply(false,err.message);toast(err.message);}
+}
+const svc=document.getElementById('svc'),svcBtn=document.getElementById('svcBtn');
+svcBtn.addEventListener('click',e=>{e.stopPropagation();const o=!svc.classList.contains('open');svc.classList.toggle('open',o);svcBtn.setAttribute('aria-expanded',o);});
+document.addEventListener('click',e=>{if(!e.target.closest('#svc'))svc.classList.remove('open');});
+addEventListener('keydown',e=>{if(e.key==='Escape')svc.classList.remove('open');});
+svc.addEventListener('click',e=>{if(e.target.closest('[data-open]'))svc.classList.remove('open');});
+const T=document.getElementById('toast');let tt;
+function toast(m){T.textContent=m;T.classList.add('show');clearTimeout(tt);tt=setTimeout(()=>T.classList.remove('show'),3200);}
+
+/* ---------- one continuous scene across the three worlds ---------- */
+const worlds=[...home.querySelectorAll('.w')];let sceneBox={x:0,y:64,w:innerWidth};
+const lastX=new Map();let lastKey='';
+function place(){
+  const w=home.clientWidth,h=home.clientHeight,narrow=innerWidth<=900,AR=1672/582;
+  const top=64,below=Math.min(240,Math.max(150,h*.25)),room=h-top-below, sw=Math.min(w,Math.max(room,260)*AR), x0=(w-sw)/2;sceneBox={x:x0,y:top,w:sw};
+  worlds.forEach((p,i)=>{const img=p.querySelector('.seg');
+    if(narrow){img.style.transform='';lastX.delete(img);img.style.left=(-i*innerWidth)+'px';img.style.removeProperty('--sw');img.style.removeProperty('--st');}
+    else{const st=top+Math.max(0,(room-sw/AR)*.5);sceneBox.y=st;const key=sw+'|'+st;
+      if(key!==lastKey||!img.dataset.sized){img.style.setProperty('--sw',sw+'px');img.style.setProperty('--st',st+'px');img.dataset.sized='1';}
+      const x=Math.round(x0-p.offsetLeft);if(lastX.get(img)!==x){lastX.set(img,x);img.style.left='0px';img.style.transform=`translate3d(${x}px,0,0)`;}}});
+  lastKey=sw+'|'+(sceneBox.y);
+}
+(function loop(){if(!body.classList.contains('in-page'))place();requestAnimationFrame(loop);})();
+
+/* ---------- living scene: real welding, truck headlight flashes, photoshoot flashes ----------
+   Positions are points on the scene picture (1672 x 582), so they stay locked to it on every screen. */
+const cv=document.getElementById('fxall'),g=cv.getContext('2d');
+const WELD=[[232,343],[352,330],[446,297],[290,418],[470,420],[382,470],[459,527]].map(p=>({x:p[0],y:p[1],on:0,t:Math.random()*2}));
+const HEAD=[[905,492,1],[1060,495,1],[905,548,.55],[1063,548,.55]];
+const CAM=[[1120,482],[1181,485],[1401,470],[1574,463],[1580,352],[1488,478],[1543,486]];
+const BEACON=[[1398,60],[1431,121],[1524,56],[1551,56]];
+const sparks=[],flashes=[];let last=performance.now(),nextCam=.8;
+function glow(x,y,r,c,a){if(a<=0)return;const gr=g.createRadialGradient(x,y,0,x,y,r);gr.addColorStop(0,`rgba(${c},${a})`);gr.addColorStop(.3,`rgba(${c},${a*.45})`);gr.addColorStop(1,`rgba(${c},0)`);g.fillStyle=gr;g.beginPath();g.arc(x,y,r,0,7);g.fill();}
+function fx(now){const dt=Math.min(.05,(now-last)/1000);last=now;const t=now/1000;
+  if(!body.classList.contains('in-page')&&innerWidth>900){
+    const d=1,W=home.clientWidth,H=home.clientHeight;if(cv.width!==Math.round(W*d)||cv.height!==Math.round(H*d)){cv.width=W*d;cv.height=H*d;}
+    const k=sceneBox.w/1672;g.setTransform(d*k,0,0,d*k,d*sceneBox.x,d*sceneBox.y);g.clearRect(-sceneBox.x/k,-sceneBox.y/k,W/k,H/k);g.globalCompositeOperation='lighter';
+    /* welding: a small blue-white arc that flickers, a few orange sparks that drop and fade */
+    WELD.forEach(w=>{w.t-=dt;if(w.t<=0){w.on=!w.on;w.t=w.on?.6+Math.random()*1.6:.8+Math.random()*2.4;}
+      if(!w.on)return;const f=Math.random();if(f<.12)return;
+      glow(w.x,w.y,34+f*16,'110,165,255',.32+f*.2);glow(w.x,w.y,10+f*5,'225,240,255',1);glow(w.x,w.y,3.2,'255,255,255',1);
+      if(Math.random()<dt*40)for(let i=0;i<3;i++)sparks.push({x:w.x,y:w.y,vx:(Math.random()-.5)*50,vy:-Math.random()*25,l:0,m:.5+Math.random()*.5});});
+    for(let i=sparks.length-1;i>=0;i--){const p=sparks[i];p.l+=dt;if(p.l>p.m){sparks.splice(i,1);continue;}p.vy+=180*dt;p.x+=p.vx*dt;p.y+=p.vy*dt;const f=1-p.l/p.m;
+      g.fillStyle=`rgba(255,${150+90*f|0},${60*f|0},${f})`;g.fillRect(p.x-.8,p.y-.8,1.7,1.7);}
+    /* truck: headlights pulse, then a double high-beam flash, like asking for the way */
+    const c=t%4.2,hb=(c<.16||(c>.34&&c<.5))?1:0;
+    HEAD.forEach(([x,y,s],i)=>{const p=.6+.15*Math.sin(t*3+i);glow(x,y,18*s,'170,215,255',.35*p*s);
+      if(hb){glow(x,y,90*s,'200,228,255',.55*s);}});
+    /* aircraft warning lights on the tower tops: slow red throb */
+    BEACON.forEach(([x,y],i)=>{const k=Math.pow(.5+.5*Math.sin(t*2.1+i*.9),2.2);glow(x,y,14,'255,40,30',.25+.6*k);glow(x,y,2.6,'255,120,100',.5+.5*k);});
+    /* media: camera flashes from the photoshoot */
+    nextCam-=dt;if(nextCam<=0){const p=CAM[Math.random()*CAM.length|0];flashes.push({x:p[0],y:p[1],l:0});if(Math.random()<.35)flashes.push({x:p[0],y:p[1],l:-.14});nextCam=.35+Math.random()*1.1;}
+    for(let i=flashes.length-1;i>=0;i--){const f=flashes[i];f.l+=dt;if(f.l<0)continue;if(f.l>.28){flashes.splice(i,1);continue;}const k2=Math.pow(1-f.l/.28,2);
+      glow(f.x,f.y,55,'235,238,255',.38*k2);glow(f.x,f.y,12,'255,255,255',.95*k2);}
+  }
+  if(!reduced)requestAnimationFrame(fx);}
+requestAnimationFrame(fx);
+
+/* open the page in the address bar on first load (/build, /trucking, /media, /quote) */
+const first=routeFromURL();if(first!=='home')go(first,false);
+})();
+</script>
+</body>
+</html>

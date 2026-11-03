@@ -1,0 +1,59 @@
+/* WAYFORTH shared header — identical on Home, Build, Trucking and Media.
+   All sizes follow the Trucking artwork (1960 px wide), so every page lines up the same way. */
+.wfh{position:relative;width:100%;container-type:inline-size;z-index:20;font-family:"Inter","Manrope","Segoe UI",Arial,sans-serif}
+.wfh-bar{position:relative;height:3.93cqw;min-height:56px;background:linear-gradient(180deg,#00112a 0%,#000f24 60%,#000d20 100%);border-bottom:1px solid rgba(46,96,156,.75);box-shadow:0 8px 24px rgba(0,0,0,.25)}
+.wfh-logo{position:absolute;left:15.1cqw;top:50%;transform:translateY(-50%);height:3.57cqw;min-height:46px;aspect-ratio:368/70;padding:0;margin:0;border:0;background:none;cursor:pointer;user-select:none;-webkit-user-select:none}
+.wfh-logo img{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;-webkit-user-drag:none}
+.wfh-sub{position:absolute;left:43.2%;width:54.3%;top:79%;transform:translateY(-50%);text-align:center;color:#f4f6fb;font-weight:600;font-size:max(9px,.9cqw);letter-spacing:.42em;text-indent:.42em;white-space:nowrap;line-height:1}
+.wfh-sub.wide{letter-spacing:.24em;text-indent:.24em}
+.wfh-nav{position:absolute;left:52.7cqw;top:0;bottom:0;transform:translateX(-50%);display:flex;align-items:center;gap:max(18px,2.5cqw)}
+.wfh .wfh-nav button{position:relative;background:none;border:0;padding:6px 0;margin:0;color:#eef2f9;font-size:max(13px,.87cqw)!important;font-weight:500!important;line-height:1;font-family:inherit;text-transform:none;letter-spacing:.01em;cursor:pointer;white-space:nowrap;transition:color .2s}
+.wfh-nav button:hover{color:#ffd98a}
+.wfh-nav button.on:after,.wfh-nav button:hover:after{content:"";position:absolute;left:0;right:0;bottom:-6px;height:2px;border-radius:2px;background:linear-gradient(90deg,#f2b84b,#ffd98a);box-shadow:0 0 8px rgba(242,184,75,.7)}
+.wfh-quote{position:absolute;left:77.96cqw;top:50%;transform:translateY(-50%);height:max(42px,2.75cqw);min-width:150px;padding:0 max(18px,1.25cqw);display:inline-flex;align-items:center;justify-content:center;gap:max(8px,.6cqw);border:0;border-radius:999px;overflow:hidden;cursor:pointer;
+  background:linear-gradient(180deg,#ffe6a8 0%,#f6c35c 48%,#dc9a2e 100%);color:#1b1306;font:800 max(12px,.78cqw)/1 "Inter","Manrope",Arial,sans-serif;letter-spacing:.14em;white-space:nowrap;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.65),inset 0 -2px 0 rgba(120,70,0,.25),0 0 0 1px rgba(255,214,130,.55),0 8px 24px rgba(242,184,75,.32);transition:transform .25s cubic-bezier(.22,1,.36,1),box-shadow .25s}
+.wfh-quote svg{width:1.25em;height:1.25em;flex:none;transition:transform .3s cubic-bezier(.22,1,.36,1)}
+.wfh-quote:after{content:"";position:absolute;top:0;bottom:0;left:-60%;width:40%;background:linear-gradient(105deg,transparent,rgba(255,255,255,.55),transparent);transform:skewX(-18deg);transition:left .6s cubic-bezier(.22,1,.36,1);pointer-events:none}
+.wfh-quote:hover{transform:translateY(calc(-50% - 2px));box-shadow:inset 0 1px 0 rgba(255,255,255,.7),inset 0 -2px 0 rgba(120,70,0,.25),0 0 0 1px rgba(255,224,150,.8),0 12px 30px rgba(242,184,75,.5)}
+.wfh-quote:hover:after{left:120%}
+.wfh-quote:hover svg{transform:translateX(3px)}
+.wfh-quote:active{transform:translateY(-50%) scale(.98)}
+.wfh :focus-visible{outline:2px solid #ffd98a;outline-offset:3px;border-radius:8px}
+/* Services dropdown (Home page) */
+.wfh-dd{position:relative}
+.wfh-menu{position:absolute;left:50%;top:calc(100% + 16px);transform:translate(-50%,-6px);min-width:220px;padding:8px;border-radius:14px;background:rgba(6,16,34,.97);border:1px solid rgba(242,184,75,.35);box-shadow:0 20px 50px rgba(0,0,0,.5);opacity:0;pointer-events:none;transition:all .2s;display:grid;gap:2px}
+.wfh-dd.open .wfh-menu{opacity:1;pointer-events:auto;transform:translate(-50%,0)}
+.wfh-menu button{display:flex;justify-content:space-between;gap:16px;padding:12px 14px!important;border-radius:10px;font-size:14px!important;text-align:left}
+.wfh-menu button:hover{background:rgba(255,255,255,.06)}
+.wfh-menu button:after{display:none!important}
+.wfh-menu small{color:#9aa8c2;font-size:12px}
+/* narrow screens: logo + quote only */
+@media (max-width:900px){
+  .wfh-bar{height:60px}
+  .wfh-logo{left:14px;height:44px}
+  .wfh-nav{display:none}
+  .wfh-quote{left:auto;right:62px;height:36px;min-width:0;padding:0 12px;font-size:10px;letter-spacing:.1em}
+  .wfh .wfh-burger{display:grid}
+  .wfh.menu-open{container-type:normal}
+  .wfh.menu-open .wfh-nav{display:flex;position:fixed;left:0;right:0;top:60px;max-height:calc(100vh - 60px);overflow:auto;bottom:auto;transform:none;flex-direction:column;align-items:stretch;gap:0;padding:8px 16px 14px;background:rgba(3,10,24,.97);border-bottom:1px solid rgba(46,96,156,.75);box-shadow:0 18px 40px rgba(0,0,0,.5);z-index:30}
+  .wfh.menu-open .wfh-nav button{padding:15px 4px!important;font-size:16px!important;text-align:left;border-bottom:1px solid rgba(255,255,255,.08)}
+  .wfh.menu-open .wfh-nav button:last-child{border-bottom:0}
+  .wfh .wfh-nav button:after{display:none}
+  .wfh-logo{height:38px;min-height:38px}
+}
+
+/* "Choose a service" guide, shown when GET A QUOTE is pressed */
+.wf-guide{position:fixed;z-index:200;left:50%;transform:translate(-50%,10px);display:flex;align-items:center;gap:12px;padding:10px 22px 10px 10px;border-radius:999px;background:rgba(6,14,32,.86);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border:1px solid rgba(242,184,75,.6);color:#f2f4fa;font:600 14px/1 "Inter",Arial,sans-serif;letter-spacing:.02em;box-shadow:0 12px 40px rgba(0,0,0,.5),0 0 30px rgba(242,184,75,.22);opacity:0;pointer-events:none;transition:opacity .35s,transform .45s cubic-bezier(.22,1,.36,1);white-space:nowrap}
+.wf-guide.show{opacity:1;transform:translate(-50%,0)}
+.wf-guide i{order:-1;display:grid;place-items:center;width:32px;height:32px;border-radius:50%;background:linear-gradient(180deg,#ffd98a,#f2b84b);color:#14100b;font-style:normal;font-weight:900;font-size:15px;margin:0;animation:wfg-bob .9s ease-in-out infinite}
+@keyframes wfg-bob{50%{transform:translateY(4px)}}
+@keyframes wf-pick{0%,100%{transform:translateY(0) scale(1)}35%{transform:translateY(-12px) scale(1.035)}65%{transform:translateY(2px) scale(.995)}}
+.wf-pick{animation:wf-pick .9s cubic-bezier(.3,.7,.3,1) both;outline:2px solid rgba(255,217,138,.95);outline-offset:4px;box-shadow:0 0 40px rgba(242,184,75,.55)!important}
+@media (prefers-reduced-motion:reduce){.wf-pick{animation:none}.wf-guide i{animation:none}}
+
+.wfh-burger{display:none;position:absolute;right:12px;top:50%;transform:translateY(-50%);width:40px;height:40px;place-items:center;border:1px solid rgba(242,184,75,.45);border-radius:12px;background:rgba(242,184,75,.08);color:#ffd98a;cursor:pointer;padding:0}
+.wfh-burger svg{width:20px;height:20px}
+.wfh{overflow:visible}
+.wfh.menu-open{z-index:500!important}
+@media (max-width:480px){.wfh .wfh-logo{height:30px;min-height:30px}.wfh .wfh-quote{height:34px;padding:0 10px;font-size:9px;letter-spacing:.06em;right:58px}.wfh .wfh-quote svg{display:none}}
