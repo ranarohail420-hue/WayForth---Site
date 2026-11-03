@@ -5,7 +5,7 @@
 'use strict';
 const fs = require('fs'), path = require('path'), crypto = require('crypto');
 const root = process.cwd(), dist = path.join(root, 'dist');
-const VERSION = 'V53.1';
+const VERSION = 'V57';
 const PAGES = ['index.html', 'wayforth-build-v5.html', 'wayforth-trucking-v22.html', 'wayforth-media.html', 'privacy.html', '404.html'];
 const SHARED = ['wf-header.css', 'wf-guide.js'];
 const ALWAYS = ['favicon.ico'];
@@ -64,6 +64,7 @@ try {
   for (const f of files) copyFile(f);
   // small text files are written by the build itself (hidden folders like .well-known are often skipped on upload)
   fs.writeFileSync(path.join(dist, 'robots.txt'), 'User-agent: *\nAllow: /\nDisallow: /api/\n');
+  fs.writeFileSync(path.join(dist, 'version.txt'), 'WAYFORTH ' + VERSION + '\n');
   fs.mkdirSync(path.join(dist, '.well-known'), {recursive: true});
   fs.writeFileSync(path.join(dist, '.well-known', 'security.txt'), 'Contact: mailto:info@wayforth.ltd\nExpires: 2027-11-03T00:00:00.000Z\nPreferred-Languages: en\n');
   for (const f of PAGES) {

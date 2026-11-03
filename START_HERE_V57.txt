@@ -1,0 +1,31 @@
+WAYFORTH V57 — MEDIA PAGE FINAL (same changes as V56, re-issued)
+=================================================================
+
+COMMIT NAME
+WAYFORTH V57 — Media Page Final
+
+CHANGES SINCE V53.1
+1. Build carts: removed the line "Your materials for one home. Soon: full-build totals..."
+2. Media header: WAYFORTH logo at the same size as Build and Trucking, with MEDIA written
+   underneath the same way as RAW MATERIALS / TRUCKING. Menu: Home · About Us · Services ·
+   Contact Us. START A PROJECT and APPLY AS A CREATOR at the top right (inside the menu on
+   phones). GET A QUOTE and Support removed; the form offers "I'm a creator" / "I'm a brand".
+3. Media home, four screens:
+   01 Home — moving reel of creator cards (two rows sliding in opposite directions).
+   02 Why us — headline, short text, purple numbers band in one line, LEARN MORE; platform
+      cards (Snapchat, Meta, YouTube, TikTok) that stack one over another as you scroll.
+   03 Our Mission — text with a creator photo and turning colour rings.
+   04 YouTube MCN — illustration, APPLY / GET MORE DETAILS, four-point checklist.
+
+DEPLOY (important: the files must sit in the ROOT of the repository, next to the existing
+index.html — not inside a new folder)
+1. Extract this ZIP into the ROOT of the WAYFORTH GitHub repository and replace matching files.
+2. Commit with the exact message above. Vercel settings stay the same.
+3. Press Ctrl+Shift+R once after deploy.
+4. If not done yet: Vercel → Settings → Deployment Protection → Vercel Authentication (Standard).
+
+STILL NEEDED (Vercel environment variables)
+RESEND_API_KEY, WAYFORTH_FROM_EMAIL, WAYFORTH_LEADS_EMAIL — then send one test from each form.
+
+CHECK WHAT IS LIVE
+Open  https://<your-site>/version.txt  — it must say "WAYFORTH V57".
