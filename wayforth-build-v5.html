@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="theme-color" content="#030a18">
-<title>WAYFORTH BUILD — Lahore | Build Your Dream</title>
+<link rel="icon" href="/favicon.ico?v=53" sizes="any"><link rel="icon" type="image/png" sizes="192x192" href="/wf-icon-192.png?v=53"><link rel="apple-touch-icon" href="/wf-apple-touch.png?v=53"><meta name="theme-color" content="#080c18"><title>WAYFORTH BUILD — Lahore | Build Your Dream</title>
 <style>
 :root{--gold:#f0c77a;--gold-strong:#ffc95f;--blue:#55b8ff;--navy:#041020;--muted:#b2c0d4;--panel:#061326;--line:rgba(240,199,122,.42)}
 *{box-sizing:border-box}
@@ -87,10 +87,10 @@ nav{display:flex;gap:clamp(0px,.2vw,4px);align-items:center}nav button{color:#d5
 
 @media(max-width:620px){.materials-top{flex-direction:column;align-items:stretch}.materials-top-left{width:100%}.materials-brand .logo-copy{display:flex}.materials-nav{max-width:none;width:100%;justify-content:flex-start}.materials-nav button{flex:1 1 auto}.materials-content{padding-top:18px}.materials-intro h1{font-size:clamp(28px,8.4vw,38px)}}
 
-</style>
-<link rel="stylesheet" href="wf-header.css?v=52">
+.wf-consent{margin:8px 0 0;font-size:11.5px;line-height:1.45;opacity:.72}.wf-consent a{color:inherit;text-decoration:underline}</style>
+<link rel="stylesheet" href="wf-header.css?v=53">
 <style>html,body{overflow-x:hidden}.top-wfh{position:sticky;top:0;z-index:60;width:100vw;margin-left:calc(50% - 50vw);margin-right:0}.top-wfh .wfh-nav button{color:#eef2f9!important;background:none!important;border:0!important;border-radius:0!important;padding:6px 0!important;letter-spacing:.01em!important}</style>
-<script src="wf-guide.js?v=52"></script>
+<script src="wf-guide.js?v=53"></script>
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,300..900&family=Manrope:wght@400;500;700&display=swap">
 <style>/* WAYFORTH Build Showroom V45 — full-height panels + circle reveal */
 body.bsr-on main{display:none!important}
@@ -230,185 +230,23 @@ addEventListener('keydown',e=>{if(e.key==='Escape'&&!(window.wfmIsOpen&&window.w
 /* always start from the Build landing when the visitor comes back to this page (the cart is kept) */
 window.wfBuildReset=()=>{closeOpts(true);if(window.wfmClose)window.wfmClose(true);const m=document.getElementById('materials-mode');if(m)m.classList.remove('open');window.scrollTo(0,0);
   land.classList.remove('in');requestAnimationFrame(()=>requestAnimationFrame(()=>land.classList.add('in')));};
-addEventListener('message',e=>{if(e.data&&e.data.type==='wf-reset')window.wfBuildReset();});
+addEventListener('message',e=>{if(e.origin!==location.origin)return;if(e.data&&e.data.type==='wf-reset')window.wfBuildReset();});
 window.wfBuildGuideTargets=()=>window.wfmIsOpen&&window.wfmIsOpen()?[window.wfmAddButton()]:opts.classList.contains('on')?row.querySelectorAll('.pnl'):land.querySelectorAll('.pnl');
 window.wfBuildGuideText=()=>window.wfmIsOpen&&window.wfmIsOpen()?'Set a quantity and add it to your cart':opts.classList.contains('on')?'Pick an option to start your quote':'Choose Home or Commercial to start your quote';
 })();
 </script>
 
 
-<main>
-<section class="hero" aria-label="WAYFORTH Build introduction">
-  <div class="hero-copy">
-    <div class="eyebrow">WAYFORTH BUILD · LAHORE</div>
-    <h1>BUILD YOUR <span>DREAM</span></h1>
-    <div class="benefits" aria-label="WAYFORTH BUILD benefits">
-      <div class="benefit"><div class="benefit-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M3 20h18M5 20V9h5v11M10 20V4h5v16M15 20v-8h4v8M6.5 12h2M6.5 15h2M11.5 7h2M11.5 10h2M11.5 13h2M16.5 15h1"/></svg></div><span>Quality<br>Materials</span></div>
-      <div class="benefit"><div class="benefit-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 13v-2a8 8 0 0 1 16 0v2M4 12H3v5h4v-5H4Zm16 0h1v5h-4v-5h3ZM7 18c1.1 1.3 2.7 2 5 2h2M14 20h2"/></svg></div><span>Dedicated<br>Project Support</span></div>
-      <div class="benefit"><div class="benefit-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M15.5 8.5c-.7-.8-1.8-1.1-3-1.1-1.7 0-3 .8-3 2.1 0 3.1 6 1.2 6 4.4 0 1.3-1.3 2.3-3.2 2.3-1.4 0-2.7-.5-3.5-1.5M12 5.5v13"/></svg></div><span>Competitive<br>Pricing</span></div>
-      <div class="benefit"><div class="benefit-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="9" cy="8" r="3"/><circle cx="17" cy="9" r="2.4"/><path d="M3 20v-2.1A4.9 4.9 0 0 1 7.9 13h2.2a4.9 4.9 0 0 1 4.9 4.9V20M15 14h2a4 4 0 0 1 4 4v2M17 3v3M15.5 4.5h3"/></svg></div><span>Exclusive Offers<br>for Returning Clients</span></div>
-    </div>
-  </div>
-  <div class="hero-visual" aria-label="Night-time construction site with steel framework and cranes" role="img">
-    <img src="build-commercial-hero-wide.webp" alt="" fetchpriority="high">
-    <span class="weld-flash" style="--x:46%;--y:33%;--delay:0s;--angle:-18deg"></span><span class="weld-flash" style="--x:53%;--y:44%;--delay:.3s;--angle:18deg"></span><span class="weld-flash" style="--x:61%;--y:27%;--delay:.65s;--angle:-12deg"></span><span class="weld-flash" style="--x:68%;--y:39%;--delay:.95s;--angle:22deg"></span><span class="weld-flash" style="--x:66%;--y:30%;--delay:1.25s;--angle:-16deg"></span><span class="weld-flash" style="--x:71%;--y:54%;--delay:1.55s;--angle:12deg"></span>
-    <span class="weld-particle" style="--x:47%;--y:34%;--delay:.08s"></span><span class="weld-particle" style="--x:55%;--y:44%;--delay:.34s"></span><span class="weld-particle" style="--x:63%;--y:28%;--delay:.62s"></span><span class="weld-particle" style="--x:71%;--y:40%;--delay:.92s"></span><span class="weld-particle" style="--x:67%;--y:31%;--delay:1.24s"></span><span class="weld-particle" style="--x:72%;--y:55%;--delay:1.54s"></span>
-  </div>
-</section>
-<section class="workflow" id="workflow" aria-live="polite">
-  <div class="category-grid" id="category-view">
-    <button class="category-card residential-card" type="button" data-category="residential" aria-label="Explore Residential materials">
-      <img src="build-residential-card.webp" alt="Luxury modern residence with cars in the garage" loading="eager">
-      <span class="category-copy"><span class="category-kicker">RESIDENTIAL</span><span class="category-subtitle">HOMES THAT LAST</span><span class="category-description">Premium material solutions for elegant homes, luxury residences, and lasting comfort.</span><span class="category-cta"><span class="category-arrow">→</span> Explore Residential</span></span>
-    </button>
-    <button class="category-card commercial-card" type="button" data-category="commercial" aria-label="Request a Commercial materials quote">
-      <img src="build-commercial-scene.webp" alt="Active commercial construction site at night" loading="eager">
-      <span class="category-copy"><span class="category-kicker">COMMERCIAL</span><span class="category-subtitle">SPACES THAT GROW</span><span class="category-description">Bulk material support for plazas, apartments, townhouses, and large-scale developments with better wholesale discount potential.</span><span class="category-cta"><span class="category-arrow">→</span> Request a Materials Quote</span></span>
-    </button>
-  </div>
-  <section class="step-view" id="residential-step" aria-labelledby="residential-title">
-    <div class="step-heading"><div><h2 id="residential-title">Choose Your Plot Size</h2><p>Select your residential plot size to start building a materials list and quote.</p></div><button class="back-button" type="button" data-back>← Back</button></div>
-    <div class="plot-grid" id="plot-grid">
-      <button class="plot-card" type="button" data-plot="5 Marla" aria-pressed="false" style="--i:0"><img src="wf-5-marla.webp" alt="5 Marla home" loading="lazy"><span class="plot-copy"><strong>5 Marla</strong><small>Compact family home</small><span class="plot-select">Select size →</span></span></button>
-      <button class="plot-card" type="button" data-plot="10 Marla" aria-pressed="false" style="--i:1"><img src="wf-10-marla.webp" alt="10 Marla home" loading="lazy"><span class="plot-copy"><strong>10 Marla</strong><small>Spacious living</small><span class="plot-select">Select size →</span></span></button>
-      <button class="plot-card" type="button" data-plot="10 Marla + Excess Land" aria-pressed="false" style="--i:2"><img src="wf-10-marla-excess.webp" alt="10 Marla home with excess land" loading="lazy"><span class="plot-copy"><strong>10 Marla + Excess Land</strong><small>Custom land area</small><span class="plot-select">Select size →</span></span></button>
-      <button class="plot-card" type="button" data-plot="11 Marla" aria-pressed="false" style="--i:3"><img src="wf-11-marla.webp" alt="11 Marla luxury home" loading="lazy"><span class="plot-copy"><strong>11 Marla</strong><small>Expanded family residence</small><span class="plot-select">Select size →</span></span></button>
-      <button class="plot-card" type="button" data-plot="1 Kanal" aria-pressed="false" style="--i:4"><img src="wf-1-kanal.webp" alt="1 Kanal residence" loading="lazy"><span class="plot-copy"><strong>1 Kanal</strong><small>Premium living</small><span class="plot-select">Select size →</span></span></button>
-      <button class="plot-card" type="button" data-plot="2 Kanal" aria-pressed="false" style="--i:5"><img src="wf-2-kanal.webp" alt="2 Kanal residence" loading="lazy"><span class="plot-copy"><strong>2 Kanal</strong><small>Luxury living</small><span class="plot-select">Select size →</span></span></button>
-    </div>
-    <div class="step-actions"><div class="selection-summary"><strong id="residential-selection">No plot size selected</strong><span>Choose a size to continue to materials and the quote cart.</span></div><button class="primary-button" id="open-materials" type="button" disabled>Explore Materials &amp; Cart →</button></div>
-  </section>
-</section>
-</main>
 </div>
-<section class="materials-mode" id="materials-mode" role="dialog" aria-modal="true" aria-label="Materials and quote cart">
-  <header class="materials-top">
-    <div class="materials-top-left">
-      <button class="logo materials-brand" type="button" data-nav="home" aria-label="WAYFORTH Raw Materials — Home"><img class="logo-mark" src="wf-actual-logo-decal.png" alt=""><span class="logo-copy"><span class="logo-word">WAYFORTH</span><span class="logo-subtitle">RAW MATERIALS</span></span></button>
-      <div class="materials-top-copy"><span class="materials-eyebrow">WAYFORTH BUILD · LAHORE</span><small id="material-project">Choose Residential or Commercial to begin</small></div>
-    </div>
-    <div class="materials-nav"><button class="materials-nav-secondary" id="return-picker" type="button">← Change Plot Size</button><button class="materials-nav-secondary" id="return-projects" type="button">← Home Page</button><button class="materials-nav-primary" id="go-commercial" type="button">Commercial Project →</button></div>
-  </header>
-  <div class="materials-content">
-    <div class="materials-intro"><div><span class="materials-eyebrow">PROJECT MATERIALS</span><h1 id="materials-intro-title">Build your materials list.</h1><p id="materials-intro-copy">Choose the materials you need, add your estimated quantities, and we’ll prepare a quote tailored to your project.</p></div><div class="materials-step-chip"><span class="step-chip-dot"></span> Quote builder <span>·</span> <span>01 / 02</span></div></div></div>
-    <div class="materials-layout">
-      <section class="material-browser" aria-label="Available construction materials">
-        <div class="materials-browser-head"><div><h2>Choose materials</h2><p>Add one or more items to your project quote.</p></div><label class="material-search-wrap"><span aria-hidden="true">⌕</span><input id="material-search" type="search" placeholder="Search materials…" aria-label="Search materials"></label></div>
-        <div class="material-filters" role="note" aria-label="Approved materials"><span class="approved-materials-note">6 approved material categories · same list for Residential and Commercial</span></div>
-        <div class="material-grid" id="material-grid"></div>
-        <p class="material-help"><span aria-hidden="true">ⓘ</span> Only the six approved categories are shown. Add quantities to your cart and include any specifications in the quote notes.</p>
-      </section>
-      <aside class="cart-panel" aria-label="Quote cart">
-        <div class="cart-head"><div><span class="cart-kicker">YOUR PROJECT BASKET</span><h2>Quote cart</h2><p>Adjust quantities before requesting a quote.</p></div><span class="cart-count" id="cart-count">0 items</span></div>
-        <div class="cart-items" id="cart-items"><div class="cart-empty" id="cart-empty"><span class="cart-empty-icon">＋</span><strong>Your cart is empty</strong><p>Add materials from the list to start your quote.</p></div></div>
-        <div class="cart-summary"><div><span>Material types</span><strong id="cart-line-count">0</strong></div><div><span>Units of measure</span><strong id="cart-total-qty">0</strong></div></div>
-        <form class="material-quote-form" id="material-quote-form">
-          <div class="quote-form-heading"><span class="cart-kicker">NEXT STEP</span><h3>Where should we send the quote?</h3></div>
-          <div class="quote-mini-grid">
-            <div class="field"><label for="material-contact-name">Full name *</label><input id="material-contact-name" name="contactName" autocomplete="name" required placeholder="Your name"></div>
-            <div class="field"><label for="material-contact-phone">WhatsApp / Phone *</label><input id="material-contact-phone" name="phone" type="tel" autocomplete="tel" required placeholder="03XX-XXXXXXX"></div>
-            <div class="field"><label for="material-contact-email">Email (optional)</label><input id="material-contact-email" name="email" type="email" autocomplete="email" placeholder="name@example.com"></div>
-            <div class="field"><label for="material-project-location">Project / delivery area *</label><input id="material-project-location" name="projectLocation" required placeholder="Area, city"></div>
-          </div>
-          <div class="field"><label for="material-quote-notes">Additional details</label><textarea id="material-quote-notes" name="notes" placeholder="Preferred brands, delivery timing, specifications, or other requirements."></textarea></div>
-          <div class="form-status" id="materials-status" role="status" aria-live="polite"></div>
-          <button class="primary-button material-submit" id="submit-material-quote" type="submit" disabled>Request Materials Quote →</button>
-          <p class="cart-disclaimer">No payment is taken here. Final rates and availability are confirmed by the WAYFORTH team.</p>
-        </form>
-      </aside>
-    </div>
-  </div>
-</section>
-<div class="info-modal" id="info-modal" role="dialog" aria-modal="true" aria-labelledby="info-title"><div class="modal-inner"><h2 id="info-title">Contact WAYFORTH</h2><p id="info-copy">Request a quote or contact our team about your construction materials in Lahore.</p><button id="info-action" type="button">Get a Quote</button><button class="secondary" id="info-close" type="button">Close</button></div></div>
 <script>
 (()=>{
-const categoryView=document.getElementById('category-view');
-const residentialStep=document.getElementById('residential-step');
-const plotCards=[...document.querySelectorAll('.plot-card')];
-const materialsMode=document.getElementById('materials-mode');
-const materialGrid=document.getElementById('material-grid');
-const cartItems=document.getElementById('cart-items');
-const searchInput=document.getElementById('material-search');
-const materialQuoteForm=document.getElementById('material-quote-form');
-let project=null;
-let activeFilter='All';
-const cart=new Map();
-const catalog=[
- {id:'steel',name:'Steel / Sariya',brand:'Mughal Steel',code:'STL',description:'Steel reinforcement and sariya',group:'Materials',image:'material-steel.webp',unit:'Kg',units:['Kg','Metric Tons','Pieces','Custom']},
- {id:'cement',name:'Cement',brand:'Maple Leaf Cement',code:'CEM',description:'Cement bags for construction',group:'Materials',image:'material-cement.webp',unit:'Bags',units:['Bags','Metric Tons','Custom']},
- {id:'bricks',name:'Bricks',brand:'Premium Quality',code:'BRK',description:'Construction bricks',group:'Materials',image:'material-bricks.webp',unit:'Pieces',units:['Pieces','Pallets','Custom']},
- {id:'paints',name:'Paints',brand:'Berger Paints',code:'PNT',description:'Paint and coating supplies',group:'Materials',image:'material-paints.webp',unit:'Buckets',units:['Buckets','Litres','Gallons','Custom']},
- {id:'pipes',name:'Pipes',brand:'Popular Pipes',code:'PIP',description:'Pipes and compatible fittings',group:'Materials',image:'material-pipes.webp',unit:'Pieces',units:['Pieces','Feet','Metres','Custom']},
- {id:'electrical',name:'Electrical',brand:'Wires & Fittings',code:'ELE',description:'Electrical wires and fittings',group:'Materials',image:'material-electrical.webp',unit:'Pieces',units:['Pieces','Sets','Rolls','Metres','Custom']}
-];
-function nav(scene){parent.postMessage({type:'wf-single-nav',page:scene},'*')}
-function showModal(which){const copy={contact:['Contact Us','Need construction, trucking or media support? Start an inquiry and the WAYFORTH team can guide you to the right next step.'],about:['About WAYFORTH','WAYFORTH brings together construction materials, trucking, and digital media under one brand focused on dependable execution and lasting partnerships.'],support:['Support','Need help with a project, materials quote, delivery, or ongoing order? Tell WAYFORTH what you need and the team can guide you.']}[which]||['Contact Us','Contact the WAYFORTH team.'];document.getElementById('info-title').textContent=copy[0];document.getElementById('info-copy').textContent=copy[1];document.getElementById('info-modal').classList.add('open')}
-function clearSelection(){project=null;plotCards.forEach(c=>c.setAttribute('aria-pressed','false'));document.getElementById('residential-selection').textContent='No plot size selected';document.getElementById('open-materials').disabled=true}
-function clearCart(){cart.clear();renderCart();renderCatalog();const status=document.getElementById('materials-status');if(status){status.textContent='';status.classList.remove('show')}}
-function setStep(which,preserveSelection=false){
- materialsMode.classList.remove('open');
- if(which==='categories'){clearSelection();clearCart()}
- else if(which==='residential'&&!preserveSelection){clearSelection();clearCart()}
- categoryView.style.display=which==='categories'?'grid':'none';
- residentialStep.classList.toggle('is-active',which==='residential');
- document.getElementById('workflow').scrollIntoView({behavior:'smooth',block:'start'});
-}
-document.querySelectorAll('[data-nav]').forEach(b=>b.addEventListener('click',()=>{const target=b.dataset.nav;if(target==='build'){materialsMode.classList.remove('open');setStep('categories');return}if(target==='quote'){nav('quote');return}nav(target)}));
-document.querySelectorAll('[data-aux]').forEach(b=>b.addEventListener('click',()=>{if(parent!==window)parent.postMessage({type:'wf-aux',name:b.dataset.aux},'*');else showModal(b.dataset.aux)}));
+/* header actions: Home / Support / About / Contact / GET A QUOTE */
+const toParent=m=>{if(parent!==window)parent.postMessage(m,location.origin);else if(m.type==='wf-single-nav')location.href='/';};
+document.querySelectorAll('[data-nav]').forEach(b=>b.addEventListener('click',()=>toParent({type:'wf-single-nav',page:b.dataset.nav})));
+document.querySelectorAll('[data-aux]').forEach(b=>b.addEventListener('click',()=>toParent({type:'wf-aux',name:b.dataset.aux})));
 document.querySelectorAll('[data-guide]').forEach(b=>b.addEventListener('click',()=>{
-  if(window.wfBuildGuideTargets){wfGuide(window.wfBuildGuideTargets(),window.wfBuildGuideText(),{top:Math.round(document.querySelector('.top-wfh').getBoundingClientRect().height)+70});return;}
-  const res=document.querySelector('.residential-step.is-active');
-  const cards=res?res.querySelectorAll('button:not(.back-button)'):document.querySelectorAll('#category-view .category-card');
-  if(cards[0])cards[0].scrollIntoView({behavior:'smooth',block:'center'});
-  setTimeout(()=>wfGuide(cards,res?'Choose your plot size to start your quote':'Choose Residential or Commercial to start your quote'),450);}));
-document.getElementById('info-action').addEventListener('click',()=>{document.getElementById('info-modal').classList.remove('open');nav('quote')});
-document.getElementById('info-close').addEventListener('click',()=>document.getElementById('info-modal').classList.remove('open'));
-document.getElementById('info-modal').addEventListener('click',e=>{if(e.target===e.currentTarget)e.currentTarget.classList.remove('open')});
-document.querySelectorAll('[data-category]').forEach(b=>b.addEventListener('click',()=>{
- const target=b.dataset.category;
- if(target==='residential'){setStep('residential');return}
- if(target==='commercial'){project={kind:'Commercial',option:'Commercial Project'};clearCart();openMaterials()}
-}));
-document.querySelectorAll('[data-back]').forEach(b=>b.addEventListener('click',()=>setStep('categories')));
-plotCards.forEach(b=>b.addEventListener('click',()=>{const next=b.dataset.plot;if(!project||project.option!==next)clearCart();project={kind:'Residential',option:next};plotCards.forEach(c=>c.setAttribute('aria-pressed',String(c===b)));document.getElementById('residential-selection').textContent=`Selected: ${project.option}`;document.getElementById('open-materials').disabled=false}));
-function openMaterials(){
- if(!project)return;
- const isCommercial=project.kind==='Commercial';
- document.getElementById('material-project').textContent=isCommercial?'Commercial project · Bulk order quote':`Residential project · ${project.option} · Tailored materials quote`;
- document.getElementById('materials-intro-title').innerHTML=isCommercial?'Build your <span class="project-kind-highlight">commercial</span> materials list.':'Build your <span class="project-kind-highlight">residential</span> materials list.';
- document.getElementById('materials-intro-copy').textContent=isCommercial?'Choose the materials you need and add your estimated quantities. We’ll prepare a tailored quote and check the best available wholesale pricing for your project.':'Choose the materials you need and add your estimated quantities. We’ll prepare a quote tailored to your selected plot size.';
- document.getElementById('return-picker').textContent=isCommercial?'← Back to Build Options':'← Change Plot Size';
- document.getElementById('go-commercial').hidden=isCommercial;
- materialsMode.classList.add('open');materialsMode.scrollTop=0;renderCart();renderCatalog();
-}
-document.getElementById('open-materials').addEventListener('click',openMaterials);
-window.wfBuildOpen=(kind,option)=>{project={kind,option};if(window.wfmOpen){window.wfmOpen(kind,option);return}clearCart();openMaterials();};
-document.getElementById('return-picker').addEventListener('click',()=>{
- if(document.getElementById('bsr')){materialsMode.classList.remove('open');return}if(project?.kind==='Commercial'){setStep('categories');return}
- setStep('residential',true);
-});
-document.getElementById('return-projects').addEventListener('click',()=>nav('home'));
-document.getElementById('go-commercial').addEventListener('click',()=>{project={kind:'Commercial',option:'Commercial Project'};clearCart();openMaterials()});
-function addToCart(id){const item=catalog.find(x=>x.id===id);if(!item)return;if(cart.has(id)){const current=cart.get(id);current.quantity=(Number(current.quantity)||0)+1}else cart.set(id,{id,quantity:1,unit:item.unit});const status=document.getElementById('materials-status');status.textContent='';status.classList.remove('show');renderCart();renderCatalog()}
-function renderCatalog(){
- if(!materialGrid)return;
- const query=(searchInput?.value||'').trim().toLowerCase();materialGrid.innerHTML='';
- const matches=catalog.filter(item=>(activeFilter==='All'||item.group===activeFilter)&&(!query||`${item.name} ${item.brand} ${item.description} ${item.code}`.toLowerCase().includes(query)));
- if(!matches.length){const empty=document.createElement('div');empty.className='material-empty-search';empty.textContent='No approved materials match your search. Try a different search term.';materialGrid.appendChild(empty);return}
- matches.forEach(item=>{
-  const added=cart.has(item.id);const card=document.createElement('button');card.type='button';card.className=`material-card${added?' is-added':''}`;
-  card.setAttribute('aria-label',`${added?'Add another':'Add'} ${item.name} — ${item.brand} to quote`);
-  card.innerHTML=`<img class="material-photo" src="${item.image}" alt="${item.name} — ${item.brand}" loading="lazy"><span class="material-card-body"><span class="material-card-copy"><strong>${item.name}</strong><small>${item.brand}</small></span><span class="material-add"><span>${added?'✓ Added · add another':'＋ Add to quote'}</span><span>→</span></span></span>`;
-  card.addEventListener('click',()=>addToCart(item.id));materialGrid.appendChild(card);
- });
-}
-document.querySelectorAll('[data-filter]').forEach(button=>button.addEventListener('click',()=>{activeFilter=button.dataset.filter;document.querySelectorAll('[data-filter]').forEach(b=>b.classList.toggle('is-active',b===button));renderCatalog()}));
-searchInput?.addEventListener('input',renderCatalog);
-function renderCart(){if(!cartItems)return;cartItems.innerHTML='';const entries=[...cart.values()];if(!entries.length){const empty=document.createElement('div');empty.className='cart-empty';empty.innerHTML='<span class="cart-empty-icon">＋</span><strong>Your cart is empty</strong><p>Add materials from the list to start your quote.</p>';cartItems.appendChild(empty)}else{entries.forEach(entry=>{const item=catalog.find(x=>x.id===entry.id);if(!item)return;const row=document.createElement('div');row.className='cart-item';const head=document.createElement('div');head.className='cart-item-head';const title=document.createElement('div');title.className='cart-item-title';const name=document.createElement('strong');name.textContent=item.name;const code=document.createElement('small');code.textContent=`${item.brand} · ${item.code}`;title.append(name,code);const remove=document.createElement('button');remove.type='button';remove.className='cart-remove';remove.textContent='Remove';remove.setAttribute('aria-label',`Remove ${item.name}`);remove.addEventListener('click',()=>{cart.delete(entry.id);const status=document.getElementById('materials-status');status.textContent='';status.classList.remove('show');renderCart();renderCatalog()});head.append(title,remove);const controls=document.createElement('div');controls.className='cart-item-controls';const qLabel=document.createElement('label');qLabel.textContent='Quantity';const qty=document.createElement('input');qty.type='number';qty.min='0.01';qty.step='any';qty.value=entry.quantity;qty.setAttribute('aria-label',`${item.name} quantity`);qty.addEventListener('change',()=>{const n=Number(qty.value);if(Number.isFinite(n)&&n>0){entry.quantity=n;renderCart()}else{entry.quantity=1;renderCart()}});qLabel.appendChild(qty);const uLabel=document.createElement('label');uLabel.textContent='Unit';const unit=document.createElement('select');unit.setAttribute('aria-label',`${item.name} unit`);const unitValues=[...new Set((item.units||[]).filter(value=>String(value).trim().toLowerCase()!=='load'&&String(value).trim().toLowerCase()!=='custom')),'Custom'];if(String(entry.unit).trim().toLowerCase()==='load')entry.unit='Custom';if(!unitValues.includes(entry.unit))entry.unit=unitValues.includes(item.unit)?item.unit:unitValues[0];unitValues.forEach(value=>{const opt=document.createElement('option');opt.value=value;opt.textContent=value;if(value===entry.unit)opt.selected=true;unit.appendChild(opt)});unit.addEventListener('change',()=>{entry.unit=unit.value;renderCart()});uLabel.appendChild(unit);if(entry.unit==='Custom'){const help=document.createElement('small');help.className='cart-unit-help';help.textContent='No problem — our team will confirm the right unit and quantity with you.';uLabel.appendChild(help)}controls.append(qLabel,uLabel);row.append(head,controls);cartItems.appendChild(row)})}
-const unitCount=new Set(entries.map(item=>item.unit)).size;document.getElementById('cart-count').textContent=`${entries.length} ${entries.length===1?'item':'items'}`;document.getElementById('cart-line-count').textContent=String(entries.length);document.getElementById('cart-total-qty').textContent=String(unitCount);document.getElementById('submit-material-quote').disabled=entries.length===0;if(entries.length&&document.getElementById('submit-material-quote').textContent!=='Request Materials Quote →')document.getElementById('submit-material-quote').textContent='Request Materials Quote →'}
-materialQuoteForm.addEventListener('submit',e=>{e.preventDefault();if(!cart.size){const status=document.getElementById('materials-status');status.textContent='Please add at least one material to your quote cart first.';status.classList.add('show');return}if(!materialQuoteForm.reportValidity())return;const values=new FormData(materialQuoteForm);const materials=[...cart.values()].map(entry=>{const item=catalog.find(x=>x.id===entry.id);return{material:item?.name||entry.id,quantity:String(entry.quantity),unit:entry.unit,category:item?.group||''}});const request={source:'build-materials-cart',project:{kind:project?.kind||'Residential',option:project?.option||'Residential project'},contactName:values.get('contactName'),companyName:'',phone:values.get('phone'),email:values.get('email'),projectLocation:values.get('projectLocation'),materials,notes:values.get('notes')};parent.postMessage({type:'wf-build-quote',...request,payload:request},'*');const status=document.getElementById('materials-status');status.textContent='Your materials quote request has been sent to the WAYFORTH quote flow. The team will confirm final pricing and availability.';status.classList.add('show');document.getElementById('submit-material-quote').textContent='Quote Request Sent ✓'});
-document.addEventListener('keydown',e=>{if(e.key==='Escape'){const modal=document.getElementById('info-modal');if(modal.classList.contains('open'))modal.classList.remove('open');if(materialsMode.classList.contains('open'))setStep(project?.kind==='Residential'?'residential':'categories',true)}});
-renderCatalog();renderCart();
+  if(window.wfBuildGuideTargets)wfGuide(window.wfBuildGuideTargets(),window.wfBuildGuideText(),{top:Math.round(document.querySelector('.top-wfh').getBoundingClientRect().height)+70});}));
+window.wfBuildOpen=(kind,option)=>{if(window.wfmOpen)window.wfmOpen(kind,option);};
 })();
 </script>
 <!-- WAYFORTH V48 · materials showcase (feathered photo, side cart tray). Opened by window.wfBuildOpen(kind, option). -->
@@ -519,7 +357,7 @@ renderCatalog();renderCart();
   <aside class="cart" id="wfm-cart" aria-label="Quote cart">
     <div class="ctop"><div><span class="badge" id="wfm-badge">⌂ HOME</span><small class="k" id="wfm-ck">YOUR PROJECT BASKET</small><h3 id="wfm-ch">Home project list</h3><p class="cnote" id="wfm-cn">Your materials for one home. Soon: full-build totals for your plot size.</p></div><button class="tuck" id="wfm-tuck" type="button" aria-label="Slide the cart to the side"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg></button></div>
     <div class="lines" id="wfm-lines"></div>
-    <form id="wfm-form" novalidate><input name="contactName" placeholder="Full name" autocomplete="name" aria-label="Full name"><input name="phone" type="tel" placeholder="WhatsApp / phone" autocomplete="tel" aria-label="Phone"><input name="email" type="email" placeholder="Email" autocomplete="email" aria-label="Email"><input name="projectLocation" placeholder="Project / delivery area" aria-label="Project or delivery area"><div class="bulk"><input name="company" placeholder="Company" aria-label="Company"><input name="site" placeholder="Site / phase" aria-label="Site or phase"></div><div class="st" id="wfm-st" role="status"></div><button class="send" type="submit">REQUEST MATERIALS QUOTE →</button></form>
+    <form id="wfm-form" novalidate><input name="contactName" placeholder="Full name" autocomplete="name" aria-label="Full name"><input name="phone" type="tel" placeholder="WhatsApp / phone" autocomplete="tel" aria-label="Phone"><input name="email" type="email" placeholder="Email" autocomplete="email" aria-label="Email"><input name="projectLocation" placeholder="Project / delivery area" aria-label="Project or delivery area"><div class="bulk"><input name="company" placeholder="Company" aria-label="Company"><input name="site" placeholder="Site / phase" aria-label="Site or phase"></div><div class="st" id="wfm-st" role="status"></div><button class="send" type="submit">REQUEST MATERIALS QUOTE →</button><p class="wf-consent">By sending, you agree to our <a href="/privacy" target="_blank" rel="noopener">Privacy Policy</a>. We never sell your details.</p></form>
   </aside>
   <button class="tab" id="wfm-tab" type="button" aria-label="Pull the cart back"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M15 6l-6 6 6 6"/></svg><span>CART</span><i id="wfm-tabn">0</i></button>
   <div class="toast" id="wfm-toast" role="status"></div>
@@ -572,8 +410,12 @@ $('wfm-form').addEventListener('submit',e=>{e.preventDefault();const st=$('wfm-s
   if(!v.contactName.trim()||dg.length<7||dg.length>15||!/^\S+@\S+\.\S{2,}$/.test(v.email||'')){st.className='st err';st.textContent='Please add your name, phone number and a valid email.';return;}
   const materials=[...cart.values()].map(c=>({material:c.m.name,quantity:String(c.q),unit:c.u,category:'Materials'}));
   const isCom=W.classList.contains('com');const req={source:isCom?'build-bulk-order':'build-home-project',project,contactName:v.contactName,companyName:isCom?(v.company||''):'',phone:v.phone,email:v.email,projectLocation:v.projectLocation,materials,notes:isCom&&v.site?('Site / phase: '+v.site):''};
-  if(parent!==window)parent.postMessage({type:'wf-build-quote',...req,payload:req},'*');
-  st.className='st ok';st.textContent='Your materials quote request has been sent to WAYFORTH. The team will confirm pricing and availability.';f.querySelector('.send').disabled=true;f.querySelector('.send').textContent='QUOTE REQUEST SENT ✓';});
+  if(parent!==window)parent.postMessage({type:'wf-build-quote',...req,payload:req},location.origin);
+  const sb=f.querySelector('.send');sb.dataset.label=sb.textContent;sb.disabled=true;sb.textContent='SENDING…';st.className='st';st.textContent='';
+  if(parent===window){st.className='st err';st.textContent='Please open this page through the WAYFORTH website to send.';sb.disabled=false;sb.textContent=sb.dataset.label;}});
+addEventListener('message',e=>{if(e.origin!==location.origin)return;const d=e.data||{};if(d.type!=='wf-build-quote-result')return;const st=$('wfm-st'),sb=$('wfm-form').querySelector('.send');
+  if(d.ok){st.className='st ok';st.textContent='Your materials quote request has been sent to WAYFORTH. The team will confirm pricing and availability.';sb.textContent='QUOTE REQUEST SENT ✓';}
+  else{st.className='st err';st.textContent=d.message||'Could not send right now. Please try again or WhatsApp us.';sb.disabled=false;sb.textContent=sb.dataset.label||'TRY AGAIN →';}});
 /* open / close with the site's Circle Reveal */
 let px=innerWidth/2,py=innerHeight/2;addEventListener('pointerdown',e=>{px=e.clientX;py=e.clientY;},true);
 function topH(){const h=document.querySelector('.wfh');return h?Math.round(h.getBoundingClientRect().bottom):64;}

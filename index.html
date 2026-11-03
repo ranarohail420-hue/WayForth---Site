@@ -6,10 +6,10 @@
 <title>WAYFORTH — Build. Move. Create.</title>
 <meta name="description" content="WAYFORTH brings construction, trucking and media under one company. Build. Move. Create.">
 <meta name="theme-color" content="#04070f">
-<link rel="icon" href="wf-actual-logo-decal.png">
+<link rel="icon" href="/favicon.ico?v=53" sizes="any"><link rel="icon" type="image/png" sizes="192x192" href="/wf-icon-192.png?v=53"><link rel="apple-touch-icon" href="/wf-apple-touch.png?v=53">
 <link rel="preload" href="wf-home-scene-hd.webp" as="image">
-<link rel="stylesheet" href="wf-header.css?v=52">
-<script src="wf-guide.js?v=52"></script>
+<link rel="stylesheet" href="wf-header.css?v=53">
+<script src="wf-guide.js?v=53"></script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,300..900&family=Manrope:wght@400;500;700&family=Playfair+Display:ital,wght@1,700&display=swap">
@@ -240,7 +240,7 @@ body.loading:not(.in-page) .loader{display:block}
   .choices{grid-template-columns:1fr}.row2{grid-template-columns:1fr}
 }
 @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
-</style>
+.wf-hp{position:absolute!important;left:-10000px!important;width:1px!important;height:1px!important;opacity:0!important}.wf-consent{margin:8px 0 0;font-size:11.5px;line-height:1.45;opacity:.72}.wf-consent a{color:inherit;text-decoration:underline}.legal{position:fixed;z-index:4;right:16px;bottom:calc(9px + env(safe-area-inset-bottom,0px));font-size:10px;letter-spacing:.24em;text-transform:uppercase;color:rgba(232,220,192,.55);text-decoration:none}.legal:hover{color:#f2b84b}body.in-page .legal{display:none}</style>
 </head>
 <body>
 
@@ -277,6 +277,7 @@ body.loading:not(.in-page) .loader{display:block}
   </button>
 </main>
 <p class="tagline">Different industries. A brighter tomorrow.</p>
+<a class="legal" href="/privacy">Privacy</a>
 
 <section id="page" aria-live="polite"></section>
 <div class="loader" aria-hidden="true"></div>
@@ -311,7 +312,7 @@ function ensure(name){
   if(frames[name])return frames[name];
   const f=document.createElement('iframe');f.title='WAYFORTH '+name;f.dataset.p=name;f.dataset.ready='';
   f.addEventListener('load',()=>{f.dataset.ready='1';f.dispatchEvent(new Event('wf-ready'));},{once:true});
-  f.src=PAGES[name]+'?v=52';pageEl.appendChild(f);frames[name]=f;return f;}
+  f.src=PAGES[name]+'?v=53';pageEl.appendChild(f);frames[name]=f;return f;}
 function whenReady(f){return f.dataset.ready==='1'?Promise.resolve():new Promise(r=>{body.classList.add('loading');f.addEventListener('wf-ready',()=>{body.classList.remove('loading');r();},{once:true});});}
 function play(kf,opt){return new Promise(r=>{if(reduced){r();return;}anim=pageEl.animate(kf,opt);anim.onfinish=()=>{anim=null;r();};anim.oncancel=()=>{anim=null;r();};});}
 function settle(){ /* make the screen match `current`, whatever happened before */
@@ -323,7 +324,7 @@ function settle(){ /* make the screen match `current`, whatever happened before 
 }
 async function openPage(name,o){
   const f=ensure(name);await whenReady(f);
-  try{f.contentWindow.postMessage({type:'wf-reset'},'*');if(f.contentWindow.wfBuildReset)f.contentWindow.wfBuildReset();}catch(_){}
+  try{f.contentWindow.postMessage({type:'wf-reset'},location.origin);if(f.contentWindow.wfBuildReset)f.contentWindow.wfBuildReset();}catch(_){}
   Object.entries(frames).forEach(([k,fr])=>fr.classList.toggle('on',k===name));
   body.classList.add('in-page');
   await play([{clipPath:`circle(0px at ${o.x}px ${o.y}px)`},{clipPath:`circle(${far(o.x,o.y)}px at ${o.x}px ${o.y}px)`}],{duration:700,easing:EASE_IN});
@@ -366,13 +367,13 @@ addEventListener('popstate',()=>{origin={x:innerWidth/2,y:innerHeight/2};go(rout
 
 /* ---------- messages from the Build / Trucking / Media pages ---------- */
 addEventListener('message',e=>{
-  if(e.origin!==location.origin&&e.origin!=='null')return;
+  if(e.origin!==location.origin||!Object.values(frames).some(f=>f.contentWindow===e.source))return;
   const d=e.data||{};
   if(d.type==='wf-single-nav'){origin={x:innerWidth/2,y:innerHeight/2};go(d.page||'home');}
   else if(d.type==='wf-aux')openAux(d.name);
-  else if(d.type==='wf-build-quote')sendBuildQuote(d.payload||d);
-  else if(d.type==='wf-media-lead'){const src=e.source;send({service:d.service==='support'?'support':'media',serviceLabel:d.label||'Media inquiry',source:'WAYFORTH Media V52',details:d.details||{}})
-    .then(()=>src&&src.postMessage({type:'wf-media-lead-result',ok:true},'*')).catch(err=>src&&src.postMessage({type:'wf-media-lead-result',ok:false,message:err.message},'*'));}
+  else if(d.type==='wf-build-quote')sendBuildQuote(d.payload||d,e.source);
+  else if(d.type==='wf-media-lead'){const src=e.source;send({service:d.service==='support'?'support':'media',serviceLabel:d.label||'Media inquiry',source:'WAYFORTH Media',details:d.details||{}})
+    .then(()=>src&&src.postMessage({type:'wf-media-lead-result',ok:true},location.origin)).catch(err=>src&&src.postMessage({type:'wf-media-lead-result',ok:false,message:err.message},location.origin));}
 });
 
 /* ---------- dialogs ---------- */
@@ -408,21 +409,21 @@ function openContact(){
    <p>${us?'Our US phone line and email are being set up. Until then, message us on WhatsApp and a real agent will reply.':'Call us directly or message us on WhatsApp. We usually reply within the hour during working hours.'}</p>
    <div class="ct-tiles">${tiles.join('')}</div>`,'contact');
 }
-function supportForm(){return `<form id="inq" data-label="Support callback request" data-kind="support" novalidate>
+function supportForm(){return `<form id="inq" data-label="Support callback request" data-kind="support" novalidate><input class="wf-hp" name="wf_hp" tabindex="-1" autocomplete="off" aria-hidden="true">
     <div class="row2"><label>Full name<input id="f-name" name="fullName" autocomplete="name" required></label><label>Phone number to call back<input id="f-phone" name="phone" type="tel" inputmode="tel" autocomplete="tel" placeholder="03XX-XXXXXXX" required></label></div>
     <label>Email (optional)<input id="f-email" name="email" type="email" autocomplete="email"></label>
     <label>How can we help?<textarea id="f-notes" name="notes" placeholder="Order, delivery, quote or anything else"></textarea></label>
     <div class="status" id="f-status" role="status"></div>
-    <div class="actions"><button class="btn primary" type="submit">REQUEST A CALL BACK →</button></div></form>`;}
+    <p class="wf-consent">By sending, you agree to our <a href="/privacy" target="_blank" rel="noopener">Privacy Policy</a>. We never sell your details.</p><div class="actions"><button class="btn primary" type="submit">REQUEST A CALL BACK →</button></div></form>`;}
 function openSupport(){
   if(current==='build'){openDlg(`<div class="sp-ph" style="background-image:url('bs-commercial.webp')"><span>We'll call<br>you back.</span></div><div class="sp-r"><button class="sp-x" type="button" data-close aria-label="Close">×</button><span class="sp-k">WAYFORTH BUILD · SUPPORT</span><h3 id="ovTitle">Support</h3><p>Leave your name and number and the WAYFORTH team will call you back.</p>${supportForm()}</div>`,'split');bindForm();return;}
   openDlg(`<h3 id="ovTitle">Support</h3><p>Leave your name and number and the WAYFORTH team will call you back. Tell us briefly what you need help with.</p>
-   <form id="inq" data-label="Support callback request" data-kind="support" novalidate>
+   <form id="inq" data-label="Support callback request" data-kind="support" novalidate><input class="wf-hp" name="wf_hp" tabindex="-1" autocomplete="off" aria-hidden="true">
     <div class="row2"><label>Full name<input id="f-name" name="fullName" autocomplete="name" required></label><label>Phone number to call back<input id="f-phone" name="phone" type="tel" inputmode="tel" autocomplete="tel" placeholder="03XX-XXXXXXX" required></label></div>
     <label>Email (optional)<input id="f-email" name="email" type="email" autocomplete="email"></label>
     <label>How can we help?<textarea id="f-notes" name="notes" placeholder="Order, delivery, quote, shipment or anything else"></textarea></label>
     <div class="status" id="f-status" role="status"></div>
-    <div class="actions"><button class="btn primary" type="submit">REQUEST A CALL BACK →</button><button class="btn ghost" type="button" data-close>CLOSE</button></div></form>`);
+    <p class="wf-consent">By sending, you agree to our <a href="/privacy" target="_blank" rel="noopener">Privacy Policy</a>. We never sell your details.</p><div class="actions"><button class="btn primary" type="submit">REQUEST A CALL BACK →</button><button class="btn ghost" type="button" data-close>CLOSE</button></div></form>`);
   bindForm();
 }
 const ABOUT={
@@ -462,12 +463,12 @@ function _oldQuote(){
     else go(b.dataset.pick);});
 }
 function formHTML(label){
-  return `<form id="inq" data-label="${label}" novalidate>
+  return `<form id="inq" data-label="${label}" novalidate><input class="wf-hp" name="wf_hp" tabindex="-1" autocomplete="off" aria-hidden="true">
     <div class="row2"><label>Full name<input id="f-name" name="fullName" autocomplete="name" required></label><label>Phone / WhatsApp<input id="f-phone" name="phone" type="tel" inputmode="tel" autocomplete="tel" required></label></div>
     <label>Email<input id="f-email" name="email" type="email" autocomplete="email" required></label>
     <label>Message<textarea id="f-notes" name="notes" placeholder="How can we help?"></textarea></label>
     <div class="status" id="f-status" role="status"></div>
-    <div class="actions"><button class="btn primary" type="submit">SEND →</button><button class="btn ghost" type="button" data-close>CLOSE</button></div></form>`;
+    <p class="wf-consent">By sending, you agree to our <a href="/privacy" target="_blank" rel="noopener">Privacy Policy</a>. We never sell your details.</p><div class="actions"><button class="btn primary" type="submit">SEND →</button><button class="btn ghost" type="button" data-close>CLOSE</button></div></form>`;
 }
 function bindForm(){
   const f=document.getElementById('inq');if(!f)return;
@@ -476,7 +477,7 @@ function bindForm(){
     const optMail=f.dataset.kind==='support';const mailOk=/^\S+@\S+\.\S{2,}$/.test(v.email||'')||(optMail&&!(v.email||'').trim());
     if(!v.fullName.trim()||!mailOk||digits.length<7||digits.length>15){st.className='status err';st.textContent=optMail?'Please add your name and a phone number (7 to 15 digits).':'Please add your name, a valid email and a phone number (7 to 15 digits).';return;}
     const btn=f.querySelector('[type=submit]');btn.disabled=true;btn.textContent='SENDING…';
-    try{await send({service:f.dataset.kind==='support'?'support':'general',serviceLabel:f.dataset.label,source:'WAYFORTH Home V42',details:v});
+    try{await send({service:f.dataset.kind==='support'?'support':'general',serviceLabel:f.dataset.label,source:'WAYFORTH Website',details:v});
       st.className='status ok';st.textContent=f.dataset.kind==='support'?'Thank you. The WAYFORTH team will call you back shortly.':'Thank you. Your message has been sent to WAYFORTH and the team will follow up.';btn.textContent='SENT ✓';setTimeout(closeDlg,2200);}
     catch(err){st.className='status err';st.textContent=err.message;btn.disabled=false;btn.textContent='SEND →';}
   });
@@ -486,13 +487,15 @@ async function send(payload){
   const j=await r.json().catch(()=>({}));if(!r.ok)throw new Error(j.message||'Unable to send right now. Please try again.');return j;
 }
 /* Build materials cart → same lead email endpoint */
-async function sendBuildQuote(q){
-  const lines=(q.materials||[]).map(m=>`${m.material||m.name||'Item'}${m.category?' ('+m.category+')':''}: ${m.quantity||''} ${m.unit||''}`.trim()).join('\n');
-  try{await send({service:'build',serviceLabel:'Build Materials Quote',source:'WAYFORTH Build V38',details:{
-      fullName:q.contactName||'',email:q.email||'',phone:q.phone||'',projectType:(q.project&&q.project.kind)||'',projectOption:(q.project&&q.project.option)||'',
+async function sendBuildQuote(q,src){
+  const lines=(q.materials||[]).slice(0,30).map(m=>`${m.material||m.name||'Item'}${m.category?' ('+m.category+')':''}: ${m.quantity||''} ${m.unit||''}`.trim()).join('\n');
+  const bulk=q.source==='build-bulk-order';
+  const reply=(ok,message)=>src&&src.postMessage({type:'wf-build-quote-result',ok,message},location.origin);
+  try{await send({service:'build',serviceLabel:bulk?'Build — Bulk Order (Commercial)':'Build — Home Project Quote',source:'WAYFORTH Build',details:{
+      fullName:q.contactName||'',email:q.email||'',phone:q.phone||'',company:q.companyName||'',projectType:(q.project&&q.project.kind)||'',projectOption:(q.project&&q.project.option)||'',
       projectLocation:q.projectLocation||'',materials:lines,notes:q.notes||''}});
-    toast('Your materials quote has been sent to WAYFORTH.');}
-  catch(err){toast(err.message);}
+    reply(true);toast('Your materials quote has been sent to WAYFORTH.');}
+  catch(err){reply(false,err.message);toast(err.message);}
 }
 const svc=document.getElementById('svc'),svcBtn=document.getElementById('svcBtn');
 svcBtn.addEventListener('click',e=>{e.stopPropagation();const o=!svc.classList.contains('open');svc.classList.toggle('open',o);svcBtn.setAttribute('aria-expanded',o);});

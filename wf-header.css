@@ -33,7 +33,13 @@
   .wfh-bar{height:60px}
   .wfh-logo{left:14px;height:44px}
   .wfh-nav{display:none}
-  .wfh-quote{left:auto;right:12px;height:36px;min-width:0;padding:0 12px;font-size:10px;letter-spacing:.1em}
+  .wfh-quote{left:auto;right:62px;height:36px;min-width:0;padding:0 12px;font-size:10px;letter-spacing:.1em}
+  .wfh .wfh-burger{display:grid}
+  .wfh.menu-open{container-type:normal}
+  .wfh.menu-open .wfh-nav{display:flex;position:fixed;left:0;right:0;top:60px;max-height:calc(100vh - 60px);overflow:auto;bottom:auto;transform:none;flex-direction:column;align-items:stretch;gap:0;padding:8px 16px 14px;background:rgba(3,10,24,.97);border-bottom:1px solid rgba(46,96,156,.75);box-shadow:0 18px 40px rgba(0,0,0,.5);z-index:30}
+  .wfh.menu-open .wfh-nav button{padding:15px 4px!important;font-size:16px!important;text-align:left;border-bottom:1px solid rgba(255,255,255,.08)}
+  .wfh.menu-open .wfh-nav button:last-child{border-bottom:0}
+  .wfh .wfh-nav button:after{display:none}
   .wfh-logo{height:38px;min-height:38px}
 }
 
@@ -45,3 +51,9 @@
 @keyframes wf-pick{0%,100%{transform:translateY(0) scale(1)}35%{transform:translateY(-12px) scale(1.035)}65%{transform:translateY(2px) scale(.995)}}
 .wf-pick{animation:wf-pick .9s cubic-bezier(.3,.7,.3,1) both;outline:2px solid rgba(255,217,138,.95);outline-offset:4px;box-shadow:0 0 40px rgba(242,184,75,.55)!important}
 @media (prefers-reduced-motion:reduce){.wf-pick{animation:none}.wf-guide i{animation:none}}
+
+.wfh-burger{display:none;position:absolute;right:12px;top:50%;transform:translateY(-50%);width:40px;height:40px;place-items:center;border:1px solid rgba(242,184,75,.45);border-radius:12px;background:rgba(242,184,75,.08);color:#ffd98a;cursor:pointer;padding:0}
+.wfh-burger svg{width:20px;height:20px}
+.wfh{overflow:visible}
+.wfh.menu-open{z-index:500!important}
+@media (max-width:480px){.wfh .wfh-logo{height:30px;min-height:30px}.wfh .wfh-quote{height:34px;padding:0 10px;font-size:9px;letter-spacing:.06em;right:58px}.wfh .wfh-quote svg{display:none}}

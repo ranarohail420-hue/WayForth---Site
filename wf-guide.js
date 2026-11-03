@@ -15,3 +15,13 @@ window.wfGuide=function(targets,text,pos){
       setTimeout(()=>t.classList.remove('wf-pick'),reduced?1400:950);},(round*targets.length+i)*260+(round?320:0)));
   });
 };
+
+/* phone menu: adds a menu button to the shared WAYFORTH header on small screens */
+(function(){function init(){document.querySelectorAll('.wfh').forEach(function(h){var bar=h.querySelector('.wfh-bar'),nav=h.querySelector('.wfh-nav');
+  if(!bar||!nav||bar.querySelector('.wfh-burger'))return;var b=document.createElement('button');b.type='button';b.className='wfh-burger';b.setAttribute('aria-label','Open menu');b.setAttribute('aria-expanded','false');
+  b.innerHTML='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>';
+  bar.appendChild(b);var set=function(o){h.classList.toggle('menu-open',o);b.setAttribute('aria-expanded',String(o));};
+  b.addEventListener('click',function(e){e.stopPropagation();set(!h.classList.contains('menu-open'));});
+  nav.addEventListener('click',function(){set(false);});document.addEventListener('click',function(e){if(!h.contains(e.target))set(false);});
+  document.addEventListener('keydown',function(e){if(e.key==='Escape')set(false);});});}
+ if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init);else init();})();

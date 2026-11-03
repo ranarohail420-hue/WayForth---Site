@@ -1,0 +1,48 @@
+WAYFORTH V53 — CLEAN BUILD, MOBILE MENU & WEBSITE SECURITY
+===========================================================
+
+COMMIT NAME
+WAYFORTH V53 — Clean Build, Mobile Menu, Privacy & Security
+
+WHY YOU SAW OLD PAGES
+The old tab was an old Vercel deployment link (wayforth-site-xxxxxxx-way-forth.vercel.app).
+Vercel keeps every past deployment at its own permanent link, so that link will always
+show the old site. Your live site (the production domain) shows V53. Step 4 below locks
+those old links so nobody else can open them.
+
+CHANGES FROM V52
+1. Clean build: only the live pages and the files they use are published. Old files still
+   sitting in the GitHub repository from earlier versions can no longer appear on the site
+   (any old address now shows a "This page has moved" page with a button to WAYFORTH).
+2. Old hidden Build-page code (the first catalog, cart and hero from V5–V38) removed.
+3. New tab icon (square WAYFORTH logo, favicon.ico + phone home-screen icon) on every page.
+4. Phones: Build and Trucking now have a menu button (Home · Support · About Us · Contact Us).
+   Trucking header now stays across the full phone screen.
+5. Build quote cart now waits for the real send result (shows SENDING… then SENT or the
+   error), and the Commercial company name is included in the email.
+6. Privacy Policy page at /privacy, a "Privacy" link on the home page and a consent line under
+   every form.
+7. Security:
+   - Strict Content-Security-Policy on every page (only WAYFORTH's own scripts can run).
+   - Security headers: HTTPS-only (HSTS), no framing by other sites, no MIME sniffing,
+     camera/mic/location blocked, strict referrer.
+   - Pages only accept messages from WAYFORTH itself.
+   - Form email endpoint: same-site only, JSON only, size limit, rate limit (10 per 10 min
+     per visitor), spam trap, strict validation, everything escaped in the email,
+     no customer data written to logs, nothing stored on the server.
+   - robots.txt and /.well-known/security.txt added.
+
+DEPLOY
+1. Extract this ZIP into the ROOT of the WAYFORTH GitHub repository and replace matching files.
+   (Delete team-ahmad.webp and team-rohail.webp from the repository if they are there.)
+2. Commit with the exact message above. Vercel settings stay the same.
+3. Press Ctrl+Shift+R once after deploy (or close and reopen old tabs).
+4. Vercel → Project → Settings → Deployment Protection → turn on "Vercel Authentication"
+   with "Standard Protection". Old deployment links then need your Vercel login; the live
+   site stays public.
+5. Optional: Vercel → Deployments → delete very old deployments you no longer need.
+
+STILL NEEDED BEFORE LAUNCH (environment variables in Vercel)
+RESEND_API_KEY, WAYFORTH_FROM_EMAIL, WAYFORTH_LEADS_EMAIL — then send one test from each form.
+After you connect the GoDaddy domain, also add WAYFORTH_ALLOWED_HOSTS = wayforth.ltd,www.wayforth.ltd
+(only if forms show "Request blocked").
