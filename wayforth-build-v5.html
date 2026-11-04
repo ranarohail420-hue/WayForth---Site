@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="theme-color" content="#030a18">
-<link rel="icon" href="/favicon.ico?v=57" sizes="any"><link rel="icon" type="image/png" sizes="192x192" href="/wf-icon-192.png?v=57"><link rel="apple-touch-icon" href="/wf-apple-touch.png?v=57"><meta name="theme-color" content="#080c18"><title>WAYFORTH BUILD — Lahore | Build Your Dream</title>
+<link rel="icon" href="/favicon.ico?v=60" sizes="any"><link rel="icon" type="image/png" sizes="192x192" href="/wf-icon-192.png?v=60"><link rel="apple-touch-icon" href="/wf-apple-touch.png?v=60"><meta name="theme-color" content="#080c18"><title>WAYFORTH BUILD — Lahore | Build Your Dream</title>
 <style>
 :root{--gold:#f0c77a;--gold-strong:#ffc95f;--blue:#55b8ff;--navy:#041020;--muted:#b2c0d4;--panel:#061326;--line:rgba(240,199,122,.42)}
 *{box-sizing:border-box}
@@ -88,9 +88,9 @@ nav{display:flex;gap:clamp(0px,.2vw,4px);align-items:center}nav button{color:#d5
 @media(max-width:620px){.materials-top{flex-direction:column;align-items:stretch}.materials-top-left{width:100%}.materials-brand .logo-copy{display:flex}.materials-nav{max-width:none;width:100%;justify-content:flex-start}.materials-nav button{flex:1 1 auto}.materials-content{padding-top:18px}.materials-intro h1{font-size:clamp(28px,8.4vw,38px)}}
 
 .wf-consent{margin:8px 0 0;font-size:11.5px;line-height:1.45;opacity:.72}.wf-consent a{color:inherit;text-decoration:underline}</style>
-<link rel="stylesheet" href="wf-header.css?v=57">
+<link rel="stylesheet" href="wf-header.css?v=60">
 <style>html,body{overflow-x:hidden}.top-wfh{position:sticky;top:0;z-index:60;width:100vw;margin-left:calc(50% - 50vw);margin-right:0}.top-wfh .wfh-nav button{color:#eef2f9!important;background:none!important;border:0!important;border-radius:0!important;padding:6px 0!important;letter-spacing:.01em!important}</style>
-<script src="wf-guide.js?v=57"></script>
+<script src="wf-guide.js?v=60"></script>
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,300..900&family=Manrope:wght@400;500;700&display=swap">
 <style>/* WAYFORTH Build Showroom V45 — full-height panels + circle reveal */
 body.bsr-on main{display:none!important}
@@ -262,7 +262,7 @@ window.wfBuildOpen=(kind,option)=>{if(window.wfmOpen)window.wfmOpen(kind,option)
 #wfm.tray-off .media{right:0}
 #wfm .ph{position:absolute;inset:0;overflow:hidden;transform:translate3d(100%,0,0);transition:transform 1s cubic-bezier(.77,0,.18,1)}
 #wfm .ph .in{position:absolute;inset:0;transform:translate3d(-100%,0,0);transition:transform 1s cubic-bezier(.77,0,.18,1)}
-#wfm .ph.back{transform:translate3d(-100%,0,0)}#wfm .ph.back .in{transform:translate3d(100%,0,0)}
+#wfm .ph.rev{transform:translate3d(-100%,0,0)}#wfm .ph.rev .in{transform:translate3d(100%,0,0)}
 #wfm .ph.on,#wfm .ph.on .in{transform:none}
 #wfm .ph.idle{visibility:hidden}
 #wfm .ph.notr,#wfm .ph.notr .in,#wfm .ph.notr img{transition:none!important}
@@ -378,17 +378,19 @@ let loaded=false;function load(){if(loaded)return;loaded=true;layers.forEach(l=>
 let i=-1,z=1,project={kind:'Residential',option:'Residential project'};
 function show(k,dir){k=(k+N)%N;if(k===i)return;const first=i<0,prev=i;i=k;const m=M[i];
   W.style.setProperty('--t',m.t);
-  const L=layers[i];L.classList.add('notr');L.classList.remove('on','idle');L.classList.toggle('back',dir<0);L.style.zIndex=++z;void L.offsetWidth;L.classList.remove('notr');L.classList.add('on');
-  if(prev>=0){const P=layers[prev];setTimeout(()=>{if(i!==prev){P.classList.add('notr','idle');P.classList.remove('on');void P.offsetWidth;P.classList.remove('notr');}},1050);}
+  const L=layers[i];L.classList.add('notr');L.classList.remove('on','idle');L.classList.toggle('rev',dir<0);L.style.zIndex=++z;void L.offsetWidth;L.classList.remove('notr');L.classList.add('on');
+  if(prev>=0){const me=i;setTimeout(()=>{if(i!==me)return;layers.forEach((P,j)=>{if(j!==me&&!P.classList.contains('idle')){P.classList.add('notr','idle');P.classList.remove('on');void P.offsetWidth;P.classList.remove('notr');}});},1050);}
   const cut=$('wfm-cut');cut.style.zIndex=z+1;
   if(m.cut){cut.classList.remove('on');setTimeout(()=>{$('wfm-cutimg').src=m.cut;cut.classList.add('on');},first?0:380);}else cut.classList.remove('on');
   const an=$('wfm-anim');an.classList.add('out');
   setTimeout(()=>{$('wfm-ix').textContent=String(i+1).padStart(2,'0');$('wfm-brand').textContent=m.brand;$('wfm-name').textContent=m.name;$('wfm-desc').textContent=m.desc;
     $('wfm-spec').innerHTML=m.spec.map(s=>`<li>${s}</li>`).join('');$('wfm-u').innerHTML=unitsFor(m).map(u=>`<option>${u}</option>`).join('');$('wfm-q').value=1;an.classList.remove('out');},first?60:380);}
-let lock=0;const go=d=>{const n=performance.now();if(n<lock)return;lock=n+700;show(i+d,d);};
+let lock=0;const go=d=>{const n=performance.now();if(n<lock)return;lock=n+900;show(i+d,d);};
 $('wfm-prev').onclick=()=>go(-1);$('wfm-next').onclick=()=>go(1);
 addEventListener('keydown',e=>{if(!W.classList.contains('on')||e.target.closest('input,select'))return;if(e.key==='ArrowRight')go(1);if(e.key==='ArrowLeft')go(-1);if(e.key==='Escape')close();});
-media.addEventListener('wheel',e=>{e.preventDefault();const d=Math.sign(e.deltaY||e.deltaX);if(d)go(d);},{passive:false});
+/* one material per scroll gesture (up or down); momentum can never skip items */
+let wgl=false,wgt=0,wacc=0;media.addEventListener('wheel',e=>{e.preventDefault();clearTimeout(wgt);wgt=setTimeout(()=>{wgl=false;wacc=0;},240);if(wgl)return;
+  wacc+=(Math.abs(e.deltaY)>=Math.abs(e.deltaX)?e.deltaY:e.deltaX);if(Math.abs(wacc)<30)return;const d=Math.sign(wacc);wacc=0;wgl=true;go(d);},{passive:false});
 let sx=null;W.addEventListener('pointerdown',e=>{if(!e.target.closest('input,select,button,.cart'))sx=e.clientX;});addEventListener('pointerup',e=>{if(sx===null)return;const d=e.clientX-sx;sx=null;if(Math.abs(d)>60)go(-Math.sign(d));});
 /* cart (kept for the whole visit) */
 const carts={home:new Map(),com:new Map()};let cart=carts.home;
