@@ -5,7 +5,7 @@
 'use strict';
 const fs = require('fs'), path = require('path'), crypto = require('crypto');
 const root = process.cwd(), dist = path.join(root, 'dist');
-const VERSION = 'V57';
+const VERSION = 'V61';
 const PAGES = ['index.html', 'wayforth-build-v5.html', 'wayforth-trucking-v22.html', 'wayforth-media.html', 'privacy.html', '404.html'];
 const SHARED = ['wf-header.css', 'wf-guide.js'];
 const ALWAYS = ['favicon.ico'];

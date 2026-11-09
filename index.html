@@ -6,10 +6,10 @@
 <title>WAYFORTH — Build. Move. Create.</title>
 <meta name="description" content="WAYFORTH brings construction, trucking and media under one company. Build. Move. Create.">
 <meta name="theme-color" content="#04070f">
-<link rel="icon" href="/favicon.ico?v=57" sizes="any"><link rel="icon" type="image/png" sizes="192x192" href="/wf-icon-192.png?v=57"><link rel="apple-touch-icon" href="/wf-apple-touch.png?v=57">
+<link rel="icon" href="/favicon.ico?v=61" sizes="any"><link rel="icon" type="image/png" sizes="192x192" href="/wf-icon-192.png?v=61"><link rel="apple-touch-icon" href="/wf-apple-touch.png?v=61">
 <link rel="preload" href="wf-home-scene-hd.webp" as="image">
-<link rel="stylesheet" href="wf-header.css?v=57">
-<script src="wf-guide.js?v=57"></script>
+<link rel="stylesheet" href="wf-header.css?v=61">
+<script src="wf-guide.js?v=61"></script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,300..900&family=Manrope:wght@400;500;700&family=Playfair+Display:ital,wght@1,700&display=swap">
@@ -104,6 +104,7 @@ body.busy #home,body.busy .nav{pointer-events:none}
 .loader{position:fixed;z-index:26;left:50%;top:50%;width:46px;height:46px;margin:-23px 0 0 -23px;border-radius:50%;border:2px solid rgba(242,184,75,.2);border-top-color:var(--gold);animation:spin .8s linear infinite;display:none}
 body.loading:not(.in-page) .loader{display:block}
 @keyframes spin{to{transform:rotate(360deg)}}
+
 
 /* ---------- dialogs ---------- */
 .overlay{position:fixed;inset:0;z-index:60;display:none;place-items:center;padding:20px;background:rgba(2,6,13,.78);backdrop-filter:blur(12px)}
@@ -240,7 +241,34 @@ body.loading:not(.in-page) .loader{display:block}
   .choices{grid-template-columns:1fr}.row2{grid-template-columns:1fr}
 }
 @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
-.wf-hp{position:absolute!important;left:-10000px!important;width:1px!important;height:1px!important;opacity:0!important}.wf-consent{margin:8px 0 0;font-size:11.5px;line-height:1.45;opacity:.72}.wf-consent a{color:inherit;text-decoration:underline}.legal{position:fixed;z-index:4;right:16px;bottom:calc(9px + env(safe-area-inset-bottom,0px));font-size:10px;letter-spacing:.24em;text-transform:uppercase;color:rgba(232,220,192,.55);text-decoration:none}.legal:hover{color:#f2b84b}body.in-page .legal{display:none}</style>
+.wf-hp{position:absolute!important;left:-10000px!important;width:1px!important;height:1px!important;opacity:0!important}.wf-consent{margin:8px 0 0;font-size:11.5px;line-height:1.45;opacity:.72}.wf-consent a{color:inherit;text-decoration:underline}.legal{position:fixed;z-index:4;right:16px;bottom:calc(9px + env(safe-area-inset-bottom,0px));font-size:10px;letter-spacing:.24em;text-transform:uppercase;color:rgba(232,220,192,.55);text-decoration:none}.legal:hover{color:#f2b84b}body.in-page .legal{display:none}
+.wff{position:fixed;z-index:4;left:0;right:0;bottom:0;display:flex;align-items:center;justify-content:space-between;gap:16px;padding:9px max(18px,2vw) calc(9px + env(safe-area-inset-bottom,0px));font-size:12px;color:rgba(232,220,192,.72);background:linear-gradient(0deg,rgba(2,5,12,.92),rgba(2,5,12,.55));border-top:1px solid rgba(242,184,75,.18);letter-spacing:.02em}
+.wff b{color:#f2b84b;letter-spacing:.12em}.wff a{color:inherit;text-decoration:none}.wff a:hover{color:#ffd98a}.wff-c{display:flex;gap:10px;align-items:center;flex-wrap:wrap;justify-content:center}.wff i{font-style:normal;opacity:.5}
+body.in-page .wff{display:none}
+.tagline{bottom:calc(46px + env(safe-area-inset-bottom,0px))!important}
+.wfc{position:fixed;z-index:150;right:max(18px,1.6vw);bottom:calc(62px + env(safe-area-inset-bottom,0px));display:flex;flex-direction:column;align-items:flex-end;gap:12px;transition:right .55s cubic-bezier(.22,1,.36,1),bottom .4s,opacity .3s}
+body.in-page .wfc{bottom:calc(20px + env(safe-area-inset-bottom,0px))}
+body.ui-tray .wfc{right:calc(min(380px,92vw) + 16px)}
+body.ui-modal .wfc{opacity:0;pointer-events:none}
+body:has(.overlay.open) .wfc{opacity:0;pointer-events:none}
+.wfc-b{position:relative;width:60px;height:60px;border-radius:50%;border:0;cursor:pointer;display:grid;place-items:center;color:#14100b;background:linear-gradient(180deg,#ffd98a,#f2b84b);box-shadow:0 12px 30px rgba(242,184,75,.45),inset 0 1px 0 rgba(255,255,255,.6)}
+.wfc-b:before{content:"";position:absolute;inset:-7px;border-radius:50%;border:2px solid rgba(242,184,75,.55);animation:wfcp 2.4s infinite}
+@keyframes wfcp{to{transform:scale(1.35);opacity:0}}
+.wfc-b svg{width:27px;height:27px;transition:transform .35s,opacity .25s}.wfc-b .i2{position:absolute;opacity:0;transform:rotate(-90deg)}
+.wfc.open .wfc-b .i1{opacity:0;transform:rotate(90deg)}.wfc.open .wfc-b .i2{opacity:1;transform:none}.wfc.open .wfc-b:before{animation:none;opacity:0}
+.wfc-tip{position:absolute;right:72px;top:50%;transform:translateY(-50%);white-space:nowrap;background:#fff;color:#111;font:700 13px/1 "Manrope",Arial,sans-serif;padding:10px 13px;border-radius:12px;box-shadow:0 8px 24px rgba(0,0,0,.3);transition:opacity .3s}
+.wfc-tip:after{content:"";position:absolute;right:-5px;top:50%;width:10px;height:10px;background:#fff;transform:translateY(-50%) rotate(45deg)}
+.wfc.open .wfc-tip,.wfc.tipoff .wfc-tip{opacity:0;pointer-events:none}
+.wfc-p{width:min(300px,calc(100vw - 36px));padding:14px;border-radius:18px;background:#0d1626;border:1px solid rgba(242,184,75,.4);box-shadow:0 24px 60px rgba(0,0,0,.6);transform-origin:100% 100%;animation:wfcin .35s cubic-bezier(.22,1,.36,1)}
+.wfc-p[hidden]{display:none}@keyframes wfcin{from{opacity:0;transform:translateY(10px) scale(.96)}}
+.wfc-p small{display:block;font:800 10.5px/1.2 "Manrope",Arial,sans-serif;letter-spacing:.2em;color:#ffd98a;margin:2px 4px 10px}
+.wfc-r{display:flex;align-items:center;gap:12px;width:100%;padding:11px 12px;margin-top:7px;border-radius:12px;border:1px solid rgba(255,255,255,.08);background:rgba(255,255,255,.04);color:#eef2fa;text-decoration:none;font:600 13px/1.3 "Manrope",Arial,sans-serif;text-align:left;cursor:pointer;transition:background .2s,border-color .2s}
+.wfc-r:hover{background:rgba(242,184,75,.12);border-color:rgba(242,184,75,.4)}
+.wfc-r i{flex:none;width:34px;height:34px;border-radius:10px;display:grid;place-items:center;font-style:normal;background:rgba(242,184,75,.18);color:#ffd98a}.wfc-r i svg{width:18px;height:18px}
+.wfc-r.wa i{background:#25d366;color:#fff}.wfc-r b{display:block;font-size:13.5px;color:#fff}.wfc-r span{color:#a9b3c7;font-size:12px}
+body:not(.in-page) .wfc-tip{display:none}
+@media (max-width:700px){.wff{display:none}.wfc{bottom:calc(20px + env(safe-area-inset-bottom,0px))}.wfc-b{width:54px;height:54px}.wfc-tip{display:none}body.ui-tray .wfc{right:18px;opacity:0;pointer-events:none}}
+.vp-em{display:block;margin-top:6px;font-size:12px;color:#d9d2ff;text-decoration:none;letter-spacing:.02em}.vp-em:hover{color:#fff;text-decoration:underline}</style>
 </head>
 <body>
 
@@ -277,7 +305,9 @@ body.loading:not(.in-page) .loader{display:block}
   </button>
 </main>
 <p class="tagline">Different industries. A brighter tomorrow.</p>
-<a class="legal" href="/privacy">Privacy</a>
+<footer class="wff" aria-label="Footer"><span>© 2026 <b>WAYFORTH</b></span><span class="wff-c"><a href="mailto:Support@wayforth.ltd">Support@wayforth.ltd</a><i>·</i><a href="tel:+923231466332">PK 0323-146 6332</a><i>·</i><a href="tel:+14102620680">US +1 (410) 262-0680</a></span><a href="/privacy">Privacy</a></footer>
+<div class="wfc" id="wfc"><div class="wfc-p" id="wfc-p" role="dialog" aria-label="Contact options" hidden><small id="wfc-k"></small><div id="wfc-l"></div></div>
+<button class="wfc-b" id="wfc-b" type="button" aria-expanded="false" aria-controls="wfc-p"><span class="wfc-tip">Contact us</span><svg class="i1" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 11.5a8.4 8.4 0 0 1-12.4 7.4L3 20.5l1.6-5.4A8.4 8.4 0 1 1 21 11.5z"/><path d="M8.5 10h7M8.5 13.5h4.5"/></svg><svg class="i2" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></button></div>
 
 <section id="page" aria-live="polite"></section>
 <div class="loader" aria-hidden="true"></div>
@@ -312,10 +342,11 @@ function ensure(name){
   if(frames[name])return frames[name];
   const f=document.createElement('iframe');f.title='WAYFORTH '+name;f.dataset.p=name;f.dataset.ready='';
   f.addEventListener('load',()=>{f.dataset.ready='1';f.dispatchEvent(new Event('wf-ready'));},{once:true});
-  f.src=PAGES[name]+'?v=57';pageEl.appendChild(f);frames[name]=f;return f;}
+  f.src=PAGES[name]+'?v=61';pageEl.appendChild(f);frames[name]=f;return f;}
 function whenReady(f){return f.dataset.ready==='1'?Promise.resolve():new Promise(r=>{body.classList.add('loading');f.addEventListener('wf-ready',()=>{body.classList.remove('loading');r();},{once:true});});}
 function play(kf,opt){return new Promise(r=>{if(reduced){r();return;}anim=pageEl.animate(kf,opt);anim.onfinish=()=>{anim=null;r();};anim.oncancel=()=>{anim=null;r();};});}
 function settle(){ /* make the screen match `current`, whatever happened before */
+  if(window.wfContactClose)window.wfContactClose();
   const inPage=current!=='home';
   body.classList.toggle('in-page',inPage);body.classList.remove('closing');body.classList.toggle('settled',inPage);
   Object.entries(frames).forEach(([k,f])=>f.classList.toggle('on',inPage&&k===current));
@@ -388,29 +419,50 @@ const AUX={
   media:['Work with WAYFORTH Media','Tell us about your channel, brand or project and the media team will follow up.'],
   support:['Support','Need help with a quote, an ongoing project, a shipment or a media service? Send the details and we will point you to the right person.']
 };
-const WA='https://wa.me/923231466332';
-const PH=[['0323-146 6332','+923231466332'],['0321-402 2222','+923214022222']];
+const WA='https://wa.me/923231466332',WA_US='https://wa.me/14102620680',MAIL='Support@wayforth.ltd';
+const PH=[['0323-146 6332','+923231466332'],['0321-402 2222','+923214022222']],US=['+1 (410) 262-0680','+14102620680'];
 const WA_SVG='<svg viewBox="0 0 32 32" aria-hidden="true"><path fill="currentColor" d="M16 3C8.8 3 3 8.7 3 15.8c0 2.5.7 4.9 2 7L3 29l6.4-2c2 1.1 4.3 1.7 6.6 1.7 7.2 0 13-5.7 13-12.8S23.2 3 16 3zm0 23.4c-2.1 0-4.1-.6-5.9-1.7l-.4-.3-3.8 1.2 1.2-3.7-.3-.4a10.4 10.4 0 0 1-1.8-5.7C5 10 10 5.2 16 5.2S27 10 27 15.8s-5 10.6-11 10.6zm6-7.9c-.3-.2-1.9-.9-2.2-1s-.5-.2-.7.2-.8 1-1 1.2-.4.2-.7 0a8.8 8.8 0 0 1-4.4-3.8c-.3-.6.3-.5.9-1.7.1-.2 0-.4 0-.5l-1-2.4c-.3-.6-.5-.5-.7-.5h-.6c-.2 0-.6.1-.9.4s-1.1 1.1-1.1 2.7 1.2 3.1 1.3 3.3 2.3 3.5 5.5 4.9c2 .9 2.8.9 3.8.8.6-.1 1.9-.8 2.2-1.5s.3-1.3.2-1.5c-.1-.1-.3-.2-.6-.3z"/></svg>';
 const MAIL_SVG='<svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M3 5h18a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1zm1 3.2V17h16V8.2l-8 5-8-5zM5.2 7l6.8 4.25L18.8 7H5.2z"/></svg>';
 const TEL_SVG='<svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M6.6 10.8a15.1 15.1 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.25 11.4 11.4 0 0 0 3.6.57 1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.25.2 2.45.57 3.57a1 1 0 0 1-.25 1z"/></svg>';
+/* ---------- Contact button: one tap, then the best options for the market on screen ---------- */
+(()=>{const box=document.getElementById('wfc'),btn=document.getElementById('wfc-b'),pan=document.getElementById('wfc-p'),L=document.getElementById('wfc-l'),K=document.getElementById('wfc-k');
+ const row=(cls,href,ic,b,s)=>`<a class="wfc-r ${cls}" href="${href}"${href.startsWith('http')?' target="_blank" rel="noopener"':''}><i>${ic}</i><span><b>${b}</b>${s}</span></a>`;
+ const cb=`<button class="wfc-r" type="button" data-cb><i>↺</i><span><b>Request a call back</b>Leave your number, we call you</span></button>`;
+ const mail=row('','mailto:'+MAIL,MAIL_SVG,'Email support',MAIL);
+ const PK=[row('wa',WA,WA_SVG,'WhatsApp','0323-146 6332'),row('','tel:'+PH[0][1],TEL_SVG,'Call','0323-146 6332'),row('','tel:'+PH[1][1],TEL_SVG,'Call','0321-402 2222')];
+ const USR=[row('wa',WA_US,WA_SVG,'WhatsApp',US[0]),row('','tel:'+US[1],TEL_SVG,'Call or text',US[0])];
+ const fill=()=>{const c=current;
+   if(c==='build'){K.textContent='WAYFORTH BUILD · PAKISTAN';L.innerHTML=PK.join('')+mail+cb;}
+   else if(c==='trucking'||c==='media'){K.textContent=(c==='media'?'WAYFORTH MEDIA':'WAYFORTH TRUCKING')+' · UNITED STATES';L.innerHTML=USR.join('')+mail+cb;}
+   else{K.textContent='WAYFORTH · HOW CAN WE HELP?';L.innerHTML=mail+row('wa',WA,WA_SVG,'WhatsApp · Build (Pakistan)','0323-146 6332')+row('wa',WA_US,WA_SVG,'WhatsApp · Trucking & Media (US)',US[0])+cb;}};
+ const set=o=>{box.classList.toggle('open',o);pan.hidden=!o;btn.setAttribute('aria-expanded',o);if(o){fill();box.classList.add('tipoff');}};
+ btn.addEventListener('click',e=>{e.stopPropagation();set(pan.hidden);});
+ L.addEventListener('click',e=>{if(e.target.closest('[data-cb]')){set(false);openSupport();}else if(e.target.closest('a'))set(false);});
+ document.addEventListener('click',e=>{if(!box.contains(e.target))set(false);});
+ addEventListener('keydown',e=>{if(e.key==='Escape')set(false);});
+ addEventListener('message',e=>{if(e.origin!==location.origin)return;const d=e.data||{};if(d.type!=='wf-ui')return;
+   if('tray' in d)body.classList.toggle('ui-tray',!!d.tray);if('modal' in d)body.classList.toggle('ui-modal',!!d.modal);if(d.tray||d.modal)set(false);});
+ window.wfContactClose=()=>{set(false);body.classList.remove('ui-tray','ui-modal');};
+ setTimeout(()=>box.classList.add('tipoff'),9000);})();
 function openContact(){
   if(current==='build'){
-    const tiles=[...PH.map(([n,tel],i)=>`<a class="ct-t" href="tel:${tel}"><span class="ct-i">${TEL_SVG}</span><small>LINE ${i+1}</small><b>${n}</b><em>CALL →</em></a>`),`<a class="ct-t wa" href="${WA}" target="_blank" rel="noopener"><span class="ct-i">${WA_SVG}</span><small>WHATSAPP</small><b>Chat now</b><em>OPEN →</em></a>`];
-    openDlg(`<div class="sp-ph" style="background-image:url('bs-commercial.webp')"><span>Let's<br>build.</span></div><div class="sp-r"><button class="sp-x" type="button" data-close aria-label="Close">×</button><span class="sp-k">WAYFORTH BUILD · LAHORE</span><h3 id="ovTitle">Contact Us</h3><p>Call us or message us on WhatsApp.</p><div class="ct-tiles">${tiles.join('')}</div></div>`,'split');return;}
-  const us=current==='trucking';
+    const tiles=[...PH.map(([n,tel],i)=>`<a class="ct-t" href="tel:${tel}"><span class="ct-i">${TEL_SVG}</span><small>LINE ${i+1}</small><b>${n}</b><em>CALL →</em></a>`),`<a class="ct-t wa" href="${WA}" target="_blank" rel="noopener"><span class="ct-i">${WA_SVG}</span><small>WHATSAPP</small><b>Chat now</b><em>OPEN →</em></a>`,`<a class="ct-t" href="mailto:${MAIL}"><span class="ct-i">${MAIL_SVG}</span><small>EMAIL</small><b>${MAIL}</b><em>WRITE →</em></a>`];
+    openDlg(`<div class="sp-ph" style="background-image:url('bs-commercial.webp')"><span>Let's<br>build.</span></div><div class="sp-r"><button class="sp-x" type="button" data-close aria-label="Close">×</button><span class="sp-k">WAYFORTH BUILD · LAHORE</span><h3 id="ovTitle">Contact Us</h3><p>Call us, message us on WhatsApp or email our support team.</p><div class="ct-tiles">${tiles.join('')}</div></div>`,'split');return;}
+  const us=current==='trucking'||current==='media';
+  const mailT=`<a class="ct-t" href="mailto:${MAIL}"><span class="ct-i">${MAIL_SVG}</span><small>EMAIL</small><b>${MAIL}</b><em>WRITE →</em></a>`;
   const tiles=us?[
-     `<div class="ct-t soon"><span class="ct-i">${TEL_SVG}</span><small>US LINE</small><b>Coming soon</b><em>To be added</em></div>`,
-     `<div class="ct-t soon"><span class="ct-i">${MAIL_SVG}</span><small>EMAIL</small><b>Coming soon</b><em>To be added</em></div>`,
-     `<a class="ct-t wa" href="${WA}" target="_blank" rel="noopener"><span class="ct-i">${WA_SVG}</span><small>WHATSAPP</small><b>Chat now</b><em>OPEN →</em></a>`]
+     `<a class="ct-t" href="tel:${US[1]}"><span class="ct-i">${TEL_SVG}</span><small>US LINE</small><b>${US[0]}</b><em>CALL →</em></a>`,
+     `<a class="ct-t wa" href="${WA_US}" target="_blank" rel="noopener"><span class="ct-i">${WA_SVG}</span><small>WHATSAPP</small><b>${US[0]}</b><em>OPEN →</em></a>`,mailT]
+   :current==='home'?[mailT,`<a class="ct-t" href="tel:${PH[0][1]}"><span class="ct-i">${TEL_SVG}</span><small>PAKISTAN · BUILD</small><b>${PH[0][0]}</b><em>CALL →</em></a>`,`<a class="ct-t" href="tel:${US[1]}"><span class="ct-i">${TEL_SVG}</span><small>USA · TRUCKING &amp; MEDIA</small><b>${US[0]}</b><em>CALL →</em></a>`]
    :[...PH.map(([n,tel],i)=>`<a class="ct-t" href="tel:${tel}"><span class="ct-i">${TEL_SVG}</span><small>LINE ${i+1}</small><b>${n}</b><em>CALL →</em></a>`),
-     `<a class="ct-t wa" href="${WA}" target="_blank" rel="noopener"><span class="ct-i">${WA_SVG}</span><small>WHATSAPP</small><b>Chat now</b><em>OPEN →</em></a>`];
+     `<a class="ct-t wa" href="${WA}" target="_blank" rel="noopener"><span class="ct-i">${WA_SVG}</span><small>WHATSAPP</small><b>Chat now</b><em>OPEN →</em></a>`,mailT];
   openDlg(`<span class="ct-glow" aria-hidden="true"></span><button class="ct-x" type="button" data-close aria-label="Close">×</button>
-   <span class="ct-k">${us?'WAYFORTH TRUCKING · UNITED STATES':'WAYFORTH · LAHORE'}</span><h3 id="ovTitle">Contact Us</h3>
-   <p>${us?'Our US phone line and email are being set up. Until then, message us on WhatsApp and a real agent will reply.':'Call us directly or message us on WhatsApp. We usually reply within the hour during working hours.'}</p>
+   <span class="ct-k">${us?(current==='media'?'WAYFORTH MEDIA · UNITED STATES':'WAYFORTH TRUCKING · UNITED STATES'):'WAYFORTH'}</span><h3 id="ovTitle">Contact Us</h3>
+   <p>${us?'Call, text or WhatsApp our US line, or email our support team. A real agent will reply.':'Email our support team or call the line for your market. We usually reply within the hour during working hours.'}</p>
    <div class="ct-tiles">${tiles.join('')}</div>`,'contact');
 }
 function supportForm(){return `<form id="inq" data-label="Support callback request" data-kind="support" novalidate><input class="wf-hp" name="wf_hp" tabindex="-1" autocomplete="off" aria-hidden="true">
-    <div class="row2"><label>Full name<input id="f-name" name="fullName" autocomplete="name" required></label><label>Phone number to call back<input id="f-phone" name="phone" type="tel" inputmode="tel" autocomplete="tel" placeholder="03XX-XXXXXXX" required></label></div>
+    <div class="row2"><label>Full name<input id="f-name" name="fullName" autocomplete="name" required></label><label>Phone number to call back<input id="f-phone" name="phone" type="tel" inputmode="tel" autocomplete="tel" placeholder="${current==='trucking'||current==='media'?'(410) 555-0123':'03XX-XXXXXXX'}" required></label></div>
     <label>Email (optional)<input id="f-email" name="email" type="email" autocomplete="email"></label>
     <label>How can we help?<textarea id="f-notes" name="notes" placeholder="Order, delivery, quote or anything else"></textarea></label>
     <div class="status" id="f-status" role="status"></div>
@@ -419,7 +471,7 @@ function openSupport(){
   if(current==='build'){openDlg(`<div class="sp-ph" style="background-image:url('bs-commercial.webp')"><span>We'll call<br>you back.</span></div><div class="sp-r"><button class="sp-x" type="button" data-close aria-label="Close">×</button><span class="sp-k">WAYFORTH BUILD · SUPPORT</span><h3 id="ovTitle">Support</h3><p>Leave your name and number and the WAYFORTH team will call you back.</p>${supportForm()}</div>`,'split');bindForm();return;}
   openDlg(`<h3 id="ovTitle">Support</h3><p>Leave your name and number and the WAYFORTH team will call you back. Tell us briefly what you need help with.</p>
    <form id="inq" data-label="Support callback request" data-kind="support" novalidate><input class="wf-hp" name="wf_hp" tabindex="-1" autocomplete="off" aria-hidden="true">
-    <div class="row2"><label>Full name<input id="f-name" name="fullName" autocomplete="name" required></label><label>Phone number to call back<input id="f-phone" name="phone" type="tel" inputmode="tel" autocomplete="tel" placeholder="03XX-XXXXXXX" required></label></div>
+    <div class="row2"><label>Full name<input id="f-name" name="fullName" autocomplete="name" required></label><label>Phone number to call back<input id="f-phone" name="phone" type="tel" inputmode="tel" autocomplete="tel" placeholder="${current==='trucking'||current==='media'?'(410) 555-0123':'03XX-XXXXXXX'}" required></label></div>
     <label>Email (optional)<input id="f-email" name="email" type="email" autocomplete="email"></label>
     <label>How can we help?<textarea id="f-notes" name="notes" placeholder="Order, delivery, quote, shipment or anything else"></textarea></label>
     <div class="status" id="f-status" role="status"></div>
@@ -437,7 +489,7 @@ function openAbout(){
     openDlg(`<span class="ab-beam" aria-hidden="true"></span><span class="ab-lamp" aria-hidden="true"></span><div class="ab-plaque"><span class="ab-k">WAYFORTH</span><h3 id="ovTitle">${h}</h3><p>${a}</p><p>${b}</p><div class="ab-who"><span>24/7<small>REAL AGENTS</small></span><span>USA<small>COAST TO COAST</small></span></div></div><span class="ab-ped" aria-hidden="true"></span><button class="ab-x" type="button" data-close>CLOSE</button>`,'about');return;}
   openDlg(`<span class="vp-beam l" aria-hidden="true"></span><span class="vp-beam r" aria-hidden="true"></span><span class="vp-lamp l" aria-hidden="true"></span><span class="vp-lamp r" aria-hidden="true"></span>
    <div class="vp-card"><span class="vp-k">WAYFORTH</span><h3 id="ovTitle">About WAYFORTH</h3><p>Construction materials in Lahore, trucking across the United States and creator media in the USA, UAE and Lahore — one company, run personally by its founders.</p><p>Every client gets dependable work, honest communication and a relationship built to last.</p>
-   <div class="vp-fd"><span><b>Ahmad Hassan</b><i>CO-FOUNDER</i></span><span class="vp-dot" aria-hidden="true"></span><span><b>Rohail Azam</b><i>CO-FOUNDER</i></span></div></div><button class="ab-x" type="button" data-close>CLOSE</button>`,'vip');
+   <div class="vp-fd"><span><b>Ahmad Hassan</b><i>CO-FOUNDER</i><a class="vp-em" href="mailto:Ahmad@wayforth.ltd">Ahmad@wayforth.ltd</a></span><span class="vp-dot" aria-hidden="true"></span><span><b>Rohail Azam</b><i>CO-FOUNDER</i><a class="vp-em" href="mailto:Rohail@wayforth.ltd">Rohail@wayforth.ltd</a></span></div></div><button class="ab-x" type="button" data-close>CLOSE</button>`,'vip');
 }
 function openAux(name){
   if(name==='contact')return openContact();

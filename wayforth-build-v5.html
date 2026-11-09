@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="theme-color" content="#030a18">
-<link rel="icon" href="/favicon.ico?v=60" sizes="any"><link rel="icon" type="image/png" sizes="192x192" href="/wf-icon-192.png?v=60"><link rel="apple-touch-icon" href="/wf-apple-touch.png?v=60"><meta name="theme-color" content="#080c18"><title>WAYFORTH BUILD — Lahore | Build Your Dream</title>
+<link rel="icon" href="/favicon.ico?v=61" sizes="any"><link rel="icon" type="image/png" sizes="192x192" href="/wf-icon-192.png?v=61"><link rel="apple-touch-icon" href="/wf-apple-touch.png?v=61"><meta name="theme-color" content="#080c18"><title>WAYFORTH BUILD — Lahore | Build Your Dream</title>
 <style>
 :root{--gold:#f0c77a;--gold-strong:#ffc95f;--blue:#55b8ff;--navy:#041020;--muted:#b2c0d4;--panel:#061326;--line:rgba(240,199,122,.42)}
 *{box-sizing:border-box}
@@ -88,9 +88,9 @@ nav{display:flex;gap:clamp(0px,.2vw,4px);align-items:center}nav button{color:#d5
 @media(max-width:620px){.materials-top{flex-direction:column;align-items:stretch}.materials-top-left{width:100%}.materials-brand .logo-copy{display:flex}.materials-nav{max-width:none;width:100%;justify-content:flex-start}.materials-nav button{flex:1 1 auto}.materials-content{padding-top:18px}.materials-intro h1{font-size:clamp(28px,8.4vw,38px)}}
 
 .wf-consent{margin:8px 0 0;font-size:11.5px;line-height:1.45;opacity:.72}.wf-consent a{color:inherit;text-decoration:underline}</style>
-<link rel="stylesheet" href="wf-header.css?v=60">
+<link rel="stylesheet" href="wf-header.css?v=61">
 <style>html,body{overflow-x:hidden}.top-wfh{position:sticky;top:0;z-index:60;width:100vw;margin-left:calc(50% - 50vw);margin-right:0}.top-wfh .wfh-nav button{color:#eef2f9!important;background:none!important;border:0!important;border-radius:0!important;padding:6px 0!important;letter-spacing:.01em!important}</style>
-<script src="wf-guide.js?v=60"></script>
+<script src="wf-guide.js?v=61"></script>
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,300..900&family=Manrope:wght@400;500;700&display=swap">
 <style>/* WAYFORTH Build Showroom V45 — full-height panels + circle reveal */
 body.bsr-on main{display:none!important}
@@ -400,7 +400,8 @@ $('wfm-lines').addEventListener('click',e=>{const r=e.target.closest('[data-rm]'
 let tt;function toast(s){const T=$('wfm-toast');T.textContent=s;T.classList.add('show');clearTimeout(tt);tt=setTimeout(()=>T.classList.remove('show'),2200);}
 $('wfm-add').onclick=()=>{const m=M[i],u=$('wfm-u').value,q=Math.max(1,+$('wfm-q').value||1),p=cart.get(m.id);cart.set(m.id,{m,q:p&&p.u===u?p.q+q:q,u});renderCart();
   const tb=$('wfm-tab');tb.classList.remove('bump');void tb.offsetWidth;tb.classList.add('bump');toast(`${m.name} added to your quote cart`);if(cart.size===1&&innerWidth>1000&&W.classList.contains('tray-off'))setTimeout(()=>setTray(true),250);};
-const setTray=on=>W.classList.toggle('tray-off',!on);
+const ui=m=>{if(parent!==window)parent.postMessage(Object.assign({type:'wf-ui'},m),location.origin);};
+const setTray=on=>{W.classList.toggle('tray-off',!on);ui({tray:!!on});};
 $('wfm-tuck').onclick=()=>setTray(false);
 const tab=$('wfm-tab');let tx=null,moved=0;
 tab.addEventListener('pointerdown',e=>{tx=e.clientX;moved=0;tab.setPointerCapture(e.pointerId);});
@@ -428,7 +429,7 @@ function open(kind,option){load();project={kind:kind||'Residential',option:optio
   W.classList.toggle('com',com);cart=com?carts.com:carts.home;$('wfm-ch').textContent=com?'Bulk order sheet':'Home project list';setTray(cart.size>0&&innerWidth>1000);$('wfm-badge').textContent=com?'▦ COMMERCIAL · '+opt:'⌂ HOME · '+opt;$('wfm-ck').textContent=com?'BULK ORDER BASKET':'YOUR PROJECT BASKET';
   W.classList.remove('closing');i=-1;layers.forEach(l=>{l.classList.add('notr','idle');l.classList.remove('on');void l.offsetWidth;l.classList.remove('notr');});void W.offsetWidth;W.classList.add('on');ra&&ra.cancel();if(!matchMedia('(prefers-reduced-motion: reduce)').matches){const x=px,y=py-t;ra=W.animate([{clipPath:`circle(0px at ${x}px ${y}px)`},{clipPath:`circle(${farR(x,y)}px at ${x}px ${y}px)`}],{duration:700,easing:'cubic-bezier(.33,.8,.2,1)'});ra.onfinish=()=>{ra=null;};}show(0,1);renderCart();}
 let ra=null;const farR=(x,y)=>Math.hypot(Math.max(x,W.clientWidth-x),Math.max(y,W.clientHeight-y))+40;
-function close(instant){if(!W.classList.contains('on'))return;W.classList.remove('on');ra&&ra.cancel();if(instant||matchMedia('(prefers-reduced-motion: reduce)').matches)return;
+function close(instant){if(!W.classList.contains('on'))return;W.classList.remove('on');ui({tray:false});ra&&ra.cancel();if(instant||matchMedia('(prefers-reduced-motion: reduce)').matches)return;
   W.classList.add('closing');const x=px,y=py-topH();
   ra=W.animate([{clipPath:`circle(${farR(x,y)}px at ${x}px ${y}px)`},{clipPath:`circle(0px at ${x}px ${y}px)`}],{duration:520,easing:'cubic-bezier(.6,0,.4,1)',fill:'forwards'});
   ra.onfinish=()=>{W.classList.remove('closing');ra.cancel();ra=null;};}

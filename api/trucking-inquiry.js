@@ -3,7 +3,9 @@
    Nothing is stored: each request is turned into one email and discarded.
    Env vars (Vercel → Settings → Environment Variables):
      RESEND_API_KEY, WAYFORTH_FROM_EMAIL, WAYFORTH_LEADS_EMAIL (comma separated)
-     optional WAYFORTH_ALLOWED_HOSTS (comma separated, e.g. wayforth.ltd,www.wayforth.ltd) */
+     optional WAYFORTH_ALLOWED_HOSTS (comma separated, e.g. wayforth.ltd,www.wayforth.ltd)
+   optional WAYFORTH_SUPPORT_EMAIL (reply-to on the customer confirmation; default Support@wayforth.ltd)
+   optional WAYFORTH_AUTOREPLY=off to stop the customer confirmation email */
 const SERVICES = {
   car: 'Ship a Car', boat: 'Ship a Boat', freight: 'Move a Load', carrier: 'Join as a Carrier',
   build: 'Build Materials Quote', media: 'Media Inquiry', support: 'Support', general: 'General Inquiry'
@@ -66,7 +68,7 @@ module.exports = async function handler(req, res) {
 
   const apiKey = process.env.RESEND_API_KEY;
   const from = process.env.WAYFORTH_FROM_EMAIL;
-  const recipients = (process.env.WAYFORTH_LEADS_EMAIL || 'info@wayforth.ltd').split(',').map(s => s.trim()).filter(Boolean);
+  const recipients = (process.env.WAYFORTH_LEADS_EMAIL || 'Support@wayforth.ltd,Ahmad@wayforth.ltd,Rohail@wayforth.ltd').split(',').map(s => s.trim()).filter(Boolean);
   if (!apiKey || !from) return res.status(503).json({message: 'WAYFORTH email delivery is not configured yet. Please contact the team directly.'});
 
   let body;
@@ -113,6 +115,21 @@ module.exports = async function handler(req, res) {
     });
     if (!response.ok) throw new Error('Email provider error ' + response.status);
     const data = await response.json().catch(() => ({}));
+    // Best-effort "we received your request" email to the customer. Fixed text only: nothing the
+    // visitor typed is repeated, so this cannot be used to send spam content to other people.
+    if (email && process.env.WAYFORTH_AUTOREPLY !== 'off') {
+      const support = process.env.WAYFORTH_SUPPORT_EMAIL || 'Support@wayforth.ltd';
+      await fetch('https://api.resend.com/emails', {
+        method: 'POST',
+        signal: controller.signal,
+        headers: {Authorization: `Bearer ${apiKey}`, 'Content-Type': 'application/json'},
+        body: JSON.stringify({
+          from, to: [email], reply_to: support,
+          subject: `We received your request — WAYFORTH`,
+          html: `<div style="font-family:Arial,sans-serif;max-width:600px;margin:auto;color:#172033"><h2 style="margin:0 0 12px">Thank you for contacting WAYFORTH</h2><p>We have received your ${clean(SERVICES[service]).toLowerCase()} request. A member of our team will get back to you shortly.</p><p>If you need anything in the meantime, simply reply to this email or write to <a href="mailto:${clean(support)}">${clean(support)}</a>.</p><p style="margin-top:24px">— The WAYFORTH team<br><span style="color:#65758b;font-size:12px">Build · Trucking · Media</span></p></div>`
+        })
+      }).catch(() => {});
+    }
     return res.status(200).json({ok: true, id: data.id || null});
   } catch (error) {
     console.error('WAYFORTH inquiry failed:', error && error.message); // no customer data in logs
